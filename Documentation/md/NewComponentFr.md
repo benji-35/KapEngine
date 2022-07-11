@@ -22,6 +22,126 @@ Sur cette page tu vas apprendre qu'est ce qu'un KapEngine::Component, pourquoi i
 
 ## Qu'est ce qu'un composant
 
+Un composant est un script rattaché à un objet de jeu (KapEngine::GameObject). Il a pour but de donner une logique ou une action à votre objet.
+
+Certaines fonctions seront automatiquement appelées par KapEngine ce qui permet une autonomisation du fonctionnement de votre jeu une fois lancé.
+
 ## Créer le sien
 
 ## Démarrage Rapide 
+
+```C++
+
+//déclaration de ce que l'on a besoin d'inclure
+
+#include "Component"
+
+namespace KapEngine {
+    class Component;
+}
+
+// définition de ton nouveau composant
+
+namespace KapEngine {
+
+    namespace MonJeu {
+
+        class MonComposant : public Component {
+            public:
+                MonComposant(std::shared_ptr<GameObject> go);
+                ~MonComposant();
+
+                /**
+                 * Fonctionnalité de base d'un composant
+                */
+
+                //appelé lors de l'initialisation du composant (au runtime)
+                void onInit() override;
+                //appelé lors du premier chargement de la scène OU quand on charge la scène après qu'une autre scène ai été chargé
+                void onAwake() override;
+                //appelé à chaque chargement / rechargement de la scène
+                void onStart() override;
+                //appelé à chaque frame
+                void onUpdate() override;
+                //appelé à chaque X ms. (X étant le nombre définie par vous dans l'engine. De base X = 25)
+                void onFixedUpdate() override;
+                //appelé après toutes les fonctions de mise à jour
+                void onDisplay() override;
+
+                /**
+                 * Fonctionnalité lorsque votre GameObject (objet de jeu) à un composant collider sur lui
+                 * 
+                 * Attnetion !
+                 * Les fonctions suivantes, ne seront pas appelé lors des fonctions mise à jour (au dessus)
+                 * ces fonctions peuvent être appelé plus tard ou avant
+                */
+
+                //appelé lors du passage de la souris sur l'objet
+                void onMouseEnter() override;
+                //appelé lorsque la souris reste sur l'objet
+                void onMouseStay() override;
+                //appelé lors de la sortie de la souris sur l'objet
+                void onMouseExit() override;
+
+                //appelé lorsqu'un objet rentre dans l'objet rattaché
+                void onTriggerEnter(std::shared_ptr<GameObject> go) override;
+                //appelé lorsqu'un objet reste dans l'objet rattaché
+                void onTriggerStay(std::shared_ptr<GameObject> go) override;
+                //appelé lorsqu'un objet sort dans l'objet rattaché
+                void onTriggerExit(std::shared_ptr<GameObject> go) override;
+
+        }
+
+        void MonComposant::onInit() {
+            Debug::log("Mon composant initialisé !");
+        }
+
+        void MonComposant::onAwake() {
+            Debug::log("Mon composant se lève !");
+        }
+
+        void MonComposant::onStart() {
+            Debug::log("Mon composant commence !");
+        }
+
+        void MonComposant::onUpdate() {
+            Debug::log("Mon composant appelle l'update !");
+        }
+
+        void MonComposant::onFixedUpdate() {
+            Debug::log("Mon composant appelle le fixedUpdate !");
+        }
+
+        void MonComposant::onDisplay() {
+            Debug::log("Mon composant s'affiche !");
+        }
+
+        void MonComposant::onMouseEnter() {
+            Debug::log("La souris passe sur mon objet");
+        }
+
+        void MonComposant::onMouseStay() {
+            Debug::log("La souris reste sur mon objet");
+        }
+
+        void MonComposant::onMouseExit() {
+            Debug::log("La souris sort de mon objet");
+        }
+
+        void MonComposant::onTriggerEnter(std::shared_ptr<GameObject> go) {
+            Debug::log("L'objet " + go->getName() + " rentre dans mon objet");
+        }
+
+        void MonComposant::onTriggerStay(std::shared_ptr<GameObject> go) {
+            Debug::log("L'objet " + go->getName() + " reste dans mon objet");
+        }
+
+        void MonComposant::onTriggerExit(std::shared_ptr<GameObject> go) {
+            Debug::log("L'objet " + go->getName() + " sort de mon objet");
+        }
+
+    }
+
+}
+
+```
