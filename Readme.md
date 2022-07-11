@@ -28,6 +28,6 @@ by Benjamin DELVERT
 
 | Icons                  | English                                    | French                                          |
 |------------------------|--------------------------------------------|-------------------------------------------------|
-| :green_circle:         | up do date tutorial or information         | Tutoriel ou informations à jour                 |
+| :green_circle:         | up do date tutorial or information         | Tutoriel ou information à jour                 |
 | :large_orange_diamond: | Currently updating tutorial or information | Tutoriel ou information en cours de mise à jour |
 | :red_circle:           | Outdating tutorial or information          | Tutoriel ou information obsolète                |
