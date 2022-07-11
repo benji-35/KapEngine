@@ -1,0 +1,48 @@
+/*
+** EPITECH PROJECT, 2022
+** gameEngine2
+** File description:
+** Component
+*/
+
+#include "Component.hpp"
+#include "Errors.hpp"
+
+KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string const& name) {
+    _go = go;
+    _name = name;
+}
+
+KapEngine::Component::~Component()
+{
+}
+
+KapEngine::GameObject &KapEngine::Component::getGameObject() {
+    try {
+        return *_go->getScene().getObject(_go->getId());
+    } catch (Errors::SceneError e) {
+        throw Errors::ComponentError(std::string(e.what()));
+    }
+}
+
+void KapEngine::Component::__update() {
+    try {
+        if (!getGameObject().isActive() || getGameObject().isDestroyed())
+            return;
+        __awake();
+        if (!getGameObject().isActive() || getGameObject().isDestroyed())
+            return;
+        __start();
+        if (!getGameObject().isActive() || getGameObject().isDestroyed())
+            return;
+        onUpdate();
+        if (!getGameObject().isActive() || getGameObject().isDestroyed())
+            return;
+        __fixedUpdate();
+        if (!getGameObject().isActive() || getGameObject().isDestroyed())
+            return;
+        onDisplay();
+    } catch(...) {
+        return;
+    }
+}
