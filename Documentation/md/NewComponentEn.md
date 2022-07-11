@@ -17,7 +17,7 @@ On this page you will learn what's a KapEngine::Component, why does it exist and
 | Title              | Link                     | Status         |
 |--------------------|--------------------------|----------------|
 | What's a Component | [GO](#Whats-a-component) | :green_circle: |
-| Create own         | [GO](#Create-own)        | :red_circle:   |
+| Create own         | [GO](#Create-own)        | :large_orange_diamond:   |
 | Quick Start        | [GO](#Quick-start)       | :green_circle: |
 
 
