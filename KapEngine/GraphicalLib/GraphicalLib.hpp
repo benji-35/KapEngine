@@ -18,6 +18,10 @@ namespace KapEngine {
         class Key;
         class Input;
     }
+
+    namespace Graphical {
+        class GraphicalLibManager;
+    }
 }
 
 namespace KapEngine {
@@ -26,10 +30,13 @@ namespace KapEngine {
 
         class GraphicalLib {
             public:
-                GraphicalLib(std::string const& name);
+                GraphicalLib(std::string const& name, GraphicalLibManager &manager);
                 ~GraphicalLib();
 
                 //updates things
+                virtual void clear();
+                virtual void display();
+                virtual void getEvents();
 
                 //back system call
                 std::string getName() const {
@@ -58,6 +65,7 @@ namespace KapEngine {
                 std::vector<Events::Key> _pressedInputs;
                 std::vector<Events::Key> _releasedInputs;
                 std::string _name;
+                GraphicalLibManager &manager;
 
             private:
         };

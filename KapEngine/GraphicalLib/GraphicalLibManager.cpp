@@ -16,7 +16,7 @@ void KapEngine::Graphical::GraphicalLibManager::update() {
     if (_multiThread) {
         if (_threadRunning)
             return;
-        _thread = std::make_shared<std::thread>(__runThread);
+        // _thread = std::make_shared<std::thread>(__runThread);
         return;
     }
     Debug::log("update graphical normal");
@@ -77,4 +77,10 @@ std::string KapEngine::Graphical::GraphicalLibManager::getLibNameFromIndex(std::
             return _libs[i]->getName();
     }
     return "";
+}
+
+std::shared_ptr<KapEngine::Graphical::GraphicalLib> KapEngine::Graphical::GraphicalLibManager::getLib(std::size_t index) {
+    if (!isLibExists(index))
+        throw Errors::GraphicalSystemError("Library not found");
+    return _libs[index];
 }

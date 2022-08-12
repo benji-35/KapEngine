@@ -19,6 +19,7 @@ namespace KapEngine {
 
     namespace Graphical {
         class GraphicalLibManager;
+        class GraphicalLib;
     }
 }
 
@@ -70,6 +71,9 @@ namespace KapEngine {
 
             //graphical libs
             std::shared_ptr<Graphical::GraphicalLibManager> _libManager;
+
+            //functions
+            void __init();
     };
 
 }

@@ -58,10 +58,10 @@ namespace KapEngine {
                 ~GameError() = default;
         };
 
-        class DisplaySystemError : public Error {
+        class GraphicalSystemError : public Error {
             public:
-                DisplaySystemError(std::string const& msg) : Error(msg) {}
-                ~DisplaySystemError() = default;
+                GraphicalSystemError(std::string const& msg) : Error(msg) {}
+                ~GraphicalSystemError() = default;
         };
 
     }

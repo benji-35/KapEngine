@@ -14,6 +14,12 @@
 
 namespace KapEngine {
     namespace Graphical {
+        class GraphicalLib;
+    }
+}
+
+namespace KapEngine {
+    namespace Graphical {
 
         class GraphicalLibManager {
             public:
@@ -30,6 +36,7 @@ namespace KapEngine {
 
                 std::size_t getLibIndexFromName(std::string const& name);
                 std::string getLibNameFromIndex(std::size_t const& index);
+                std::shared_ptr<GraphicalLib> getLib(std::size_t index);
 
                 void setMultiThread(bool b) {
                     if (!b && _multiThread) {
