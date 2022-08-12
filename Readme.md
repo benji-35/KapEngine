@@ -15,7 +15,7 @@ by Benjamin DELVERT
 | What's KapEngine              | [SHOW](Documentation/md/KapEngineEn.md)    | :large_orange_diamond: |
 | Create Component              | [SHOW](Documentation/md/NewComponentEn.md) | :large_orange_diamond: |
 | Manage Grpahical Library      | [SHOW](Documentation/md/LibGraphEn.md)     | :large_orange_diamond: |
-| Compile your game             | [VOIR](Documentation/md/compileEn.md)      | :large_orange_diamond: |
+| Compile your game             | [SHOW](Documentation/md/compileEn.md)      | :large_orange_diamond: |
 
 ## Français
 | Titre                         | Lien                                       | Status                 |
