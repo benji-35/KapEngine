@@ -8,6 +8,8 @@
 #ifndef SCENEMANAGER_HPP_
 #define SCENEMANAGER_HPP_
 
+#include <vector>
+#include <memory>
 #include "Scene.hpp"
 
 namespace KapEngine {

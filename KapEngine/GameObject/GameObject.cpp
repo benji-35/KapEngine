@@ -40,4 +40,31 @@ void KapEngine::GameObject::__update() {
     for (std::size_t i = 0; i < _components.size(); i++) {
         _components[i]->__update();
     }
+    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+        _componentsRun[i]->__update();
+    }
+}
+
+KapEngine::Component &KapEngine::GameObject::getComponent(std::string const& name) {
+    for (std::size_t i = 0; i < _components.size(); i++) {
+        if (_components[i]->getName() == name)
+            return *_components[i];
+    }
+    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+        if (_componentsRun[i]->getName() == name)
+            return *_componentsRun[i];
+    }
+    throw Errors::GameObjectError("No component named \"" + name + "\" found");
+}
+
+KapEngine::Component &KapEngine::GameObject::getTransform() {
+    try {
+        return getComponent("Transform");
+    } catch(...) {
+        throw Errors::GameObjectError("GameObject " + _name + " does not contain transform component");
+    }
+}
+
+KapEngine::KapEngine &KapEngine::GameObject::getEngine() {
+    return _scene.getEngine();
 }

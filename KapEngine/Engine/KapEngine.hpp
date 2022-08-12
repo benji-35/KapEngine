@@ -10,10 +10,15 @@
 
 #include "Errors.hpp"
 #include "SceneManager.hpp"
+#include "GraphicalLibManager.hpp"
 
 namespace KapEngine {
     namespace SceneManagement {
         class SceneManager;
+    }
+
+    namespace Graphical {
+        class GraphicalLibManager;
     }
 }
 
@@ -41,6 +46,12 @@ namespace KapEngine {
                 _debug = b;
             }
 
+            //action with graphical lib
+            std::shared_ptr<Graphical::GraphicalLib> getCurrentGraphicalLib();
+            bool isGraphicalLibExists(std::size_t const& index) const;
+            bool isGraphicalLibExists(std::string const& name) const;
+            std::size_t getCurrentGraphicalLibIndex() const;
+
         protected:
         private:
 
@@ -54,7 +65,11 @@ namespace KapEngine {
             std::string _gameVersion;
             std::string _gameCompany;
     
+            //scene manager
             std::shared_ptr<SceneManagement::SceneManager> _sceneManager;
+
+            //graphical libs
+            std::shared_ptr<Graphical::GraphicalLibManager> _libManager;
     };
 
 }

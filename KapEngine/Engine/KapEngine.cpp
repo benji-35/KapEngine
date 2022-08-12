@@ -5,7 +5,7 @@
 ** Engine
 */
 
-#include "Engine.hpp"
+#include "KapEngine.hpp"
 
 KapEngine::KapEngine::KapEngine(bool debug, std::string const& gameName, std::string const& version, std::string const& company) {
     _debug = debug;
@@ -30,4 +30,21 @@ void KapEngine::KapEngine::run() {
 
 void KapEngine::KapEngine::stop() {
     _run = false;
+}
+
+
+std::shared_ptr<KapEngine::Graphical::GraphicalLib> KapEngine::KapEngine::getCurrentGraphicalLib() {
+    
+}
+
+bool KapEngine::KapEngine::isGraphicalLibExists(std::size_t const& index) const {
+    return false;
+}
+
+bool KapEngine::KapEngine::isGraphicalLibExists(std::string const& name) const {
+    return false;
+}
+
+std::size_t KapEngine::KapEngine::getCurrentGraphicalLibIndex() const {
+    _libManager->getCurrLib();
 }

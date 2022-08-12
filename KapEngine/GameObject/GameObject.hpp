@@ -10,7 +10,6 @@
 
 #include "Component.hpp"
 #include "Scene.hpp"
-#include "Engine.hpp"
 
 namespace KapEngine {
 
@@ -70,14 +69,18 @@ namespace KapEngine {
                 return _scene;
             }
 
+            Component &getTransform();
+
         protected:
         private:
             std::string _name;
             bool _active = true;
             bool _destroyed = false;
+            bool _firstUpdateDone = false;
             std::size_t _id = 0;
             std::size_t _parentId = 0;
             std::vector<std::shared_ptr<Component>> _components;
+            std::vector<std::shared_ptr<Component>> _componentsRun;
             SceneManagement::Scene &_scene;
 
     };

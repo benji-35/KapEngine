@@ -12,7 +12,7 @@ namespace KapEngine {
 
     class IComponent {
         public:
-            virtual ~IComponent() {}
+            ~IComponent() {}
 
             //function to update object
             /**

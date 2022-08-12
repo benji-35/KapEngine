@@ -28,6 +28,38 @@ Certaines fonctions seront automatiquement appelées par KapEngine ce qui permet
 
 ## Créer le sien
 
+Créer un composant est très simple. Vous devez créer un nouveau fichier .hpp. Ce fichier contiendra la classe de votre composant : [exemple](#Démarrage-rapide). Une fois que vous aurez créé ce composant, il fous suffira de l'ajouter sur un objet.
+
+Exemple:
+```C++
+
+int main() {
+    /*
+        On suppose que vous aurez déjà initilisé l'engine et certaines scene.
+    
+        La variable scene ici contiendra une scène déjà initialisée
+    */
+
+    //sur cette ligne vous demandez à l'engine de créer un objet de votre scene
+    std::shared_ptr<GameObject> monObjet = KapEngine::Factory::createEmptyGameObject(scene, "Le nom de mon objet");
+
+    //sur cette ligne vous demandez de la mémoire pour votre nouveau composant
+    std::make_shared<MonComposant> monComposant = std::make_shared<MonComposant>(monObjet);
+    
+    //sur cette ligne vous ajouté le composant à l'objet
+    monObjet->addComponent(monComposant);
+}
+
+```
+Ces étapes sont obligatoires pour pouvoir ajouter un composant à un objet.
+
+:warning: Il est primordiale de ne pas mélanger les GameObjects pour le composant. L'objet dans lequel vous ajouté le composant doit être le même objet qui se trouve dans le constructeur du composant comme dans l'exemple.
+
+### Liste des fonctions disponibles
+
+#### onInit
+Cette fonction est appelée lors de l'initialisation du composant au runtime.
+
 ## Démarrage Rapide 
 
 ```C++

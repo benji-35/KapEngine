@@ -9,6 +9,7 @@
 #define COMPONENT_HPP_
 
 #include "GameObject.hpp"
+#include "IComponent.hpp"
 
 namespace KapEngine {
     class GameObject;
@@ -20,7 +21,7 @@ namespace KapEngine {
 
 namespace KapEngine {
 
-    class Component {
+    class Component : public IComponent {
         public:
             Component(std::shared_ptr<GameObject> &go, std::string const& name);
             ~Component();
@@ -51,21 +52,21 @@ namespace KapEngine {
             GameObject &getGameObject();
 
             //updates functions
-            virtual void onInit() {}
-            virtual void onAwake() {}
-            virtual void onStart() {}
-            virtual void onUpdate() {}
-            virtual void onFixedUpdate() {}
+            virtual void onInit() override {}
+            virtual void onAwake() override {}
+            virtual void onStart() override {}
+            virtual void onUpdate() override {}
+            virtual void onFixedUpdate() override {}
 
-            virtual void onDisplay() {}
+            virtual void onDisplay() override {}
 
-            virtual void onTriggerEnter() {}
-            virtual void onTriggerStay() {}
-            virtual void onTriggerExit() {}
+            virtual void onTriggerEnter() override {}
+            virtual void onTriggerStay() override {}
+            virtual void onTriggerExit() override {}
 
-            virtual void onMouseEnter() {}
-            virtual void onMouseStay() {}
-            virtual void onMouseExit() {}
+            virtual void onMouseEnter() override {}
+            virtual void onMouseStay() override {}
+            virtual void onMouseExit() override {}
 
             /**
              * @fn std::size_t getLevel() const
@@ -100,6 +101,10 @@ namespace KapEngine {
                 _enable = b;
             }
 
+            std::string getName() const {
+                return _name;
+            }
+
         protected:
             /**
              * @brief Component name
@@ -110,6 +115,8 @@ namespace KapEngine {
             std::size_t _level = 0;
             std::shared_ptr<GameObject> _go;
             bool _enable = true;
+            bool _awakeDone = false;
+            bool _startDone = false;
             void __fixedUpdate();
             void __awake();
             void __start();

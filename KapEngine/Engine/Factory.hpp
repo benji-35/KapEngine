@@ -11,6 +11,7 @@
 #include "GameObject.hpp"
 #include "Vectors.hpp"
 #include "Colors.hpp"
+#include "Transform.hpp"
 
 namespace KapEngine {
 
@@ -22,15 +23,40 @@ namespace KapEngine {
             */
 
             static std::shared_ptr<GameObject> createEmptyGameObject(SceneManagement::Scene &scene, std::string const& name) {
-                return std::make_shared<GameObject>(scene, name);
+                std::shared_ptr<GameObject> result = std::make_shared<GameObject>(scene, name);
+
+                result->addComponent(std::make_shared<Transform>(result));
+
+                scene.addGameObject(result);
+                return result;
             }
 
             static std::shared_ptr<GameObject> createEmptyGameObject(SceneManagement::Scene &scene, std::string const& name, Tools::Vector3 pos, Tools::Vector3 rot) {
-                
+                std::shared_ptr<GameObject> result;
+                try {
+                    result = createEmptyGameObject(scene, name, pos);
+
+                    Transform &transform = (Transform &)result->getComponent("Transform");
+                    transform.setRotation(rot);
+                } catch (...) {
+                    throw Errors::EngineError("GameObject created cannot set position");
+                }
+                return result;
             }
             
             static std::shared_ptr<GameObject> createEmptyGameObject(SceneManagement::Scene &scene, std::string const& name, Tools::Vector3 pos) {
+                std::shared_ptr<GameObject> result = createEmptyGameObject(scene, name);
 
+                try {
+                    Transform &transform = (Transform &)result->getComponent("Transform");
+
+                    transform.setPosition(pos);
+
+                } catch (...) {
+                    throw Errors::EngineError("GameObject created cannot set position");
+                }
+
+                return result;
             }
 
 

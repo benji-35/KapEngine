@@ -13,9 +13,7 @@ KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string con
     _name = name;
 }
 
-KapEngine::Component::~Component()
-{
-}
+KapEngine::Component::~Component() {}
 
 KapEngine::GameObject &KapEngine::Component::getGameObject() {
     try {
@@ -45,4 +43,22 @@ void KapEngine::Component::__update() {
     } catch(...) {
         return;
     }
+}
+
+void KapEngine::Component::__awake() {
+    if (_awakeDone)
+        return;
+    _awakeDone = true;
+    onAwake();
+}
+
+void KapEngine::Component::__start() {
+    if (_startDone)
+        return;
+    _startDone = true;
+    onStart();
+}
+
+void KapEngine::Component::__fixedUpdate() {
+    
 }

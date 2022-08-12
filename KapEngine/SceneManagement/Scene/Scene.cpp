@@ -8,7 +8,7 @@
 #include "Scene.hpp"
 #include "Errors.hpp"
 
-KapEngine::SceneManagement::Scene::Scene(std::string const& name) {
+KapEngine::SceneManagement::Scene::Scene(KapEngine &engine, std::string const& name) : engine(engine) {
     _name = name;
 }
 

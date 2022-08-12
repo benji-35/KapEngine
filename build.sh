@@ -12,12 +12,21 @@
 #definitions
 
 BUILD_EXISTS = 0
+BUILD_EXISTS_BIN = 0
 
 libKapExists() {
     BUILD_EXISTS=0
     if [ -f "libKapEngine.so" ]
     then
         BUILD_EXISTS=1
+    fi
+}
+
+libKapExistsBin() {
+    BUILD_EXISTS_BIN=0
+    if [ -f "/usr/lib/libKapEngine.so" ]
+    then
+        BUILD_EXISTS_BIN=1
     fi
 }
 
@@ -33,11 +42,17 @@ buildEngine() {
             if [ $? -eq 0 ]
             then
                 echo -e "\e[92m[KAP ENGINE]\e[0m Engine built !"
+                copyEngineToBin
             else
                 echo -e "\e[1;5;91m[KAP ENGINE]\e[0m Failled to build\e[0m"
                 exit 1
             fi
         else
+            read -p "[KAP ENGINE] Do you want to delete your Game ? (Y/N) ? " confirm
+            if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
+            then
+                make fclean -C KapEngineGame
+            fi
             return
         fi
     else
@@ -50,6 +65,7 @@ buildEngine() {
             then
             BUILD_EXISTS = 0
                 echo -e "\e[92m[KAP ENGINE]\e[0m Engine rebuilt !"
+                copyEngineToBin
             else
                 echo -e "\e[1;5;91m[KAP ENGINE]\e[0m Failled to rebuild\e[0m"
                 exit 1
@@ -59,6 +75,11 @@ buildEngine() {
             if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
             then
                 make fclean -C KapEngine
+                read -p "[KAP ENGINE] Do you want to delete your Game ? (Y/N) ? " confirm
+                if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
+                then
+                    make fclean -C KapEngineGame
+                fi
                 return
             fi
         fi
@@ -95,6 +116,23 @@ buildGame() {
                 echo -e "\e[1;5;91m[KAP ENGINE]\e[0m Failled to build\e[0m"
                 exit 1
             fi
+    fi
+}
+
+copyEngineToBin() {
+    libKapExistsBin
+    if [ $BUILD_EXISTS_BIN -eq 1 ]
+    then
+        read -p "[KAP ENGINE] Do you want to delete existing KapEngine in /usr/lib/ ? (Y/N) " confirm
+    fi
+    if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
+    then
+        sudo rm /usr/lib/libKapEngine.so
+    fi
+    read -p "[KAP ENGINE] Do you want to copy KapEngine library to your /usr/lib ? (Y/N) ? " confirm
+    if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
+    then
+        sudo cp libKapEngine.so /usr/lib
     fi
 }
 

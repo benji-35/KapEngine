@@ -18,5 +18,5 @@ void KapEngine::SceneManagement::SceneManager::addScene(std::shared_ptr<Scene> s
 }
 
 void KapEngine::SceneManagement::SceneManager::addScene(std::string const& name) {
-    std::shared_ptr<Scene> nScene = std::make_shared<Scene>(name);
+    std::shared_ptr<Scene> nScene = std::make_shared<Scene>(_engine, name);
 }

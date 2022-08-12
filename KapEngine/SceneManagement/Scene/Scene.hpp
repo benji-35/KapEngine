@@ -8,10 +8,11 @@
 #ifndef SCENE_HPP_
 #define SCENE_HPP_
 
-#include "Scene.hpp"
+#include "KapEngine.hpp"
 #include "GameObject.hpp"
 
 namespace KapEngine {
+    class KapEngine;
     class GameObject;
     class Component;
 }
@@ -26,7 +27,7 @@ namespace KapEngine {
 
         class Scene {
             public:
-                Scene(std::string const& sceneName);
+                Scene(KapEngine &engine, std::string const& sceneName);
                 ~Scene();
 
                 void addGameObject(std::shared_ptr<GameObject> go);
@@ -69,11 +70,16 @@ namespace KapEngine {
 
                 std::shared_ptr<GameObject> getObject(std::size_t id);
 
+                KapEngine &getEngine() {
+                    return engine;
+                }
+
             protected:
             private:
                 std::size_t _id = 0;
                 std::string _name;
                 std::size_t _idObjectMax = 0;
+                KapEngine &engine;
                 std::vector<std::shared_ptr<GameObject>> _gameObjects;
                 std::vector<std::shared_ptr<GameObject>> _gameObjectsRun;
         };
