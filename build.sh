@@ -13,6 +13,8 @@
 
 BUILD_EXISTS = 0
 BUILD_EXISTS_BIN = 0
+BUILD_EXISTS_BIN64 = 0
+LIB_64_EXISTS = 0
 
 libKapExists() {
     BUILD_EXISTS=0
@@ -27,6 +29,27 @@ libKapExistsBin() {
     if [ -f "/usr/lib/libKapEngine.so" ]
     then
         BUILD_EXISTS_BIN=1
+    fi
+}
+
+lib64Exists() {
+    LIB_64_EXISTS = 0
+    if [ -d "/usr/lib64" ]
+    then
+        LIB_64_EXISTS=1
+    fi
+}
+
+libKapExistsBin64() {
+    BUILD_EXISTS_BIN64=0
+    lib64Exists
+    if [ $LIB_64_EXISTS -eq 0 ]
+    then
+        return
+    fi
+    if [ -f "/usr/lib64/libKapEngine.so" ]
+    then
+        BUILD_EXISTS_BIN64=1
     fi
 }
 
@@ -120,16 +143,40 @@ buildGame() {
 }
 
 copyEngineToBin() {
+    lib64Exists
     libKapExistsBin
+
+    if [ $LIB_64_EXISTS -eq 1 ]
+    then
+        if [ $BUILD_EXISTS_BIN64 -eq 1 ]
+        then
+            read -p "[KAP ENGINE] Do you want to delete existing KapEngine in /usr/lib64/ ? (Y/N) " confirm
+            if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
+            then
+                sudo rm /usr/lib64/libKapEngine.so
+            else
+                return
+            fi
+        fi
+        read -p "[KAP ENGINE] Do you want to copy KapEngine library to your /usr/lib64/ ? (Y/N) ? " confirm
+        if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
+        then
+            sudo cp libKapEngine.so /usr/lib64
+        fi
+        return
+    fi
+
     if [ $BUILD_EXISTS_BIN -eq 1 ]
     then
         read -p "[KAP ENGINE] Do you want to delete existing KapEngine in /usr/lib/ ? (Y/N) " confirm
+        if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
+        then
+            sudo rm /usr/lib/libKapEngine.so
+        else
+            return
+        fi
     fi
-    if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
-    then
-        sudo rm /usr/lib/libKapEngine.so
-    fi
-    read -p "[KAP ENGINE] Do you want to copy KapEngine library to your /usr/lib ? (Y/N) ? " confirm
+    read -p "[KAP ENGINE] Do you want to copy KapEngine library to your /usr/lib/ ? (Y/N) ? " confirm
     if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
     then
         sudo cp libKapEngine.so /usr/lib
