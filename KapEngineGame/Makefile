@@ -9,7 +9,7 @@
 ## by Benjamin DELVERT
 
 # game name binary
-GAME_NAME	=	MyGame
+GAME_NAME	=	TestGame
 
 # relative path of directory that contain your .hpp component. You have to insert at front "-I"
 # ex: (hpp: ) -I Assets/Components/ (cpp: ) Assets/Components/MyComponent.cpp
@@ -64,3 +64,5 @@ clean:
 	@rm -f $(OBJ)
 
 re: fclean all
+
+.PHONY: all re fclean

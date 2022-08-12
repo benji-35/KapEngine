@@ -15,6 +15,7 @@
 namespace KapEngine {
     namespace Graphical {
         class GraphicalLib;
+        class LegacyGraphicalLib;
     }
 }
 
@@ -49,6 +50,10 @@ namespace KapEngine {
 
                 std::size_t getCurrLib() const {
                     return currLib;
+                }
+
+                KapEngine &getEngine() const {
+                    return _engine;
                 }
 
             protected:

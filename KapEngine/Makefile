@@ -26,6 +26,7 @@ SRC	=	$(ENGINE_PATH_COMPONENT)Component.cpp								\
 		$(ENGINE_PATH_COMPONENTS)Transform/Transform.cpp					\
 		$(ENGINE_PATH_GRAPHICAL)GraphicalLibManager.cpp						\
 		$(ENGINE_PATH_GRAPHICAL)GraphicalLib.cpp							\
+		$(ENGINE_PATH_LEGACY_GRAPHICAL)LegacyGraphicalLib.cpp				\
 
 LIB_NAME	=	libKapEngine.so
 
@@ -53,3 +54,5 @@ fclean:	clean
 	@rm -f $(PATH_CP_LIB)$(LIB_NAME)
 
 re:	fclean all
+
+.PHONY: all re fclean

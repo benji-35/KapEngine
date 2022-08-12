@@ -53,6 +53,19 @@ namespace KapEngine {
             bool isGraphicalLibExists(std::string const& name) const;
             std::size_t getCurrentGraphicalLibIndex() const;
 
+            //getter intels
+            std::string getGameName() const {
+                return _gameName;
+            }
+
+            std::string getGameVersion() const {
+                return _gameVersion;
+            }
+
+            std::string getGameCompany() const {
+                return _gameCompany;
+            }
+
         protected:
         private:
 

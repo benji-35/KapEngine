@@ -100,6 +100,11 @@ buildEngine() {
             if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
             then
                 make fclean -C KapEngine
+                read -p "[KAP ENGINE] Do you want to delete KapEngineEditor ? (Y/N) ? " confirm
+                if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
+                then
+                    make fclean -C KapEngineEditor
+                fi
                 read -p "[KAP ENGINE] Do you want to delete your Game ? (Y/N) ? " confirm
                 if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
                 then
@@ -119,8 +124,14 @@ buildEngine() {
 buildEditor() {
     read -p "[KAP ENGINE] Build UI Editor ? (Y/N) ? " confirm
     if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
+    then
+        make re -C KapEngineEditor
+        if [ $? -eq 0 ]
         then
-            echo -e "\e[92m[KAP ENGINE]\e[0m let's build the editor...\e[0m"
+            echo -e "\e[92m[KAP ENGINE]\e[0m UI Editor built !"
+        else
+            echo -e "\e[1;5;91m[KAP ENGINE]\e[0m Failled to build\e[0m"
+        fi
     fi
 }
 
