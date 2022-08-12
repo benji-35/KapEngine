@@ -88,7 +88,7 @@ buildEngine() {
             make re -C KapEngine
             if [ $? -eq 0 ]
             then
-            BUILD_EXISTS = 0
+            BUILD_EXISTS=0
                 echo -e "\e[92m[KAP ENGINE]\e[0m Engine rebuilt !"
                 copyEngineToBin
             else
