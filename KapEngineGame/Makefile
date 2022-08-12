@@ -53,7 +53,7 @@ LIB	=	-L. -lKapEngine
 all:	$(GAME_NAME)
 
 $(GAME_NAME): $(OBJ)
-	g++ $(OBJ) $(INCLUDES) -o $(GAME_NAME) $(LIB)
+	@g++ $(OBJ) $(INCLUDES) -o $(GAME_NAME) $(LIB)
 	@cp $(GAME_NAME) ../$(GAME_NAME)
 
 fclean: clean
