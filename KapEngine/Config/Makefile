@@ -26,6 +26,7 @@ ENGINE_PATH_SCENE			=	SceneManagement/Scene/
 ENGINE_PATH_SCENEMANAGER	=	SceneManagement/SceneManager/
 
 ENGINE_PATH_TOOLS			=	Tools/
+ENGINE_PATH_DEBUG			=	Debug/
 
 ENGINE_PATH_GRAPHICAL		=	GraphicalLib/
 
@@ -40,6 +41,7 @@ ENGINE_INCLUDES	=	-I $(ENGINE_PATH_COMPONENT)								\
 					-I $(ENGINE_PATH_SCENE)									\
 					-I $(ENGINE_PATH_SCENEMANAGER)							\
 					-I $(ENGINE_PATH_TOOLS)									\
+					-I $(ENGINE_PATH_DEBUG)									\
 					-I $(ENGINE_PATH_GRAPHICAL)								\
 					-I $(ENGINE_PATH_INPUTS)								\
 					-I $(ENGINE_PATH_EV_MANAGER)							\
