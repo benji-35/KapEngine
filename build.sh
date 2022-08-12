@@ -13,8 +13,10 @@
 
 BUILD_EXISTS = 0
 BUILD_EXISTS_BIN = 0
-BUILD_EXISTS_BIN64 = 0
-LIB_64_EXISTS = 0
+BUILD_EXISTS_BIN_SF = 0
+LIB_SF_FILE_EXISTS = 0
+
+# functions
 
 libKapExists() {
     BUILD_EXISTS=0
@@ -33,23 +35,23 @@ libKapExistsBin() {
 }
 
 lib64Exists() {
-    LIB_64_EXISTS = 0
+    LIB_SF_FILE_EXISTS=0
     if [ -d "/usr/lib64" ]
     then
-        LIB_64_EXISTS=1
+        LIB_SF_FILE_EXISTS=1
     fi
 }
 
 libKapExistsBin64() {
-    BUILD_EXISTS_BIN64=0
+    BUILD_EXISTS_BIN_SF=0
     lib64Exists
-    if [ $LIB_64_EXISTS -eq 0 ]
+    if [ $LIB_SF_FILE_EXISTS -eq 0 ]
     then
         return
     fi
     if [ -f "/usr/lib64/libKapEngine.so" ]
     then
-        BUILD_EXISTS_BIN64=1
+        BUILD_EXISTS_BIN_SF=1
     fi
 }
 
@@ -146,9 +148,10 @@ copyEngineToBin() {
     lib64Exists
     libKapExistsBin
 
-    if [ $LIB_64_EXISTS -eq 1 ]
+    if [ $LIB_SF_FILE_EXISTS -eq 1 ]
     then
-        if [ $BUILD_EXISTS_BIN64 -eq 1 ]
+        libKapExistsBin64
+        if [ $BUILD_EXISTS_BIN_SF -eq 1 ]
         then
             read -p "[KAP ENGINE] Do you want to delete existing KapEngine in /usr/lib64/ ? (Y/N) " confirm
             if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
