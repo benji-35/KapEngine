@@ -38,9 +38,15 @@ namespace KapEngine {
                 void loadScene(std::size_t index);
                 void loadScene(std::string sceneName);
 
+                void __update();
+
+                KapEngine &getEngine() {
+                    return _engine;
+                }
+
             protected:
             private:
-                std::size_t indexScene = 0;
+                std::size_t _indexScene = 0;
                 std::vector<std::shared_ptr<Scene>> _scenes;
                 KapEngine &_engine;
         };

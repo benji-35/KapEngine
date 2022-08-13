@@ -6,6 +6,7 @@
 */
 
 #include "SceneManager.hpp"
+#include "Debug.hpp"
 
 KapEngine::SceneManagement::SceneManager::SceneManager(KapEngine &engine) : _engine(engine) {
 }
@@ -18,5 +19,19 @@ void KapEngine::SceneManagement::SceneManager::addScene(std::shared_ptr<Scene> s
 }
 
 void KapEngine::SceneManagement::SceneManager::addScene(std::string const& name) {
-    std::shared_ptr<Scene> nScene = std::make_shared<Scene>(_engine, name);
+    std::shared_ptr<Scene> nScene = std::make_shared<Scene>(*this, name);
+
+    _scenes.push_back(nScene);
+}
+
+void KapEngine::SceneManagement::SceneManager::__update() {
+    if (_indexScene >= _scenes.size()) {
+        if (_engine.debugMod()) {
+            Debug::error("Current scene out of range of all scenes");
+        } else {
+            throw Errors::SceneError("Current scene out of range");
+        }
+        return;
+    }
+    _scenes[_indexScene]->__update();
 }

@@ -7,8 +7,9 @@
 
 #include "Scene.hpp"
 #include "Errors.hpp"
+#include "Debug.hpp"
 
-KapEngine::SceneManagement::Scene::Scene(KapEngine &engine, std::string const& name) : engine(engine) {
+KapEngine::SceneManagement::Scene::Scene(SceneManager &manager, std::string const& name) : manager(manager) {
     _name = name;
 }
 
@@ -38,8 +39,7 @@ KapEngine::Component &KapEngine::SceneManagement::Scene::getActiveCamera() const
     throw Errors::SceneError("No active camera found in this scene");
 }
 
-std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::getObject(std::size_t id)
-{
+std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::getObject(std::size_t id) {
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         if (_gameObjects[i]->getId() == id)
             return _gameObjects[i];
@@ -49,4 +49,25 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::getObj
             return _gameObjectsRun[i];
     }
     throw Errors::SceneError("No object has id: " + std::to_string(id));
+}
+
+KapEngine::KapEngine &KapEngine::SceneManagement::Scene::getEngine() {
+    return manager.getEngine();
+}
+
+void KapEngine::SceneManagement::Scene::__update() {
+    try {
+        Component camera = getActiveCamera();
+    } catch(...) {
+        if (getEngine().debugMod()) {
+            Debug::error("No camera found in scene");
+        }
+        return;
+    }
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        _gameObjects[i]->__update();
+    }
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        _gameObjectsRun[i]->__update();
+    }
 }
