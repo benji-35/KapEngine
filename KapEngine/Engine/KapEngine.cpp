@@ -29,7 +29,7 @@ void KapEngine::KapEngine::run() {
             if (getCurrentGraphicalLib().use_count() != 0) {
                 getCurrentGraphicalLib()->clear();
                 getCurrentGraphicalLib()->getEvents();
-                //update scene
+                _sceneManager->__update();
                 getCurrentGraphicalLib()->display();
             } else {
                 if (debugMod()) {
