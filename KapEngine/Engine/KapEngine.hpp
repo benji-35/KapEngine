@@ -66,6 +66,10 @@ namespace KapEngine {
                 return _gameCompany;
             }
 
+            std::shared_ptr<SceneManagement::SceneManager> getSceneManager() const {
+                return _sceneManager;
+            }
+
         protected:
         private:
 
