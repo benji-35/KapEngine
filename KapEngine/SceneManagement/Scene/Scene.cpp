@@ -13,7 +13,14 @@ KapEngine::SceneManagement::Scene::Scene(SceneManager &manager, std::string cons
     _name = name;
 }
 
-KapEngine::SceneManagement::Scene::~Scene() {}
+KapEngine::SceneManagement::Scene::~Scene() {
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        _gameObjects[i].reset();
+    }
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        _gameObjectsRun[i].reset();
+    }
+}
 
 KapEngine::Component &KapEngine::SceneManagement::Scene::getActiveCamera() const {
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
@@ -65,9 +72,28 @@ void KapEngine::SceneManagement::Scene::__update() {
         return;
     }
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-        _gameObjects[i]->__update();
+        if (_gameObjects[i]->isActive() && !_gameObjects[i]->isDestroyed())
+            _gameObjects[i]->__update();
     }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
-        _gameObjectsRun[i]->__update();
+        if (_gameObjectsRun[i]->isActive() && !_gameObjectsRun[i]->isDestroyed())
+            _gameObjectsRun[i]->__update();
     }
+}
+
+void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {
+    _idObjectMax++;
+    go->__setId(_idObjectMax);
+    if (getEngine().isRunning()) {
+        _gameObjects.push_back(go);
+    } else {
+        _gameObjectsRun.push_back(go);
+    }
+}
+
+void KapEngine::SceneManagement::Scene::__changingScene() {
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        _gameObjectsRun[i].reset();
+    }
+    _gameObjectsRun.clear();
 }

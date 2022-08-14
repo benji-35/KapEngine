@@ -108,8 +108,8 @@ namespace KapEngine {
             static std::shared_ptr<SceneManagement::Scene> createScene(std::shared_ptr<SceneManagement::SceneManager> manager, std::string const& name) {
                 std::shared_ptr<SceneManagement::Scene> nScene = std::make_shared<SceneManagement::Scene>(*manager, name);
 
-                manager->addScene(nScene);
                 createCamera(nScene, "Main Camera");
+                manager->addScene(nScene);
                 return nScene;
             }
 

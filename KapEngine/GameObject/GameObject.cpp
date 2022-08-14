@@ -13,7 +13,12 @@ KapEngine::GameObject::GameObject(SceneManagement::Scene &scene, std::string con
 }
 
 KapEngine::GameObject::~GameObject() {
-
+    for (std::size_t i = 0; i < _components.size(); i++) {
+        _components[i].reset();
+    }
+    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+        _componentsRun[i].reset();
+    }
 }
 
 bool KapEngine::GameObject::allParentsActive() const {
@@ -67,4 +72,14 @@ KapEngine::Component &KapEngine::GameObject::getTransform() {
 
 KapEngine::KapEngine &KapEngine::GameObject::getEngine() {
     return _scene.getEngine();
+}
+
+void KapEngine::GameObject::addComponent(std::shared_ptr<Component> comp) {
+    _idComp++;
+    comp->__setId(_idComp);
+    if (getEngine().isRunning()) {
+        _componentsRun.push_back(comp);
+    } else {
+        _components.push_back(comp);
+    }
 }

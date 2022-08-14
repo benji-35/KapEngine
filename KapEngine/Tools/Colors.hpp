@@ -114,8 +114,6 @@ namespace KapEngine {
                 static Color red() {
                     return Color(255, 0, 0, 255);
                 }
-            
-                friend std::ostream& operator<<(std::ostream& os, const Color const& col);
 
             protected:
             private:
@@ -124,12 +122,6 @@ namespace KapEngine {
                 unsigned char _b = 255;
                 unsigned char _a = 255;
         };
-
-        std::ostream& operator<<(std::ostream& os, const Color const& col)
-        {
-            os << "{r: " << std::to_string(col.getR()) << ", g: " << std::to_string(col.getG()) << ", b: " << std::to_string(col.getB()) << ", a: " << std::to_string(col.getA()) << "}";
-            return os;
-        }
 
     }
 

@@ -71,6 +71,12 @@ namespace KapEngine {
 
             Component &getTransform();
 
+            void __setId(std::size_t id) {
+                if (_id != 0)
+                    return;
+                _id = id;
+            }
+
         protected:
         private:
             std::string _name;
@@ -82,6 +88,7 @@ namespace KapEngine {
             std::vector<std::shared_ptr<Component>> _components;
             std::vector<std::shared_ptr<Component>> _componentsRun;
             SceneManagement::Scene &_scene;
+            std::size_t _idComp = 0;
 
     };
 

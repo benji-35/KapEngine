@@ -24,6 +24,7 @@ SRC	=	$(ENGINE_PATH_COMPONENT)Component.cpp								\
 		$(ENGINE_PATH_ENGINE)KapEngine.cpp									\
 		$(ENGINE_PATH_INPUTS)Input.cpp										\
 		$(ENGINE_PATH_COMPONENTS)Transform/Transform.cpp					\
+		$(ENGINE_PATH_COMPONENTS)Camera/Camera.cpp							\
 		$(ENGINE_PATH_GRAPHICAL)GraphicalLibManager.cpp						\
 		$(ENGINE_PATH_GRAPHICAL)GraphicalLib.cpp							\
 		$(ENGINE_PATH_LEGACY_GRAPHICAL)LegacyGraphicalLib.cpp				\

@@ -17,8 +17,9 @@ KapEngine::KapEngine::KapEngine(bool debug, std::string const& gameName, std::st
     __init();
 }
 
-KapEngine::KapEngine::~KapEngine()
-{
+KapEngine::KapEngine::~KapEngine() {
+    _sceneManager.reset();
+    _libManager.reset();
 }
 
 void KapEngine::KapEngine::run() {
