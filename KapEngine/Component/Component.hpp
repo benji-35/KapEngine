@@ -105,6 +105,10 @@ namespace KapEngine {
                 return _name;
             }
 
+            void __engineStop() {
+                _go.reset();
+            }
+
         protected:
             /**
              * @brief Component name

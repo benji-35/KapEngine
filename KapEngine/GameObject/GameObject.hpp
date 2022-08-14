@@ -77,6 +77,8 @@ namespace KapEngine {
                 _id = id;
             }
 
+            void __engineStop();
+
         protected:
         private:
             std::string _name;

@@ -17,6 +17,7 @@ KapEngine::SceneManagement::SceneManager::SceneManager(KapEngine &engine) : _eng
 
 KapEngine::SceneManagement::SceneManager::~SceneManager() {
     for (std::size_t i = 0; i < _scenes.size(); i++) {
+        _scenes[i]->__engineStop();
         _scenes[i].reset();
     }
 }

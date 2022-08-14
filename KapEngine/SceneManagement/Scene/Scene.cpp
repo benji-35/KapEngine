@@ -97,3 +97,12 @@ void KapEngine::SceneManagement::Scene::__changingScene() {
     }
     _gameObjectsRun.clear();
 }
+
+void KapEngine::SceneManagement::Scene::__engineStop() {
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        _gameObjects[i]->__engineStop();
+    }
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        _gameObjectsRun[i]->__engineStop();
+    }
+}

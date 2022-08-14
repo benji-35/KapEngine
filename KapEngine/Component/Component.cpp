@@ -13,7 +13,9 @@ KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string con
     _name = name;
 }
 
-KapEngine::Component::~Component() {}
+KapEngine::Component::~Component() {
+    _go.reset();
+}
 
 KapEngine::GameObject &KapEngine::Component::getGameObject() {
     try {

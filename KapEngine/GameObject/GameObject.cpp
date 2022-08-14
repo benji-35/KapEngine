@@ -83,3 +83,12 @@ void KapEngine::GameObject::addComponent(std::shared_ptr<Component> comp) {
         _components.push_back(comp);
     }
 }
+
+void KapEngine::GameObject::__engineStop() {
+    for (std::size_t i = 0; i < _components.size(); i++) {
+        _components[i]->__engineStop();
+    }
+    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+        _componentsRun[i]->__engineStop();
+    }
+}

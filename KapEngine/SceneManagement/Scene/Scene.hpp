@@ -78,6 +78,7 @@ namespace KapEngine {
 
                 void __update();
                 void __changingScene();
+                void __engineStop();
 
             protected:
             private:
