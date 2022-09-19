@@ -26,26 +26,7 @@ void KapEngine::KapEngine::run() {
     _run = true;
 
     while (_run) {
-        try {
-            if (getCurrentGraphicalLib().use_count() != 0) {
-                getCurrentGraphicalLib()->clear();
-                getCurrentGraphicalLib()->getEvents();
-                _sceneManager->__update();
-                getCurrentGraphicalLib()->display();
-            } else {
-                if (debugMod()) {
-                    Debug::error("Scene not alloc");
-                } else {
-                    _run = false;
-                }
-            }
-        } catch(Errors::GraphicalSystemError e) {
-            if (debugMod()) {
-                Debug::error(std::string(e.what()));
-            } else {
-                _run = false;
-            }
-        }
+        __threadRun(this, 0);
     }
 }
 
@@ -72,4 +53,54 @@ std::size_t KapEngine::KapEngine::getCurrentGraphicalLibIndex() const {
 void KapEngine::KapEngine::__init() {
     _sceneManager = std::make_shared<SceneManagement::SceneManager>(*this);
     _libManager = std::make_shared<Graphical::GraphicalLibManager>(*this);
+}
+
+/**
+ * @brief thread function call
+ * 
+ * threadId : 0 = graphics
+ * threadId : 1 = inputs
+ * threadId : 2 = component
+ * threadId : 3 = component
+ * threadId : 4 = component
+ */
+
+void KapEngine::KapEngine::__threadRun(KapEngine *engine, int threadId) {
+    if (threadId == 0) {
+        try {
+            if (engine->getCurrentGraphicalLib().use_count() != 0) {
+                engine->getCurrentGraphicalLib()->clear();
+                
+                std::thread t1(&KapEngine::__threadRun, engine, 1);
+                std::thread t2(&KapEngine::__threadRun, engine, 2);
+                std::thread t3(&KapEngine::__threadRun, engine, 3);
+                std::thread t4(&KapEngine::__threadRun, engine, 4);
+
+                t1.join();
+                t2.join();
+                t3.join();
+                t4.join();
+
+                engine->getCurrentGraphicalLib()->display();
+            } else {
+                if (engine->debugMod()) {
+                    Debug::error("Scene not alloc");
+                } else {
+                    engine->stop();
+                }
+            }
+        } catch(Errors::GraphicalSystemError e) {
+            if (engine->debugMod()) {
+                Debug::error(std::string(e.what()));
+            } else {
+                    engine->stop();
+            }
+        }
+    }
+    if (threadId == 1) {
+        engine->getCurrentGraphicalLib()->getEvents();
+    }
+    if (threadId > 1) {
+        engine->getSceneManager()->__update(threadId);
+    }
 }

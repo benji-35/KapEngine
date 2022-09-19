@@ -18,7 +18,7 @@ BIN = KapEngineUI
 
 include ../KapEngine/Config/Makefile
 
-INCLUDES	+=	$(ENGINE_INCLUDES_EG)
+INCLUDES	+=	$(ENGINE_INCLUDES_EG)  $(INCLUDE_UTILS)
 
 MAIN	=	Main.cpp
 

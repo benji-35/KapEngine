@@ -31,7 +31,7 @@ SRC	=	$(ENGINE_PATH_COMPONENT)Component.cpp								\
 
 LIB_NAME	=	libKapEngine.so
 
-INCLUDES	+= 	$(ENGINE_INCLUDES)
+INCLUDES	+= 	$(ENGINE_INCLUDES) $(INCLUDE_UTILS)
 
 PATH_CP_LIB	=	../
 

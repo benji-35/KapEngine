@@ -8,9 +8,10 @@
 #include "Component.hpp"
 #include "Errors.hpp"
 
-KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string const& name) {
+KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string const& name, int threadId) {
     _go = go;
     _name = name;
+    threadRunning = threadId;
 }
 
 KapEngine::Component::~Component() {

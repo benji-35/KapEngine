@@ -23,7 +23,7 @@ namespace KapEngine {
 
     class Component : public IComponent {
         public:
-            Component(std::shared_ptr<GameObject> &go, std::string const& name);
+            Component(std::shared_ptr<GameObject> &go, std::string const& name, int threadRunning = 2);
             ~Component();
 
             /**
@@ -109,12 +109,17 @@ namespace KapEngine {
                 _go.reset();
             }
 
+            int getThreadRunning() const {
+                return threadRunning;
+            }
+
         protected:
             /**
              * @brief Component name
              */
             std::string _name;
         private:
+            int threadRunning = 2;
             std::size_t _id = 0;
             std::size_t _level = 0;
             std::shared_ptr<GameObject> _go;

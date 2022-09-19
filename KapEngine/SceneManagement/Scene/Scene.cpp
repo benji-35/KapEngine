@@ -62,7 +62,7 @@ KapEngine::KapEngine &KapEngine::SceneManagement::Scene::getEngine() {
     return manager.getEngine();
 }
 
-void KapEngine::SceneManagement::Scene::__update() {
+void KapEngine::SceneManagement::Scene::__update(int threadId) {
     try {
         Component camera = getActiveCamera();
     } catch(...) {
@@ -73,11 +73,11 @@ void KapEngine::SceneManagement::Scene::__update() {
     }
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         if (_gameObjects[i]->isActive() && !_gameObjects[i]->isDestroyed())
-            _gameObjects[i]->__update();
+            _gameObjects[i]->__update(threadId);
     }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
         if (_gameObjectsRun[i]->isActive() && !_gameObjectsRun[i]->isDestroyed())
-            _gameObjectsRun[i]->__update();
+            _gameObjectsRun[i]->__update(threadId);
     }
 }
 

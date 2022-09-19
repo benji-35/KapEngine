@@ -39,14 +39,16 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::GameObject::getParent() const 
     }
 }
 
-void KapEngine::GameObject::__update() {
+void KapEngine::GameObject::__update(int threadId) {
     if (!_active || _destroyed)
         return;
     for (std::size_t i = 0; i < _components.size(); i++) {
-        _components[i]->__update();
+        if (_components[i]->getThreadRunning() == threadId)
+            _components[i]->__update();
     }
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
-        _componentsRun[i]->__update();
+        if (_componentsRun[i]->getThreadRunning() == threadId)
+            _componentsRun[i]->__update();
     }
 }
 

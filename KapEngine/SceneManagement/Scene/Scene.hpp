@@ -76,7 +76,7 @@ namespace KapEngine {
 
                 KapEngine &getEngine();
 
-                void __update();
+                void __update(int threadId);
                 void __changingScene();
                 void __engineStop();
 

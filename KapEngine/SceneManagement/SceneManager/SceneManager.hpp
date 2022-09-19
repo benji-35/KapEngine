@@ -38,7 +38,7 @@ namespace KapEngine {
                 void loadScene(std::size_t index);
                 void loadScene(std::string const& sceneName);
 
-                void __update();
+                void __update(int threadId = 0);
 
                 KapEngine &getEngine() {
                     return _engine;

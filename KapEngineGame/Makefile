@@ -41,6 +41,7 @@ include ../KapEngine/Config/Makefile
 INCLUDES	+=	$(COMPONENTS_HPP)
 INCLUDES	+=	$(GRAPHICAL_LIB_HPP)
 INCLUDES	+=	$(ENGINE_INCLUDES_EG)
+INCLUDES 	+=	$(INCLUDE_UTILS)
 
 OBJ	=	$(SRC:.cpp=.o)
 

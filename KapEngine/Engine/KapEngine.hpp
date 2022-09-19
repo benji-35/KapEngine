@@ -70,6 +70,8 @@ namespace KapEngine {
                 return _sceneManager;
             }
 
+            static void __threadRun(KapEngine *engine, int threadId);
+
         protected:
         private:
 
