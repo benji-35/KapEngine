@@ -26,6 +26,11 @@ Un composant est un script rattaché à un objet de jeu (KapEngine::GameObject).
 
 Certaines fonctions seront automatiquement appelées par KapEngine ce qui permet une autonomisation du fonctionnement de votre jeu une fois lancé.
 
+
+:warning: le KapEngine est un engine multi thread. Ce qui signifie que le jeu utilisera plusieurs coeur de votre ordinateur pour effectuer des calculs plus rapides. Les composants sont appelés sur les thread suivant : 2, 3, 4. Lors de la création de vos composants, vous pouvez définir sur quel thread votre composant tournera. Si vous définissez un autre "threadID" que ceux indiqué juste avant, votre composant ne sera jamais lu.
+
+Cette méthode de calcul vous permet d'avoir un jeu plus performant. Cependant il se peut que vous ayez des réécriute de valeur. Ce sera à vous d'y faire attention.
+
 ## Créer le sien
 
 Créer un composant est très simple. Vous devez créer un nouveau fichier .hpp. Ce fichier contiendra la classe de votre composant : [exemple](#Démarrage-rapide). Une fois que vous aurez créé ce composant, il fous suffira de l'ajouter sur un objet.
@@ -80,6 +85,9 @@ namespace KapEngine {
 
         class MonComposant : public Component {
             public:
+                //constructeur du composant avec l'id de son thread
+                MonComposant(std::shared_ptr<GameObject> go, int threadId);
+                //constructuer du composant sans préciser son thread
                 MonComposant(std::shared_ptr<GameObject> go);
                 ~MonComposant();
 
@@ -122,6 +130,18 @@ namespace KapEngine {
                 //appelé lorsqu'un objet sort dans l'objet rattaché
                 void onTriggerExit(std::shared_ptr<GameObject> go) override;
 
+        }
+
+        MonComposant(std::shared_ptr<GameObject> go, int threadId) : Component(go, "Nom du composant", threadId) {
+            Debug::log("Suppression du composant au thread " + std::to_string(threadId) + " !");
+        }
+
+        MonComposant(std::shared_ptr<GameObject> go) : Component(go, "Nom du composant") {
+            Debug::log("Création du composant sans préciser de thread !");
+        }
+
+        ~MonComposant() {
+            Debug::log("Suppression du composant !");
         }
 
         void MonComposant::onInit() {
