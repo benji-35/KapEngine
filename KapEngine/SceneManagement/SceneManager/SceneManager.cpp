@@ -142,3 +142,22 @@ std::string KapEngine::SceneManagement::SceneManager::getSceneName(std::size_t i
     }
     throw Errors::SceneError("Scene id: " + std::to_string(index) + " does not exists");
 }
+
+KapEngine::SceneManagement::Scene &KapEngine::SceneManagement::SceneManager::getScene(std::string const& sceneName) {
+    if (!sceneExists(sceneName)) {
+        throw Errors::SceneError("Scene " + sceneName + " does not exists");
+    }
+    for (std::size_t i = 0; i < _scenes.size(); i++) {
+        if (_scenes[i]->getName() == sceneName)
+            return *_scenes[i];
+    }
+    throw Errors::SceneError("Unknown error while getting scene");
+}
+
+KapEngine::SceneManagement::Scene &KapEngine::SceneManagement::SceneManager::getCurrentScene() {
+    for (std::size_t i = 0; i < _scenes.size(); i++) {
+        if (_scenes[i]->getId() == _indexScene)
+            return *_scenes[i];
+    }
+    throw Errors::SceneError("Unknown error while getting current scene");
+}
