@@ -26,8 +26,9 @@ KapEngine::KapEngine::~KapEngine() {
 
 void KapEngine::KapEngine::run() {
     _run = true;
-
+    _internalClock.restart();
     while (_run) {
+        _elapsed = _internalClock.getElapseTime();
         __threadRun(this, 0);
     }
 }

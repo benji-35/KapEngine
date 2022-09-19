@@ -11,6 +11,7 @@
 #include "Errors.hpp"
 #include "SceneManager.hpp"
 #include "GraphicalLibManager.hpp"
+#include "EClock.hpp"
 
 #include <mutex>
 namespace KapEngine {
@@ -21,6 +22,11 @@ namespace KapEngine {
     namespace Graphical {
         class GraphicalLibManager;
         class GraphicalLib;
+    }
+
+    namespace Time {
+        class ETime;
+        class EClock;
     }
 }
 
@@ -75,13 +81,25 @@ namespace KapEngine {
 
             static std::mutex debugMutex;
 
+            Time::ETime getElapsedTime() {
+                float f = _elapsed.asMilliSecond() * deltaTime;
+                Time::ETime res;
+
+                res.setMilliseconds(f);
+                return res;
+            }
+
         protected:
         private:
-
             bool _run = false;
             bool _debug = false;
 
             int _fpsLock = 60;
+
+            float deltaTime = 1.0f;
+
+            Time::EClock _internalClock;
+            Time::ETime _elapsed;
 
             //all game intels
             std::string _gameName;
