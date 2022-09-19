@@ -28,7 +28,6 @@ SRC	=	$(ENGINE_PATH_COMPONENT)Component.cpp								\
 		$(ENGINE_PATH_GRAPHICAL)GraphicalLibManager.cpp						\
 		$(ENGINE_PATH_GRAPHICAL)GraphicalLib.cpp							\
 		$(ENGINE_PATH_LEGACY_GRAPHICAL)LegacyGraphicalLib.cpp				\
-		$(ENGINE_PATH_DEBUG)Debug.cpp										\
 
 LIB_NAME	=	libKapEngine.so
 

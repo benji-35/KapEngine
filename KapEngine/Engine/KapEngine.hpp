@@ -12,6 +12,7 @@
 #include "SceneManager.hpp"
 #include "GraphicalLibManager.hpp"
 
+#include <mutex>
 namespace KapEngine {
     namespace SceneManagement {
         class SceneManager;
@@ -71,6 +72,8 @@ namespace KapEngine {
             }
 
             static void __threadRun(KapEngine *engine, int threadId);
+
+            static std::mutex debugMutex;
 
         protected:
         private:

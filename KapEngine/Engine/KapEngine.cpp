@@ -8,6 +8,8 @@
 #include "KapEngine.hpp"
 #include "Debug.hpp"
 
+std::mutex KapEngine::KapEngine::debugMutex;
+
 KapEngine::KapEngine::KapEngine(bool debug, std::string const& gameName, std::string const& version, std::string const& company) {
     _debug = debug;
     _gameName = gameName;

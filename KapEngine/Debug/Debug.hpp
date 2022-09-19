@@ -23,9 +23,9 @@ namespace KapEngine {
             * @brief afficher un log
             */
             static void log(std::string _msg) {
-                debugMutexLog.lock();
+                KapEngine::debugMutex.lock();
                 std::cout << "[" << __getCDate() << "]\e[1;37m log: \e[0m" << _msg << "\e[0m" << std::endl;
-                debugMutexLog.unlock();
+                KapEngine::debugMutex.unlock();
             }
 
             /**
@@ -34,9 +34,9 @@ namespace KapEngine {
             * @brief afficher un warning
             */
             static void warning(std::string _msg) {
-                debugMutexWarning.lock();
+                KapEngine::debugMutex.lock();
                 std::cout << "[" << __getCDate() << "]\e[1;33m warning: \e[0m" << _msg << "\e[0m" << std::endl;
-                debugMutexWarning.unlock();
+                KapEngine::debugMutex.unlock();
             }
 
             /**
@@ -45,14 +45,10 @@ namespace KapEngine {
             * @brief afficher une erreur
             */
             static void error(std::string _msg) {
-                debugMutexError.lock();
+                KapEngine::debugMutex.lock();
                 std::cout << "[" << __getCDate() << "]\e[1;31m Error: \e[0m" << _msg << "\e[0m" << std::endl;
-                debugMutexError.unlock();
+                KapEngine::debugMutex.unlock();
             }
-
-            static std::mutex debugMutexLog;
-            static std::mutex debugMutexWarning;
-            static std::mutex debugMutexError;
 
         protected:
         private:
