@@ -98,29 +98,77 @@ namespace KapEngine {
                 _debug = b;
             }
 
-            //action with graphical lib
+            /**
+             * @brief Get the Current Graphical Lib
+             * 
+             * @return std::shared_ptr<KapEngine::Graphical::GraphicalLib> 
+             */
             std::shared_ptr<Graphical::GraphicalLib> getCurrentGraphicalLib();
+
+            /**
+             * @brief Check if lib exists from it's id in engine
+             * 
+             * @param index 
+             * @return true if lib exists
+             * @return false if lib does not exist
+             */
             bool isGraphicalLibExists(std::size_t const& index) const;
+
+            /**
+             * @brief Check graphical lib exists from it's name in engine
+             * 
+             * @param name 
+             * @return true if lib exists
+             * @return false if lib does not exist
+             */
             bool isGraphicalLibExists(std::string const& name) const;
+
+            /**
+             * @brief Get the Current Graphical Lib Index
+             * 
+             * @return std::size_t 
+             */
             std::size_t getCurrentGraphicalLibIndex() const;
 
-            //getter intels
+            /**
+             * @brief Get the Game Name
+             * @return std::string 
+             */
             std::string getGameName() const {
                 return _gameName;
             }
 
+            /**
+             * @brief Get the Game Version
+             * @return std::string 
+             */
             std::string getGameVersion() const {
                 return _gameVersion;
             }
 
+            /**
+             * @brief Get the Game Company name
+             * @return std::string 
+             */
             std::string getGameCompany() const {
                 return _gameCompany;
             }
 
+            /**
+             * @brief Get the Scene Manager of game
+             * 
+             * @return std::shared_ptr<KapEngine::SceneManagement::SceneManager> 
+             */
             std::shared_ptr<SceneManagement::SceneManager> getSceneManager() const {
                 return _sceneManager;
             }
 
+            /**
+             * @brief function for thread
+             * @warning Do not use this function
+             * @param engine 
+             * @param threadId 
+             */
             static void __threadRun(KapEngine *engine, int threadId);
 
             /**
@@ -128,6 +176,10 @@ namespace KapEngine {
              */
             static std::recursive_mutex debugMutex;
 
+            /**
+             * @brief Get the Elapsed Time since last internal clock restart
+             * @return KapEngine::Time::ETime
+             */
             Time::ETime getElapsedTime() {
                 float f = _elapsed.asMilliSecond() * deltaTime;
                 Time::ETime res;
@@ -136,7 +188,20 @@ namespace KapEngine {
                 return res;
             }
 
+            /**
+             * @brief Get the Event Manager of game
+             * @return KapEngine::Events::EventManager& 
+             */
             Events::EventManager &getEventManager();
+
+            /**
+             * @brief Set the Delta Time of game
+             * more delta time increase more the game gonna be fast. more delta decrease, more the game gonna be slow
+             * @param dTime 
+             */
+            void setDeltaTime(float dTime) {
+                deltaTime = dTime;
+            }
 
         protected:
         private:

@@ -39,6 +39,12 @@ namespace KapEngine {
              * @brief call each frame
              */
             virtual void onUpdate() = 0;
+            /**
+             * @brief call eachv x msg
+             * 
+             * 
+             * 
+             */
             virtual void onFixedUpdate() = 0;
 
             //function call after update
