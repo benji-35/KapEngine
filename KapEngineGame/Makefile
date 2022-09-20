@@ -16,7 +16,7 @@ GAME_NAME	=	TestGame
 COMPONENTS_HPP	=	-I Assets/Components
 
 # relative path of cpp component file
-COMPONENTS_CPP	=
+COMPONENTS_CPP	= Assets/Components/ComponentTest.cpp
 
 # same as component hpp
 #
@@ -38,6 +38,8 @@ SRC	+=	$(GRAPHICAL_LIB_CPP)
 
 include ../KapEngine/Config/Makefile
 
+COMPILER	=	g++ $(CPP_VERSION)
+
 INCLUDES	+=	$(COMPONENTS_HPP)
 INCLUDES	+=	$(GRAPHICAL_LIB_HPP)
 INCLUDES	+=	$(ENGINE_INCLUDES_EG)
@@ -49,12 +51,12 @@ LIB	=	-L. -lKapEngine
 
 %.o: %.cpp
 	@echo "$(GAME_NAME) < [CPP: $<]"
-	@g++ -c $< $(INCLUDES) -o $@ -g $(LIB)
+	@$(COMPILER) -c $< $(INCLUDES) -o $@ -g $(LIB)
 
 all:	$(GAME_NAME)
 
 $(GAME_NAME): $(OBJ)
-	@g++ $(OBJ) $(INCLUDES) -o $(GAME_NAME) $(LIB)
+	@$(COMPILER) $(OBJ) $(INCLUDES) -o $(GAME_NAME) $(LIB)
 	@cp $(GAME_NAME) ../$(GAME_NAME)
 
 fclean: clean
