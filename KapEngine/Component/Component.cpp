@@ -65,3 +65,11 @@ void KapEngine::Component::__start() {
 void KapEngine::Component::__fixedUpdate() {
     
 }
+
+KapEngine::Events::Input KapEngine::Component::getInput() {
+    return getGameObject().getEngine().getEventManager().getInput();
+}
+
+KapEngine::Events::Mouse KapEngine::Component::getMouse() {
+    return getGameObject().getEngine().getEventManager().getMouse();
+}

@@ -16,8 +16,9 @@
 #ifndef INPUT_HPP_
 #define INPUT_HPP_
 
-#include "EventManager.hpp"
+#include <vector>
 #include "Key.hpp"
+#include "EventManager.hpp"
 
 namespace KapEngine {
     namespace Events {

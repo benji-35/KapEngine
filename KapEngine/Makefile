@@ -30,6 +30,8 @@ SRC	=	$(ENGINE_PATH_COMPONENT)Component.cpp								\
 		$(ENGINE_PATH_LEGACY_GRAPHICAL)LegacyGraphicalLib.cpp				\
 		$(ENGINE_PATH_ASYNC_OPERATION)AsyncOperation.cpp					\
 		$(ENGINE_PATH_SYNC_OPERATION)SyncOperation.cpp						\
+		$(ENGINE_PATH_EV_MANAGER)EventManager.cpp							\
+		$(ENGINE_PATH_MOUSE)Mouse.cpp										\
 
 LIB_NAME	=	libKapEngine.so
 

@@ -7,6 +7,7 @@
 
 #include "KapEngine.hpp"
 #include "Debug.hpp"
+#include "EventManager.hpp"
 
 std::mutex KapEngine::KapEngine::debugMutex;
 
@@ -56,6 +57,7 @@ std::size_t KapEngine::KapEngine::getCurrentGraphicalLibIndex() const {
 void KapEngine::KapEngine::__init() {
     _sceneManager = std::make_shared<SceneManagement::SceneManager>(*this);
     _libManager = std::make_shared<Graphical::GraphicalLibManager>(*this);
+    _eventManager = std::make_shared<Events::EventManager>(*this);
 }
 
 /**
@@ -106,4 +108,8 @@ void KapEngine::KapEngine::__threadRun(KapEngine *engine, int threadId) {
     if (threadId > 1) {
         engine->getSceneManager()->__update(threadId);
     }
+}
+
+KapEngine::Events::EventManager &KapEngine::KapEngine::getEventManager() {
+    return *_eventManager;
 }

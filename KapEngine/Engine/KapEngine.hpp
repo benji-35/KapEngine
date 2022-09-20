@@ -29,6 +29,10 @@ namespace KapEngine {
         class ETime;
         class EClock;
     }
+
+    namespace Events {
+        class EventManager;
+    }
 }
 
 namespace KapEngine {
@@ -90,6 +94,8 @@ namespace KapEngine {
                 return res;
             }
 
+            Events::EventManager &getEventManager();
+
         protected:
         private:
             bool _run = false;
@@ -112,6 +118,8 @@ namespace KapEngine {
 
             //graphical libs
             std::shared_ptr<Graphical::GraphicalLibManager> _libManager;
+
+            std::shared_ptr<Events::EventManager> _eventManager;
 
             //functions
             void __init();

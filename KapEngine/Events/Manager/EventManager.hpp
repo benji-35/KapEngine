@@ -18,6 +18,7 @@ namespace KapEngine {
         class Input;
         class Mouse;
     }
+
 }
 
 namespace KapEngine {

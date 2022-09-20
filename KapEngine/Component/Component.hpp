@@ -10,9 +10,16 @@
 
 #include "GameObject.hpp"
 #include "IComponent.hpp"
+#include "Input.hpp"
+#include "Mouse.hpp"
 
 namespace KapEngine {
     class GameObject;
+
+    namespace Events {
+        class Input;
+        class Mouse;
+    }
 }
 
 #include <memory>
@@ -112,6 +119,9 @@ namespace KapEngine {
             int getThreadRunning() const {
                 return threadRunning;
             }
+
+            Events::Input getInput();
+            Events::Mouse getMouse();
 
         protected:
             /**
