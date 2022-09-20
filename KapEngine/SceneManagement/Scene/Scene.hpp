@@ -15,6 +15,7 @@ namespace KapEngine {
     class KapEngine;
     class GameObject;
     class Component;
+    class Entity;
 
     namespace SceneManagement {
         class SceneManager;
@@ -75,6 +76,7 @@ namespace KapEngine {
                 std::shared_ptr<GameObject> getObject(std::size_t id);
                 std::shared_ptr<GameObject> getObjectConst(std::size_t id) const;
                 std::vector<std::shared_ptr<GameObject>> getAllObjects();
+                std::shared_ptr<GameObject> getObject(Entity const& en);
 
                 KapEngine &getEngine();
 

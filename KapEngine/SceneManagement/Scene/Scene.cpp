@@ -128,3 +128,7 @@ std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::
     }
     return result;    
 }
+
+std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::getObject(Entity const& en) {
+    return getObject(en.getId());
+}
