@@ -73,3 +73,7 @@ KapEngine::Events::Input KapEngine::Component::getInput() {
 KapEngine::Events::Mouse KapEngine::Component::getMouse() {
     return getGameObject().getEngine().getEventManager().getMouse();
 }
+
+KapEngine::GameObject &KapEngine::Component::getGameObjectConst() const {
+    return *_go->getSceneConst().getObjectConst(_go->getId());
+}

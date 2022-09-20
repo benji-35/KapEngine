@@ -106,3 +106,29 @@ void KapEngine::SceneManagement::Scene::__engineStop() {
         _gameObjectsRun[i]->__engineStop();
     }
 }
+
+std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::getObjectConst(std::size_t id) const {
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (_gameObjects[i]->getId() == id)
+            return _gameObjects[i];
+    }
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (_gameObjectsRun[i]->getId() == id)
+            return _gameObjectsRun[i];
+    }
+    throw Errors::SceneError("No object has id: " + std::to_string(id));
+}
+
+std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::Scene::getAllObjects() {
+    std::vector<std::shared_ptr<GameObject>> result;
+
+    result = _gameObjects;
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        result.push_back(_gameObjectsRun[i]);
+    }
+    return result;    
+}
+
+std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::getObject(Entity const& en) {
+    return getObject(en.getId());
+}

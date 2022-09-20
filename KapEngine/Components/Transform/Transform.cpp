@@ -51,50 +51,118 @@ KapEngine::Tools::Vector3 KapEngine::Transform::getLocalScale() const {
     return _scale;
 }
 
-KapEngine::Tools::Vector3 KapEngine::Transform::getWorldPosition() {
+KapEngine::Tools::Vector3 KapEngine::Transform::getWorldPosition() const {
     Tools::Vector3 res(_pos);
     res += getParentPos();
     return res;
 }
 
-KapEngine::Tools::Vector3 KapEngine::Transform::getWorldRotation() {
+KapEngine::Tools::Vector3 KapEngine::Transform::getWorldRotation() const {
     Tools::Vector3 res(_rot);
     res += getParentRot();
     return res;
 }
 
-KapEngine::Tools::Vector3 KapEngine::Transform::getWorldScale() {
+KapEngine::Tools::Vector3 KapEngine::Transform::getWorldScale() const {
     Tools::Vector3 res(_scale);
     res *= getParentScale();
     return res;
 }
 
-KapEngine::Tools::Vector3 KapEngine::Transform::getParentPos() {
+KapEngine::Tools::Vector3 KapEngine::Transform::getParentPos() const{
     Tools::Vector3 res;
     try {
-        Transform &t = (Transform &) getGameObject().getParent()->getComponent("Transform");
+        Transform &t = (Transform &)getParent()->getComponent("Transform");
         return t.getWorldPosition();
     } catch(...) {
         return res;
     }
 }
 
-KapEngine::Tools::Vector3 KapEngine::Transform::getParentRot() {
+KapEngine::Tools::Vector3 KapEngine::Transform::getParentRot() const{
     Tools::Vector3 res;
     try {
-        Transform &t = (Transform &) getGameObject().getParent()->getComponent("Transform");
+        Transform &t = (Transform &)getParent()->getComponent("Transform");
         return t.getWorldRotation();
     } catch(...) {
         return res;
     }
 }
 
-KapEngine::Tools::Vector3 KapEngine::Transform::getParentScale() {
+KapEngine::Tools::Vector3 KapEngine::Transform::getParentScale() const{
     Tools::Vector3 res(1.0f, 1.0f, 1.0f);
     try {
-        Transform &t = (Transform &) getGameObject().getParent()->getComponent("Transform");
+        Transform &t = (Transform &)getParent()->getComponent("Transform");
         return t.getWorldScale();
     } catch(...) {
         return res;
     }
+}
+
+void KapEngine::Transform::setParent(std::size_t id) {
+    _parentId = id;
+}
+
+void KapEngine::Transform::setParent(std::any val) {
+    if (!val.has_value()) {
+        _parentId = 0;
+        return;
+    }
+    const std::type_info &inf = val.type();
+    if (std::string(inf.name()) == "i") {
+        int v = std::any_cast<int>(val);
+        setParent((std::size_t)v);
+    }
+    if (std::string(inf.name()) == "d") {
+        double v = std::any_cast<double>(val);
+        setParent((std::size_t)v);
+    }
+    if (std::string(inf.name()) == "f") {
+        float v = std::any_cast<float>(val);
+        setParent((std::size_t)v);
+    }
+
+    try {
+        std::shared_ptr<GameObject> go = std::any_cast<std::shared_ptr<GameObject>>(val);
+        if (go.use_count() != 0)
+            setParent(go->getId());
+    } catch(...) {
+        throw Errors::ComponentError("[TRANSFORM] error while try to set parent");
+    }
+}
+
+bool KapEngine::Transform::allParentIsActive() {
+    if (_parentId == 0)
+        return getGameObject().isActive();
+    try {
+        Transform &tr = (Transform &)getGameObject().getScene().getObject(_parentId)->getTransform();
+        return tr.allParentIsActive();
+    } catch(...) {
+        return false;
+    }
+}
+
+std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::Transform::getChildren() {
+    std::vector<std::shared_ptr<GameObject>> gos = getGameObject().getScene().getAllObjects();
+    std::vector<std::shared_ptr<GameObject>> result;
+    
+    for (std::size_t i = 0; i < gos.size(); i++) {
+        if (((Transform &)gos[i]->getTransform()).getParentId() == getGameObject().getId())
+            result.push_back(gos[i]);
+    }
+    return result;
+}
+
+std::size_t KapEngine::Transform::getParentId() const {
+    return _parentId;
+}
+
+std::shared_ptr<KapEngine::GameObject> KapEngine::Transform::getParent() const {
+    std::shared_ptr<GameObject> result;
+    if (_parentId != 0) {
+        try {
+            result = getGameObjectConst().getScene().getObject(_parentId);
+        } catch(...) {}
+    }
+    return result;
 }

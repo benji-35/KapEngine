@@ -10,11 +10,13 @@
 
 #include "Component.hpp"
 #include "Scene.hpp"
+#include "Entity.hpp"
 
 namespace KapEngine {
 
     class Component;
     class KapEngine;
+    class Entity;
 
     namespace SceneManagement {
         class Scene;
@@ -27,7 +29,7 @@ namespace KapEngine {
 
 namespace KapEngine {
 
-    class GameObject {
+    class GameObject : public Entity {
         public:
             GameObject(SceneManagement::Scene &scene, std::string const& name);
             ~GameObject();
@@ -43,12 +45,8 @@ namespace KapEngine {
 
             KapEngine &getEngine();
 
-            std::size_t getId() const {
-                return _id;
-            }
-
             //all functions call by engine
-            void __update(int threadId);
+            void __update(int threadId) override;
 
             void setActive(bool b) {
                 _active = b;
@@ -61,23 +59,25 @@ namespace KapEngine {
                 return _destroyed;
             }
 
-            bool allParentsActive() const;
-
-            std::shared_ptr<GameObject> getParent() const;
-
             SceneManagement::Scene &getScene() {
+                return _scene;
+            }
+
+            SceneManagement::Scene &getSceneConst() const {
                 return _scene;
             }
 
             Component &getTransform();
 
-            void __setId(std::size_t id) {
-                if (_id != 0)
-                    return;
-                _id = id;
+            void __engineStop();
+
+            std::string getName() const {
+                return _name;
             }
 
-            void __engineStop();
+            Entity &getEntity() const {
+                return (Entity &)*this;
+            }
 
         protected:
         private:
@@ -85,8 +85,6 @@ namespace KapEngine {
             bool _active = true;
             bool _destroyed = false;
             bool _firstUpdateDone = false;
-            std::size_t _id = 0;
-            std::size_t _parentId = 0;
             std::vector<std::shared_ptr<Component>> _components;
             std::vector<std::shared_ptr<Component>> _componentsRun;
             SceneManagement::Scene &_scene;
