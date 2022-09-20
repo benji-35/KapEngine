@@ -35,26 +35,65 @@ namespace KapEngine {
     }
 }
 
+/**
+ * @brief main namespace
+ * @namespace KapEngine
+ */
 namespace KapEngine {
 
+    /**
+     * @brief Class of engine
+     * @class KapEngine
+     */
     class KapEngine {
         public:
+            /**
+             * @brief Construct a new KapEngine
+             * @param debug enable/disable debug mode
+             * @param gameName name of your game
+             * @param version version of your game
+             * @param company company name that developpe the game
+             */
             KapEngine(bool debug = false, std::string const& gameName = "Game", std::string const& version = "1.0.0", std::string const& company = "Default Company");
             ~KapEngine();
 
+            /**
+             * @brief Fix max fps of game
+             * @param fps fps amount
+             */
             void setMaxFps(int fps) {
                 _fpsLock = fps;
             }
 
+            /**
+             * @brief run your game
+             */
             void run();
+            /**
+             * @brief stop your game (can be call by component)
+             */
             void stop();
+            /**
+             * @brief Check if game is running
+             * @retval true if game is running
+             * @retval false if game is not running
+             */
             bool isRunning() const {
                 return _run;
             }
-
+            /**
+             * @brief check debug mode
+             * 
+             * @retval true if debug mode is enable
+             * @retval false if debug mode is disable
+             */
             bool debugMod() const {
                 return _debug;
             }
+            /**
+             * @brief Set the debug mode
+             * @param b 
+             */
             void setDebugMod(bool b) {
                 _debug = b;
             }
@@ -84,7 +123,10 @@ namespace KapEngine {
 
             static void __threadRun(KapEngine *engine, int threadId);
 
-            static std::mutex debugMutex;
+            /**
+             * @brief Mutex for threading
+             */
+            static std::recursive_mutex debugMutex;
 
             Time::ETime getElapsedTime() {
                 float f = _elapsed.asMilliSecond() * deltaTime;

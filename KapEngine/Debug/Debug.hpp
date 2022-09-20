@@ -23,7 +23,7 @@ namespace KapEngine {
             * @brief afficher un log
             */
             static void log(std::string _msg) {
-                KapEngine::debugMutex.lock();
+                std::lock_guard<std::recursive_mutex> lk(KapEngine::debugMutex);
                 std::cout << "[" << __getCDate() << "]\e[1;37m log: \e[0m" << _msg << "\e[0m" << std::endl;
                 KapEngine::debugMutex.unlock();
             }
@@ -34,7 +34,7 @@ namespace KapEngine {
             * @brief afficher un warning
             */
             static void warning(std::string _msg) {
-                KapEngine::debugMutex.lock();
+                std::lock_guard<std::recursive_mutex> lk(KapEngine::debugMutex);
                 std::cout << "[" << __getCDate() << "]\e[1;33m warning: \e[0m" << _msg << "\e[0m" << std::endl;
                 KapEngine::debugMutex.unlock();
             }
@@ -45,7 +45,7 @@ namespace KapEngine {
             * @brief afficher une erreur
             */
             static void error(std::string _msg) {
-                KapEngine::debugMutex.lock();
+                std::lock_guard<std::recursive_mutex> lk(KapEngine::debugMutex);
                 std::cout << "[" << __getCDate() << "]\e[1;31m Error: \e[0m" << _msg << "\e[0m" << std::endl;
                 KapEngine::debugMutex.unlock();
             }
