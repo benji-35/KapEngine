@@ -14,6 +14,7 @@
 #include "EClock.hpp"
 
 #include <mutex>
+
 namespace KapEngine {
     namespace SceneManagement {
         class SceneManager;

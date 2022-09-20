@@ -10,6 +10,7 @@
 
 #include "KapEngine.hpp"
 #include "Input.hpp"
+#include "Vectors.hpp"
 
 namespace KapEngine {
     class KapEngine;
@@ -21,6 +22,10 @@ namespace KapEngine {
 
     namespace Graphical {
         class GraphicalLibManager;
+    }
+
+    namespace Tools {
+        class Vector2;
     }
 }
 
@@ -58,6 +63,12 @@ namespace KapEngine {
                     return _releasedInputs;
                 }
 
+                virtual Tools::Vector2 getMousePosition() const {
+                    Tools::Vector2 res;
+
+                    return res;
+                }
+
                 //graphical call
 
             protected:
@@ -67,7 +78,6 @@ namespace KapEngine {
                 std::string _name;
                 GraphicalLibManager &manager;
 
-            private:
         };
 
     }

@@ -88,7 +88,7 @@ namespace KapEngine {
                     }
                 };
 
-                Input(EventManager *manager);
+                Input(EventManager &manager);
                 ~Input() {}
 
                 /**
@@ -193,10 +193,9 @@ namespace KapEngine {
 
             protected:
             private:
-                Key _lastKey;
                 bool _pressed = false;
                 bool _realesed = false;
-                EventManager *_manager;
+                EventManager &_manager;
 
                 std::vector<Key> _justInputs;
                 std::vector<Key> _inputs;

@@ -31,7 +31,7 @@ namespace KapEngine {
             public:
                 LegacyGraphicalLib(GraphicalLibManager &manager);
                 ~LegacyGraphicalLib();
-            
+
                 void display() override;
 
             private:

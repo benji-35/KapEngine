@@ -21,11 +21,16 @@ namespace KapEngine {
 }
 
 namespace KapEngine {
+    /**
+     * @namespace KapEngine::Events
+     * This namespace regroup all events system that can be called by the engine and components
+     * @brief All events from engine
+     */
     namespace Events {
         /**
          * @class EventManager
-         * Gère et met à jours les évenements de l'engine
-         * @brief gestionnaire des évenements
+         * Manage all events from engine
+         * @brief Event manager
          */
         class EventManager {
             public:
@@ -34,24 +39,26 @@ namespace KapEngine {
 
                 /**
                  * @fn KapEngine &getEngine()
-                 * @brief Avoir l'engine
-                 * @return KapEngine&
+                 * @brief Get the engine
+                 * @return KapEngine::KapEngine &
                  */
                 KapEngine &getEngine() {
                     return _engine;
                 }
+
                 /**
                  * @fn Input &getInput()
-                 * @brief Avoir les informations de l'input
-                 * @return Input&
+                 * @brief Get input intels
+                 * @return KapEngine::Events::Input &
                  */
                 Input &getInput() {
                     return *_input;
                 }
+
                 /**
                  * @fn Mouse &getMouse()
-                 * @brief Avoir les informations de la souris
-                 * @return Mouse&
+                 * @brief Get mouse intels
+                 * @return KapEngine::Events::Mouse &
                  */
                 Mouse &getMouse() {
                     return *_mouse;
@@ -59,8 +66,8 @@ namespace KapEngine {
 
                 /**
                  * @fn void __update()
-                 * @brief mettre à jour
-                 * @warning Ne pas utiliser cette fonction. Elle est appelé par l'engine
+                 * @brief update event manager
+                 * @warning Do not use this function, it will be called by the engine
                  */
                 void __update();
 

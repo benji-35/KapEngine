@@ -77,6 +77,18 @@ namespace KapEngine {
                     return *this;
                 }
 
+                bool operator==(Vector2 const& vec) {
+                    if (vec.getX() != x)
+                        return false;
+                    if (vec.getY() != y)
+                        return false;
+                    return true;
+                }
+
+                bool operator!=(Vector2 const& vec) {
+                    return !(*this == vec);
+                }
+
             private:
                 float x = 0.0f;
                 float y = 0.0f;
@@ -152,6 +164,20 @@ namespace KapEngine {
                     y = vec.getY();
                     z = vec.getZ();
                     return *this;
+                }
+
+                bool operator==(Vector3 const& vec) {
+                    if (vec.getX() != x)
+                        return false;
+                    if (vec.getY() != y)
+                        return false;
+                    if (vec.getZ() != z)
+                        return false;
+                    return true;
+                }
+
+                bool operator!=(Vector3 const& vec) {
+                    return !(*this == vec);
                 }
 
             private:

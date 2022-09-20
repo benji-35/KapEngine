@@ -7,17 +7,14 @@
 
 #include "Input.hpp"
 
-KapEngine::Events::Input::Input(EventManager *manager) {
-    _manager = manager;
-}
+KapEngine::Events::Input::Input(EventManager &manager) : _manager(manager) {}
 
 void KapEngine::Events::Input::__update() {
-    _lastKey = Key::UNKNOWN;
-    if (!_manager->getEngine().isGraphicalLibExists(_manager->getEngine().getCurrentGraphicalLibIndex()))
+    if (!_manager.getEngine().isGraphicalLibExists(_manager.getEngine().getCurrentGraphicalLibIndex()))
         return;
-    _inputs = _manager->getEngine().getCurrentGraphicalLib()->getLatsKey();
-    _justInputs = _manager->getEngine().getCurrentGraphicalLib()->getKeysPressed();
-    _outInputs = _manager->getEngine().getCurrentGraphicalLib()->getKeysReleased();
+    _inputs = _manager.getEngine().getCurrentGraphicalLib()->getLatsKey();
+    _justInputs = _manager.getEngine().getCurrentGraphicalLib()->getKeysPressed();
+    _outInputs = _manager.getEngine().getCurrentGraphicalLib()->getKeysReleased();
 }
 
 bool KapEngine::Events::Input::getKey(Key::EKey key) {
@@ -67,11 +64,11 @@ bool KapEngine::Events::Input::getKey(Key key) {
 }
 
 bool KapEngine::Events::Input::getKeyDown(Key key) {
-    return getKeyDown(key._last);
+    return getKeyDown(key.get());
 }
 
 bool KapEngine::Events::Input::getKeyUp(Key key) {
-    return getKeyUp(key._last);
+    return getKeyUp(key.get());
 }
 
 float KapEngine::Events::Input::getAxis(std::string name) {
@@ -98,17 +95,16 @@ float KapEngine::Events::Input::getAxis(std::string name) {
 
             if (res == 0.0f && axis.joystickId >= 0) {
                 if (axis.gamepadId >= 0) {
-                    res = _manager->getEngine().getCurrentGraphicalLib()->getJoystikValue(axis.gamepadId, axis.joystickId);
+                    res = _manager.getEngine().getCurrentGraphicalLib()->getJoystikValue(axis.gamepadId, axis.joystickId);
                 } else {
-                    res = _manager->getEngine().getCurrentGraphicalLib()->getJoystikValue(0, axis.joystickId);
+                    res = _manager.getEngine().getCurrentGraphicalLib()->getJoystikValue(0, axis.joystickId);
                     if (res == 0.0f)
-                        res = _manager->getEngine().getCurrentGraphicalLib()->getJoystikValue(1, axis.joystickId);
+                        res = _manager.getEngine().getCurrentGraphicalLib()->getJoystikValue(1, axis.joystickId);
                 }
             }
 
             if (axis.invert)
                 res *= -1.f;
-
             break;
         }
     }

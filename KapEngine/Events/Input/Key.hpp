@@ -20,8 +20,8 @@ namespace KapEngine {
 
                 /**
                  * @enum EKey
-                 * enumération de toutes les touches que l'engine est capable de détecter
-                 * @brief toutes les touches
+                 * enumeration of all keys that engine can detect
+                 * @brief all keys
                  */
                 enum EKey {
                     UNKNOWN         = -1,        // Key: NULL, used for no key pressed
@@ -211,9 +211,9 @@ namespace KapEngine {
 
                 /**
                  * @fn static EKey maxValue()
-                 * permet de connaître la valeur maximale de l'enumaration des touches
-                 * @brief valeur max des touches
-                 * @return EKey 
+                 * Get the max value of the EKey enum
+                 * @brief Max value EKey
+                 * @return KapEngine::Events::Key::EKey 
                  */
                 static EKey maxValue() {
                     return F15;
@@ -221,9 +221,9 @@ namespace KapEngine {
 
                 /**
                  * @fn static EKey minValue()
-                 * permet de connaître la valeur minimale de l'enumaration des touches
-                 * @brief valeur min des touches
-                 * @return EKey 
+                 * Get the minimum value of the EKey enum
+                 * @brief Minimum value EKey
+                 * @return KapEngine::Events::Key::EKey 
                  */
                 static EKey minValue() {
                     return UNKNOWN;
@@ -252,11 +252,11 @@ namespace KapEngine {
 
                 /**
                  * @fn static bool intInEnum(int const& id)
-                 * permet de savoir si l'index (int) se trouve dans l'enumération des touches
-                 * @brief vérifie si id est dans l'enum
+                 * Check if index "id" exists in the KapEngine::Events::Key::EKey enum
+                 * @brief Check id in enum
                  * @param id index (int)
-                 * @retval true si l'index se trouve dans l'énumération des touches
-                 * @retval false si l'index n'est pas dans l'énumération des touches
+                 * @retval true if index is in the KapEngine::Events::Key::EKey enum
+                 * @retval false if index is not in the KapEngine::Events::Key::EKey enum
                  */
                 static bool intInEnum(int const& id) {
                     if (id == -1)
@@ -289,10 +289,10 @@ namespace KapEngine {
 
                 /**
                  * @fn bool isKeyboardKey() const
-                 * permet de savoir si la touche enregistrer dans la variable _last est une touche de clavier
-                 * @brief vérifie si la touche provient du clavier
-                 * @retval true si la touche vient du clavier
-                 * @retval false si la touche n'est pas du clavier
+                 * Check if _last variable is a keyboard key
+                 * @brief Check is a keyboard key
+                 * @retval true if _last is a keyboard key
+                 * @retval false if _last is not a keyboard key
                  */
                 bool isKeyboardKey() const {
                     if (_last >= 1 && _last <= EKey::VOLUME_DOWN)
@@ -317,10 +317,10 @@ namespace KapEngine {
 
                 /**
                  * @fn bool isGamepadKey() const
-                 * permet de savoir si la touche enregistrer dans la variable _last est une touche de gamepade
-                 * @brief vérifie si la touche provient du gamepad
-                 * @retval true si la touche vient du gamepad
-                 * @retval false si la touche n'est pas du gamepad
+                 * Check if _last is a gamepad key
+                 * @brief Check is a gamepad key
+                 * @retval true if _last is a gamepad key
+                 * @retval false if _last is not a gamepad key
                  */
                 bool isGamepadKey() const {
                     if (!isKeyboardKey() && !isMouseKey())
@@ -339,9 +339,9 @@ namespace KapEngine {
 
                 /**
                  * @fn std::string toString() const
-                 * permet d'avoir le nom de la touche actuelle (dans la variable _last)
-                 * @brief avoir son nom
-                 * @return std::string le nom de la touche
+                 * Get name of key in string value
+                 * @brief Get key name
+                 * @return std::string
                  */
                 std::string toString() const {
                     switch (_last) {
@@ -560,9 +560,13 @@ namespace KapEngine {
                     }
                 }
 
-                EKey _last = UNKNOWN;
+                EKey get() const {
+                    return _last;
+                }
+
             protected:
             private:
+                EKey _last = UNKNOWN;
         };
 
     }

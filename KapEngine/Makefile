@@ -13,9 +13,9 @@
 # ANY CHANGES CAN DESTROY THE PROCESS TO COMPILE
 #
 
-COMPILER	=	g++
-
 include Config/Makefile
+
+COMPILER	=	g++ $(CPP_VERSION)
 
 SRC	=	$(ENGINE_PATH_COMPONENT)Component.cpp								\
 		$(ENGINE_PATH_GAMEOBJECTS)GameObject.cpp							\
@@ -28,6 +28,8 @@ SRC	=	$(ENGINE_PATH_COMPONENT)Component.cpp								\
 		$(ENGINE_PATH_GRAPHICAL)GraphicalLibManager.cpp						\
 		$(ENGINE_PATH_GRAPHICAL)GraphicalLib.cpp							\
 		$(ENGINE_PATH_LEGACY_GRAPHICAL)LegacyGraphicalLib.cpp				\
+		$(ENGINE_PATH_ASYNC_OPERATION)AsyncOperation.cpp					\
+		$(ENGINE_PATH_SYNC_OPERATION)SyncOperation.cpp						\
 
 LIB_NAME	=	libKapEngine.so
 
@@ -39,12 +41,12 @@ OBJ	=	$(SRC:.cpp=.o)
 
 %.o: %.cpp
 	@echo "$(LIB_NAME) < [CPP: $<]"
-	@g++ -c $< $(INCLUDES) -o $@ -g -fPIC
+	@$(COMPILER) -c $< $(INCLUDES) -o $@ -g -fPIC
 
 all: $(LIB_NAME)
 
 $(LIB_NAME): $(OBJ)
-	@g++ -shared -fPIC -o $(LIB_NAME) $(OBJ)
+	@$(COMPILER) -shared -fPIC -o $(LIB_NAME) $(OBJ)
 	@cp $(LIB_NAME) $(PATH_CP_LIB)$(LIB_NAME)
 
 clean:
