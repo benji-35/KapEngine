@@ -9,6 +9,7 @@
 #include "GameObject.hpp"
 #include "ComponentTest.hpp"
 #include "Factory.hpp"
+#include "Entity.hpp"
 
 int main(int ac, char **av) {
     KapEngine::KapEngine engine(false);
@@ -27,5 +28,6 @@ int main(int ac, char **av) {
         obj->addComponent(comp3);
     } catch(...) {}
 
-    engine.run();
+
+    // engine.run();
 }

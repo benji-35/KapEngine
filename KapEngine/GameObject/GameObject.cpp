@@ -21,24 +21,6 @@ KapEngine::GameObject::~GameObject() {
     }
 }
 
-bool KapEngine::GameObject::allParentsActive() const {
-    if (_parentId == 0)
-        return _active;
-    return getParent()->allParentsActive();
-}
-
-std::shared_ptr<KapEngine::GameObject> KapEngine::GameObject::getParent() const {
-    if (_parentId == 0)
-        throw Errors::GameObjectError("[GAMEOBJECT] No parent assigned to GameObject " + _name);
-    try {
-        return _scene.getObject(_parentId);
-    } catch(Errors::SceneError e) {
-        throw Errors::GameObjectError(std::string(e.what()));
-    } catch(...) {
-        throw Errors::GameObjectError("[GAMEOBJECT] unknown error to getParent");
-    }
-}
-
 void KapEngine::GameObject::__update(int threadId) {
     if (!_active || _destroyed)
         return;

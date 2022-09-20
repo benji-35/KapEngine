@@ -58,6 +58,12 @@ namespace KapEngine {
              */
             GameObject &getGameObject();
 
+            /**
+             * @brief 
+             * 
+             */
+            GameObject &getGameObjectConst() const;
+
             //updates functions
             virtual void onInit() override {}
             virtual void onAwake() override {}
