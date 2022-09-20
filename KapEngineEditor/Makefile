@@ -18,6 +18,8 @@ BIN = KapEngineUI
 
 include ../KapEngine/Config/Makefile
 
+COMPILER	=	g++ $(CPP_VERSION)
+
 INCLUDES	+=	$(ENGINE_INCLUDES_EG)  $(INCLUDE_UTILS)
 
 MAIN	=	Main.cpp
@@ -30,12 +32,12 @@ LIB	=	-L. -lKapEngine
 
 %.o: %.cpp
 	@echo "$(GAME_NAME) < [CPP: $<]"
-	@g++ -c $< $(INCLUDES) -o $@ -g $(LIB)
+	@$(COMPILER) -c $< $(INCLUDES) -o $@ -g $(LIB)
 
 all:	$(BIN)
 
 $(BIN):	$(OBJ)
-	@g++ $(OBJ) $(INCLUDES) -o $(BIN) $(LIB)
+	@$(COMPILER) $(OBJ) $(INCLUDES) -o $(BIN) $(LIB)
 	@cp $(BIN) ../$(BIN)
 
 re: fclean all
