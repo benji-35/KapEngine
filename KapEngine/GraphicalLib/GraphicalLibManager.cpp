@@ -16,30 +16,16 @@ KapEngine::Graphical::GraphicalLibManager::GraphicalLibManager(KapEngine &engine
 
 KapEngine::Graphical::GraphicalLibManager::~GraphicalLibManager() {}
 
-void KapEngine::Graphical::GraphicalLibManager::update() {
-    if (_multiThread) {
-        if (_threadRunning)
-            return;
-        // _thread = std::make_shared<std::thread>(__runThread);
-        return;
-    }
-    Debug::log("update graphical normal");
-}
-
-void KapEngine::Graphical::GraphicalLibManager::__runThread() {
-    while (_engine.isRunning() && _forceStopThread == false) {
-        Debug::log("update graphical by thread");
-    }
-    Debug::warning("stopping graphical by thread");
-    _forceStopThread = false;
-    _multiThread = false;
-    _threadRunning = false;
+void KapEngine::Graphical::GraphicalLibManager::__update() {
+    
 }
 
 bool KapEngine::Graphical::GraphicalLibManager::isLibExists(std::size_t const& index) {
-    if (index >= _libs.size())
-        return false;
-    return true;
+    for (std::size_t i = 0; i < _libs.size(); i++) {
+        if (_libs[i].use_count() != 0 && _libs[i]->getId() == index)
+            return true;
+    }
+    return false;
 }
 
 bool KapEngine::Graphical::GraphicalLibManager::isLibExists(std::string const& name) {
@@ -53,8 +39,13 @@ bool KapEngine::Graphical::GraphicalLibManager::isLibExists(std::string const& n
 void KapEngine::Graphical::GraphicalLibManager::removeLib(std::size_t const& index) {
     if (!isLibExists(index))
         return;
-    _libs[index].reset();
-    _libs.erase(_libs.begin() + index);
+    for (std::size_t i = 0; i < _libs.size(); i++) {
+        if (_libs[i].use_count() > 0 && _libs[i]->getId() == index) {
+            _libs[index].reset();
+            _libs.erase(_libs.begin() + index);
+            break;
+        }
+    }
 }
 
 void KapEngine::Graphical::GraphicalLibManager::removeLib(std::string const& name) {
@@ -66,18 +57,20 @@ void KapEngine::Graphical::GraphicalLibManager::removeLib(std::string const& nam
 std::size_t KapEngine::Graphical::GraphicalLibManager::getLibIndexFromName(std::string const& name) {
     for (std::size_t i = 0; i < _libs.size(); i++) {
         if (_libs[i]->getName() == name)
-            return i;
+            return _libs[i]->getId();
     }
-    return _libs.size();
+    throw Errors::GraphicalSystemError("Lib " + name + " not found");
 }
 
 void KapEngine::Graphical::GraphicalLibManager::addLib(std::shared_ptr<GraphicalLib> lib) {
     _libs.push_back(lib);
+    _maxLib++;
+    lib->__setId(_maxLib);
 }
 
 std::string KapEngine::Graphical::GraphicalLibManager::getLibNameFromIndex(std::size_t const& index) {
     for (std::size_t i = 0; i < _libs.size(); i++) {
-        if (i == index)
+        if (_libs[i]->getId() == index)
             return _libs[i]->getName();
     }
     return "";
@@ -86,5 +79,28 @@ std::string KapEngine::Graphical::GraphicalLibManager::getLibNameFromIndex(std::
 std::shared_ptr<KapEngine::Graphical::GraphicalLib> KapEngine::Graphical::GraphicalLibManager::getLib(std::size_t index) {
     if (!isLibExists(index))
         throw Errors::GraphicalSystemError("Library not found");
-    return _libs[index];
+    for (std::size_t i = 0; i < _libs.size(); i++) {
+        if (_libs[i].use_count() != 0 && _libs[i]->getId() == index)
+            return _libs[i];
+    }
+    throw Errors::GraphicalSystemError("Library " + std::to_string(index) + " not found");
+}
+
+void KapEngine::Graphical::GraphicalLibManager::changeLib(std::size_t const& libId) {
+    if (!isLibExists(libId))
+        return;
+    if (currLib != 0) {
+        std::shared_ptr<GraphicalLib> lLib = getLib(getCurrLib());
+        lLib->clearCache();
+        lLib->stopDisplay();
+    }
+
+    std::shared_ptr<GraphicalLib> nLib = getLib(libId);
+    nLib->startDisplay();
+}
+
+void KapEngine::Graphical::GraphicalLibManager::changeLib(std::string const& libName) {
+    if (!isLibExists(libName))
+        return;
+    changeLib(getLibIndexFromName(libName));
 }

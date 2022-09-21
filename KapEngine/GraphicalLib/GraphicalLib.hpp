@@ -11,9 +11,11 @@
 #include "KapEngine.hpp"
 #include "Input.hpp"
 #include "Vectors.hpp"
+#include "Entity.hpp"
 
 namespace KapEngine {
     class KapEngine;
+    class Entity;
 
     namespace Events {
         class Key;
@@ -33,7 +35,7 @@ namespace KapEngine {
 
     namespace Graphical {
 
-        class GraphicalLib {
+        class GraphicalLib : public Entity {
             public:
                 GraphicalLib(std::string const& name, GraphicalLibManager &manager);
                 ~GraphicalLib();
@@ -68,6 +70,12 @@ namespace KapEngine {
 
                     return res;
                 }
+
+                virtual void clearCache() {}
+
+                virtual void stopDisplay() {}
+
+                virtual void startDisplay() {}
 
                 //graphical call
 

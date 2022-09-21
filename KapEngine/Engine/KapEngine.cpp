@@ -71,9 +71,9 @@ void KapEngine::KapEngine::__init() {
 void KapEngine::KapEngine::__threadRun(KapEngine *engine, int threadId) {
     if (threadId == 0) {
         try {
-            if (engine->getCurrentGraphicalLib().use_count() != 0) {
+            if (engine->getCurrentGraphicalLib().use_count() != 0) {                
                 engine->getCurrentGraphicalLib()->clear();
-                
+
                 std::thread t1(&KapEngine::__threadRun, engine, 1);
                 std::thread t2(&KapEngine::__threadRun, engine, 2);
                 std::thread t3(&KapEngine::__threadRun, engine, 3);

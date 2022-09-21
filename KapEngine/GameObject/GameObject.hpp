@@ -46,7 +46,7 @@ namespace KapEngine {
             KapEngine &getEngine();
 
             //all functions call by engine
-            void __update(int threadId) override;
+            void __update(int threadId);
 
             void setActive(bool b) {
                 _active = b;
