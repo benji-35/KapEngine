@@ -11,7 +11,7 @@
 #include "Component.hpp"
 #include <functional>
 #include "Debug.hpp"
-#include "Time.hpp"
+#include "ETime.hpp"
 
 namespace KapEngine {
 
@@ -44,9 +44,9 @@ namespace KapEngine {
 
             /**
              * @fn void loop(bool b)
-             * @brief 
-             * 
-             * @param b 
+             * @brief
+             *
+             * @param b
              */
             void loop(bool b) {
                 _loop = b;
@@ -54,9 +54,9 @@ namespace KapEngine {
 
             /**
              * @fn void play(bool b)
-             * @brief 
-             * 
-             * @param b 
+             * @brief
+             *
+             * @param b
              */
             void play(bool b) {
                 _startAnim = b;
@@ -69,7 +69,7 @@ namespace KapEngine {
             void setTiming(int64_t const& time) {
                 // _timing = time;
             }
-            void setTiming(Time const& time) {
+            void setTiming(Time::ETime const& time) {
                 _timing = time;
             }
 
@@ -100,7 +100,7 @@ namespace KapEngine {
             bool _startAnim = false;
             bool _loop = false;
             bool _end = false;
-            Time _timing;
+            Time::ETime _timing;
             int64_t _currTime = 0;
 
             std::vector<AnimationLine> _nodes;
