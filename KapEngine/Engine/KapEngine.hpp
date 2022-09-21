@@ -203,6 +203,10 @@ namespace KapEngine {
                 deltaTime = dTime;
             }
 
+            std::shared_ptr<Graphical::GraphicalLibManager> getGraphicalLibManager() const {
+                return _libManager;
+            }
+
         protected:
         private:
             bool _run = false;

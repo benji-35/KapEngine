@@ -39,14 +39,7 @@ namespace KapEngine {
                 std::string getLibNameFromIndex(std::size_t const& index);
                 std::shared_ptr<GraphicalLib> getLib(std::size_t index);
 
-                void setMultiThread(bool b) {
-                    if (!b && _multiThread) {
-                        _forceStopThread = true;
-                    }
-                    _multiThread = b;
-                }
-
-                void update();
+                void __update();
 
                 std::size_t getCurrLib() const {
                     return currLib;
@@ -62,15 +55,10 @@ namespace KapEngine {
             protected:
             private:
                 std::size_t currLib = 0;
-                bool _multiThread = false;
-                bool _threadRunning = false;
-                bool _forceStopThread = false;
-                std::shared_ptr<std::thread> _thread;
+                std::size_t _maxLib = 0;
 
                 std::vector<std::shared_ptr<GraphicalLib>> _libs;
                 KapEngine &_engine;
-        
-                void __runThread();
         };
 
     }

@@ -35,8 +35,6 @@ namespace KapEngine {
                 return _id;
             }
 
-            virtual void __update(int threadId) = 0;
-
             virtual Entity &operator=(Entity const& en) {
                 _id = en._id;
                 return *this;
