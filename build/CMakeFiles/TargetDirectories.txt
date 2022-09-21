@@ -1,5 +1,0 @@
-/home/chaika9/Epitech/KapEngine/build/CMakeFiles/rebuild_cache.dir
-/home/chaika9/Epitech/KapEngine/build/CMakeFiles/edit_cache.dir
-/home/chaika9/Epitech/KapEngine/build/KapEngine/CMakeFiles/rebuild_cache.dir
-/home/chaika9/Epitech/KapEngine/build/KapEngine/CMakeFiles/edit_cache.dir
-/home/chaika9/Epitech/KapEngine/build/KapEngine/CMakeFiles/KapEngine.dir
