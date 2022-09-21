@@ -1,3 +1,4 @@
+@mainpage
 ```
 ██╗  ██╗ █████╗ ██████╗ ███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗
 ██║ ██╔╝██╔══██╗██╔══██╗██╔════╝████╗  ██║██╔════╝ ██║████╗  ██║██╔════╝
@@ -9,8 +10,26 @@
 by Benjamin DELVERT                               
 ```
 
-KapEngine Documentation: [LINK](KapEngine/Documentation/md/KapEngine.md)
+## English
+| Title                         | Link                                       | Status                 |
+|-------------------------------|--------------------------------------------|------------------------|
+| What's KapEngine              | [SHOW](Documentation/md/KapEngineEn.md)    | :large_orange_diamond: |
+| Create Component              | [SHOW](Documentation/md/NewComponentEn.md) | :large_orange_diamond: |
+| Manage Grpahical Library      | [SHOW](Documentation/md/LibGraphEn.md)     | :large_orange_diamond: |
+| Compile your game             | [SHOW](Documentation/md/compileEn.md)      | :large_orange_diamond: |
 
-KapEditor Documentation: Not available
+## Français
+| Titre                         | Lien                                       | Status                 |
+|-------------------------------|--------------------------------------------|------------------------|
+| Qu'est ce que KapEngine       | [VOIR](Documentation/md/KhapEngineFr.md)    | :large_orange_diamond: |
+| Créer un composant            | [VOIR](Documentation/md/NewComponentFr.md) | :large_orange_diamond: |
+| Gérer une librairie graphique | [VOIR](Documentation/md/LibGraphFr.md)     | :large_orange_diamond: |
+| Compiler votre jeu            | [VOIR](Documentation/md/compileFr.md)      | :large_orange_diamond: |
 
-Get acces to web documentation version: {Path of cloned project}/KapEngine/Documentation/web/html/index.html
+## Table of icons
+
+| Icons                  | English                                    | French                                          |
+|------------------------|--------------------------------------------|-------------------------------------------------|
+| :green_circle:         | up do date tutorial or information         | Tutoriel ou information à jour                  |
+| :large_orange_diamond: | Currently updating tutorial or information | Tutoriel ou information en cours de mise à jour |
+| :red_circle:           | Outdating tutorial or information          | Tutoriel ou information obsolète                |
