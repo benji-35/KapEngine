@@ -10,6 +10,11 @@
 by Benjamin DELVERT                               
 ```
 
+## How to compile / Comment compiler
+```
+$> ./build.sh
+```
+
 ## English
 | Title                         | Link                                       | Status                 |
 |-------------------------------|--------------------------------------------|------------------------|
