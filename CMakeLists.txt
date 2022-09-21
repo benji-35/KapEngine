@@ -1,3 +1,18 @@
+##
+## ██╗  ██╗ █████╗ ██████╗ ███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗
+## ██║ ██╔╝██╔══██╗██╔══██╗██╔════╝████╗  ██║██╔════╝ ██║████╗  ██║██╔════╝
+## █████╔╝ ███████║██████╔╝█████╗  ██╔██╗ ██║██║  ███╗██║██╔██╗ ██║█████╗
+## ██╔═██╗ ██╔══██║██╔═══╝ ██╔══╝  ██║╚██╗██║██║   ██║██║██║╚██╗██║██╔══╝
+## ██║  ██╗██║  ██║██║     ███████╗██║ ╚████║╚██████╔╝██║██║ ╚████║███████╗
+## ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝
+##
+## by Benjamin DELVERT
+
+#
+# DO NOT TOUCH THIS FILE
+# ANY CHANGES CAN DESTROY THE PROCESS TO COMPILE
+#
+
 cmake_minimum_required(VERSION 3.16)
 
 if(${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR} AND NOT WIN32)
@@ -7,43 +22,20 @@ if(${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR} AND NOT WIN3
 	"(either below this directory or elsewhere), and then re-run CMake from there.")
 endif(${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR} AND NOT WIN32)
 
-project(KapEngine)
+project(KapEngine LANGUAGES CXX)
 
-# Common includes
-include_directories(KapEngine/Components)
-include_directories(KapEngine/Components/Transform)
-include_directories(KapEngine/Components/Camera)
+set(CMAKE_CXX_STANDARD 17)
 
-include_directories(KapEngine/Component)
-include_directories(KapEngine/GameObject)
+# KapEngine includes
+include(${KapEngine_SOURCE_DIR}/CMake/engine_includes.cmake)
 
-include_directories(KapEngine/Engine)
-include_directories(KapEngine/Errors)
+# KapEngine sources
+file(GLOB_RECURSE SOURCES ${KapEngine_SOURCE_DIR}/KapEngine/*.cpp)
 
-include_directories(KapEngine/SceneManagement/Scene)
-include_directories(KapEngine/SceneManagement/SceneManager)
+add_library(KapEngine SHARED ${SOURCES} ${HEADERS})
 
-include_directories(KapEngine/Tools)
-include_directories(KapEngine/Debug)
+# C++ Flags
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
-include_directories(KapEngine/GraphicalLib)
-
-include_directories(KapEngine/Events/Input)
-include_directories(KapEngine/Events/Mouse)
-include_directories(KapEngine/Events/Manager)
-
-include_directories(KapEngine/Legacy/Graphical)
-
-include_directories(KapEngine/Events/Action)
-
-include_directories(KapEngine/Time)
-
-include_directories(KapEngine/Entity)
-
-include_directories(KapEngine/SpecialOperation)
-include_directories(KapEngine/SpecialOperation/AsyncOperation)
-include_directories(KapEngine/SpecialOperation/SyncOperation)
-
-# Modules
-add_subdirectory(KapEngine)
-add_subdirectory(KapEngineGame)
+# Linker flags
+set_target_properties(KapEngine PROPERTIES LINK_FLAGS "-pthread")
