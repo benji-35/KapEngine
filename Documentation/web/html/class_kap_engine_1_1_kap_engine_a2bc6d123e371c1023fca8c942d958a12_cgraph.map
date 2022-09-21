@@ -1,0 +1,5 @@
+<map id="KapEngine::KapEngine::getElapsedTime" name="KapEngine::KapEngine::getElapsedTime">
+<area shape="rect" id="node1" title="Get the Elapsed Time since last internal clock restart." alt="" coords="5,39,161,80"/>
+<area shape="rect" id="node2" href="$class_kap_engine_1_1_time_1_1_e_time.html#a9d62c4356780d31a47be3f376bcd46be" title="avoir le temps en millisecondes" alt="" coords="209,5,377,47"/>
+<area shape="rect" id="node3" href="$class_kap_engine_1_1_time_1_1_e_time.html#a35bdb9c03082bd1c1eb71d35a0b4fdc9" title="Set the Milliseconds of time." alt="" coords="209,71,377,112"/>
+</map>

@@ -61,12 +61,10 @@ void KapEngine::KapEngine::__init() {
 }
 
 /**
- * @brief thread function call
- * 
- * threadId : 0 = graphics
- * threadId : 1 = inputs
- * threadId : 2 = component
- * threadId : 3 = component
+ * threadId : 0 = graphics  
+ * threadId : 1 = inputs  
+ * threadId : 2 = component  
+ * threadId : 3 = component  
  * threadId : 4 = component
  */
 

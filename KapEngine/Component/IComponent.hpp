@@ -39,19 +39,54 @@ namespace KapEngine {
              * @brief call each frame
              */
             virtual void onUpdate() = 0;
+            /**
+             * @brief call eachv x ms
+             * 
+             * 
+             * 
+             */
             virtual void onFixedUpdate() = 0;
 
-            //function call after update
+            /**
+             * @brief use to display some things
+             * this function is call after all updates fucntion
+             */
             virtual void onDisplay() = 0;
 
-            //
+            /**
+             * @brief something enter in object
+             * 
+             */
             virtual void onTriggerEnter() = 0;
+            
+            /**
+             * @brief something stay in object
+             * 
+             */
             virtual void onTriggerStay() = 0;
+            
+            /**
+             * @brief something out of object
+             * 
+             */
             virtual void onTriggerExit() = 0;
 
-            //
+            /**
+             * @brief called when mouse enter object
+             * 
+             */
             virtual void onMouseEnter() = 0;
+
+            /**
+             * @brief called when mouse stay on object
+             * 
+             */
             virtual void onMouseStay() = 0;
+
+            /**
+             * @brief called when mouse leave object
+             * 
+             */
             virtual void onMouseExit() = 0;
 
         protected:
