@@ -28,7 +28,3 @@ include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Events/Action)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Time)
 
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Entity)
-
-include_directories(${KapEngine_SOURCE_DIR}/KapEngine/SpecialOperation)
-include_directories(${KapEngine_SOURCE_DIR}/KapEngine/SpecialOperation/AsyncOperation)
-include_directories(${KapEngine_SOURCE_DIR}/KapEngine/SpecialOperation/SyncOperation)
