@@ -69,6 +69,12 @@ namespace KapEngine {
                     return res;
                 }
 
+                virtual void clearCache() {}
+
+                virtual void stopDisplay() {}
+
+                virtual void startDisplay() {}
+
                 //graphical call
 
             protected:

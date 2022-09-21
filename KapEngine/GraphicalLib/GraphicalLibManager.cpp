@@ -88,3 +88,20 @@ std::shared_ptr<KapEngine::Graphical::GraphicalLib> KapEngine::Graphical::Graphi
         throw Errors::GraphicalSystemError("Library not found");
     return _libs[index];
 }
+
+void KapEngine::Graphical::GraphicalLibManager::changeLib(std::size_t const& libId) {
+    if (!isLibExists(libId))
+        return;
+    std::shared_ptr<GraphicalLib> lLib = getLib(getCurrLib());
+    lLib->clearCache();
+    lLib->stopDisplay();
+
+    std::shared_ptr<GraphicalLib> nLib = getLib(libId);
+    nLib->startDisplay();
+}
+
+void KapEngine::Graphical::GraphicalLibManager::changeLib(std::string const& libName) {
+    if (!isLibExists(libName))
+        return;
+    changeLib(getLibIndexFromName(libName));
+}

@@ -56,6 +56,9 @@ namespace KapEngine {
                     return _engine;
                 }
 
+                void changeLib(std::size_t const& libId);
+                void changeLib(std::string const& libName);
+
             protected:
             private:
                 std::size_t currLib = 0;
