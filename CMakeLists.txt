@@ -27,7 +27,7 @@ project(KapEngine LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 
 # KapEngine includes
-include(${KapEngine_SOURCE_DIR}/CMake/engine_includes.cmake)
+include(${KapEngine_SOURCE_DIR}/CMake/engine_include.cmake)
 
 # KapEngine sources
 file(GLOB_RECURSE SOURCES ${KapEngine_SOURCE_DIR}/KapEngine/*.cpp)
