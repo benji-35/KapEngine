@@ -1,0 +1,8 @@
+<map id="KapEngine::KapEngine::__threadRun" name="KapEngine::KapEngine::__threadRun">
+<area shape="rect" id="node1" title="function for thread" alt="" coords="5,123,161,164"/>
+<area shape="rect" id="node2" href="$class_kap_engine_1_1_kap_engine.html#a042d92700a369a11205f09b76cdf8812" title="check debug mode" alt="" coords="214,5,370,47"/>
+<area shape="rect" id="node3" href="$class_kap_engine_1_1_debug.html#a97ae4eea0d8beb20a41b6dd3ec528d02" title="afficher une erreur" alt="" coords="209,71,375,98"/>
+<area shape="rect" id="node4" href="$class_kap_engine_1_1_kap_engine.html#a0b001ef2ae3390c14d82518a4a1f25d7" title="Get the Current Graphical Lib." alt="" coords="211,123,373,164"/>
+<area shape="rect" id="node5" href="$class_kap_engine_1_1_kap_engine.html#ab77ce50b441a8ee0bd2af547f57b1728" title="Get the Scene Manager of game." alt="" coords="214,188,370,229"/>
+<area shape="rect" id="node6" href="$class_kap_engine_1_1_kap_engine.html#a1404071cac9f450b0aabed1e2aae5120" title="stop your game (can be call by component)" alt="" coords="214,253,370,295"/>
+</map>
