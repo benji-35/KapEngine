@@ -75,10 +75,10 @@ $(function() {
 <div class="line">╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝</div>
 <div class="line">                                                                        </div>
 <div class="line">par Benjamin DELVERT</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md13"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md14"></a>
 Créer ton composant</h1>
 <p >Sur cette page tu vas apprendre qu'est ce qu'un <a class="el" href="class_kap_engine_1_1_component.html">KapEngine::Component</a>, pourquoi il existse et comment en créer un.</p>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 Table des matières</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -90,13 +90,13 @@ Table des matières</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Démarrage Rapide   </td><td class="markdownTableBodyNone">GO   </td><td class="markdownTableBodyNone">:green_circle:   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md15"></a>
+<h2><a class="anchor" id="autotoc_md16"></a>
 Qu'est ce qu'un composant</h2>
 <p >Un composant est un script rattaché à un objet de jeu (<a class="el" href="class_kap_engine_1_1_game_object.html">KapEngine::GameObject</a>). Il a pour but de donner une logique ou une action à votre objet.</p>
 <p >Certaines fonctions seront automatiquement appelées par <a class="el" href="class_kap_engine.html" title="Class of engine.">KapEngine</a> ce qui permet une autonomisation du fonctionnement de votre jeu une fois lancé.</p>
 <p >:warning: le <a class="el" href="class_kap_engine.html" title="Class of engine.">KapEngine</a> est un engine multi thread. Ce qui signifie que le jeu utilisera plusieurs coeur de votre ordinateur pour effectuer des calculs plus rapides. Les composants sont appelés sur les thread suivant : 2, 3, 4. Lors de la création de vos composants, vous pouvez définir sur quel thread votre composant tournera. Si vous définissez un autre "threadID" que ceux indiqué juste avant, votre composant ne sera jamais lu.</p>
 <p >Cette méthode de calcul vous permet d'avoir un jeu plus performant. Cependant il se peut que vous ayez des réécriute de valeur. Ce sera à vous d'y faire attention.</p>
-<h2><a class="anchor" id="autotoc_md16"></a>
+<h2><a class="anchor" id="autotoc_md17"></a>
 Créer le sien</h2>
 <p >Créer un composant est très simple. Vous devez créer un nouveau fichier .hpp. Ce fichier contiendra la classe de votre composant : exemple. Une fois que vous aurez créé ce composant, il fous suffira de l'ajouter sur un objet.</p>
 <p >Exemple: </p><div class="fragment"><div class="line"> {C++}</div>
@@ -119,12 +119,12 @@ Créer le sien</h2>
 <div class="line">}</div>
 </div><!-- fragment --><p> Ces étapes sont obligatoires pour pouvoir ajouter un composant à un objet.</p>
 <p >:warning: Il est primordiale de ne pas mélanger les GameObjects pour le composant. L'objet dans lequel vous ajouté le composant doit être le même objet qui se trouve dans le constructeur du composant comme dans l'exemple.</p>
-<h3><a class="anchor" id="autotoc_md17"></a>
+<h3><a class="anchor" id="autotoc_md18"></a>
 Liste des fonctions disponibles</h3>
-<h4><a class="anchor" id="autotoc_md18"></a>
+<h4><a class="anchor" id="autotoc_md19"></a>
 onInit</h4>
 <p >Cette fonction est appelée lors de l'initialisation du composant au runtime.</p>
-<h2><a class="anchor" id="autotoc_md19"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
 Démarrage Rapide</h2>
 <div class="fragment"><div class="line"> {C++}</div>
 <div class="line"> </div>
