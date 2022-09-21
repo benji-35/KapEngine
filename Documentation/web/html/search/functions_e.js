@@ -25,7 +25,7 @@ var searchData=
   ['setrotation_22',['setRotation',['../class_kap_engine_1_1_transform.html#ace3216f3acff73020395a9734b62f485',1,'KapEngine::Transform']]],
   ['setscale_23',['setScale',['../class_kap_engine_1_1_transform.html#a8e708a3515c791a1ef2512605ee5464c',1,'KapEngine::Transform']]],
   ['setseconds_24',['setSeconds',['../class_kap_engine_1_1_time_1_1_e_time.html#a35e510489726efbf1436f32dde0ccbfa',1,'KapEngine::Time::ETime']]],
-  ['settiming_25',['setTiming',['../class_kap_engine_1_1_animation.html#a3a0f294c8174ef031fe1319ec954bf23',1,'KapEngine::Animation::setTiming(Time const &amp;time)'],['../class_kap_engine_1_1_animation.html#a7647267d18c742ee130a6436a84a9666',1,'KapEngine::Animation::setTiming(int64_t const &amp;time)']]],
+  ['settiming_25',['setTiming',['../class_kap_engine_1_1_animation.html#af2a62d6d07bd5450d55253999b21b5e8',1,'KapEngine::Animation::setTiming(Time::ETime const &amp;time)'],['../class_kap_engine_1_1_animation.html#a7647267d18c742ee130a6436a84a9666',1,'KapEngine::Animation::setTiming(int64_t const &amp;time)']]],
   ['setx_26',['setX',['../class_kap_engine_1_1_tools_1_1_vector2.html#a3cbed53ee462a5e1506ed1b8f2b8e71c',1,'KapEngine::Tools::Vector2::setX()'],['../class_kap_engine_1_1_tools_1_1_vector3.html#a6a42c23c1ec35fc65514a37affde51c3',1,'KapEngine::Tools::Vector3::setX()']]],
   ['sety_27',['setY',['../class_kap_engine_1_1_tools_1_1_vector2.html#ae4ee669263d24ed97f848bc4805c5535',1,'KapEngine::Tools::Vector2::setY()'],['../class_kap_engine_1_1_tools_1_1_vector3.html#a416e7b80670e584655e80518b90ff6bd',1,'KapEngine::Tools::Vector3::setY(float _y)']]],
   ['setz_28',['setZ',['../class_kap_engine_1_1_tools_1_1_vector3.html#a6d77b846fa533422fcb1a88c1b4d0dd9',1,'KapEngine::Tools::Vector3']]],
