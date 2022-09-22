@@ -27,7 +27,6 @@ void KapEngine::GameObject::__update(int threadId) {
         return;
     for (std::size_t i = 0; i < _components.size(); i++) {
         if (_components[i]->getThreadRunning() == threadId) {
-            Debug::log("Update " + getName() + " [" + _components[i]->getName() + "]");
             _components[i]->__update();
         }
     }
