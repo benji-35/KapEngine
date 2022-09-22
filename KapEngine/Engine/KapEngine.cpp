@@ -62,7 +62,7 @@ void KapEngine::KapEngine::__init() {
 
 /**
  * threadId : 0 = graphics  
- * threadId : 1 = inputs  
+ * threadId : 1 = component  
  * threadId : 2 = component  
  * threadId : 3 = component  
  * threadId : 4 = component
@@ -73,6 +73,8 @@ void KapEngine::KapEngine::__threadRun(KapEngine *engine, int threadId) {
         try {
             if (engine->getCurrentGraphicalLib().use_count() != 0) {                
                 engine->getCurrentGraphicalLib()->clear();
+                engine->getCurrentGraphicalLib()->getEvents();
+                engine->getEventManager().__update();
 
                 std::thread t1(&KapEngine::__threadRun, engine, 1);
                 std::thread t2(&KapEngine::__threadRun, engine, 2);
@@ -100,11 +102,7 @@ void KapEngine::KapEngine::__threadRun(KapEngine *engine, int threadId) {
             }
         }
     }
-    if (threadId == 1) {
-        engine->getCurrentGraphicalLib()->getEvents();
-        engine->getEventManager().__update();
-    }
-    if (threadId > 1) {
+    if (threadId > 0) {
         engine->getSceneManager()->__update(threadId);
     }
 }
