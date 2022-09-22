@@ -7,6 +7,7 @@
 
 #include "GameObject.hpp"
 #include "Errors.hpp"
+#include "Debug.hpp"
 
 KapEngine::GameObject::GameObject(SceneManagement::Scene &scene, std::string const& name) : _scene(scene) {
     _name = name;
@@ -24,6 +25,7 @@ KapEngine::GameObject::~GameObject() {
 void KapEngine::GameObject::__update(int threadId) {
     if (!_active || _destroyed)
         return;
+    Debug::log("Update object: " + getName());
     for (std::size_t i = 0; i < _components.size(); i++) {
         if (_components[i]->getThreadRunning() == threadId)
             _components[i]->__update();
