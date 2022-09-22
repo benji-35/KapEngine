@@ -12,6 +12,7 @@
 #include <map>
 
 #include "GraphicalLib.hpp"
+#include "Debug.hpp"
 
 namespace KapEngine {
 
@@ -33,6 +34,10 @@ namespace KapEngine {
                 ~LegacyGraphicalLib();
 
                 void display() override;
+
+                void startDisplay() override {
+                    Debug::log("Use " + getName());
+                }
 
             private:
                 std::map<std::string, std::function<void()>> _commands;

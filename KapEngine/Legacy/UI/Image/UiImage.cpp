@@ -9,13 +9,9 @@
 #include "UiImage.hpp"
 #include "UiCanvas.hpp"
 
-KapEngine::UI::Image::Image(std::shared_ptr<GameObject> &go) : Component(go, "Image")
-{
-}
+KapEngine::UI::Image::Image(std::shared_ptr<GameObject> &go) : Component(go, "Image") {}
 
-KapEngine::UI::Image::~Image()
-{
-}
+KapEngine::UI::Image::~Image() {}
 
 void KapEngine::UI::Image::onDisplay() {
     getGameObject().getEngine().getCurrentGraphicalLib()->drawImage(*this);
