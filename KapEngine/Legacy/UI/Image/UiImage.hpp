@@ -11,7 +11,12 @@
 #include "Vectors.hpp"
 #include "Colors.hpp"
 
+#include "Component.hpp"
+
 namespace KapEngine {
+
+    class Component;
+
     namespace Tools {
         class Color;
         class Vector2;
@@ -22,9 +27,9 @@ namespace KapEngine {
 
     namespace UI {
 
-        class Image {
+        class Image : public Component {
             public:
-                Image();
+                Image(std::shared_ptr<GameObject> &go);
                 ~Image();
 
             protected:
