@@ -12,3 +12,8 @@ KapEngine::Events::EventManager::EventManager(KapEngine &engine) : _engine(engin
     _input = std::make_shared<Input>(*this);
     _mouse = std::make_shared<Mouse>(*this);
 }
+
+void KapEngine::Events::EventManager::__update() {
+    _input->__update();
+    _mouse->__update();
+}

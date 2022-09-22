@@ -102,6 +102,7 @@ void KapEngine::KapEngine::__threadRun(KapEngine *engine, int threadId) {
     }
     if (threadId == 1) {
         engine->getCurrentGraphicalLib()->getEvents();
+        engine->getEventManager().__update();
     }
     if (threadId > 1) {
         engine->getSceneManager()->__update(threadId);
