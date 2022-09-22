@@ -89,6 +89,14 @@ namespace KapEngine {
                     return !(*this == vec);
                 }
 
+                static Vector2 zero() {
+                    return Vector2(0.f, 0.f);
+                }
+
+                static Vector2 one() {
+                    return Vector2(1.f, 1.f);
+                }
+
             private:
                 float x = 0.0f;
                 float y = 0.0f;
@@ -178,6 +186,14 @@ namespace KapEngine {
 
                 bool operator!=(Vector3 const& vec) {
                     return !(*this == vec);
+                }
+
+                static Vector3 zero() {
+                    return Vector3(0.f, 0.f, 0.f);
+                }
+
+                static Vector3 one() {
+                    return Vector3(1.f, 1.f, 1.f);
                 }
 
             private:

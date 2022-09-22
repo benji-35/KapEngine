@@ -76,3 +76,15 @@ void KapEngine::GameObject::__engineStop() {
         _componentsRun[i]->__engineStop();
     }
 }
+
+bool KapEngine::GameObject::hasComponent(std::string const& componentName) const {
+    for (std::size_t i = 0; i < _components.size(); i++) {
+        if (_components[i]->getName() == componentName)
+            return true;
+    }
+    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+        if (_componentsRun[i]->getName() == componentName)
+            return true;
+    }
+    return false;
+}
