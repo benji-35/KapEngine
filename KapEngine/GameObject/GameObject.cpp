@@ -25,14 +25,17 @@ KapEngine::GameObject::~GameObject() {
 void KapEngine::GameObject::__update(int threadId) {
     if (!_active || _destroyed)
         return;
-    Debug::log("Update object: " + getName());
     for (std::size_t i = 0; i < _components.size(); i++) {
-        if (_components[i]->getThreadRunning() == threadId)
+        if (_components[i]->getThreadRunning() == threadId) {
+            Debug::log("Update object: " + getName() + " [" + _components[i]->getName() + "]");
             _components[i]->__update();
+        }
     }
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
-        if (_componentsRun[i]->getThreadRunning() == threadId)
+        if (_componentsRun[i]->getThreadRunning() == threadId) {
+            Debug::log("Update object: " + getName() + " [" + _componentsRun[i]->getName() + "]");
             _componentsRun[i]->__update();
+        }
     }
 }
 
