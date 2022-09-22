@@ -12,6 +12,10 @@
 #include "Input.hpp"
 #include "Vectors.hpp"
 #include "Entity.hpp"
+#include "UiImage.hpp"
+#include "UiText.hpp"
+
+#include <functional>
 
 namespace KapEngine {
     class KapEngine;
@@ -29,6 +33,12 @@ namespace KapEngine {
     namespace Tools {
         class Vector2;
     }
+
+    namespace UI {
+        class Image;
+        class Text;
+    }
+
 }
 
 namespace KapEngine {
@@ -79,12 +89,29 @@ namespace KapEngine {
 
                 //graphical call
 
+                void setDrawText(std::function<void(UI::Text &)> f) {
+                    _drawText = f;
+                }
+                void setDrawImage(std::function<void(UI::Image &)> f) {
+                    _drawImage = f;
+                }
+
+                void drawText(UI::Text &txt) {
+                    _drawText(txt);
+                }
+                void drawImage(UI::Image &img) {
+                    _drawImage(img);
+                }
+
             protected:
                 std::vector<Events::Key> _newPressedInputs;
                 std::vector<Events::Key> _pressedInputs;
                 std::vector<Events::Key> _releasedInputs;
                 std::string _name;
                 GraphicalLibManager &manager;
+
+                std::function<void(UI::Text &)> _drawText;
+                std::function<void(UI::Image &)> _drawImage;
 
         };
 
