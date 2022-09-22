@@ -91,9 +91,9 @@ namespace KapEngine {
             Tools::Vector3 _rot;
             Tools::Vector3 _scale;
 
-            Tools::Vector3 _startPos;
-            Tools::Vector3 _startRot;
-            Tools::Vector3 _startScale;
+            Tools::Vector3 _startPos = Tools::Vector3::zero();
+            Tools::Vector3 _startRot = Tools::Vector3::zero();
+            Tools::Vector3 _startScale = Tools::Vector3::one();
 
             Tools::Vector3 getParentPos() const;
             Tools::Vector3 getParentRot() const;
