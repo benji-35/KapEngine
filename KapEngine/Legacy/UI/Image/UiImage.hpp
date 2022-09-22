@@ -57,9 +57,9 @@ namespace KapEngine {
                     _color = color;
                 }
 
-                Tools::Vector2 getCalculatedPosition() const;
+                Tools::Vector2 getCalculatedPosition();
 
-                Tools::Vector2 getCalculatedScale() const;
+                Tools::Vector2 getCalculatedScale();
 
             protected:
             private:

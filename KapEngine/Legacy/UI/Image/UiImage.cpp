@@ -18,7 +18,7 @@ void KapEngine::UI::Image::onDisplay() {
     getGameObject().getEngine().getCurrentGraphicalLib()->drawImage(*this);
 }
 
-KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() const {
+KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
     Transform &transform = (Transform &)getGameObjectConst().getComponent("Transform");
 
     Tools::Vector3 currPos = transform.getWorldPosition();
@@ -42,7 +42,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() const {
     return Tools::Vector2(currPos.getX(), currPos.getY());;
 }
 
-KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() const {
+KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
     Transform &transform = (Transform &)getGameObjectConst().getComponent("Transform");
 
     Tools::Vector3 currSize = transform.getWorldScale();
