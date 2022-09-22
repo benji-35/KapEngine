@@ -78,8 +78,6 @@ bool KapEngine::UI::Image::checkComponentValidity() {
         
         if (res == false) {
             Debug::warning("Cannot use Image because no canvas found!");
-        } else {
-            Debug::log("Canvas found");
         }
         
         return res;
