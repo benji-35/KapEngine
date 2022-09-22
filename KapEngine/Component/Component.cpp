@@ -7,6 +7,7 @@
 
 #include "Component.hpp"
 #include "Errors.hpp"
+#include "Transform.hpp"
 
 KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string const& name, int threadId) {
     _go = go;
@@ -28,19 +29,19 @@ KapEngine::GameObject &KapEngine::Component::getGameObject() {
 
 void KapEngine::Component::__update() {
     try {
-        if (!getGameObject().isActive() || getGameObject().isDestroyed())
+        if (!__checkValidity())
             return;
         __awake();
-        if (!getGameObject().isActive() || getGameObject().isDestroyed())
+        if (!__checkValidity())
             return;
         __start();
-        if (!getGameObject().isActive() || getGameObject().isDestroyed())
+        if (!__checkValidity())
             return;
         onUpdate();
-        if (!getGameObject().isActive() || getGameObject().isDestroyed())
+        if (!__checkValidity())
             return;
         __fixedUpdate();
-        if (!getGameObject().isActive() || getGameObject().isDestroyed())
+        if (!__checkValidity())
             return;
         onDisplay();
     } catch(...) {
@@ -76,4 +77,17 @@ KapEngine::Events::Mouse KapEngine::Component::getMouse() {
 
 KapEngine::GameObject &KapEngine::Component::getGameObjectConst() const {
     return *_go->getSceneConst().getObjectConst(_go->getId());
+}
+
+bool KapEngine::Component::__checkValidity() {
+    if (!getGameObject().isActive() || getGameObject().isDestroyed())
+        return false;
+    if (!checkComponentValidity())
+        return false;
+    for (std::size_t i = 0; i < _componentsNeeded.size(); i++) {
+        if (!getGameObject().hasComponent(_componentsNeeded[i]))
+            return false;
+    }
+
+    return true;
 }

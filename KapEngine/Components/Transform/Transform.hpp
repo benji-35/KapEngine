@@ -43,13 +43,46 @@ namespace KapEngine {
             void setParent(std::any val);
             bool allParentIsActive();
             std::size_t getParentId() const;
+            Entity getParentEntity() const;
+
             /**
              * @brief Get the Parent GameObject
-             * @return std::shared_ptr<GameObject>
+             * @return std::shared_ptr<KapEngine::GameObject>
              */
             std::shared_ptr<GameObject> getParent() const;
 
+            /**
+             * @brief Get the Children of gameObject
+             * @return std::vector<std::shared_ptr<KapEngine::GameObject>> 
+             */
             std::vector<std::shared_ptr<GameObject>> getChildren();
+
+            /**
+             * @brief check parent contain a specific component
+             * @param componentName name of component research
+             * @param recurcively execute this action if component did not find on parent
+             * @return true if parent contains component
+             * @return false if object does not have parent or parent does not have component
+             */
+            bool parentContainsComponent(std::string const& componentName, bool recurcively = false);
+
+            /**
+             * @brief check parent contain specific components
+             * 
+             * @param componentsName list of components's name research
+             * @param recurcively execute this action if components did not find on parent
+             * @return true if parent contains components
+             * @return false if object does not have parent or parent does not have components
+             */
+            bool parentContainsComponents(std::vector<std::string> componentsName, bool recurcively = false);
+
+            /**
+             * @brief Get the Parent Contains Component recurcively
+             * 
+             * @param componentName name of component to find
+             * @return std::size_t 
+             */
+            std::size_t getParentContainsComponent(std::string const& componentName);
 
         protected:
         //variables

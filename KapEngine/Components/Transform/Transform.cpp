@@ -6,6 +6,7 @@
 */
 
 #include "Transform.hpp"
+#include "Debug.hpp"
 
 KapEngine::Transform::Transform(std::shared_ptr<GameObject> go) : Component(go, "Transform") {}
 
@@ -165,4 +166,45 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::Transform::getParent() const {
         } catch(...) {}
     }
     return result;
+}
+
+bool KapEngine::Transform::parentContainsComponent(std::string const& componentName, bool recurcively = false) {
+    if (_parentId == 0)
+        return false;
+    std::shared_ptr<GameObject> parent = getParent();
+    if (parent.use_count() == 0)
+        return false;
+    
+    if (parent->hasComponent(componentName))
+        return true;
+    if (recurcively) {
+        Transform &tr = (Transform &)parent->getTransform();
+        return tr.parentContainsComponent(componentName, recurcively);
+    }
+    return false;
+}
+
+bool KapEngine::Transform::parentContainsComponents(std::vector<std::string> componentsName, bool recurcively = false) {
+    for (std::size_t i = 0; i < componentsName.size(); i++) {
+        if (!parentContainsComponent(componentsName[i], recurcively))
+            return false;
+    }
+    return true;
+}
+
+std::size_t KapEngine::Transform::getParentContainsComponent(std::string const& componentName) {
+    if (_parentId == 0)
+        return 0;
+    std::shared_ptr<GameObject> parent = getParent();
+    if (parent.use_count() == 0)
+        return 0;
+    if (parent->hasComponent(componentName))
+        return parent->getId();
+    try {
+        Transform &tr = (Transform &)parent->getTransform();
+        return tr.getParentContainsComponent(componentName);
+    } catch(...) {
+        Debug::error("Failled to get Transform of parent");
+        return 0;
+    }
 }

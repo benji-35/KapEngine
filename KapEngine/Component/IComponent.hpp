@@ -89,6 +89,14 @@ namespace KapEngine {
              */
             virtual void onMouseExit() = 0;
 
+            /**
+             * @brief Check you component is runnable
+             * With this function you can add some conditions to make your component runnable or not
+             * @return true if your component is runnable
+             * @return false if your component is not runnable
+             */
+            virtual bool checkComponentValidity() = 0;
+
         protected:
         private:
     };

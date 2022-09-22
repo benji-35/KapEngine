@@ -32,8 +32,39 @@ namespace KapEngine {
                 Image(std::shared_ptr<GameObject> &go);
                 ~Image();
 
+                void onDisplay() override;
+                bool checkComponentValidity() override;
+
+                bool isUsingSprite() const {
+                    if (_pathSprite == "")
+                        return false;
+                    return true;
+                }
+
+                std::string getPathSprite() const {
+                    return _pathSprite;
+                }
+
+                Tools::Color getColorSprite() const {
+                    return _color;
+                }
+
+                void setPathSprite(std::string const& pathSprite) {
+                    _pathSprite = pathSprite;
+                }
+
+                void setColor(Tools::Color const& color) {
+                    _color = color;
+                }
+
+                Tools::Vector2 getCalculatedPosition() const;
+
+                Tools::Vector2 getCalculatedScale() const;
+
             protected:
             private:
+                std::string _pathSprite = "";
+                Tools::Color _color;
         };
 
     }

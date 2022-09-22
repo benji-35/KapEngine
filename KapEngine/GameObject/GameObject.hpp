@@ -41,7 +41,9 @@ namespace KapEngine {
             void removeComponent(std::shared_ptr<Component> comp);
             void removeComponent(std::size_t id);
 
-            Component &getComponent(std::string const& name);
+            Component &getComponent(std::string const& componentName);
+
+            bool hasComponent(std::string const& componentName) const;
 
             KapEngine &getEngine();
 

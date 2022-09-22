@@ -54,13 +54,13 @@ namespace KapEngine {
              * @fn GameObject &getGameObject()
              * @brief Get the Game Object object
              * @throw KapEngine::Errors::ComponentError if the object does not exist in scene
-             * @return GameObject& 
+             * @return KapEngine::GameObject & 
              */
             GameObject &getGameObject();
 
             /**
-             * @brief 
-             * 
+             * @brief Get GameObject in const result
+             * @return KapEngine::GameObject &const
              */
             GameObject &getGameObjectConst() const;
 
@@ -80,6 +80,8 @@ namespace KapEngine {
             virtual void onMouseEnter() override {}
             virtual void onMouseStay() override {}
             virtual void onMouseExit() override {}
+
+            virtual bool checkComponentValidity() override { return true; }
 
             /**
              * @fn std::size_t getLevel() const
@@ -102,32 +104,78 @@ namespace KapEngine {
                 _level = lvl;
             }
 
+            /**
+             * @brief return if component is enable
+             * 
+             * @return true 
+             * @return false 
+             */
             bool isEnable() const {
                 return _enable;
             }
 
+            /**
+             * @brief return if component is disbale
+             * 
+             * @return true 
+             * @return false 
+             */
             bool isDisable() const {
                 return !_enable;
             }
 
+            /**
+             * @brief Set the active status of component
+             * if true : component is active else component is disable
+             * @param b 
+             */
             void setActive(bool b) {
                 _enable = b;
             }
 
+            /**
+             * @brief Get the component name
+             * @return std::string 
+             */
             std::string getName() const {
                 return _name;
             }
 
+            /**
+             * @warning Do not call this fucntion. Engine will do
+             */
             void __engineStop() {
                 _go.reset();
             }
 
+            /**
+             * @brief Get the Thread Running index
+             * index of thread component
+             * @return int 
+             */
             int getThreadRunning() const {
                 return threadRunning;
             }
 
+            /**
+             * @brief Get input events
+             * @return KapEngine::Events::Input 
+             */
             Events::Input getInput();
+            /**
+             * @brief Get mouse events
+             * @return KapEngine::Events::Mouse 
+             */
             Events::Mouse getMouse();
+
+            /**
+             * @brief Add require component
+             * If your component need another component to work, you can add it's name with this function. Without the component require this component cannot run
+             * @param componentName 
+             */
+            void addRequireComponent(std::string const& componentName) {
+                _componentsNeeded.push_back(componentName);
+            }
 
         protected:
             /**
@@ -145,6 +193,9 @@ namespace KapEngine {
             void __fixedUpdate();
             void __awake();
             void __start();
+            std::vector<std::string> _componentsNeeded;
+
+            bool __checkValidity();
     };
 
 }
