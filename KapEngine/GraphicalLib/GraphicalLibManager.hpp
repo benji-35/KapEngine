@@ -54,7 +54,7 @@ namespace KapEngine {
 
             protected:
             private:
-                std::size_t currLib = 1;
+                std::size_t currLib = 0;
                 std::size_t _maxLib = 0;
 
                 std::vector<std::shared_ptr<GraphicalLib>> _libs;

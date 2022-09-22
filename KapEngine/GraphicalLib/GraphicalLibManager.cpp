@@ -12,6 +12,7 @@
 KapEngine::Graphical::GraphicalLibManager::GraphicalLibManager(KapEngine &engine) : _engine(engine) {
     std::shared_ptr<LegacyGraphicalLib> legacy = std::make_shared<LegacyGraphicalLib>(*this);
     addLib(legacy);
+    changeLib(1);
 }
 
 KapEngine::Graphical::GraphicalLibManager::~GraphicalLibManager() {}
@@ -95,8 +96,13 @@ void KapEngine::Graphical::GraphicalLibManager::changeLib(std::size_t const& lib
         lLib->stopDisplay();
     }
 
+    if (getEngine().debugMod()) {
+        Debug::warning("[Graphic Manager] : changing to lib " + std::to_string(libId));
+    }
+
     std::shared_ptr<GraphicalLib> nLib = getLib(libId);
     nLib->startDisplay();
+    currLib = libId;
 }
 
 void KapEngine::Graphical::GraphicalLibManager::changeLib(std::string const& libName) {
