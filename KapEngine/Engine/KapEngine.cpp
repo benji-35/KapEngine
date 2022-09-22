@@ -111,3 +111,12 @@ void KapEngine::KapEngine::__threadRun(KapEngine *engine, int threadId) {
 KapEngine::Events::EventManager &KapEngine::KapEngine::getEventManager() {
     return *_eventManager;
 }
+
+void KapEngine::KapEngine::setScreenSize(float width, float heigth) {
+    screenSize.setX(width);
+    screenSize.setY(heigth);
+}
+
+void KapEngine::KapEngine::setScreenSize(Tools::Vector2 size) {
+    screenSize = size;
+}
