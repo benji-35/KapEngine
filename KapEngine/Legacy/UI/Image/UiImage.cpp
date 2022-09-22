@@ -21,8 +21,9 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() const {
     Transform &transform = (Transform &)getGameObjectConst().getComponent("Transform");
 
     Tools::Vector3 currPos = transform.getWorldPosition();
-    Canvas::resizyngType resizeType = Canvas::resizyngType::PIXEL_CONSTANT;
+    Canvas::resizyngType resizeType = Canvas::resizyngType::RESIZE_WITH_SCREEN;
     Tools::Vector2 getCompare = getGameObjectConst().getEngine().getScreenSize();
+    Tools::Vector2 screenSize = getCompare;
     try {
         std::shared_ptr<GameObject> canvasObject = getGameObjectConst().getScene().getObject(transform.getParentContainsComponent("Canvas"));
 
@@ -31,19 +32,42 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() const {
         getCompare = canvas.getScreenSizeCompare();
     } catch(...) {}
 
-    if (resizeType == Canvas::PIXEL_CONSTANT) {
-
-    } else {
-        return Tools::Vector2(currPos.getX(), currPos.getY());
+    if (resizeType == Canvas::resizyngType::RESIZE_WITH_SCREEN) {
+        Tools::Vector2 nPos;
+        nPos.setX(screenSize.getX() * currPos.getX() / getCompare.getX());
+        nPos.setY(screenSize.getY() * currPos.getY() / getCompare.getY());
+        return nPos;
     }
-    Tools::Vector2 result(currPos.getX(), currPos.getY());
-    return result;
+    return Tools::Vector2(currPos.getX(), currPos.getY());;
 }
 
 KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() const {
-    Tools::Vector2 result;
+    Transform &transform = (Transform &)getGameObjectConst().getComponent("Transform");
 
-    return result;
+    Tools::Vector3 currSize = transform.getWorldScale();
+    Canvas::resizyngType resizeType = Canvas::resizyngType::RESIZE_WITH_SCREEN;
+    Tools::Vector2 getCompare = getGameObjectConst().getEngine().getScreenSize();
+    Tools::Vector2 screenSize = getCompare;
+
+    try {
+
+        std::shared_ptr<GameObject> canvasObject = getGameObjectConst().getScene().getObject(transform.getParentContainsComponent("Canvas"));
+
+        Canvas &canvas = (Canvas &)canvasObject->getComponent("Canvas");
+        resizeType = canvas.getResizeType();
+        getCompare = canvas.getScreenSizeCompare();
+
+    } catch(...) {}
+
+    if (resizeType == Canvas::resizyngType::RESIZE_WITH_SCREEN) {
+
+        Tools::Vector2 nSize;
+        nSize.setX(screenSize.getX() * currSize.getX() / getCompare.getX());
+        nSize.setY(screenSize.getY() * currSize.getY() / getCompare.getY());
+        return nSize;
+
+    }
+    return Tools::Vector2(currSize.getX(), currSize.getY());
 }
 
 bool KapEngine::UI::Image::checkComponentValidity() {
