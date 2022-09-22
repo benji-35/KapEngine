@@ -71,9 +71,12 @@ KapEngine::Tools::Vector3 KapEngine::Transform::getWorldScale() const {
 }
 
 KapEngine::Tools::Vector3 KapEngine::Transform::getParentPos() const{
-    Tools::Vector3 res;
+    Tools::Vector3 res = Tools::Vector3::zero();
+
+    if (_parentId == 0)
+        return res;
     try {
-        Transform &t = (Transform &)getParent()->getComponent("Transform");
+        Transform &t = (Transform &)getParent()->getTransform();
         return t.getWorldPosition();
     } catch(...) {
         return res;
@@ -81,7 +84,10 @@ KapEngine::Tools::Vector3 KapEngine::Transform::getParentPos() const{
 }
 
 KapEngine::Tools::Vector3 KapEngine::Transform::getParentRot() const{
-    Tools::Vector3 res;
+    Tools::Vector3 res = Tools::Vector3::zero();
+
+    if (_parentId == 0)
+        return res;
     try {
         Transform &t = (Transform &)getParent()->getComponent("Transform");
         return t.getWorldRotation();
@@ -91,7 +97,9 @@ KapEngine::Tools::Vector3 KapEngine::Transform::getParentRot() const{
 }
 
 KapEngine::Tools::Vector3 KapEngine::Transform::getParentScale() const{
-    Tools::Vector3 res(1.0f, 1.0f, 1.0f);
+    Tools::Vector3 res = Tools::Vector3::one();
+    if (_parentId == 0)
+        return res;
     try {
         Transform &t = (Transform &)getParent()->getComponent("Transform");
         return t.getWorldScale();
