@@ -8,6 +8,7 @@
 #include "Transform.hpp"
 #include "UiImage.hpp"
 #include "UiCanvas.hpp"
+#include "Debug.hpp"
 
 KapEngine::UI::Image::Image(std::shared_ptr<GameObject> &go) : Component(go, "Image") {}
 
@@ -73,7 +74,15 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() const {
 bool KapEngine::UI::Image::checkComponentValidity() {
     try {
         Transform &tr = (Transform &)getGameObject().getTransform();
-        return tr.parentContainsComponent("Canvas", true);
+        auto res = tr.parentContainsComponent("Canvas", true);
+        
+        if (res == false) {
+            Debug::warning("Cannot use Image because no canvas found!");
+        } else {
+            Debug::log("Canvas found");
+        }
+        
+        return res;
     } catch(...) {
         return false;
     }
