@@ -65,7 +65,8 @@ void KapEngine::Component::__start() {
 }
 
 void KapEngine::Component::__fixedUpdate() {
-    
+    if (getGameObjectConst().getEngine().__canRunFixed())
+        onFixedUpdate();
 }
 
 KapEngine::Events::Input KapEngine::Component::getInput() {

@@ -218,10 +218,15 @@ namespace KapEngine {
                 return _fpsLock;
             }
 
+            bool __canRunFixed() const {
+                return _runFixed;
+            }
+
         protected:
         private:
             bool _run = false;
             bool _debug = false;
+            bool _runFixed = false;
 
             int _fpsLock = 60;
 
@@ -231,6 +236,7 @@ namespace KapEngine {
 
             Time::EClock _internalClock;
             Time::ETime _elapsed;
+            Time::ETime _fixedTime;
 
             //all game intels
             std::string _gameName;

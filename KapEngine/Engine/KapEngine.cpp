@@ -30,6 +30,11 @@ void KapEngine::KapEngine::run() {
     _internalClock.restart();
     while (_run) {
         _elapsed = _internalClock.getElapseTime();
+        _runFixed = false;
+        if (_elapsed >= _fixedTime) {
+            _internalClock.restart();
+            _runFixed = true;
+        }
         __threadRun(this, 0);
     }
 }
