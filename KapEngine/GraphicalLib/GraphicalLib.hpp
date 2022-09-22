@@ -12,8 +12,6 @@
 #include "Input.hpp"
 #include "Vectors.hpp"
 #include "Entity.hpp"
-#include "UiImage.hpp"
-#include "UiText.hpp"
 
 #include <functional>
 

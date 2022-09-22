@@ -40,11 +40,14 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() const {
     } else {
         return Tools::Vector2(currPos.getX(), currPos.getY());
     }
-
+    Tools::Vector2 result(currPos.getX(), currPos.getY());
+    return result;
 }
 
 KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() const {
+    Tools::Vector2 result;
 
+    return result;
 }
 
 bool KapEngine::UI::Image::checkComponentValidity() {
