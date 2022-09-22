@@ -63,7 +63,7 @@ namespace KapEngine {
                     return 0.0f;
                 }
 
-                std::vector<Events::Key> getLatsKey() const {
+                std::vector<Events::Key> getNewKeys() const {
                     return _newPressedInputs;
                 }
                 std::vector<Events::Key> getKeysPressed() const {
