@@ -6,10 +6,14 @@
 */
 
 #include "Input.hpp"
+#include "Debug.hpp"
 
 KapEngine::Events::Input::Input(EventManager &manager) : _manager(manager) {}
 
 void KapEngine::Events::Input::__update() {
+    if (_manager.getEngine().debugMod()) {
+        Debug::log("update inputs");
+    }
     if (!_manager.getEngine().isGraphicalLibExists(_manager.getEngine().getCurrentGraphicalLibIndex()))
         return;
     _inputs = _manager.getEngine().getCurrentGraphicalLib()->getLatsKey();

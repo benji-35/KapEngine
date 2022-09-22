@@ -6,6 +6,7 @@
 */
 
 #include "EventManager.hpp"
+#include "Debug.hpp"
 
 KapEngine::Events::EventManager::EventManager(KapEngine &engine) : _engine(engine)
 {
@@ -14,6 +15,9 @@ KapEngine::Events::EventManager::EventManager(KapEngine &engine) : _engine(engin
 }
 
 void KapEngine::Events::EventManager::__update() {
+    if (_engine.debugMod()) {
+        Debug::warning("Update inputs");
+    }
     _input->__update();
     _mouse->__update();
 }
