@@ -8,6 +8,7 @@
 #include "Component.hpp"
 #include "Errors.hpp"
 #include "Transform.hpp"
+#include "Debug.hpp"
 
 KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string const& name, int threadId) {
     _go = go;
@@ -80,10 +81,14 @@ KapEngine::GameObject &KapEngine::Component::getGameObjectConst() const {
 }
 
 bool KapEngine::Component::__checkValidity() {
-    if (!getGameObject().isActive() || getGameObject().isDestroyed())
+    if (!getGameObject().isActive() || getGameObject().isDestroyed()) {
+        Debug::warning("Component " + getName() + " is disable or destroy");
         return false;
-    if (!checkComponentValidity())
+    }
+    if (!checkComponentValidity()) {
+        Debug::warning("Component " + getName() + " is disable by the creator");
         return false;
+    }
     for (std::size_t i = 0; i < _componentsNeeded.size(); i++) {
         if (!getGameObject().hasComponent(_componentsNeeded[i]))
             return false;
