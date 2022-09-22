@@ -207,6 +207,17 @@ namespace KapEngine {
                 return _libManager;
             }
 
+            void setScreenSize(float width, float heigth);
+            void setScreenSize(Tools::Vector2 size);
+
+            Tools::Vector2 getScreenSize() const {
+                return screenSize;
+            }
+
+            float getMaxFps() const {
+                return _fpsLock;
+            }
+
         protected:
         private:
             bool _run = false;
@@ -215,6 +226,8 @@ namespace KapEngine {
             int _fpsLock = 60;
 
             float deltaTime = 1.0f;
+
+            Tools::Vector2 screenSize;
 
             Time::EClock _internalClock;
             Time::ETime _elapsed;
