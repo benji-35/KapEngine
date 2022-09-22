@@ -43,11 +43,11 @@ std::shared_ptr<KapEngine::Graphical::GraphicalLib> KapEngine::KapEngine::getCur
 }
 
 bool KapEngine::KapEngine::isGraphicalLibExists(std::size_t const& index) const {
-    return false;
+    return _libManager->isLibExists(index);
 }
 
 bool KapEngine::KapEngine::isGraphicalLibExists(std::string const& name) const {
-    return false;
+    return _libManager->isLibExists(name);
 }
 
 std::size_t KapEngine::KapEngine::getCurrentGraphicalLibIndex() const {

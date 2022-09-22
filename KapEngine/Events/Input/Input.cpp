@@ -11,9 +11,6 @@
 KapEngine::Events::Input::Input(EventManager &manager) : _manager(manager) {}
 
 void KapEngine::Events::Input::__update() {
-    if (_manager.getEngine().debugMod()) {
-        Debug::log("Graphical lib index: " + std::to_string(_manager.getEngine().getCurrentGraphicalLibIndex()));
-    }
     if (!_manager.getEngine().isGraphicalLibExists(_manager.getEngine().getCurrentGraphicalLibIndex()))
         return;
     if (_manager.getEngine().debugMod()) {
