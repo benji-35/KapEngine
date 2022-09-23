@@ -84,6 +84,9 @@ void KapEngine::SceneManagement::Scene::__update(int threadId) {
 void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {
     _idObjectMax++;
     go->__setId(_idObjectMax);
+    if (getEngine().debugMode()) {
+        Debug::log("Add object " + go->getName() + " in scene " + getName());
+    }
     if (getEngine().isRunning()) {
         _gameObjects.push_back(go);
     } else {
