@@ -95,14 +95,14 @@ void KapEngine::KapEngine::__threadRun(KapEngine *engine, int threadId) {
 
                 engine->getCurrentGraphicalLib()->display();
             } else {
-                if (engine->debugMod()) {
+                if (engine->debugMode()) {
                     Debug::error("Scene not alloc");
                 } else {
                     engine->stop();
                 }
             }
         } catch(Errors::GraphicalSystemError e) {
-            if (engine->debugMod()) {
+            if (engine->debugMode()) {
                 Debug::error(std::string(e.what()));
             } else {
                     engine->stop();

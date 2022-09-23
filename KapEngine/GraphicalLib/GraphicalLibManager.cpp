@@ -96,7 +96,7 @@ void KapEngine::Graphical::GraphicalLibManager::changeLib(std::size_t const& lib
         lLib->stopDisplay();
     }
 
-    if (getEngine().debugMod()) {
+    if (getEngine().debugMode()) {
         Debug::warning("[Graphic Manager] : changing to lib " + std::to_string(libId));
     }
 

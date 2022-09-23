@@ -64,7 +64,7 @@ void KapEngine::Animator::setTrigger(std::string name) {
             }
         }
     }
-    if (getGameObject().getEngine().debugMod())
+    if (getGameObject().getEngine().debugMode())
         Debug::error("[Animator]: trigger " + name + " does not exists");
 }
 
