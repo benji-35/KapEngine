@@ -25,6 +25,7 @@ namespace KapEngine {
 
             static std::shared_ptr<GameObject> createEmptyGameObject(SceneManagement::Scene &scene, std::string const& name = "Empty", Tools::Vector3 pos = Tools::Vector3::zero(), Tools::Vector3 rot = Tools::Vector3::zero(), Tools::Vector3 scale = Tools::Vector3::zero()) {
                 auto result = std::make_shared<GameObject>(scene, name);
+                scene.addGameObject(result);
 
                 auto transform = std::make_shared<Transform>(result);
                 result->addComponent(transform);
