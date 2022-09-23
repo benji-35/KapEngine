@@ -123,6 +123,7 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
     try {
         Camera &cam = (Camera&)sceneSplash->getActiveCamera();
         cam.setBackgroundColor(Tools::Color::black());
+        Debug::log("Activa camera on object " + std::to_string(cam.getGameObject().getId()));
     } catch(...) {}
 
     //set splash screen scene as first scene
