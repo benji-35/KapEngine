@@ -23,16 +23,15 @@ namespace KapEngine {
                 Create empty GameObject
             */
 
-            static std::shared_ptr<GameObject> createEmptyGameObject(SceneManagement::Scene &scene, std::string const& name = "Empty", Tools::Vector3 pos = Tools::Vector3::zero(), Tools::Vector3 rot = Tools::Vector3::zero()) {
-                std::shared_ptr<GameObject> result;
-                try {
-                    result = createEmptyGameObject(scene, name, pos);
+            static std::shared_ptr<GameObject> createEmptyGameObject(SceneManagement::Scene &scene, std::string const& name = "Empty", Tools::Vector3 pos = Tools::Vector3::zero(), Tools::Vector3 rot = Tools::Vector3::zero(), Tools::Vector3 scale = Tools::Vector3::zero()) {
+                auto result = std::make_shared<GameObject>(scene, name);
 
-                    Transform &transform = (Transform &)result->getComponent("Transform");
-                    transform.setRotation(rot);
-                } catch (...) {
-                    throw Errors::EngineError("GameObject created cannot set position");
-                }
+                auto transform = std::make_shared<Transform>(result);
+
+                transform->setRotation(rot);
+                transform->setPosition(pos);
+                transform->setScale(scale);
+                
                 return result;
             }
 
