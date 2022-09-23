@@ -33,6 +33,8 @@ void KapEngine::SceneManagement::SceneManager::addScene(std::shared_ptr<Scene> s
     _maxIndex++;
     scene->setId(_maxIndex);
     _scenes.push_back(scene);
+    if (_engine.debugMode())
+        Debug::log("Scene " + scene->getName() + " added to scene manager");
 }
 
 void KapEngine::SceneManagement::SceneManager::addScene(std::string const& name) {
