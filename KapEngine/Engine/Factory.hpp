@@ -24,7 +24,7 @@ namespace KapEngine {
             */
 
             static std::shared_ptr<GameObject> createEmptyGameObject(SceneManagement::Scene &scene, std::string const& name) {
-                Tools::Vector3 emptyPos;
+                Tools::Vector3 emptyPos = Tools::Vector3::zero();
                 return createEmptyGameObject(scene, name, emptyPos);
             }
 
@@ -42,7 +42,7 @@ namespace KapEngine {
             }
             
             static std::shared_ptr<GameObject> createEmptyGameObject(SceneManagement::Scene &scene, std::string const& name, Tools::Vector3 pos) {
-                Tools::Vector3 emptyRot;
+                Tools::Vector3 emptyRot = Tools::Vector3::zero();
                 return createEmptyGameObject(scene, name, pos, emptyRot);
             }
 
