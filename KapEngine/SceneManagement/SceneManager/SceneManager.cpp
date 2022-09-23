@@ -118,10 +118,7 @@ void KapEngine::SceneManagement::SceneManager::loadScene(std::string const& scen
         }
         return;
     }
-    std::size_t gdIndex = getSceneIndexInList(_indexScene);
-    _scenes[gdIndex]->__changingScene();
-    gdIndex = getSceneIndex(sceneName);
-    _indexScene = gdIndex;
+    loadScene(getSceneIndex(sceneName));
 }
 
 void KapEngine::SceneManagement::SceneManager::loadScene(std::size_t index) {
@@ -131,7 +128,9 @@ void KapEngine::SceneManagement::SceneManager::loadScene(std::size_t index) {
         }
         return;
     }
-    loadScene(getSceneName(index));
+
+    getCurrentScene().__changingScene();
+    _indexScene = index;
 }
 
 std::string KapEngine::SceneManagement::SceneManager::getSceneName(std::size_t index) {
