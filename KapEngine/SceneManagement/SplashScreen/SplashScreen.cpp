@@ -124,7 +124,9 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
         Camera &cam = (Camera&)sceneSplash->getActiveCamera();
         cam.setBackgroundColor(Tools::Color::black());
         Debug::log("Activa camera on object " + std::to_string(cam.getGameObject().getId()));
-    } catch(...) {}
+    } catch(...) {
+        Debug::error("Camera not found for splashscreen creation");
+    }
 
     //set splash screen scene as first scene
     _engine.getSceneManager()->loadScene("SplashScreen");
