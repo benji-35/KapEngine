@@ -8,9 +8,12 @@
 #include "Scene.hpp"
 #include "Errors.hpp"
 #include "Debug.hpp"
+#include "Factory.hpp"
 
 KapEngine::SceneManagement::Scene::Scene(SceneManager &manager, std::string const& name) : manager(manager) {
     _name = name;
+
+    Factory::createCamera(*this, "Main Camera");
 }
 
 KapEngine::SceneManagement::Scene::~Scene() {

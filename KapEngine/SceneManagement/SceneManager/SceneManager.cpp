@@ -11,7 +11,6 @@
 
 KapEngine::SceneManagement::SceneManager::SceneManager(KapEngine &engine) : _engine(engine) {
     std::shared_ptr<Scene> baseScene = std::make_shared<Scene>(*this, "Default Scene");
-    Factory::createCamera(baseScene, "Main Camera");
     addScene(baseScene);
 }
 
