@@ -23,40 +23,20 @@ namespace KapEngine {
                 Create empty GameObject
             */
 
-            static std::shared_ptr<GameObject> createEmptyGameObject(SceneManagement::Scene &scene, std::string const& name) {
-                Tools::Vector3 emptyPos = Tools::Vector3::zero();
-                return createEmptyGameObject(scene, name, emptyPos);
-            }
+            static std::shared_ptr<GameObject> createEmptyGameObject(SceneManagement::Scene &scene, std::string const& name = "Empty", Tools::Vector3 pos = Tools::Vector3::zero(), Tools::Vector3 rot = Tools::Vector3::zero(), Tools::Vector3 scale = Tools::Vector3::zero()) {
+                auto result = std::make_shared<GameObject>(scene, name);
 
-            static std::shared_ptr<GameObject> createEmptyGameObject(SceneManagement::Scene &scene, std::string const& name, Tools::Vector3 pos, Tools::Vector3 rot) {
-                std::shared_ptr<GameObject> result;
-                try {
-                    result = createEmptyGameObject(scene, name, pos);
+                auto transform = std::make_shared<Transform>(result);
 
-                    Transform &transform = (Transform &)result->getComponent("Transform");
-                    transform.setRotation(rot);
-                } catch (...) {
-                    throw Errors::EngineError("GameObject created cannot set position");
-                }
+                transform->setRotation(rot);
+                transform->setPosition(pos);
+                transform->setScale(scale);
+                
                 return result;
             }
-            
-            static std::shared_ptr<GameObject> createEmptyGameObject(SceneManagement::Scene &scene, std::string const& name, Tools::Vector3 pos) {
-                Tools::Vector3 emptyRot = Tools::Vector3::zero();
-                return createEmptyGameObject(scene, name, pos, emptyRot);
-            }
 
-
-            static std::shared_ptr<GameObject> createEmptyGameObject(std::shared_ptr<SceneManagement::Scene> scene, std::string const& name) {
-                return createEmptyGameObject(*scene, name);
-            }
-
-            static std::shared_ptr<GameObject> createEmptyGameObject(std::shared_ptr<SceneManagement::Scene>scene, std::string const& name, Tools::Vector3 pos, Tools::Vector3 rot) {
+            static std::shared_ptr<GameObject> createEmptyGameObject(std::shared_ptr<SceneManagement::Scene>scene, std::string const& name = "Empty", Tools::Vector3 pos = Tools::Vector3::zero(), Tools::Vector3 rot = Tools::Vector3::zero()) {
                 return createEmptyGameObject(*scene, name, pos, rot);
-            }
-            
-            static std::shared_ptr<GameObject> createEmptyGameObject(std::shared_ptr<SceneManagement::Scene>scene, std::string const& name, Tools::Vector3 pos) {
-                return createEmptyGameObject(*scene, name, pos);
             }
 
             /*
