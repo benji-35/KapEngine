@@ -24,7 +24,7 @@ namespace KapEngine {
             */
             static void log(std::string _msg) {
                 std::lock_guard<std::recursive_mutex> lk(KapEngine::debugMutex);
-                std::cout << "[" << __getCDate() << "]\e[1;37m log: \e[0m" << _msg << "\e[0m" << std::endl;
+                logNT(_msg);
                 KapEngine::debugMutex.unlock();
             }
 
@@ -35,7 +35,7 @@ namespace KapEngine {
             */
             static void warning(std::string _msg) {
                 std::lock_guard<std::recursive_mutex> lk(KapEngine::debugMutex);
-                std::cout << "[" << __getCDate() << "]\e[1;33m warning: \e[0m" << _msg << "\e[0m" << std::endl;
+                warningNT(_msg);
                 KapEngine::debugMutex.unlock();
             }
 
@@ -46,10 +46,36 @@ namespace KapEngine {
             */
             static void error(std::string _msg) {
                 std::lock_guard<std::recursive_mutex> lk(KapEngine::debugMutex);
-                std::cout << "[" << __getCDate() << "]\e[1;31m Error: \e[0m" << _msg << "\e[0m" << std::endl;
+                errorNT(_msg);
                 KapEngine::debugMutex.unlock();
             }
 
+            /**
+             * @brief display message without use thread
+             * 
+             * @param _msg 
+             */
+            static void logNT(std::string const& _msg) {
+                std::cout << "[" << __getCDate() << "]\e[1;37m log: \e[0m" << _msg << "\e[0m" << std::endl;
+            }
+
+            /**
+             * @brief display message without use thread
+             * 
+             * @param _msg 
+             */
+            static void warningNT(std::string const& _msg) {
+                std::cout << "[" << __getCDate() << "]\e[1;33m warning: \e[0m" << _msg << "\e[0m" << std::endl;
+            }
+
+            /**
+             * @brief display message without use thread
+             * 
+             * @param _msg 
+             */
+            static void errorNT(std::string const& _msg) {
+                std::cout << "[" << __getCDate() << "]\e[1;31m Error: \e[0m" << _msg << "\e[0m" << std::endl;
+            }
         protected:
         private:
             static std::string __getCDate() {
