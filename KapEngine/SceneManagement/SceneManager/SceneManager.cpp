@@ -44,15 +44,11 @@ void KapEngine::SceneManagement::SceneManager::addScene(std::string const& name)
 }
 
 void KapEngine::SceneManagement::SceneManager::__update(int threadId) {
-    if (_indexScene >= _scenes.size()) {
-        if (_engine.debugMode()) {
-            Debug::error("Current scene out of range of all scenes");
-        } else {
-            throw Errors::SceneError("Current scene out of range");
-        }
-        return;
+    try {
+        getCurrentScene().__update(threadId);
+    } catch(...) {
+        Debug::error("Cannot update scene");
     }
-    _scenes[_indexScene]->__update(threadId);
 }
 
 void KapEngine::SceneManagement::SceneManager::removeScene(std::size_t index) {
