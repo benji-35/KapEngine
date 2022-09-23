@@ -16,7 +16,16 @@ void KapEngine::Animation::onFixedUpdate() {
         __resetAnim();
         return;
     }
+    _currTime += getGameObject().getEngine().getElapsedTime().asMilliSecond();
     __updateAnim();
+    if (_currTime >= _timing.asMicroSecond() && !_end && !_loop) {
+        _end = true;
+        _startAnim = false;
+        _onEnd.invoke();
+    } else if (_currTime >= _timing.asMicroSecond() && !_end && _loop) {
+        _currTime = 0;
+        _onRestart.invoke();
+    }
 }
 
 void KapEngine::Animation::__resetAnim() {
@@ -24,7 +33,6 @@ void KapEngine::Animation::__resetAnim() {
 }
 
 void KapEngine::Animation::__updateAnim() {
-    _currTime += getGameObject().getEngine().getElapsedTime().asMilliSecond();
 
     bool allEnded = true;
 

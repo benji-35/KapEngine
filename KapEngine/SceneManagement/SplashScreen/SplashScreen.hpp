@@ -10,8 +10,11 @@
 
 #include <string>
 #include <vector>
+#include <memory>
+
 #include "Vectors.hpp"
 #include "Rectangle.hpp"
+#include "KapEngine.hpp"
 
 namespace KapEngine {
 
@@ -34,12 +37,25 @@ namespace KapEngine {
                     }
                 };
             public:
-                SplashScreen();
+                SplashScreen(KapEngine &engine);
                 ~SplashScreen();
+
+                void addSplashScreen(std::shared_ptr<SplashScreenNode> splash) {
+                    _splahes.push_back(splash);
+                }
+
+                void setDisplayKapEngineLogo(bool b) {
+                    _displayKapEngineLogo = b;
+                }
+
+                void __init();
 
             protected:
             private:
-                std::vector<SplashScreen::SplashScreenNode> _splahes;
+                KapEngine &_engine;
+                std::vector<std::shared_ptr<SplashScreenNode>> _splahes;
+                bool _displayKapEngineLogo = true;
+                std::string _sceneName = "";
         };
 
     }

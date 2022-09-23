@@ -35,9 +35,25 @@ namespace KapEngine {
 
                 void setPos(float x, float y);
                 void setPos(Vector2 const& pos);
+                void setX(float x);
+                void setPosX(float x) {
+                    setX(x);
+                }
+                void setY(float y);
+                void setPosY(float y) {
+                    setY(y);
+                }
 
                 void setSize(float width, float heigth);
                 void setSize(Vector2 const& size);
+                void setW(float w);
+                void setWidth(float w) {
+                    setW(w);
+                }
+                void setH(float h);
+                void setHeigth(float h) {
+                    setH(h);
+                }
 
                 Vector2 getPos() const {
                     return _pos;

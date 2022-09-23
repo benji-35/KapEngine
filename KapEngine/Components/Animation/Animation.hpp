@@ -8,10 +8,13 @@
 #ifndef ANIMATION_HPP_
 #define ANIMATION_HPP_
 
-#include "Component.hpp"
 #include <functional>
+
+#include "Component.hpp"
 #include "Debug.hpp"
 #include "ETime.hpp"
+
+#include "EventAction.hpp"
 
 namespace KapEngine {
 
@@ -62,6 +65,7 @@ namespace KapEngine {
                 _startAnim = b;
                 if (b) {
                     _end = false;
+                    _currTime = 0;
                     __onPlay();
                 }
             }
@@ -104,6 +108,10 @@ namespace KapEngine {
             int64_t _currTime = 0;
 
             std::vector<AnimationLine> _nodes;
+
+            Events::EventAction _onEnd;
+            Events::EventAction _onRestart;
+            Events::EventAction _onStart;
         private:
     };
 
