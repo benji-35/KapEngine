@@ -27,6 +27,7 @@ namespace KapEngine {
                 auto result = std::make_shared<GameObject>(scene, name);
 
                 auto transform = std::make_shared<Transform>(result);
+                result->addComponent(transform);
 
                 transform->setRotation(rot);
                 transform->setPosition(pos);
