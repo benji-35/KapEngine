@@ -42,7 +42,7 @@ void KapEngine::SceneManagement::SceneManager::addScene(std::string const& name)
 
 void KapEngine::SceneManagement::SceneManager::__update(int threadId) {
     if (_indexScene >= _scenes.size()) {
-        if (_engine.debugMod()) {
+        if (_engine.debugMode()) {
             Debug::error("Current scene out of range of all scenes");
         } else {
             throw Errors::SceneError("Current scene out of range");
@@ -54,7 +54,7 @@ void KapEngine::SceneManagement::SceneManager::__update(int threadId) {
 
 void KapEngine::SceneManagement::SceneManager::removeScene(std::size_t index) {
     if (!sceneExists(index)) {
-        if (getEngine().debugMod()) {
+        if (getEngine().debugMode()) {
             Debug::error("Cannot destroy scene id: " + std::to_string(index) + " because it does not exists.");
         }
         return;
@@ -64,7 +64,7 @@ void KapEngine::SceneManagement::SceneManager::removeScene(std::size_t index) {
 
 void KapEngine::SceneManagement::SceneManager::removeScene(std::string const& sceneName) {
     if (!sceneExists(sceneName)) {
-        if (getEngine().debugMod()) {
+        if (getEngine().debugMode()) {
             Debug::error("Cannot destroy scene \"" + sceneName + "\" because it does not exists.");
         }
         return;
@@ -114,7 +114,7 @@ std::size_t KapEngine::SceneManagement::SceneManager::getSceneIndexInList(std::s
 
 void KapEngine::SceneManagement::SceneManager::loadScene(std::string const& sceneName) {
     if (!sceneExists(sceneName)) {
-        if (getEngine().debugMod()) {
+        if (getEngine().debugMode()) {
             Debug::error("Cannot load scene \"" + sceneName + "\" because it does not exists");
         }
         return;
@@ -127,7 +127,7 @@ void KapEngine::SceneManagement::SceneManager::loadScene(std::string const& scen
 
 void KapEngine::SceneManagement::SceneManager::loadScene(std::size_t index) {
     if (!sceneExists(index)) {
-        if (getEngine().debugMod()) {
+        if (getEngine().debugMode()) {
             Debug::error("Cannot load scene id: " + std::to_string(index) + " because it does not exists");
         }
         return;

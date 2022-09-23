@@ -66,7 +66,7 @@ void KapEngine::SceneManagement::Scene::__update(int threadId) {
     try {
         Component camera = getActiveCamera();
     } catch(...) {
-        if (getEngine().debugMod()) {
+        if (getEngine().debugMode()) {
             Debug::error("No camera found in scene");
         }
         return;

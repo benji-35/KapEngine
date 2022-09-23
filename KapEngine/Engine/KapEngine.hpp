@@ -89,7 +89,7 @@ namespace KapEngine {
              * @retval true if debug mode is enable
              * @retval false if debug mode is disable
              */
-            bool debugMod() const {
+            bool debugMode() const {
                 return _debug;
             }
             /**
