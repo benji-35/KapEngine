@@ -65,6 +65,8 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
         std::string objName = "Image(" + std::to_string(i) + ")";
         std::shared_ptr<GameObject> img = UI::UiFactory::createImage(*sceneSplash, objName, _splahes[i]->pathImage);
 
+        Debug::log("Create splash screen " + objName);
+
         Tools::Vector3 startPos(_splahes[i]->pos.getX(), _splahes[i]->pos.getY(), 0);
         Tools::Vector3 startScale(_splahes[i]->size.getX(), _splahes[i]->size.getY(), 0);
 

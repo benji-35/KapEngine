@@ -7,6 +7,8 @@
 
 #include "SplashScreenManager.hpp"
 #include "UiImage.hpp"
+#include "Debug.hpp"
+#include <string>
 
 KapEngine::SceneManagement::SplashScreenManager::SplashScreenManager(std::shared_ptr<GameObject> go, bool b) : Component(go, "SplashScreenManager") {
     isFirst = b;
@@ -22,6 +24,7 @@ void KapEngine::SceneManagement::SplashScreenManager::fixedUpdate() {
     if (!_start)
         return;
     currTime += getGameObject().getEngine().getElapsedTime();
+    Debug::log("[Splash Screen Manager] currTime: " + std::to_string(currTime.asSecond()));
 }
 
 void KapEngine::SceneManagement::SplashScreenManager::update()
