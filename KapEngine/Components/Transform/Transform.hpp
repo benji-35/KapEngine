@@ -84,6 +84,14 @@ namespace KapEngine {
              */
             std::size_t getParentContainsComponent(std::string const& componentName);
 
+            /**
+             * @brief check if all parents are active
+             * 
+             * @return true if all parents are active
+             * @return false if one of parents is not active
+             */
+            bool allParentsActive() const;
+
         protected:
         //variables
         private:

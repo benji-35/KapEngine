@@ -8,10 +8,13 @@
 #ifndef ANIMATION_HPP_
 #define ANIMATION_HPP_
 
-#include "Component.hpp"
 #include <functional>
+
+#include "Component.hpp"
 #include "Debug.hpp"
 #include "ETime.hpp"
+
+#include "EventAction.hpp"
 
 namespace KapEngine {
 
@@ -62,6 +65,7 @@ namespace KapEngine {
                 _startAnim = b;
                 if (b) {
                     _end = false;
+                    _currTime = 0;
                     __onPlay();
                 }
             }
@@ -87,12 +91,27 @@ namespace KapEngine {
                 return *this;
             }
 
+            /**
+             * @brief Add new animation line
+             * 
+             * @param nd 
+             */
             void addAnimationLine(AnimationLine nd) {
                 if (nd.nodes.size() != nd.nodeTiming.size()) {
                     Debug::error("[ANIMATION] : the node that adding does not contains same number of keys timing that nodes functions.");
                     return;
                 }
                 _nodes.push_back(nd);
+            }
+
+            Events::EventAction &getOnEnd() {
+                return _onEnd;
+            }
+            Events::EventAction &getOnStart() {
+                return _onStart;
+            }
+            Events::EventAction &getOnRestart() {
+                return _onRestart;
             }
 
         protected:
@@ -104,6 +123,10 @@ namespace KapEngine {
             int64_t _currTime = 0;
 
             std::vector<AnimationLine> _nodes;
+
+            Events::EventAction _onEnd;
+            Events::EventAction _onRestart;
+            Events::EventAction _onStart;
         private:
     };
 

@@ -10,6 +10,7 @@
 
 #include "Vectors.hpp"
 #include "Colors.hpp"
+#include "Rectangle.hpp"
 
 #include "Component.hpp"
 
@@ -57,14 +58,23 @@ namespace KapEngine {
                     _color = color;
                 }
 
+                void setRectangle(Tools::Rectangle rect) {
+                    _rect = rect;
+                }
+
                 Tools::Vector2 getCalculatedPosition();
 
                 Tools::Vector2 getCalculatedScale();
+
+                Tools::Rectangle getRectangle() const {
+                    return _rect;
+                }
 
             protected:
             private:
                 std::string _pathSprite = "";
                 Tools::Color _color;
+                Tools::Rectangle _rect;
         };
 
     }

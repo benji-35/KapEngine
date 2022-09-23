@@ -8,6 +8,7 @@
 #include "GameObject.hpp"
 #include "Errors.hpp"
 #include "Debug.hpp"
+#include "Transform.hpp"
 
 KapEngine::GameObject::GameObject(SceneManagement::Scene &scene, std::string const& name) : _scene(scene) {
     _name = name;
@@ -25,12 +26,27 @@ KapEngine::GameObject::~GameObject() {
 void KapEngine::GameObject::__update(int threadId) {
     if (!_active || _destroyed)
         return;
+    try {
+        Transform &tr = (Transform &)getTransform();
+        if (!tr.allParentIsActive())
+            return;
+    } catch (...) {}
     for (std::size_t i = 0; i < _components.size(); i++) {
+        try {
+            Transform &tr = (Transform &)getTransform();
+            if (!tr.allParentIsActive())
+                return;
+        } catch (...) {}
         if (_components[i]->getThreadRunning() == threadId) {
             _components[i]->__update();
         }
     }
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+        try {
+            Transform &tr = (Transform &)getTransform();
+            if (!tr.allParentIsActive())
+                return;
+        } catch (...) {}
         if (_componentsRun[i]->getThreadRunning() == threadId) {
             _componentsRun[i]->__update();
         }

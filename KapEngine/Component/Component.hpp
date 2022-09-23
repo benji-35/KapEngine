@@ -177,6 +177,10 @@ namespace KapEngine {
                 _componentsNeeded.push_back(componentName);
             }
 
+            /**
+             * @warning Do not touch or call this function. Your game can be destruct by modifications
+             */
+            void __fixedUpdate();
         protected:
             /**
              * @brief Component name
@@ -190,7 +194,6 @@ namespace KapEngine {
             bool _enable = true;
             bool _awakeDone = false;
             bool _startDone = false;
-            void __fixedUpdate();
             void __awake();
             void __start();
             std::vector<std::string> _componentsNeeded;
