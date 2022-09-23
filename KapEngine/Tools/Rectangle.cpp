@@ -24,3 +24,22 @@ void KapEngine::Tools::Rectangle::setSize(float w, float h) {
 void KapEngine::Tools::Rectangle::setSize(Vector2 const& size) {
     _size = size;
 }
+
+void KapEngine::Tools::Rectangle::setH(float h) {
+    _size.setY(h);
+}
+
+
+void KapEngine::Tools::Rectangle::setW(float w) {
+    _size.setX(w);
+}
+
+
+void KapEngine::Tools::Rectangle::setX(float x) {
+    _pos.setX(x);
+}
+
+
+void KapEngine::Tools::Rectangle::setY(float y) {
+    _pos.setY(y);
+}

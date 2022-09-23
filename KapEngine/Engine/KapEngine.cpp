@@ -27,6 +27,7 @@ KapEngine::KapEngine::~KapEngine() {
 
 void KapEngine::KapEngine::run() {
     _run = true;
+    _splashsScreen->__init();
     _internalClock.restart();
     while (_run) {
         _elapsed = _internalClock.getElapseTime();
@@ -63,6 +64,7 @@ void KapEngine::KapEngine::__init() {
     _sceneManager = std::make_shared<SceneManagement::SceneManager>(*this);
     _libManager = std::make_shared<Graphical::GraphicalLibManager>(*this);
     _eventManager = std::make_shared<Events::EventManager>(*this);
+    _splashsScreen = std::make_shared<SceneManagement::SplashScreen>(*this);
 }
 
 /**
