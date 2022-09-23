@@ -13,7 +13,11 @@
 KapEngine::SceneManagement::Scene::Scene(SceneManager &manager, std::string const& name) : manager(manager) {
     _name = name;
 
-    Factory::createCamera(*this, "Main Camera");
+    auto mainCamera = Factory::createEmptyGameObject(*this, "Main Camera");
+    auto cam = std::make_shared<Camera>(mainCamera);
+    mainCamera->addComponent(cam);
+
+    addGameObject(mainCamera);
 }
 
 KapEngine::SceneManagement::Scene::~Scene() {
