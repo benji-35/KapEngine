@@ -11,6 +11,7 @@
 #include "Errors.hpp"
 #include "SceneManager.hpp"
 #include "GraphicalLibManager.hpp"
+#include "SplashScreen.hpp"
 #include "EClock.hpp"
 
 #include <mutex>
@@ -18,6 +19,7 @@
 namespace KapEngine {
     namespace SceneManagement {
         class SceneManager;
+        class SplashScreen;
     }
 
     namespace Graphical {
@@ -222,6 +224,10 @@ namespace KapEngine {
                 return _runFixed;
             }
 
+            std::shared_ptr<SceneManagement::SplashScreen> getSplashScreen() const {
+                return _splashsScreen;
+            }
+
         protected:
         private:
             bool _run = false;
@@ -249,7 +255,11 @@ namespace KapEngine {
             //graphical libs
             std::shared_ptr<Graphical::GraphicalLibManager> _libManager;
 
+            //input events
             std::shared_ptr<Events::EventManager> _eventManager;
+
+            //splash screens
+            std::shared_ptr<SceneManagement::SplashScreen> _splashsScreen;
 
             //functions
             void __init();
