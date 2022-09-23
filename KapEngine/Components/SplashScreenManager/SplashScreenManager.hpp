@@ -38,8 +38,8 @@ namespace KapEngine {
                     sceneName = name;
                 }
 
-                void update();
-                void fixedUpdate();
+                void onUpdate();
+                void onFixedUpdate();
 
                 void setStart(bool b);
 

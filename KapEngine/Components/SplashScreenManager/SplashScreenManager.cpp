@@ -20,14 +20,14 @@ KapEngine::SceneManagement::SplashScreenManager::~SplashScreenManager()
 {
 }
 
-void KapEngine::SceneManagement::SplashScreenManager::fixedUpdate() {
+void KapEngine::SceneManagement::SplashScreenManager::onFixedUpdate() {
     if (!_start)
         return;
     currTime += getGameObject().getEngine().getElapsedTime();
     Debug::log("[Splash Screen Manager] currTime: " + std::to_string(currTime.asSecond()));
 }
 
-void KapEngine::SceneManagement::SplashScreenManager::update()
+void KapEngine::SceneManagement::SplashScreenManager::onUpdate()
 {
     if (!_start)
         return;
