@@ -30,13 +30,15 @@ void KapEngine::SceneManagement::SceneManager::addScene(std::shared_ptr<Scene> s
         }
     }
 
+    _maxIndex++;
+    scene->setId(_maxIndex);
     _scenes.push_back(scene);
 }
 
 void KapEngine::SceneManagement::SceneManager::addScene(std::string const& name) {
     std::shared_ptr<Scene> nScene = std::make_shared<Scene>(*this, name);
 
-    _scenes.push_back(nScene);
+    addScene(nScene);
 }
 
 void KapEngine::SceneManagement::SceneManager::__update(int threadId) {

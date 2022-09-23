@@ -53,6 +53,7 @@ namespace KapEngine {
             protected:
             private:
                 std::size_t _indexScene = 0;
+                std::size_t _maxIndex = 0;
                 std::vector<std::shared_ptr<Scene>> _scenes;
                 KapEngine &_engine;
 
