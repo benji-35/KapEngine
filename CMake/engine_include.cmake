@@ -11,6 +11,7 @@ include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Errors)
 
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/SceneManagement/Scene)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/SceneManagement/SceneManager)
+include_directories(${KapEngine_SOURCE_DIR}/KapEngine/SceneManagement/SplashScreen)
 
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Tools)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Debug)
@@ -29,7 +30,6 @@ include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Time)
 
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Entity)
 
-# include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Factory)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Image)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Text)
