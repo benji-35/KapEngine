@@ -128,9 +128,9 @@ void KapEngine::SceneManagement::SceneManager::loadScene(std::size_t index) {
         }
         return;
     }
-
     getCurrentScene().__changingScene();
     _indexScene = index;
+    Debug::warning("Changing scene to scene " + getSceneName(index));
 }
 
 std::string KapEngine::SceneManagement::SceneManager::getSceneName(std::size_t index) {
