@@ -91,12 +91,27 @@ namespace KapEngine {
                 return *this;
             }
 
+            /**
+             * @brief Add new animation line
+             * 
+             * @param nd 
+             */
             void addAnimationLine(AnimationLine nd) {
                 if (nd.nodes.size() != nd.nodeTiming.size()) {
                     Debug::error("[ANIMATION] : the node that adding does not contains same number of keys timing that nodes functions.");
                     return;
                 }
                 _nodes.push_back(nd);
+            }
+
+            Events::EventAction &getOnEnd() {
+                return _onEnd;
+            }
+            Events::EventAction &getOnStart() {
+                return _onStart;
+            }
+            Events::EventAction &getOnRestart() {
+                return _onRestart;
             }
 
         protected:

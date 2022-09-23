@@ -6,6 +6,13 @@
 */
 
 #include "SplashScreen.hpp"
+#include "Factory.hpp"
+#include "UiFactory.hpp"
+
+#include "Animator.hpp"
+#include "SplashScreenManager.hpp"
+#include "AnimationFadeIn.hpp"
+#include "AnimationFadeOut.hpp"
 
 KapEngine::SceneManagement::SplashScreen::SplashScreen(KapEngine &engine) : _engine(engine) {}
 
@@ -40,4 +47,87 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
     if (_splahes.size() == 0)
         return;
 
+    //create splash screen scene
+    auto sceneSplash = Factory::createScene(_engine, "SplashScreen");
+    auto canvas = UI::UiFactory::createCanvas(*sceneSplash);
+
+    auto animator = std::make_shared<Animator>(canvas);
+    canvas->addComponent(animator);
+
+    std::shared_ptr<SplashScreenManager> previousSplash;
+
+    //init all GameObjects in splashScreen scene
+    for (std::size_t i = 0; i < _splahes.size(); i++) {
+        std::string objName = "Image(" + std::to_string(i) + ")";
+        std::shared_ptr<GameObject> img = UI::UiFactory::createImage(*sceneSplash, objName, _splahes[i]->pathImage);
+
+        Tools::Vector3 startPos(_splahes[i]->pos.getX(), _splahes[i]->pos.getY(), 0);
+        Tools::Vector3 startScale(_splahes[i]->size.getX(), _splahes[i]->size.getY(), 0);
+
+        try {
+            Transform &tr = (Transform &)img->getTransform();
+            tr.setScale(startScale);
+            tr.setPosition(startPos);
+
+            UI::Image &imgC = (UI::Image &)img->getComponent("Image");
+            imgC.setRectangle(_splahes[i]->rect);
+        } catch(...) {}
+        
+        std::shared_ptr<AnimationFadeIn> animIn = std::make_shared<AnimationFadeIn>(img);
+        std::shared_ptr<AnimationFadeOut> animOut = std::make_shared<AnimationFadeOut>(img);
+
+        Time::ETime timeAnim;
+        timeAnim.setSeconds(_splahes[i]->timing);
+
+        animIn->setTiming(timeAnim);
+        animOut->setTiming(timeAnim);
+
+        animator->addAnim(animIn, "animIn "+ std::to_string(i));
+        animator->addAnim(animOut, "animOut "+ std::to_string(i));
+
+        animator->addLink("animIn "+ std::to_string(i), "animOut "+ std::to_string(i));
+
+        try {
+            UI::Image &imgC = (UI::Image &)img->getComponent("Image");
+            Tools::Color cCol = imgC.getColorSprite();
+            cCol.setA(0.0f);
+            imgC.setColor(cCol);
+            if (i != 0) {
+                imgC.setActive(false);
+            }
+        } catch(...) {}
+
+        if (i == _splahes.size() - 1) {
+            animOut->getOnEnd().registerAction([this](){
+                this->_engine.getSceneManager()->loadScene(this->_sceneName);
+            });
+        }
+
+        img->addComponent(animIn);
+        img->addComponent(animOut);
+
+        try {
+            Transform &tr = (Transform &)img->getTransform();
+            tr.setParent(canvas->getId());
+        } catch (...) {}
+    }
+
+    //add animations links
+    for (std::size_t i = 0; i < _splahes.size(); i++) {
+        if (i != _splahes.size() - 1) {
+            animator->addLink("animOut "+ std::to_string(i), "animIn "+ std::to_string(i + 1));
+        }
+    }
+
+    //change cam background color
+    try {
+        Camera &cam = (Camera&)sceneSplash->getActiveCamera();
+        cam.setBackgroundColor(Tools::Color::black());
+    } catch(...) {}
+
+    //add splash screen scene
+    _engine.getSceneManager().get()->addScene(sceneSplash);
+
+    //set splash screen scene as first scene
+    _engine.getSceneManager()->loadScene("SplashScreen");
 }

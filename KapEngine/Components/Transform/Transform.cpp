@@ -216,3 +216,18 @@ std::size_t KapEngine::Transform::getParentContainsComponent(std::string const& 
         return 0;
     }
 }
+
+bool KapEngine::Transform::allParentsActive() const {
+    if (!getGameObjectConst().isActive())
+        return false;
+    if (_parentId == 0)
+        return true;
+    try {
+        auto parent = getParent();
+
+        Transform &tr = (Transform &)parent->getTransform();
+        return tr.allParentIsActive();
+    } catch(...) {
+        return false;
+    }
+}

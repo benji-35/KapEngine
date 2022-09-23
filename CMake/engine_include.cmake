@@ -8,6 +8,7 @@ include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Components/Animation)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Components/Animator)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Components/AnimationFadeIn)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Components/AnimationFadeOut)
+include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Components/SplashScreenManager)
 
 ## Component + GameObject
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Component)
