@@ -125,9 +125,6 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
         cam.setBackgroundColor(Tools::Color::black());
     } catch(...) {}
 
-    //add splash screen scene
-    _engine.getSceneManager().get()->addScene(sceneSplash);
-
     //set splash screen scene as first scene
     _engine.getSceneManager()->loadScene("SplashScreen");
 }
