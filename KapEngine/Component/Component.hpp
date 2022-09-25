@@ -83,6 +83,10 @@ namespace KapEngine {
 
             virtual bool checkComponentValidity() override { return true; }
 
+            virtual void onGameQuit() override {}
+            virtual void onDestroy() override {}
+            virtual void onDisable() override {}
+
             /**
              * @fn std::size_t getLevel() const
              * the level gives call priority to the component. The higher the level, the sooner it will be updated

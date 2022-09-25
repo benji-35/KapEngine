@@ -97,6 +97,24 @@ namespace KapEngine {
              */
             virtual bool checkComponentValidity() = 0;
 
+            /**
+             * @brief call when component destroyed
+             * 
+             */
+            virtual void onDestroy() = 0;
+
+            /**
+             * @brief call when game is turn off
+             * 
+             */
+            virtual void onGameQuit() = 0;
+
+            /**
+             * @brief call when object is disable
+             * 
+             */
+            virtual void onDisable() = 0;
+
         protected:
         private:
     };
