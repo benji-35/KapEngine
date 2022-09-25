@@ -57,19 +57,19 @@ namespace KapEngine {
              * @brief something enter in object
              * 
              */
-            virtual void onTriggerEnter() = 0;
+            virtual void onTriggerEnter(std::shared_ptr<GameObject> go) = 0;
             
             /**
              * @brief something stay in object
              * 
              */
-            virtual void onTriggerStay() = 0;
+            virtual void onTriggerStay(std::shared_ptr<GameObject> go) = 0;
             
             /**
              * @brief something out of object
              * 
              */
-            virtual void onTriggerExit() = 0;
+            virtual void onTriggerExit(std::shared_ptr<GameObject> go) = 0;
 
             /**
              * @brief called when mouse enter object

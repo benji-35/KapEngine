@@ -73,9 +73,9 @@ namespace KapEngine {
 
             virtual void onDisplay() override {}
 
-            virtual void onTriggerEnter() override {}
-            virtual void onTriggerStay() override {}
-            virtual void onTriggerExit() override {}
+            virtual void onTriggerEnter(std::shared_ptr<GameObject> go) override {}
+            virtual void onTriggerStay(std::shared_ptr<GameObject> go) override {}
+            virtual void onTriggerExit(std::shared_ptr<GameObject> go) override {}
 
             virtual void onMouseEnter() override {}
             virtual void onMouseStay() override {}
