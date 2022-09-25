@@ -136,3 +136,12 @@ void KapEngine::GameObject::setActive(bool b) {
         _startActive = b;
     }
 }
+
+void KapEngine::GameObject::__stoppingGame() {
+    for (std::size_t i = 0; i < _components.size(); i++) {
+        _components[i]->onGameQuit();
+    }
+    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+        _componentsRun[i]->onGameQuit();
+    }
+}

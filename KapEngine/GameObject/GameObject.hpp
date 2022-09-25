@@ -81,6 +81,7 @@ namespace KapEngine {
 
             void __destroyIt();
             void __init();
+            void __stoppingGame();
 
         protected:
         private:

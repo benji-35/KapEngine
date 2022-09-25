@@ -82,7 +82,7 @@ namespace KapEngine {
 
                 void __update(int threadId);
                 void __changingScene();
-                void __engineStop();
+                void __engineStop(bool currentScene = false);
                 void __init();
 
 
