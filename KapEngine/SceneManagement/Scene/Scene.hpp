@@ -83,6 +83,7 @@ namespace KapEngine {
                 void __update(int threadId);
                 void __changingScene();
                 void __engineStop();
+                void __init();
 
 
             protected:

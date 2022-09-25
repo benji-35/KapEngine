@@ -50,9 +50,7 @@ namespace KapEngine {
             //all functions call by engine
             void __update(int threadId);
 
-            void setActive(bool b) {
-                _active = b;
-            }
+            void setActive(bool b);
 
             bool isActive() const {
                 return _active;
@@ -81,17 +79,20 @@ namespace KapEngine {
                 return (Entity &)*this;
             }
 
+            void __destroyIt();
+            void __init();
+
         protected:
         private:
             std::string _name;
             bool _active = true;
+            bool _startActive = true;
             bool _destroyed = false;
             bool _firstUpdateDone = false;
             std::vector<std::shared_ptr<Component>> _components;
             std::vector<std::shared_ptr<Component>> _componentsRun;
             SceneManagement::Scene &_scene;
             std::size_t _idComp = 0;
-
     };
 
 }

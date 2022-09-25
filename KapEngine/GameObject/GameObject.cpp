@@ -107,3 +107,32 @@ bool KapEngine::GameObject::hasComponent(std::string const& componentName) const
     }
     return false;
 }
+
+void KapEngine::GameObject::__destroyIt() {
+    _destroyed = true;
+    for (std::size_t i = 0; i < _components.size(); i++) {
+        _components[i]->onDestroy();
+    }
+    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+        _componentsRun[i]->onDestroy();
+        _componentsRun[i].reset();
+    }
+    _componentsRun.clear();
+}
+
+void KapEngine::GameObject::__init() {
+    _destroyed = false;
+    _active = _startActive;
+    _componentsRun.clear();
+    for (std::size_t i = 0; i < _components.size(); i++) {
+        _components[i]->__awake();
+    }
+}
+
+void KapEngine::GameObject::setActive(bool b) {
+    if (getEngine().isRunning()) {
+        _active = b;
+    } else {
+        _startActive = b;
+    }
+}

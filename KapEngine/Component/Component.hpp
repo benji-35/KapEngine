@@ -185,6 +185,12 @@ namespace KapEngine {
              * @warning Do not touch or call this function. Your game can be destruct by modifications
              */
             void __fixedUpdate();
+
+            /**
+             * @brief check awake validity
+             * @warning Do not call by your selves. KapEngine will call it itself
+             */
+            void __awake();
         protected:
             /**
              * @brief Component name
@@ -198,7 +204,6 @@ namespace KapEngine {
             bool _enable = true;
             bool _awakeDone = false;
             bool _startDone = false;
-            void __awake();
             void __start();
             std::vector<std::string> _componentsNeeded;
 
