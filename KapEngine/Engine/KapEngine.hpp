@@ -228,6 +228,10 @@ namespace KapEngine {
                 return _splashsScreen;
             }
 
+            void setFixedTime(Time::ETime time) {
+                _fixedTime = time;
+            }
+
         protected:
         private:
             bool _run = false;
