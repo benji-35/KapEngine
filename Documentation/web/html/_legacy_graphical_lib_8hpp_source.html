@@ -21,6 +21,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="KapEngineLogo100x100.png"/></td>
   <td id="projectalign">
    <div id="projectname">KapEngine<span id="projectnumber">&#160;1.1</span>
    </div>
@@ -85,46 +86,55 @@ $(function() {
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;map&gt;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="_graphical_lib_8hpp.html">GraphicalLib.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_kap_engine.html">KapEngine</a> {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">class </span><a class="code hl_namespace" href="namespace_kap_engine.html">KapEngine</a>;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">namespace </span>Graphical {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keyword">class </span>GraphicalLib;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keyword">class </span>GraphicalLibManager;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    }</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_kap_engine.html">KapEngine</a> {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">namespace </span>Graphical {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html">   29</a></span>        <span class="keyword">class </span><a class="code hl_class" href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html">LegacyGraphicalLib</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_kap_engine_1_1_graphical_1_1_graphical_lib.html">GraphicalLib</a> {</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                <a class="code hl_function" href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html#abe67ee3a811179d7f0dcc4f36287cbe9">LegacyGraphicalLib</a>(<a class="code hl_class" href="class_kap_engine_1_1_graphical_1_1_graphical_lib_manager.html">GraphicalLibManager</a> &amp;<a class="code hl_variable" href="class_kap_engine_1_1_graphical_1_1_graphical_lib.html#a50fd18ea50698715a472ae8933408b31">manager</a>);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                <a class="code hl_function" href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html#a81a1a9a7a573b0149e0572ea42dea19e">~LegacyGraphicalLib</a>();</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                <span class="keywordtype">void</span> <a class="code hl_function" href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html#aec88c5c2356c07171e49c160fd90526b">display</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                std::map&lt;std::string, std::function&lt;void()&gt;&gt; _commands;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                <span class="keywordtype">void</span> registerCommand(std::string <span class="keyword">const</span>&amp; cmd, std::function&lt;<span class="keywordtype">void</span>()&gt;);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                <span class="keywordtype">void</span> executeCommand(std::string <span class="keyword">const</span>&amp; cmd);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                <span class="keywordtype">bool</span> commandExists(std::string <span class="keyword">const</span>&amp; cmd);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        };</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="_debug_8hpp.html">Debug.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_kap_engine.html">KapEngine</a> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">class </span><a class="code hl_namespace" href="namespace_kap_engine.html">KapEngine</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">namespace </span>Graphical {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keyword">class </span>GraphicalLib;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">class </span>GraphicalLibManager;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    }</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>}</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_kap_engine.html">KapEngine</a> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">namespace </span>Graphical {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html">   30</a></span>        <span class="keyword">class </span><a class="code hl_class" href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html">LegacyGraphicalLib</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_kap_engine_1_1_graphical_1_1_graphical_lib.html">GraphicalLib</a> {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                <a class="code hl_function" href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html#abe67ee3a811179d7f0dcc4f36287cbe9">LegacyGraphicalLib</a>(<a class="code hl_class" href="class_kap_engine_1_1_graphical_1_1_graphical_lib_manager.html">GraphicalLibManager</a> &amp;<a class="code hl_variable" href="class_kap_engine_1_1_graphical_1_1_graphical_lib.html#a50fd18ea50698715a472ae8933408b31">manager</a>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                <a class="code hl_function" href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html#a81a1a9a7a573b0149e0572ea42dea19e">~LegacyGraphicalLib</a>();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                <span class="keywordtype">void</span> <a class="code hl_function" href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html#aec88c5c2356c07171e49c160fd90526b">display</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html#a2aebd850be54d5e22c9492420a3387e9">   38</a></span>                <span class="keywordtype">void</span> <a class="code hl_function" href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html#a2aebd850be54d5e22c9492420a3387e9">startDisplay</a>()<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                    <a class="code hl_function" href="class_kap_engine_1_1_debug.html#ab170c0cc7d882deca7990c295f024d7f">Debug::log</a>(<span class="stringliteral">&quot;Use &quot;</span> + <a class="code hl_function" href="class_kap_engine_1_1_graphical_1_1_graphical_lib.html#a7e792cb0cda0ad4a0b165f2450ad7caf">getName</a>());</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                std::map&lt;std::string, std::function&lt;void()&gt;&gt; _commands;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                <span class="keywordtype">void</span> registerCommand(std::string <span class="keyword">const</span>&amp; cmd, std::function&lt;<span class="keywordtype">void</span>()&gt;);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                <span class="keywordtype">void</span> executeCommand(std::string <span class="keyword">const</span>&amp; cmd);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                <span class="keywordtype">bool</span> commandExists(std::string <span class="keyword">const</span>&amp; cmd);</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#endif </span><span class="comment">/* !LEGACYGRAPHICAL_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        };</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif </span><span class="comment">/* !LEGACYGRAPHICAL_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_debug_8hpp_html"><div class="ttname"><a href="_debug_8hpp.html">Debug.hpp</a></div></div>
 <div class="ttc" id="a_graphical_lib_8hpp_html"><div class="ttname"><a href="_graphical_lib_8hpp.html">GraphicalLib.hpp</a></div></div>
-<div class="ttc" id="aclass_kap_engine_1_1_graphical_1_1_graphical_lib_html"><div class="ttname"><a href="class_kap_engine_1_1_graphical_1_1_graphical_lib.html">KapEngine::Graphical::GraphicalLib</a></div><div class="ttdef"><b>Definition:</b> GraphicalLib.hpp:36</div></div>
-<div class="ttc" id="aclass_kap_engine_1_1_graphical_1_1_graphical_lib_html_a50fd18ea50698715a472ae8933408b31"><div class="ttname"><a href="class_kap_engine_1_1_graphical_1_1_graphical_lib.html#a50fd18ea50698715a472ae8933408b31">KapEngine::Graphical::GraphicalLib::manager</a></div><div class="ttdeci">GraphicalLibManager &amp; manager</div><div class="ttdef"><b>Definition:</b> GraphicalLib.hpp:79</div></div>
+<div class="ttc" id="aclass_kap_engine_1_1_debug_html_ab170c0cc7d882deca7990c295f024d7f"><div class="ttname"><a href="class_kap_engine_1_1_debug.html#ab170c0cc7d882deca7990c295f024d7f">KapEngine::Debug::log</a></div><div class="ttdeci">static void log(std::string _msg)</div><div class="ttdoc">afficher un log</div><div class="ttdef"><b>Definition:</b> Debug.hpp:25</div></div>
+<div class="ttc" id="aclass_kap_engine_1_1_graphical_1_1_graphical_lib_html"><div class="ttname"><a href="class_kap_engine_1_1_graphical_1_1_graphical_lib.html">KapEngine::Graphical::GraphicalLib</a></div><div class="ttdef"><b>Definition:</b> GraphicalLib.hpp:46</div></div>
+<div class="ttc" id="aclass_kap_engine_1_1_graphical_1_1_graphical_lib_html_a50fd18ea50698715a472ae8933408b31"><div class="ttname"><a href="class_kap_engine_1_1_graphical_1_1_graphical_lib.html#a50fd18ea50698715a472ae8933408b31">KapEngine::Graphical::GraphicalLib::manager</a></div><div class="ttdeci">GraphicalLibManager &amp; manager</div><div class="ttdef"><b>Definition:</b> GraphicalLib.hpp:109</div></div>
+<div class="ttc" id="aclass_kap_engine_1_1_graphical_1_1_graphical_lib_html_a7e792cb0cda0ad4a0b165f2450ad7caf"><div class="ttname"><a href="class_kap_engine_1_1_graphical_1_1_graphical_lib.html#a7e792cb0cda0ad4a0b165f2450ad7caf">KapEngine::Graphical::GraphicalLib::getName</a></div><div class="ttdeci">std::string getName() const</div><div class="ttdef"><b>Definition:</b> GraphicalLib.hpp:57</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_graphical_1_1_graphical_lib_manager_html"><div class="ttname"><a href="class_kap_engine_1_1_graphical_1_1_graphical_lib_manager.html">KapEngine::Graphical::GraphicalLibManager</a></div><div class="ttdef"><b>Definition:</b> GraphicalLibManager.hpp:25</div></div>
-<div class="ttc" id="aclass_kap_engine_1_1_graphical_1_1_legacy_graphical_lib_html"><div class="ttname"><a href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html">KapEngine::Graphical::LegacyGraphicalLib</a></div><div class="ttdef"><b>Definition:</b> LegacyGraphicalLib.hpp:29</div></div>
+<div class="ttc" id="aclass_kap_engine_1_1_graphical_1_1_legacy_graphical_lib_html"><div class="ttname"><a href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html">KapEngine::Graphical::LegacyGraphicalLib</a></div><div class="ttdef"><b>Definition:</b> LegacyGraphicalLib.hpp:30</div></div>
+<div class="ttc" id="aclass_kap_engine_1_1_graphical_1_1_legacy_graphical_lib_html_a2aebd850be54d5e22c9492420a3387e9"><div class="ttname"><a href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html#a2aebd850be54d5e22c9492420a3387e9">KapEngine::Graphical::LegacyGraphicalLib::startDisplay</a></div><div class="ttdeci">void startDisplay() override</div><div class="ttdef"><b>Definition:</b> LegacyGraphicalLib.hpp:38</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_graphical_1_1_legacy_graphical_lib_html_a81a1a9a7a573b0149e0572ea42dea19e"><div class="ttname"><a href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html#a81a1a9a7a573b0149e0572ea42dea19e">KapEngine::Graphical::LegacyGraphicalLib::~LegacyGraphicalLib</a></div><div class="ttdeci">~LegacyGraphicalLib()</div><div class="ttdef"><b>Definition:</b> LegacyGraphicalLib.cpp:36</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_graphical_1_1_legacy_graphical_lib_html_abe67ee3a811179d7f0dcc4f36287cbe9"><div class="ttname"><a href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html#abe67ee3a811179d7f0dcc4f36287cbe9">KapEngine::Graphical::LegacyGraphicalLib::LegacyGraphicalLib</a></div><div class="ttdeci">LegacyGraphicalLib(GraphicalLibManager &amp;manager)</div><div class="ttdef"><b>Definition:</b> LegacyGraphicalLib.cpp:12</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_graphical_1_1_legacy_graphical_lib_html_aec88c5c2356c07171e49c160fd90526b"><div class="ttname"><a href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html#aec88c5c2356c07171e49c160fd90526b">KapEngine::Graphical::LegacyGraphicalLib::display</a></div><div class="ttdeci">void display() override</div><div class="ttdef"><b>Definition:</b> LegacyGraphicalLib.cpp:38</div></div>

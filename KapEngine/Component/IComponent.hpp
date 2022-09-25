@@ -8,6 +8,12 @@
 #ifndef ICOMPONENT_HPP_
 #define ICOMPONENT_HPP_
 
+#include <memory>
+
+namespace KapEngine {
+    class GameObject;
+}
+
 namespace KapEngine {
 
     class IComponent {
@@ -57,19 +63,19 @@ namespace KapEngine {
              * @brief something enter in object
              * 
              */
-            virtual void onTriggerEnter() = 0;
+            virtual void onTriggerEnter(std::shared_ptr<GameObject> go) = 0;
             
             /**
              * @brief something stay in object
              * 
              */
-            virtual void onTriggerStay() = 0;
+            virtual void onTriggerStay(std::shared_ptr<GameObject> go) = 0;
             
             /**
              * @brief something out of object
              * 
              */
-            virtual void onTriggerExit() = 0;
+            virtual void onTriggerExit(std::shared_ptr<GameObject> go) = 0;
 
             /**
              * @brief called when mouse enter object
@@ -110,10 +116,16 @@ namespace KapEngine {
             virtual void onGameQuit() = 0;
 
             /**
-             * @brief call when object is disable
+             * @brief call when GameObject is disable after being enable
              * 
              */
             virtual void onDisable() = 0;
+
+            /**
+             * @brief call when GameObject is enable after being disable
+             * 
+             */
+            virtual void onEnable() = 0;
 
         protected:
         private:

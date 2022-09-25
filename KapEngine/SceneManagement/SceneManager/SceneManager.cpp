@@ -16,7 +16,10 @@ KapEngine::SceneManagement::SceneManager::SceneManager(KapEngine &engine) : _eng
 
 KapEngine::SceneManagement::SceneManager::~SceneManager() {
     for (std::size_t i = 0; i < _scenes.size(); i++) {
-        _scenes[i]->__engineStop();
+        bool current = false;
+        if (_scenes[i]->getId() == _indexScene)
+            current = true;
+        _scenes[i]->__engineStop(current);
         _scenes[i].reset();
     }
 }
@@ -45,6 +48,8 @@ void KapEngine::SceneManagement::SceneManager::addScene(std::string const& name)
 
 void KapEngine::SceneManagement::SceneManager::__update(int threadId) {
     try {
+        if (_indexScene == 0)
+            loadScene(1);
         getCurrentScene().__update(threadId);
     } catch(...) {
         Debug::error("Cannot update scene");
@@ -132,6 +137,7 @@ void KapEngine::SceneManagement::SceneManager::loadScene(std::size_t index) {
         getCurrentScene().__changingScene();
     } catch(...) {}
     _indexScene = index;
+    getCurrentScene().__init();
     Debug::warning("Changing scene to scene " + getSceneName(index));
 }
 

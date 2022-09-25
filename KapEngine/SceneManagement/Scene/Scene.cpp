@@ -108,11 +108,15 @@ void KapEngine::SceneManagement::Scene::__changingScene() {
     _gameObjectsRun.clear();
 }
 
-void KapEngine::SceneManagement::Scene::__engineStop() {
+void KapEngine::SceneManagement::Scene::__engineStop(bool currentScene) {
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (currentScene)
+            _gameObjects[i]->__stoppingGame();
         _gameObjects[i]->__engineStop();
     }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (currentScene)
+            _gameObjectsRun[i]->__stoppingGame();
         _gameObjectsRun[i]->__engineStop();
     }
 }
@@ -141,4 +145,35 @@ std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::
 
 std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::getObject(Entity const& en) {
     return getObject(en.getId());
+}
+
+void KapEngine::SceneManagement::Scene::removeGameObject(std::shared_ptr<GameObject> go) {
+    if (go.use_count() == 0)
+        return;
+    removeGameObject(go->getId());
+}
+
+void KapEngine::SceneManagement::Scene::removeGameObject(std::size_t index) {
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == index) {
+            _gameObjectsRun[i]->__destroyIt();
+            _gameObjectsRun[i]->__engineStop();
+            _gameObjectsRun[i].reset();
+            _gameObjectsRun.erase(_gameObjectsRun.begin() + i);
+            break;
+        }
+    }
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == index) {
+            _gameObjectsRun[i]->__destroyIt();
+            break;
+        }
+    }
+}
+
+void KapEngine::SceneManagement::Scene::__init() {
+    _gameObjectsRun.clear();
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        _gameObjects[i]->__init();
+    }
 }

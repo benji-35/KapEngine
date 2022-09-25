@@ -73,9 +73,9 @@ namespace KapEngine {
 
             virtual void onDisplay() override {}
 
-            virtual void onTriggerEnter() override {}
-            virtual void onTriggerStay() override {}
-            virtual void onTriggerExit() override {}
+            virtual void onTriggerEnter(std::shared_ptr<GameObject> go) override {}
+            virtual void onTriggerStay(std::shared_ptr<GameObject> go) override {}
+            virtual void onTriggerExit(std::shared_ptr<GameObject> go) override {}
 
             virtual void onMouseEnter() override {}
             virtual void onMouseStay() override {}
@@ -86,6 +86,7 @@ namespace KapEngine {
             virtual void onGameQuit() override {}
             virtual void onDestroy() override {}
             virtual void onDisable() override {}
+            virtual void onEnable() override {}
 
             /**
              * @fn std::size_t getLevel() const
@@ -185,6 +186,12 @@ namespace KapEngine {
              * @warning Do not touch or call this function. Your game can be destruct by modifications
              */
             void __fixedUpdate();
+
+            /**
+             * @brief check awake validity
+             * @warning Do not call by your selves. KapEngine will call it itself
+             */
+            void __awake();
         protected:
             /**
              * @brief Component name
@@ -198,7 +205,6 @@ namespace KapEngine {
             bool _enable = true;
             bool _awakeDone = false;
             bool _startDone = false;
-            void __awake();
             void __start();
             std::vector<std::string> _componentsNeeded;
 

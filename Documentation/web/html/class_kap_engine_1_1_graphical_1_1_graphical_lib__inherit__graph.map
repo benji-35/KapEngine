@@ -1,4 +1,5 @@
 <map id="KapEngine::Graphical::GraphicalLib" name="KapEngine::Graphical::GraphicalLib">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,153,47"/>
-<area shape="rect" id="node2" href="$class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html" title=" " alt="" coords="5,95,153,136"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,80,153,121"/>
+<area shape="rect" id="node3" href="$class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html" title=" " alt="" coords="5,169,153,211"/>
+<area shape="rect" id="node2" href="$class_kap_engine_1_1_entity.html" title=" " alt="" coords="16,5,143,32"/>
 </map>

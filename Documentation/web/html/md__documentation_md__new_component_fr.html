@@ -21,6 +21,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="KapEngineLogo100x100.png"/></td>
   <td id="projectalign">
    <div id="projectname">KapEngine<span id="projectnumber">&#160;1.1</span>
    </div>
@@ -97,6 +98,24 @@ Qu'est ce qu'un composant</h2>
 <p >:warning: le <a class="el" href="class_kap_engine.html" title="Class of engine.">KapEngine</a> est un engine multi thread. Ce qui signifie que le jeu utilisera plusieurs coeur de votre ordinateur pour effectuer des calculs plus rapides. Les composants sont appelés sur les thread suivant : 2, 3, 4. Lors de la création de vos composants, vous pouvez définir sur quel thread votre composant tournera. Si vous définissez un autre "threadID" que ceux indiqué juste avant, votre composant ne sera jamais lu.</p>
 <p >Cette méthode de calcul vous permet d'avoir un jeu plus performant. Cependant il se peut que vous ayez des réécriute de valeur. Ce sera à vous d'y faire attention.</p>
 <h2><a class="anchor" id="autotoc_md17"></a>
+Fonctions utiles</h2>
+<p >Tous les composants on des fonctions très utiles permettant de connaître certains évenements de votre jeu comme les touches appuyées ou la position de votre souris en jeu.</p>
+<p >Pour cela 2 fonctions sont crées : getInput() et getMouse().</p>
+<ul>
+<li>getInput() : vous permet de récupérer les évenements des touches du jeu. page de input.</li>
+<li>getMouse() : vous permet de récupérer les informations sur la souris. page de la souris.</li>
+</ul>
+<p >pour récupérer l'objet sur lequel votre composant est attaché vous devez utiliser ces commandes :</p><ul>
+<li>getGameObject()</li>
+<li>getGameObjectCont()</li>
+</ul>
+<h4><a class="anchor" id="autotoc_md18"></a>
+Vous souhaitez faire fonctionner votre composant que si il est accompagné d'un autre composan sur le même objett ?</h4>
+<p >Une fonction spécifique a été pensé pour cela.</p><ul>
+<li>addRequireComponent("AutreComposant")</li>
+</ul>
+<p >Cette fonction prend en argument le nom de l'autre composant voulue pour faire fonctionner le votre. Si jamais le composant donné n'est pas sur l'objet rattaché à votre composant, votre composant sera comme désactivé (sans l'être).</p>
+<h2><a class="anchor" id="autotoc_md19"></a>
 Créer le sien</h2>
 <p >Créer un composant est très simple. Vous devez créer un nouveau fichier .hpp. Ce fichier contiendra la classe de votre composant : exemple. Une fois que vous aurez créé ce composant, il fous suffira de l'ajouter sur un objet.</p>
 <p >Exemple: </p><div class="fragment"><div class="line"> {C++}</div>
@@ -119,12 +138,12 @@ Créer le sien</h2>
 <div class="line">}</div>
 </div><!-- fragment --><p> Ces étapes sont obligatoires pour pouvoir ajouter un composant à un objet.</p>
 <p >:warning: Il est primordiale de ne pas mélanger les GameObjects pour le composant. L'objet dans lequel vous ajouté le composant doit être le même objet qui se trouve dans le constructeur du composant comme dans l'exemple.</p>
-<h3><a class="anchor" id="autotoc_md18"></a>
+<h3><a class="anchor" id="autotoc_md20"></a>
 Liste des fonctions disponibles</h3>
-<h4><a class="anchor" id="autotoc_md19"></a>
+<h4><a class="anchor" id="autotoc_md21"></a>
 onInit</h4>
 <p >Cette fonction est appelée lors de l'initialisation du composant au runtime.</p>
-<h2><a class="anchor" id="autotoc_md20"></a>
+<h2><a class="anchor" id="autotoc_md22"></a>
 Démarrage Rapide</h2>
 <div class="fragment"><div class="line"> {C++}</div>
 <div class="line"> </div>
@@ -188,6 +207,16 @@ Démarrage Rapide</h2>
 <div class="line">                void onTriggerStay(std::shared_ptr&lt;GameObject&gt; go) override;</div>
 <div class="line">                //appelé lorsqu&#39;un objet sort dans l&#39;objet rattaché</div>
 <div class="line">                void onTriggerExit(std::shared_ptr&lt;GameObject&gt; go) override;</div>
+<div class="line">                //ajoutez des conditions au lancement de votre composant</div>
+<div class="line">                bool checkComponentValidity() override;</div>
+<div class="line">                //appelé lorsque votre objet est détruit</div>
+<div class="line">                void onDestroy() override;</div>
+<div class="line">                //appelé lorsque le jeu se quitte</div>
+<div class="line">                void onGameQuit() override;</div>
+<div class="line">                //appelé lorsque le GameObject se désactive</div>
+<div class="line">                void onDisable() override;</div>
+<div class="line">                //appelé lorsque le GameObject s&#39;active</div>
+<div class="line">                void onEnable() override;</div>
 <div class="line"> </div>
 <div class="line">        }</div>
 <div class="line"> </div>
@@ -249,6 +278,31 @@ Démarrage Rapide</h2>
 <div class="line"> </div>
 <div class="line">        void MonComposant::onTriggerExit(std::shared_ptr&lt;GameObject&gt; go) {</div>
 <div class="line">            Debug::log(&quot;L&#39;objet &quot; + go-&gt;getName() + &quot; sort de mon objet&quot;);</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        bool MonComposant::checkComponentValidity() {</div>
+<div class="line">            if (...) {</div>
+<div class="line">                //mon composant ne doit pas se lancer</div>
+<div class="line">                return false;</div>
+<div class="line">            }</div>
+<div class="line">            //mon composant peut se lancer</div>
+<div class="line">            return true;</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        void MonComposant::onDestroy() {</div>
+<div class="line">            Debug::log(&quot;L&#39;objet &quot; + go-&gt;getName() + &quot; est détruit&quot;);</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        void MonComposant::onGameQuit() {</div>
+<div class="line">            Debug::log(&quot;Le jeu s&#39;arrête&quot;);</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        void MonComposant::onDisable() {</div>
+<div class="line">            Debug::log(&quot;L&#39;object &quot; + go-&gt;getName() + &quot; s&#39;est désactivé&quot;);</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        void MonComposant::onEnable() {</div>
+<div class="line">            Debug::log(&quot;L&#39;object &quot; + go-&gt;getName() + &quot; s&#39;est activé&quot;);</div>
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line">    }</div>
