@@ -44,7 +44,7 @@ pour récupérer l'objet sur lequel votre composant est attaché vous devez util
 - getGameObject()
 - getGameObjectCont()
 
-#### Vous souhaitez faire fonctionner votre composant que si il est accompagné sur le même objet d'un autre composant ?
+#### Vous souhaitez faire fonctionner votre composant que si il est accompagné d'un autre composan sur le même objett ?
 
 Une fonction spécifique a été pensé pour cela.
 - addRequireComponent("AutreComposant")
