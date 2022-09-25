@@ -8,6 +8,12 @@
 #ifndef ICOMPONENT_HPP_
 #define ICOMPONENT_HPP_
 
+#include <memory>
+
+namespace KapEngine {
+    class GameObject;
+}
+
 namespace KapEngine {
 
     class IComponent {
