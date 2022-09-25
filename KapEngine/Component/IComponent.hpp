@@ -116,10 +116,16 @@ namespace KapEngine {
             virtual void onGameQuit() = 0;
 
             /**
-             * @brief call when object is disable
+             * @brief call when GameObject is disable after being enable
              * 
              */
             virtual void onDisable() = 0;
+
+            /**
+             * @brief call when GameObject is enable after being disable
+             * 
+             */
+            virtual void onEnable() = 0;
 
         protected:
         private:

@@ -131,6 +131,21 @@ void KapEngine::GameObject::__init() {
 
 void KapEngine::GameObject::setActive(bool b) {
     if (getEngine().isRunning()) {
+        if (!b && _active) {
+            for (std::size_t i = 0; i < _components.size(); i++) {
+                _components[i]->onDisable();
+            }
+            for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                _componentsRun[i]->onDisable();
+            }
+        } else if (b && !_active) {
+            for (std::size_t i = 0; i < _components.size(); i++) {
+                _components[i]->onEnable();
+            }
+            for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                _componentsRun[i]->onEnable();
+            }
+        }
         _active = b;
     } else {
         _startActive = b;

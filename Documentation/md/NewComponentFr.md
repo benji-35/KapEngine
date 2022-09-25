@@ -155,8 +155,10 @@ namespace KapEngine {
                 void onDestroy() override;
                 //appelé lorsque le jeu se quitte
                 void onGameQuit() override;
-                //appelé lorsque le composant se désactive
+                //appelé lorsque le GameObject se désactive
                 void onDisable() override;
+                //appelé lorsque le GameObject s'active
+                void onEnable() override;
 
         }
 
@@ -238,7 +240,11 @@ namespace KapEngine {
         }
 
         void MonComposant::onDisable() {
-            Debug::log("Le composant " + getName() + " s'est désactivé");
+            Debug::log("L'object " + go->getName() + " s'est désactivé");
+        }
+
+        void MonComposant::onEnable() {
+            Debug::log("L'object " + go->getName() + " s'est activé");
         }
 
     }
