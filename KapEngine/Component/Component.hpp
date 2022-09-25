@@ -85,6 +85,7 @@ namespace KapEngine {
 
             virtual void onGameQuit() override {}
             virtual void onDestroy() override {}
+            virtual void onDisable() override {}
 
             /**
              * @fn std::size_t getLevel() const
