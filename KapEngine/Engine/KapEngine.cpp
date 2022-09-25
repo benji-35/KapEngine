@@ -18,6 +18,9 @@ KapEngine::KapEngine::KapEngine(bool debug, std::string const& gameName, std::st
     _gameCompany = company;
 
     __init();
+    Time::ETime _baseTime;
+    _baseTime.setMilliseconds(25);
+    setFixedTime(_baseTime);
 }
 
 KapEngine::KapEngine::~KapEngine() {
