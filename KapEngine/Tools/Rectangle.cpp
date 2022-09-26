@@ -43,3 +43,14 @@ void KapEngine::Tools::Rectangle::setX(float x) {
 void KapEngine::Tools::Rectangle::setY(float y) {
     _pos.setY(y);
 }
+
+std::string KapEngine::Tools::Rectangle::to_string() const {
+    std::string res = "{";
+
+    res += std::to_string(_pos.getX()) + "; ";
+    res += std::to_string(_pos.getY()) + "; ";
+    res += std::to_string(_size.getX()) + "; ";
+    res += std::to_string(_size.getY()) + "}";
+
+    return res;
+}
