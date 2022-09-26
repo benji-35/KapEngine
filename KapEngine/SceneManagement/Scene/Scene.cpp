@@ -100,7 +100,7 @@ void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject
     if (getEngine().debugMode()) {
         Debug::log("Add object " + go->getName() + " in scene " + getName());
     }
-    if (getEngine().isRunning()) {
+    if (!getEngine().isRunning()) {
         Debug::log("add object " + go->getName() + " in _gameObjects");
         _gameObjects.push_back(go);
     } else {
