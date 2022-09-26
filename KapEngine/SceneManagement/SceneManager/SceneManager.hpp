@@ -48,6 +48,7 @@ namespace KapEngine {
                 bool sceneExists(std::string const& sceneName);
 
                 Scene &getScene(std::string const& name);
+                Scene &getScene(std::size_t const& index);
                 Scene &getCurrentScene();
 
                 std::size_t getSceneIndex(std::string const& sceneName);
