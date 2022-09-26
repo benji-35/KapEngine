@@ -76,12 +76,22 @@ void KapEngine::SceneManagement::Scene::__update() {
         return;
     }
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-        if (_gameObjects[i]->isActive() && !_gameObjects[i]->isDestroyed())
-            _gameObjects[i]->__update();
+        if (_gameObjects[i]->isActive() && !_gameObjects[i]->isDestroyed()) {
+            try {
+                Transform &tr = (Transform &)_gameObjects[i]->getTransform();
+                if (tr.getParentId() == 0)
+                    _gameObjects[i]->__update();
+            } catch(...) {}
+        }
     }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
-        if (_gameObjectsRun[i]->isActive() && !_gameObjectsRun[i]->isDestroyed())
-            _gameObjectsRun[i]->__update();
+        if (_gameObjectsRun[i]->isActive() && !_gameObjectsRun[i]->isDestroyed()) {
+            try {
+                Transform &tr = (Transform &)_gameObjectsRun[i]->getTransform();
+                if (tr.getParentId() == 0)
+                    _gameObjectsRun[i]->__update();
+            } catch(...) {}
+        }
     }
 }
 

@@ -26,10 +26,12 @@ KapEngine::GameObject::~GameObject() {
 void KapEngine::GameObject::__update() {
     if (!_active || _destroyed)
         return;
+    std::vector<std::shared_ptr<GameObject>> _children;
     try {
         Transform &tr = (Transform &)getTransform();
         if (!tr.allParentIsActive())
             return;
+        _children = tr.getChildren();
     } catch (...) {}
     for (std::size_t i = 0; i < _components.size(); i++) {
         try {
@@ -46,6 +48,9 @@ void KapEngine::GameObject::__update() {
                 return;
         } catch (...) {}
         _componentsRun[i]->__update();
+    }
+    for (std::size_t i = 0; i < _children.size(); i++) {
+        _children[i]->__update();
     }
 }
 
