@@ -66,7 +66,7 @@ KapEngine::KapEngine &KapEngine::SceneManagement::Scene::getEngine() {
     return manager.getEngine();
 }
 
-void KapEngine::SceneManagement::Scene::__update(int threadId) {
+void KapEngine::SceneManagement::Scene::__update() {
     try {
         Component camera = getActiveCamera();
     } catch(...) {
@@ -77,16 +77,15 @@ void KapEngine::SceneManagement::Scene::__update(int threadId) {
     }
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         if (_gameObjects[i]->isActive() && !_gameObjects[i]->isDestroyed())
-            _gameObjects[i]->__update(threadId);
+            _gameObjects[i]->__update();
     }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
         if (_gameObjectsRun[i]->isActive() && !_gameObjectsRun[i]->isDestroyed())
-            _gameObjectsRun[i]->__update(threadId);
+            _gameObjectsRun[i]->__update();
     }
 }
 
 void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {
-    std::lock_guard<std::recursive_mutex> lk(KapEngine::debugMutex);
     if (go->getId() != 0) {
         Debug::warning("Object " + go->getName() + " already added in scene: " + go->getScene().getName());
         return;
@@ -101,7 +100,6 @@ void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject
     } else {
         _gameObjectsRun.push_back(go);
     }
-    KapEngine::debugMutex.unlock();
 }
 
 void KapEngine::SceneManagement::Scene::__changingScene() {

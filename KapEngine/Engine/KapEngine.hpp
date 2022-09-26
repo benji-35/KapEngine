@@ -166,19 +166,6 @@ namespace KapEngine {
             }
 
             /**
-             * @brief function for thread
-             * @warning Do not use this function
-             * @param engine 
-             * @param threadId 
-             */
-            static void __threadRun(KapEngine *engine, int threadId);
-
-            /**
-             * @brief Mutex for threading
-             */
-            static std::recursive_mutex debugMutex;
-
-            /**
              * @brief Get the Elapsed Time since last internal clock restart
              * @return KapEngine::Time::ETime
              */

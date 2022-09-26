@@ -23,7 +23,7 @@ KapEngine::GameObject::~GameObject() {
     }
 }
 
-void KapEngine::GameObject::__update(int threadId) {
+void KapEngine::GameObject::__update() {
     if (!_active || _destroyed)
         return;
     try {
@@ -37,9 +37,7 @@ void KapEngine::GameObject::__update(int threadId) {
             if (!tr.allParentIsActive())
                 return;
         } catch (...) {}
-        if (_components[i]->getThreadRunning() == threadId) {
-            _components[i]->__update();
-        }
+        _components[i]->__update();
     }
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
         try {
@@ -47,9 +45,7 @@ void KapEngine::GameObject::__update(int threadId) {
             if (!tr.allParentIsActive())
                 return;
         } catch (...) {}
-        if (_componentsRun[i]->getThreadRunning() == threadId) {
-            _componentsRun[i]->__update();
-        }
+        _componentsRun[i]->__update();
     }
 }
 
