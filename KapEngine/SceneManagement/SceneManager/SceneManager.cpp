@@ -161,6 +161,10 @@ KapEngine::SceneManagement::Scene &KapEngine::SceneManagement::SceneManager::get
     throw Errors::SceneError("Unknown error while getting scene");
 }
 
+KapEngine::SceneManagement::Scene &KapEngine::SceneManagement::SceneManager::getScene(std::size_t const& index) {
+    return getScene(getSceneName(index));
+}
+
 KapEngine::SceneManagement::Scene &KapEngine::SceneManagement::SceneManager::getCurrentScene() {
     for (std::size_t i = 0; i < _scenes.size(); i++) {
         if (_scenes[i]->getId() == _indexScene)
