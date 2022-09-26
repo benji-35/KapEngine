@@ -11,8 +11,10 @@
 #include "Factory.hpp"
 
 KapEngine::SceneManagement::Scene::Scene(SceneManager &manager, std::string const& name) : manager(manager) {
+    Debug::log("Start init scene");
     _name = name;
     __finit();
+    Debug::log("Stop init scene");
 }
 
 KapEngine::SceneManagement::Scene::~Scene() {
@@ -26,6 +28,7 @@ KapEngine::SceneManagement::Scene::~Scene() {
 
 KapEngine::Component &KapEngine::SceneManagement::Scene::getActiveCamera() const {
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        Debug::warning("found object: " + _gameObjects[i]->getName());
         if (_gameObjects[i]->isActive() && !_gameObjects[i]->isDestroyed()) {
             try {
                 Component &comp = _gameObjects[i]->getComponent("Camera");
@@ -37,6 +40,7 @@ KapEngine::Component &KapEngine::SceneManagement::Scene::getActiveCamera() const
         }
     }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        Debug::warning("found object: " + _gameObjectsRun[i]->getName());
         if (_gameObjectsRun[i]->isActive() && !_gameObjectsRun[i]->isDestroyed()) {
             try {
                 Component &comp = _gameObjectsRun[i]->getComponent("Camera");
