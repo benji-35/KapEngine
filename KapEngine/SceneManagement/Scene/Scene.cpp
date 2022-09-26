@@ -70,14 +70,14 @@ KapEngine::KapEngine &KapEngine::SceneManagement::Scene::getEngine() {
 }
 
 void KapEngine::SceneManagement::Scene::__update(int threadId) {
-    // try {
-    //     Component camera = getActiveCamera();
-    // } catch(...) {
-    //     if (getEngine().debugMode()) {
-    //         Debug::error("No camera found in scene");
-    //     }
-    //     return;
-    // }
+    try {
+        Component camera = getActiveCamera();
+    } catch(...) {
+        if (getEngine().debugMode()) {
+            Debug::error("No camera found in scene");
+        }
+        return;
+    }
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         if (_gameObjects[i]->isActive() && !_gameObjects[i]->isDestroyed())
             _gameObjects[i]->__update(threadId);
