@@ -21,6 +21,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="KapEngineLogo100x100.png"/></td>
   <td id="projectalign">
    <div id="projectname">KapEngine<span id="projectnumber">&#160;1.1</span>
    </div>
@@ -72,7 +73,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_kap_engine_1_1_entity-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">KapEngine::Entity Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+  <div class="headertitle"><div class="title">KapEngine::Entity Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -82,8 +83,10 @@ Inheritance diagram for KapEngine::Entity:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_kap_engine_1_1_entity__inherit__graph.png" border="0" usemap="#a_kap_engine_1_1_entity_inherit__map" alt="Inheritance graph"/></div>
 <map name="a_kap_engine_1_1_entity_inherit__map" id="a_kap_engine_1_1_entity_inherit__map">
-<area shape="rect" title=" " alt="" coords="25,5,152,32"/>
-<area shape="rect" href="class_kap_engine_1_1_game_object.html" title=" " alt="" coords="5,80,172,107"/>
+<area shape="rect" title=" " alt="" coords="116,5,243,32"/>
+<area shape="rect" href="class_kap_engine_1_1_game_object.html" title=" " alt="" coords="5,87,172,114"/>
+<area shape="rect" href="class_kap_engine_1_1_graphical_1_1_graphical_lib.html" title=" " alt="" coords="196,80,344,121"/>
+<area shape="rect" href="class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html" title=" " alt="" coords="196,169,344,211"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -99,8 +102,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a46ba8d055caf7b87c912bd0c6add44d5"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_entity.html#a46ba8d055caf7b87c912bd0c6add44d5">getId</a> () const</td></tr>
 <tr class="memdesc:a46ba8d055caf7b87c912bd0c6add44d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the entity id.  <a href="class_kap_engine_1_1_entity.html#a46ba8d055caf7b87c912bd0c6add44d5">More...</a><br /></td></tr>
 <tr class="separator:a46ba8d055caf7b87c912bd0c6add44d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a942a1260060b0357c55dc2bd5c0dca3f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_entity.html#a942a1260060b0357c55dc2bd5c0dca3f">__update</a> (int threadId)=0</td></tr>
-<tr class="separator:a942a1260060b0357c55dc2bd5c0dca3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83b7b741dadb9a0873aadcf1dbc0d4c8"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_kap_engine_1_1_entity.html">Entity</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_entity.html#a83b7b741dadb9a0873aadcf1dbc0d4c8">operator=</a> (<a class="el" href="class_kap_engine_1_1_entity.html">Entity</a> const &amp;en)</td></tr>
 <tr class="separator:a83b7b741dadb9a0873aadcf1dbc0d4c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65683f73e5cdd443672f9564e73db322"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_entity.html#a65683f73e5cdd443672f9564e73db322">operator==</a> (<a class="el" href="class_kap_engine_1_1_entity.html">Entity</a> const &amp;en)</td></tr>
@@ -197,34 +198,6 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a942a1260060b0357c55dc2bd5c0dca3f" name="a942a1260060b0357c55dc2bd5c0dca3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a942a1260060b0357c55dc2bd5c0dca3f">&#9670;&nbsp;</a></span>__update()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void KapEngine::Entity::__update </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>threadId</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="class_kap_engine_1_1_game_object.html#afecaad98055606d4a7d324198de8733a">KapEngine::GameObject</a>.</p>
 
 </div>
 </div>

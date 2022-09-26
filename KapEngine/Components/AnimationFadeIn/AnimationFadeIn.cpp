@@ -5,6 +5,7 @@
 ** AnimationFadeIn
 */
 
+#include <string>
 #include "AnimationFadeIn.hpp"
 
 KapEngine::AnimationFadeIn::AnimationFadeIn(std::shared_ptr<GameObject> go) : Animation(go) {
@@ -27,6 +28,8 @@ void KapEngine::AnimationFadeIn::__onPlay() {
 
 void KapEngine::AnimationFadeIn::__updateAnim() {
     float val = ((float)_currTime / (float)_timing.asMicroSecond());
+
+    Debug::log("Fade in [" + std::to_string(val) + "/1]");
 
     if (val >= 1.0f)
         return;

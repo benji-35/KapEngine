@@ -21,6 +21,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="KapEngineLogo100x100.png"/></td>
   <td id="projectalign">
    <div id="projectname">KapEngine<span id="projectnumber">&#160;1.1</span>
    </div>
@@ -72,37 +73,44 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="_event_manager_8hpp_source.html">EventManager.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_debug_8hpp_source.html">Debug.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for EventManager.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="_event_manager_8cpp__incl.png" border="0" usemap="#a_kap_engine_2_events_2_manager_2_event_manager_8cpp" alt=""/></div>
 <map name="a_kap_engine_2_events_2_manager_2_event_manager_8cpp" id="a_kap_engine_2_events_2_manager_2_event_manager_8cpp">
-<area shape="rect" title=" " alt="" coords="156,5,339,47"/>
-<area shape="rect" href="_event_manager_8hpp.html" title=" " alt="" coords="182,95,313,121"/>
-<area shape="rect" href="_kap_engine_8hpp.html" title=" " alt="" coords="491,169,601,196"/>
-<area shape="rect" href="_errors_8hpp.html" title=" " alt="" coords="935,244,1018,271"/>
-<area shape="rect" href="_scene_manager_8hpp.html" title=" " alt="" coords="479,244,613,271"/>
-<area shape="rect" href="_graphical_lib_manager_8hpp.html" title=" " alt="" coords="285,244,455,271"/>
-<area shape="rect" href="_e_clock_8hpp.html" title=" " alt="" coords="689,244,779,271"/>
-<area shape="rect" title=" " alt="" coords="803,244,862,271"/>
-<area shape="rect" title=" " alt="" coords="938,319,1015,345"/>
-<area shape="rect" title=" " alt="" coords="827,692,881,719"/>
-<area shape="rect" title=" " alt="" coords="355,617,412,644"/>
-<area shape="rect" title=" " alt="" coords="664,543,735,569"/>
-<area shape="rect" href="_scene_8hpp.html" title=" " alt="" coords="585,319,669,345"/>
-<area shape="rect" href="_game_object_8hpp.html" title=" " alt="" coords="568,393,687,420"/>
-<area shape="rect" href="_component_8hpp.html" title=" " alt="" coords="421,468,535,495"/>
-<area shape="rect" href="_entity_8hpp.html" title=" " alt="" coords="762,468,842,495"/>
-<area shape="rect" href="_i_component_8hpp.html" title=" " alt="" coords="471,543,589,569"/>
-<area shape="rect" href="_input_8hpp.html" title=" " alt="" coords="221,543,295,569"/>
-<area shape="rect" href="_mouse_8hpp.html" title=" " alt="" coords="48,543,135,569"/>
-<area shape="rect" href="_key_8hpp.html" title=" " alt="" coords="244,617,312,644"/>
-<area shape="rect" href="_vectors_8hpp.html" title=" " alt="" coords="5,617,97,644"/>
-<area shape="rect" href="_graphical_lib_8hpp.html" title=" " alt="" coords="99,393,217,420"/>
-<area shape="rect" title=" " alt="" coords="287,319,346,345"/>
-<area shape="rect" title=" " alt="" coords="703,319,765,345"/>
-<area shape="rect" href="_e_time_8hpp.html" title=" " alt="" coords="815,319,901,345"/>
-<area shape="rect" title=" " alt="" coords="961,393,1022,420"/>
+<area shape="rect" title=" " alt="" coords="925,5,1107,47"/>
+<area shape="rect" href="_event_manager_8hpp.html" title=" " alt="" coords="900,95,1031,121"/>
+<area shape="rect" href="_debug_8hpp.html" title=" " alt="" coords="1553,169,1639,196"/>
+<area shape="rect" href="_kap_engine_8hpp.html" title=" " alt="" coords="997,169,1107,196"/>
+<area shape="rect" href="_errors_8hpp.html" title=" " alt="" coords="1236,244,1319,271"/>
+<area shape="rect" href="_scene_manager_8hpp.html" title=" " alt="" coords="230,244,365,271"/>
+<area shape="rect" href="_graphical_lib_manager_8hpp.html" title=" " alt="" coords="967,244,1137,271"/>
+<area shape="rect" href="_splash_screen_8hpp.html" title=" " alt="" coords="1123,468,1251,495"/>
+<area shape="rect" href="_e_clock_8hpp.html" title=" " alt="" coords="1374,244,1463,271"/>
+<area shape="rect" title=" " alt="" coords="1495,244,1553,271"/>
+<area shape="rect" title=" " alt="" coords="1236,319,1313,345"/>
+<area shape="rect" title=" " alt="" coords="741,692,795,719"/>
+<area shape="rect" title=" " alt="" coords="249,617,306,644"/>
+<area shape="rect" title=" " alt="" coords="521,617,591,644"/>
+<area shape="rect" href="_scene_8hpp.html" title=" " alt="" coords="370,319,454,345"/>
+<area shape="rect" href="_game_object_8hpp.html" title=" " alt="" coords="353,393,471,420"/>
+<area shape="rect" href="_component_8hpp.html" title=" " alt="" coords="355,468,469,495"/>
+<area shape="rect" href="_entity_8hpp.html" title=" " alt="" coords="793,468,873,495"/>
+<area shape="rect" href="_i_component_8hpp.html" title=" " alt="" coords="449,543,567,569"/>
+<area shape="rect" href="_input_8hpp.html" title=" " alt="" coords="692,543,767,569"/>
+<area shape="rect" href="_mouse_8hpp.html" title=" " alt="" coords="842,543,929,569"/>
+<area shape="rect" href="_key_8hpp.html" title=" " alt="" coords="697,617,765,644"/>
+<area shape="rect" href="_vectors_8hpp.html" title=" " alt="" coords="1047,617,1139,644"/>
+<area shape="rect" href="_graphical_lib_8hpp.html" title=" " alt="" coords="874,393,993,420"/>
+<area shape="rect" title=" " alt="" coords="1068,319,1127,345"/>
+<area shape="rect" title=" " alt="" coords="898,468,977,495"/>
+<area shape="rect" href="_rectangle_8hpp.html" title=" " alt="" coords="1157,543,1262,569"/>
+<area shape="rect" title=" " alt="" coords="1388,319,1449,345"/>
+<area shape="rect" href="_e_time_8hpp.html" title=" " alt="" coords="1473,319,1559,345"/>
+<area shape="rect" title=" " alt="" coords="1485,393,1547,420"/>
+<area shape="rect" title=" " alt="" coords="1634,244,1689,271"/>
+<area shape="rect" title=" " alt="" coords="1713,244,1785,271"/>
 </map>
 </div>
 </div></div><!-- contents -->

@@ -1,3 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_kap_engine_1_1_events_1_1_event_manager.html" title="Event manager." alt="" coords="5,5,147,47"/>
+<area shape="rect" id="node1" href="$class_kap_engine_1_1_entity.html" title=" " alt="" coords="5,35,132,61"/>
+<area shape="rect" id="node2" href="$class_kap_engine_1_1_game_object.html" title=" " alt="" coords="180,5,347,32"/>
+<area shape="rect" id="node3" href="$class_kap_engine_1_1_graphical_1_1_graphical_lib.html" title=" " alt="" coords="189,57,337,98"/>
+<area shape="rect" id="node4" href="$class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html" title=" " alt="" coords="395,57,543,98"/>
 </map>

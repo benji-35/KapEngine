@@ -80,10 +80,33 @@ namespace KapEngine {
 
                 KapEngine &getEngine();
 
+                /**
+                 * @warning Do not call or modifie this function
+                 */
                 void __update(int threadId);
+                /**
+                 * @warning Do not call or modifie this function
+                 */
                 void __changingScene();
-                void __engineStop();
+                /**
+                 * @warning Do not call or modifie this function
+                 */
+                void __engineStop(bool currentScene = false);
+                /**
+                 * @warning Do not call or modifie this function
+                 */
+                void __init();
+                /**
+                 * @warning Do not call or modifie this function
+                 */
+                void __finit();
 
+                /**
+                 * @brief Display all objects in scene
+                 * 
+                 * @param showComponents if you want to display components attached to your objects
+                 */
+                void dump(bool showComponents = false);
 
             protected:
             private:

@@ -11,13 +11,10 @@
 #include "Factory.hpp"
 
 KapEngine::SceneManagement::Scene::Scene(SceneManager &manager, std::string const& name) : manager(manager) {
+    Debug::log("Start init scene");
     _name = name;
-
-    auto mainCamera = Factory::createEmptyGameObject(*this, "Main Camera");
-    auto cam = std::make_shared<Camera>(mainCamera);
-    mainCamera->addComponent(cam);
-
-    addGameObject(mainCamera);
+    __finit();
+    Debug::log("Stop init scene");
 }
 
 KapEngine::SceneManagement::Scene::~Scene() {
@@ -89,16 +86,22 @@ void KapEngine::SceneManagement::Scene::__update(int threadId) {
 }
 
 void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {
+    std::lock_guard<std::recursive_mutex> lk(KapEngine::debugMutex);
+    if (go->getId() != 0) {
+        Debug::warning("Object " + go->getName() + " already added in scene: " + go->getScene().getName());
+        return;
+    }
     _idObjectMax++;
     go->__setId(_idObjectMax);
     if (getEngine().debugMode()) {
         Debug::log("Add object " + go->getName() + " in scene " + getName());
     }
-    if (getEngine().isRunning()) {
+    if (!getEngine().isRunning()) {
         _gameObjects.push_back(go);
     } else {
         _gameObjectsRun.push_back(go);
     }
+    KapEngine::debugMutex.unlock();
 }
 
 void KapEngine::SceneManagement::Scene::__changingScene() {
@@ -108,11 +111,15 @@ void KapEngine::SceneManagement::Scene::__changingScene() {
     _gameObjectsRun.clear();
 }
 
-void KapEngine::SceneManagement::Scene::__engineStop() {
+void KapEngine::SceneManagement::Scene::__engineStop(bool currentScene) {
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (currentScene)
+            _gameObjects[i]->__stoppingGame();
         _gameObjects[i]->__engineStop();
     }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (currentScene)
+            _gameObjectsRun[i]->__stoppingGame();
         _gameObjectsRun[i]->__engineStop();
     }
 }
@@ -141,4 +148,60 @@ std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::
 
 std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::getObject(Entity const& en) {
     return getObject(en.getId());
+}
+
+void KapEngine::SceneManagement::Scene::removeGameObject(std::shared_ptr<GameObject> go) {
+    if (go.use_count() == 0)
+        return;
+    removeGameObject(go->getId());
+}
+
+void KapEngine::SceneManagement::Scene::removeGameObject(std::size_t index) {
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == index) {
+            _gameObjectsRun[i]->__destroyIt();
+            _gameObjectsRun[i]->__engineStop();
+            _gameObjectsRun[i].reset();
+            _gameObjectsRun.erase(_gameObjectsRun.begin() + i);
+            break;
+        }
+    }
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == index) {
+            _gameObjectsRun[i]->__destroyIt();
+            break;
+        }
+    }
+}
+
+void KapEngine::SceneManagement::Scene::__init() {
+    _gameObjectsRun.clear();
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        _gameObjects[i]->__init();
+    }
+    dump(true);
+}
+
+void KapEngine::SceneManagement::Scene::__finit() {
+    auto mainCamera = Factory::createEmptyGameObject(*this, "Main Camera");
+    auto cam = std::make_shared<Camera>(mainCamera);
+    mainCamera->addComponent(cam);
+}
+
+void KapEngine::SceneManagement::Scene::dump(bool b) {
+    Debug::log("Scene: " + getName());
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (b) {
+            _gameObjects[i]->dump();
+        } else {
+            Debug::log("-GameObject: " + _gameObjects[i]->getName());
+        }
+    }
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (b) {
+            _gameObjectsRun[i]->dump();
+        } else {
+            Debug::log("-GameObject: " + _gameObjectsRun[i]->getName());
+        }
+    }
 }

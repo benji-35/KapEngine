@@ -30,8 +30,6 @@ KapEngine::GameObject &KapEngine::Component::getGameObject() {
 
 void KapEngine::Component::__update() {
     try {
-        if (!__checkValidity())
-            return;
         __awake();
         if (!__checkValidity())
             return;
@@ -51,7 +49,7 @@ void KapEngine::Component::__update() {
 }
 
 void KapEngine::Component::__awake() {
-    if (_awakeDone)
+    if (_awakeDone || getGameObject().isDestroyed())
         return;
     _awakeDone = true;
     onAwake();

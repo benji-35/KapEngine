@@ -21,6 +21,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="KapEngineLogo100x100.png"/></td>
   <td id="projectalign">
    <div id="projectname">KapEngine<span id="projectnumber">&#160;1.1</span>
    </div>
@@ -81,11 +82,18 @@ Inheritance diagram for KapEngine::IComponent:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_kap_engine_1_1_i_component__inherit__graph.png" border="0" usemap="#a_kap_engine_1_1_i_component_inherit__map" alt="Inheritance graph"/></div>
 <map name="a_kap_engine_1_1_i_component_inherit__map" id="a_kap_engine_1_1_i_component_inherit__map">
-<area shape="rect" title=" " alt="" coords="168,5,332,32"/>
-<area shape="rect" href="class_kap_engine_1_1_component.html" title=" " alt="" coords="170,80,330,107"/>
-<area shape="rect" href="class_kap_engine_1_1_animation.html" title=" " alt="" coords="5,155,156,181"/>
-<area shape="rect" href="class_kap_engine_1_1_camera.html" title=" " alt="" coords="181,155,319,181"/>
-<area shape="rect" href="class_kap_engine_1_1_transform.html" title=" " alt="" coords="344,155,495,181"/>
+<area shape="rect" title=" " alt="" coords="5,220,169,247"/>
+<area shape="rect" href="class_kap_engine_1_1_component.html" title=" " alt="" coords="217,220,377,247"/>
+<area shape="rect" href="class_kap_engine_1_1_animation.html" title=" " alt="" coords="453,31,603,57"/>
+<area shape="rect" href="class_kap_engine_1_1_animator.html" title=" " alt="" coords="455,81,601,108"/>
+<area shape="rect" href="class_kap_engine_1_1_camera.html" title=" " alt="" coords="459,132,597,159"/>
+<area shape="rect" href="class_kap_engine_1_1_scene_management_1_1_splash_screen_manager.html" title=" " alt="" coords="425,183,631,225"/>
+<area shape="rect" href="class_kap_engine_1_1_transform.html" title=" " alt="" coords="453,249,603,276"/>
+<area shape="rect" href="class_kap_engine_1_1_u_i_1_1_canvas.html" title=" " alt="" coords="449,300,607,327"/>
+<area shape="rect" href="class_kap_engine_1_1_u_i_1_1_image.html" title=" " alt="" coords="453,351,603,377"/>
+<area shape="rect" href="class_kap_engine_1_1_u_i_1_1_text.html" title=" " alt="" coords="458,401,598,428"/>
+<area shape="rect" href="class_kap_engine_1_1_animation_fade_in.html" title=" " alt="" coords="684,5,875,32"/>
+<area shape="rect" href="class_kap_engine_1_1_animation_fade_out.html" title=" " alt="" coords="679,56,880,83"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -111,15 +119,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9f6d442a72bc9d7da87d599239368f59"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a9f6d442a72bc9d7da87d599239368f59">onDisplay</a> ()=0</td></tr>
 <tr class="memdesc:a9f6d442a72bc9d7da87d599239368f59"><td class="mdescLeft">&#160;</td><td class="mdescRight">use to display some things this function is call after all updates fucntion  <a href="class_kap_engine_1_1_i_component.html#a9f6d442a72bc9d7da87d599239368f59">More...</a><br /></td></tr>
 <tr class="separator:a9f6d442a72bc9d7da87d599239368f59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addd4790bdea76e96eb45b889f13ad774"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#addd4790bdea76e96eb45b889f13ad774">onTriggerEnter</a> ()=0</td></tr>
-<tr class="memdesc:addd4790bdea76e96eb45b889f13ad774"><td class="mdescLeft">&#160;</td><td class="mdescRight">something enter in object  <a href="class_kap_engine_1_1_i_component.html#addd4790bdea76e96eb45b889f13ad774">More...</a><br /></td></tr>
-<tr class="separator:addd4790bdea76e96eb45b889f13ad774"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9df614aea7cd9757db4bae9c42e0f314"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a9df614aea7cd9757db4bae9c42e0f314">onTriggerStay</a> ()=0</td></tr>
-<tr class="memdesc:a9df614aea7cd9757db4bae9c42e0f314"><td class="mdescLeft">&#160;</td><td class="mdescRight">something stay in object  <a href="class_kap_engine_1_1_i_component.html#a9df614aea7cd9757db4bae9c42e0f314">More...</a><br /></td></tr>
-<tr class="separator:a9df614aea7cd9757db4bae9c42e0f314"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3463cec919c89a6f7ee8848dc0293cd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#ad3463cec919c89a6f7ee8848dc0293cd">onTriggerExit</a> ()=0</td></tr>
-<tr class="memdesc:ad3463cec919c89a6f7ee8848dc0293cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">something out of object  <a href="class_kap_engine_1_1_i_component.html#ad3463cec919c89a6f7ee8848dc0293cd">More...</a><br /></td></tr>
-<tr class="separator:ad3463cec919c89a6f7ee8848dc0293cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1c9729d03290823e6a91330957357d7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#ae1c9729d03290823e6a91330957357d7">onTriggerEnter</a> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt; go)=0</td></tr>
+<tr class="memdesc:ae1c9729d03290823e6a91330957357d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">something enter in object  <a href="class_kap_engine_1_1_i_component.html#ae1c9729d03290823e6a91330957357d7">More...</a><br /></td></tr>
+<tr class="separator:ae1c9729d03290823e6a91330957357d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47644f2666e35a2a47101faa3dacd974"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a47644f2666e35a2a47101faa3dacd974">onTriggerStay</a> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt; go)=0</td></tr>
+<tr class="memdesc:a47644f2666e35a2a47101faa3dacd974"><td class="mdescLeft">&#160;</td><td class="mdescRight">something stay in object  <a href="class_kap_engine_1_1_i_component.html#a47644f2666e35a2a47101faa3dacd974">More...</a><br /></td></tr>
+<tr class="separator:a47644f2666e35a2a47101faa3dacd974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c37dd7e1dd3e0ee4d5aa04dae8737dd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a5c37dd7e1dd3e0ee4d5aa04dae8737dd">onTriggerExit</a> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt; go)=0</td></tr>
+<tr class="memdesc:a5c37dd7e1dd3e0ee4d5aa04dae8737dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">something out of object  <a href="class_kap_engine_1_1_i_component.html#a5c37dd7e1dd3e0ee4d5aa04dae8737dd">More...</a><br /></td></tr>
+<tr class="separator:a5c37dd7e1dd3e0ee4d5aa04dae8737dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a912e1e80c223ff56401b1ebc33ff1dea"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a912e1e80c223ff56401b1ebc33ff1dea">onMouseEnter</a> ()=0</td></tr>
 <tr class="memdesc:a912e1e80c223ff56401b1ebc33ff1dea"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when mouse enter object  <a href="class_kap_engine_1_1_i_component.html#a912e1e80c223ff56401b1ebc33ff1dea">More...</a><br /></td></tr>
 <tr class="separator:a912e1e80c223ff56401b1ebc33ff1dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,6 +137,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad49a4898abe859c7b657779a42b38b62"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#ad49a4898abe859c7b657779a42b38b62">onMouseExit</a> ()=0</td></tr>
 <tr class="memdesc:ad49a4898abe859c7b657779a42b38b62"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when mouse leave object  <a href="class_kap_engine_1_1_i_component.html#ad49a4898abe859c7b657779a42b38b62">More...</a><br /></td></tr>
 <tr class="separator:ad49a4898abe859c7b657779a42b38b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0ce747cc480c673680e7c8a6b2d773c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#ab0ce747cc480c673680e7c8a6b2d773c">checkComponentValidity</a> ()=0</td></tr>
+<tr class="memdesc:ab0ce747cc480c673680e7c8a6b2d773c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check you component is runnable With this function you can add some conditions to make your component runnable or not.  <a href="class_kap_engine_1_1_i_component.html#ab0ce747cc480c673680e7c8a6b2d773c">More...</a><br /></td></tr>
+<tr class="separator:ab0ce747cc480c673680e7c8a6b2d773c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabb8d97371fdedc6812acc3a49e4e9a9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#aabb8d97371fdedc6812acc3a49e4e9a9">onDestroy</a> ()=0</td></tr>
+<tr class="memdesc:aabb8d97371fdedc6812acc3a49e4e9a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">call when component destroyed  <a href="class_kap_engine_1_1_i_component.html#aabb8d97371fdedc6812acc3a49e4e9a9">More...</a><br /></td></tr>
+<tr class="separator:aabb8d97371fdedc6812acc3a49e4e9a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a767db4fe6519a7b53b13831b641e06c1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a767db4fe6519a7b53b13831b641e06c1">onGameQuit</a> ()=0</td></tr>
+<tr class="memdesc:a767db4fe6519a7b53b13831b641e06c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">call when game is turn off  <a href="class_kap_engine_1_1_i_component.html#a767db4fe6519a7b53b13831b641e06c1">More...</a><br /></td></tr>
+<tr class="separator:a767db4fe6519a7b53b13831b641e06c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add978dce1249cf57ae1dccadfdd55611"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#add978dce1249cf57ae1dccadfdd55611">onDisable</a> ()=0</td></tr>
+<tr class="memdesc:add978dce1249cf57ae1dccadfdd55611"><td class="mdescLeft">&#160;</td><td class="mdescRight">call when <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> is disable after being enable  <a href="class_kap_engine_1_1_i_component.html#add978dce1249cf57ae1dccadfdd55611">More...</a><br /></td></tr>
+<tr class="separator:add978dce1249cf57ae1dccadfdd55611"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a386981d99fb1b83f8391a5028006354c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a386981d99fb1b83f8391a5028006354c">onEnable</a> ()=0</td></tr>
+<tr class="memdesc:a386981d99fb1b83f8391a5028006354c"><td class="mdescLeft">&#160;</td><td class="mdescRight">call when <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> is enable after being disable  <a href="class_kap_engine_1_1_i_component.html#a386981d99fb1b83f8391a5028006354c">More...</a><br /></td></tr>
+<tr class="separator:a386981d99fb1b83f8391a5028006354c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a65e72b02d1ad60b00dbe0d6fe81acdcd" name="a65e72b02d1ad60b00dbe0d6fe81acdcd"></a>
@@ -157,6 +180,38 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab0ce747cc480c673680e7c8a6b2d773c" name="ab0ce747cc480c673680e7c8a6b2d773c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0ce747cc480c673680e7c8a6b2d773c">&#9670;&nbsp;</a></span>checkComponentValidity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool KapEngine::IComponent::checkComponentValidity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check you component is runnable With this function you can add some conditions to make your component runnable or not. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if your component is runnable </dd>
+<dd>
+false if your component is not runnable </dd></dl>
+
+<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#a38ff04c83b24dd3075fc06e990ae6a71">KapEngine::Component</a>, <a class="el" href="class_kap_engine_1_1_u_i_1_1_canvas.html#a16f6c2961fa6c49c569b45549e05064c">KapEngine::UI::Canvas</a>, <a class="el" href="class_kap_engine_1_1_u_i_1_1_image.html#a7ee37465e769e36dbc91f85a01a97b1e">KapEngine::UI::Image</a>, and <a class="el" href="class_kap_engine_1_1_u_i_1_1_text.html#afaf2ed1e2f9fcb123e30dd2ac79a4485">KapEngine::UI::Text</a>.</p>
+
+</div>
+</div>
 <a id="a516692f3532d91acfb2043a28f5664d9" name="a516692f3532d91acfb2043a28f5664d9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a516692f3532d91acfb2043a28f5664d9">&#9670;&nbsp;</a></span>onAwake()</h2>
 
@@ -187,6 +242,64 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="aabb8d97371fdedc6812acc3a49e4e9a9" name="aabb8d97371fdedc6812acc3a49e4e9a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabb8d97371fdedc6812acc3a49e4e9a9">&#9670;&nbsp;</a></span>onDestroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void KapEngine::IComponent::onDestroy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>call when component destroyed </p>
+
+<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#ac95c005f4b953ceacefaaba6fb936e28">KapEngine::Component</a>.</p>
+
+</div>
+</div>
+<a id="add978dce1249cf57ae1dccadfdd55611" name="add978dce1249cf57ae1dccadfdd55611"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add978dce1249cf57ae1dccadfdd55611">&#9670;&nbsp;</a></span>onDisable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void KapEngine::IComponent::onDisable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>call when <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> is disable after being enable </p>
+
+<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#af8e296f52708cb6ad0ffe3eacb5e420c">KapEngine::Component</a>.</p>
+
+</div>
+</div>
 <a id="a9f6d442a72bc9d7da87d599239368f59" name="a9f6d442a72bc9d7da87d599239368f59"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9f6d442a72bc9d7da87d599239368f59">&#9670;&nbsp;</a></span>onDisplay()</h2>
 
@@ -212,7 +325,36 @@ Public Member Functions</h2></td></tr>
 
 <p>use to display some things this function is call after all updates fucntion </p>
 
-<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#ace3517e90f834811b3db4f3e372eb734">KapEngine::Component</a>.</p>
+<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#ace3517e90f834811b3db4f3e372eb734">KapEngine::Component</a>, <a class="el" href="class_kap_engine_1_1_u_i_1_1_image.html#a4c2f081ad08777263b1813c73e08ccf5">KapEngine::UI::Image</a>, and <a class="el" href="class_kap_engine_1_1_u_i_1_1_text.html#a4bd4fd575fb51625d617a6b44f2cebde">KapEngine::UI::Text</a>.</p>
+
+</div>
+</div>
+<a id="a386981d99fb1b83f8391a5028006354c" name="a386981d99fb1b83f8391a5028006354c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a386981d99fb1b83f8391a5028006354c">&#9670;&nbsp;</a></span>onEnable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void KapEngine::IComponent::onEnable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>call when <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> is enable after being disable </p>
+
+<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#a64a2619b7ec240819cecef7a35a676cf">KapEngine::Component</a>.</p>
 
 </div>
 </div>
@@ -241,7 +383,36 @@ Public Member Functions</h2></td></tr>
 
 <p>call eachv x ms </p>
 
-<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#a6da1dd9c9f7f19bb7aa05276142d4a5b">KapEngine::Component</a>, and <a class="el" href="class_kap_engine_1_1_animation.html#a801debc40b396bdd4081a45b25d5306d">KapEngine::Animation</a>.</p>
+<p>Implemented in <a class="el" href="class_kap_engine_1_1_scene_management_1_1_splash_screen_manager.html#ada2a3bc3aba132cef28cd8660c486247">KapEngine::SceneManagement::SplashScreenManager</a>, <a class="el" href="class_kap_engine_1_1_component.html#a6da1dd9c9f7f19bb7aa05276142d4a5b">KapEngine::Component</a>, <a class="el" href="class_kap_engine_1_1_animation.html#a801debc40b396bdd4081a45b25d5306d">KapEngine::Animation</a>, and <a class="el" href="class_kap_engine_1_1_animator.html#aef5398427b5c9d14a33356217a173f89">KapEngine::Animator</a>.</p>
+
+</div>
+</div>
+<a id="a767db4fe6519a7b53b13831b641e06c1" name="a767db4fe6519a7b53b13831b641e06c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a767db4fe6519a7b53b13831b641e06c1">&#9670;&nbsp;</a></span>onGameQuit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void KapEngine::IComponent::onGameQuit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>call when game is turn off </p>
+
+<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#a1a4e8b0f239a538fdc8a64a8e9850197">KapEngine::Component</a>.</p>
 
 </div>
 </div>
@@ -388,12 +559,12 @@ Public Member Functions</h2></td></tr>
 <p>call component start </p>
 <p >will be called when the scene is loaded or when its <a class="el" href="class_kap_engine_1_1_game_object.html">KapEngine::GameObject</a> is active after it is disabled </p>
 
-<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#ae7324857a80396521eae33fef7877d5f">KapEngine::Component</a>, and <a class="el" href="class_kap_engine_1_1_transform.html#abd2da9bf98baae80b36ec24751fe0e61">KapEngine::Transform</a>.</p>
+<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#ae7324857a80396521eae33fef7877d5f">KapEngine::Component</a>, <a class="el" href="class_kap_engine_1_1_animator.html#a5784730db63e59c741975484b99ab26e">KapEngine::Animator</a>, and <a class="el" href="class_kap_engine_1_1_transform.html#abd2da9bf98baae80b36ec24751fe0e61">KapEngine::Transform</a>.</p>
 
 </div>
 </div>
-<a id="addd4790bdea76e96eb45b889f13ad774" name="addd4790bdea76e96eb45b889f13ad774"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#addd4790bdea76e96eb45b889f13ad774">&#9670;&nbsp;</a></span>onTriggerEnter()</h2>
+<a id="ae1c9729d03290823e6a91330957357d7" name="ae1c9729d03290823e6a91330957357d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1c9729d03290823e6a91330957357d7">&#9670;&nbsp;</a></span>onTriggerEnter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -404,7 +575,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void KapEngine::IComponent::onTriggerEnter </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt;&#160;</td>
+          <td class="paramname"><em>go</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -417,12 +589,12 @@ Public Member Functions</h2></td></tr>
 
 <p>something enter in object </p>
 
-<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#ae41f81b2b8fc2df74b49aa053ccfdfef">KapEngine::Component</a>.</p>
+<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#a3c2f3b1e54171db306e88d605c44e3ee">KapEngine::Component</a>.</p>
 
 </div>
 </div>
-<a id="ad3463cec919c89a6f7ee8848dc0293cd" name="ad3463cec919c89a6f7ee8848dc0293cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3463cec919c89a6f7ee8848dc0293cd">&#9670;&nbsp;</a></span>onTriggerExit()</h2>
+<a id="a5c37dd7e1dd3e0ee4d5aa04dae8737dd" name="a5c37dd7e1dd3e0ee4d5aa04dae8737dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c37dd7e1dd3e0ee4d5aa04dae8737dd">&#9670;&nbsp;</a></span>onTriggerExit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -433,7 +605,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void KapEngine::IComponent::onTriggerExit </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt;&#160;</td>
+          <td class="paramname"><em>go</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -446,12 +619,12 @@ Public Member Functions</h2></td></tr>
 
 <p>something out of object </p>
 
-<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#a12ef147fe66ad77cfd29a38f873fe5a4">KapEngine::Component</a>.</p>
+<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#a3aa4aee06d39a2520c3e43366a4cfd9c">KapEngine::Component</a>.</p>
 
 </div>
 </div>
-<a id="a9df614aea7cd9757db4bae9c42e0f314" name="a9df614aea7cd9757db4bae9c42e0f314"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9df614aea7cd9757db4bae9c42e0f314">&#9670;&nbsp;</a></span>onTriggerStay()</h2>
+<a id="a47644f2666e35a2a47101faa3dacd974" name="a47644f2666e35a2a47101faa3dacd974"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47644f2666e35a2a47101faa3dacd974">&#9670;&nbsp;</a></span>onTriggerStay()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -462,7 +635,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void KapEngine::IComponent::onTriggerStay </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt;&#160;</td>
+          <td class="paramname"><em>go</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -475,7 +649,7 @@ Public Member Functions</h2></td></tr>
 
 <p>something stay in object </p>
 
-<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#abb06f4a35e00e15885489b42756111a1">KapEngine::Component</a>.</p>
+<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#a2281d91b4d138a69a57ba87651c50df7">KapEngine::Component</a>.</p>
 
 </div>
 </div>
@@ -504,7 +678,7 @@ Public Member Functions</h2></td></tr>
 
 <p>call each frame </p>
 
-<p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#a2ddabe99b1a7ef5c9a5eba56b20b05eb">KapEngine::Component</a>.</p>
+<p>Implemented in <a class="el" href="class_kap_engine_1_1_scene_management_1_1_splash_screen_manager.html#afa2b8cff7019b54ea565b4a8f443e863">KapEngine::SceneManagement::SplashScreenManager</a>, and <a class="el" href="class_kap_engine_1_1_component.html#a2ddabe99b1a7ef5c9a5eba56b20b05eb">KapEngine::Component</a>.</p>
 
 </div>
 </div>

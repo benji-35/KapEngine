@@ -21,6 +21,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="KapEngineLogo100x100.png"/></td>
   <td id="projectalign">
    <div id="projectname">KapEngine<span id="projectnumber">&#160;1.1</span>
    </div>
@@ -99,14 +100,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a161438ebd2d41a50420bdc396cc5cd51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2c9f2ed936880753d33bc7cd7b8d035"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_graphical_1_1_graphical_lib.html">GraphicalLib</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_graphical_1_1_graphical_lib_manager.html#ab2c9f2ed936880753d33bc7cd7b8d035">getLib</a> (std::size_t index)</td></tr>
 <tr class="separator:ab2c9f2ed936880753d33bc7cd7b8d035"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac488da9163a241216328ed16c77d1aaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_graphical_1_1_graphical_lib_manager.html#ac488da9163a241216328ed16c77d1aaa">setMultiThread</a> (bool b)</td></tr>
-<tr class="separator:ac488da9163a241216328ed16c77d1aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29394b2318ea150d5c318f921bf3ddd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_graphical_1_1_graphical_lib_manager.html#a29394b2318ea150d5c318f921bf3ddd4">update</a> ()</td></tr>
-<tr class="separator:a29394b2318ea150d5c318f921bf3ddd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15751f3f20ff27ee69a279eef3b2fb98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_graphical_1_1_graphical_lib_manager.html#a15751f3f20ff27ee69a279eef3b2fb98">__update</a> ()</td></tr>
+<tr class="separator:a15751f3f20ff27ee69a279eef3b2fb98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62f98c82cc9449c512f74c1f021a7456"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_graphical_1_1_graphical_lib_manager.html#a62f98c82cc9449c512f74c1f021a7456">getCurrLib</a> () const</td></tr>
 <tr class="separator:a62f98c82cc9449c512f74c1f021a7456"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86b478b075b238998b80b921965508f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_kap_engine_1_1_kap_engine.html">KapEngine</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_graphical_1_1_graphical_lib_manager.html#a86b478b075b238998b80b921965508f0">getEngine</a> () const</td></tr>
 <tr class="separator:a86b478b075b238998b80b921965508f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a035ea644579ddd8a230cb5be1d64f581"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_graphical_1_1_graphical_lib_manager.html#a035ea644579ddd8a230cb5be1d64f581">changeLib</a> (std::size_t const &amp;libId)</td></tr>
+<tr class="separator:a035ea644579ddd8a230cb5be1d64f581"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada6422531fd5a3181e4ccf58317bc589"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_graphical_1_1_graphical_lib_manager.html#ada6422531fd5a3181e4ccf58317bc589">changeLib</a> (std::string const &amp;libName)</td></tr>
+<tr class="separator:ada6422531fd5a3181e4ccf58317bc589"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="afb1c2618c463284d8afff1c64e906558" name="afb1c2618c463284d8afff1c64e906558"></a>
@@ -145,6 +148,23 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a15751f3f20ff27ee69a279eef3b2fb98" name="a15751f3f20ff27ee69a279eef3b2fb98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15751f3f20ff27ee69a279eef3b2fb98">&#9670;&nbsp;</a></span>__update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void KapEngine::Graphical::GraphicalLibManager::__update </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a9a7b2fe0e624d777b540ea538ddb63a4" name="a9a7b2fe0e624d777b540ea538ddb63a4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9a7b2fe0e624d777b540ea538ddb63a4">&#9670;&nbsp;</a></span>addLib()</h2>
 
@@ -156,6 +176,42 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_graphical_1_1_graphical_lib.html">GraphicalLib</a> &gt;&#160;</td>
           <td class="paramname"><em>lib</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a035ea644579ddd8a230cb5be1d64f581" name="a035ea644579ddd8a230cb5be1d64f581"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a035ea644579ddd8a230cb5be1d64f581">&#9670;&nbsp;</a></span>changeLib() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void KapEngine::Graphical::GraphicalLibManager::changeLib </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t const &amp;&#160;</td>
+          <td class="paramname"><em>libId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ada6422531fd5a3181e4ccf58317bc589" name="ada6422531fd5a3181e4ccf58317bc589"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada6422531fd5a3181e4ccf58317bc589">&#9670;&nbsp;</a></span>changeLib() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void KapEngine::Graphical::GraphicalLibManager::changeLib </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
+          <td class="paramname"><em>libName</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -332,49 +388,6 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">std::string const &amp;&#160;</td>
           <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac488da9163a241216328ed16c77d1aaa" name="ac488da9163a241216328ed16c77d1aaa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac488da9163a241216328ed16c77d1aaa">&#9670;&nbsp;</a></span>setMultiThread()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void KapEngine::Graphical::GraphicalLibManager::setMultiThread </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>b</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a29394b2318ea150d5c318f921bf3ddd4" name="a29394b2318ea150d5c318f921bf3ddd4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29394b2318ea150d5c318f921bf3ddd4">&#9670;&nbsp;</a></span>update()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void KapEngine::Graphical::GraphicalLibManager::update </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>

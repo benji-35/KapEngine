@@ -19,7 +19,9 @@ KapEngine::SceneManagement::SplashScreen::SplashScreen(KapEngine &engine) : _eng
 KapEngine::SceneManagement::SplashScreen::~SplashScreen() {}
 
 void KapEngine::SceneManagement::SplashScreen::__init() {
-    _sceneName = _engine.getSceneManager()->getCurrentScene().getName();
+    _sceneId = _engine.getSceneManager()->getCurrentSceneId();
+    if (_sceneId == 0)
+        _sceneId = 1;
 
     //init KapEngine Splash Screen
     if (_displayKapEngineLogo) {
@@ -49,6 +51,10 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
 
     //create splash screen scene
     auto sceneSplash = Factory::createScene(_engine, "SplashScreen");
+    
+    //set splash screen scene as first scene
+    _engine.getSceneManager()->loadScene(sceneSplash->getId());
+    
     auto canvas = UI::UiFactory::createCanvas(*sceneSplash);
 
     auto animator = std::make_shared<Animator>(canvas);
@@ -60,6 +66,8 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
     for (std::size_t i = 0; i < _splahes.size(); i++) {
         std::string objName = "Image(" + std::to_string(i) + ")";
         std::shared_ptr<GameObject> img = UI::UiFactory::createImage(*sceneSplash, objName, _splahes[i]->pathImage);
+
+        Debug::log("Create splash screen " + objName);
 
         Tools::Vector3 startPos(_splahes[i]->pos.getX(), _splahes[i]->pos.getY(), 0);
         Tools::Vector3 startScale(_splahes[i]->size.getX(), _splahes[i]->size.getY(), 0);
@@ -99,7 +107,7 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
 
         if (i == _splahes.size() - 1) {
             animOut->getOnEnd().registerAction([this](){
-                this->_engine.getSceneManager()->loadScene(this->_sceneName);
+                this->_engine.getSceneManager()->loadScene(this->_sceneId);
             });
         }
 
@@ -123,9 +131,8 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
     try {
         Camera &cam = (Camera&)sceneSplash->getActiveCamera();
         cam.setBackgroundColor(Tools::Color::black());
-        Debug::log("Activa camera on object " + std::to_string(cam.getGameObject().getId()));
-    } catch(...) {}
-
-    //set splash screen scene as first scene
-    _engine.getSceneManager()->loadScene("SplashScreen");
+        Debug::log("[Splash Screen]Active camera on object " + std::to_string(cam.getGameObject().getId()));
+    } catch(...) {
+        Debug::error("Camera not found for splashscreen creation");
+    }
 }

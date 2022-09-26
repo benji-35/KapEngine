@@ -1,0 +1,5 @@
+<map id="KapEngine::SceneManagement::SplashScreen::SplashScreenNode" name="KapEngine::SceneManagement::SplashScreen::SplashScreenNode">
+<area shape="rect" id="node1" title=" " alt="" coords="82,109,313,151"/>
+<area shape="rect" id="node2" href="$class_kap_engine_1_1_tools_1_1_vector2.html" title=" " alt="" coords="5,5,181,32"/>
+<area shape="rect" id="node3" href="$class_kap_engine_1_1_tools_1_1_rectangle.html" title=" " alt="" coords="206,5,397,32"/>
+</map>

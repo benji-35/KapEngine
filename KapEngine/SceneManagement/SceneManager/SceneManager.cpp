@@ -10,13 +10,20 @@
 #include "Factory.hpp"
 
 KapEngine::SceneManagement::SceneManager::SceneManager(KapEngine &engine) : _engine(engine) {
+    if (_engine.debugMode())
+        Debug::log("Create Default Scene");
     std::shared_ptr<Scene> baseScene = std::make_shared<Scene>(*this, "Default Scene");
     addScene(baseScene);
+    if (_engine.debugMode())
+        Debug::log("End init sceneManager");
 }
 
 KapEngine::SceneManagement::SceneManager::~SceneManager() {
     for (std::size_t i = 0; i < _scenes.size(); i++) {
-        _scenes[i]->__engineStop();
+        bool current = false;
+        if (_scenes[i]->getId() == _indexScene)
+            current = true;
+        _scenes[i]->__engineStop(current);
         _scenes[i].reset();
     }
 }
@@ -30,25 +37,27 @@ void KapEngine::SceneManagement::SceneManager::addScene(std::shared_ptr<Scene> s
         }
     }
 
+    _maxIndex++;
+    scene->setId(_maxIndex);
     _scenes.push_back(scene);
+    if (_engine.debugMode())
+        Debug::log("Scene " + scene->getName() + " added to scene manager");
 }
 
 void KapEngine::SceneManagement::SceneManager::addScene(std::string const& name) {
     std::shared_ptr<Scene> nScene = std::make_shared<Scene>(*this, name);
 
-    _scenes.push_back(nScene);
+    addScene(nScene);
 }
 
 void KapEngine::SceneManagement::SceneManager::__update(int threadId) {
-    if (_indexScene >= _scenes.size()) {
-        if (_engine.debugMode()) {
-            Debug::error("Current scene out of range of all scenes");
-        } else {
-            throw Errors::SceneError("Current scene out of range");
-        }
-        return;
+    try {
+        if (_indexScene == 0)
+            loadScene(1);
+        getCurrentScene().__update(threadId);
+    } catch(...) {
+        Debug::error("Cannot update scene");
     }
-    _scenes[_indexScene]->__update(threadId);
 }
 
 void KapEngine::SceneManagement::SceneManager::removeScene(std::size_t index) {
@@ -118,10 +127,7 @@ void KapEngine::SceneManagement::SceneManager::loadScene(std::string const& scen
         }
         return;
     }
-    std::size_t gdIndex = getSceneIndexInList(_indexScene);
-    _scenes[gdIndex]->__changingScene();
-    gdIndex = getSceneIndex(sceneName);
-    _indexScene = gdIndex;
+    loadScene(getSceneIndex(sceneName));
 }
 
 void KapEngine::SceneManagement::SceneManager::loadScene(std::size_t index) {
@@ -131,7 +137,15 @@ void KapEngine::SceneManagement::SceneManager::loadScene(std::size_t index) {
         }
         return;
     }
-    loadScene(getSceneName(index));
+    try {
+        getCurrentScene().__changingScene();
+    } catch(...) {}
+    _indexScene = index;
+    getCurrentScene().__init();
+    if (_engine.debugMode()) {
+        getCurrentScene().dump(true);
+        Debug::warning("Changing scene to scene " + getSceneName(index));
+    }
 }
 
 std::string KapEngine::SceneManagement::SceneManager::getSceneName(std::size_t index) {
@@ -151,6 +165,10 @@ KapEngine::SceneManagement::Scene &KapEngine::SceneManagement::SceneManager::get
             return *_scenes[i];
     }
     throw Errors::SceneError("Unknown error while getting scene");
+}
+
+KapEngine::SceneManagement::Scene &KapEngine::SceneManagement::SceneManager::getScene(std::size_t const& index) {
+    return getScene(getSceneName(index));
 }
 
 KapEngine::SceneManagement::Scene &KapEngine::SceneManagement::SceneManager::getCurrentScene() {

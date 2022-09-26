@@ -21,6 +21,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="KapEngineLogo100x100.png"/></td>
   <td id="projectalign">
    <div id="projectname">KapEngine<span id="projectnumber">&#160;1.1</span>
    </div>
@@ -83,9 +84,11 @@ Inheritance diagram for KapEngine::Animation:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_kap_engine_1_1_animation__inherit__graph.png" border="0" usemap="#a_kap_engine_1_1_animation_inherit__map" alt="Inheritance graph"/></div>
 <map name="a_kap_engine_1_1_animation_inherit__map" id="a_kap_engine_1_1_animation_inherit__map">
-<area shape="rect" title=" " alt="" coords="12,155,163,181"/>
-<area shape="rect" href="class_kap_engine_1_1_component.html" title=" " alt="" coords="7,80,167,107"/>
-<area shape="rect" href="class_kap_engine_1_1_i_component.html" title=" " alt="" coords="5,5,169,32"/>
+<area shape="rect" title=" " alt="" coords="135,155,285,181"/>
+<area shape="rect" href="class_kap_engine_1_1_animation_fade_in.html" title=" " alt="" coords="5,229,196,256"/>
+<area shape="rect" href="class_kap_engine_1_1_animation_fade_out.html" title=" " alt="" coords="220,229,421,256"/>
+<area shape="rect" href="class_kap_engine_1_1_component.html" title=" " alt="" coords="130,80,290,107"/>
+<area shape="rect" href="class_kap_engine_1_1_i_component.html" title=" " alt="" coords="128,5,292,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -93,10 +96,11 @@ Collaboration diagram for KapEngine::Animation:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_kap_engine_1_1_animation__coll__graph.png" border="0" usemap="#a_kap_engine_1_1_animation_coll__map" alt="Collaboration graph"/></div>
 <map name="a_kap_engine_1_1_animation_coll__map" id="a_kap_engine_1_1_animation_coll__map">
-<area shape="rect" title=" " alt="" coords="152,171,303,197"/>
-<area shape="rect" href="class_kap_engine_1_1_component.html" title=" " alt="" coords="7,81,167,108"/>
+<area shape="rect" title=" " alt="" coords="200,215,351,241"/>
+<area shape="rect" href="class_kap_engine_1_1_component.html" title=" " alt="" coords="7,89,167,115"/>
 <area shape="rect" href="class_kap_engine_1_1_i_component.html" title=" " alt="" coords="5,5,169,32"/>
-<area shape="rect" href="class_kap_engine_1_1_time_1_1_e_time.html" title="Engine Time is internal time system of engine." alt="" coords="191,81,359,108"/>
+<area shape="rect" href="class_kap_engine_1_1_time_1_1_e_time.html" title="Engine Time is internal time system of engine." alt="" coords="191,89,359,115"/>
+<area shape="rect" href="class_kap_engine_1_1_events_1_1_event_action.html" title=" " alt="" coords="383,81,525,123"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -134,10 +138,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac28566b9d491e1e084b50f719e56f43b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_kap_engine_1_1_animation.html">Animation</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_animation.html#ac28566b9d491e1e084b50f719e56f43b">operator=</a> (<a class="el" href="class_kap_engine_1_1_animation.html">Animation</a> const &amp;anim)</td></tr>
 <tr class="separator:ac28566b9d491e1e084b50f719e56f43b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d3587d49d3e599948075e3ce51795cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_animation.html#a1d3587d49d3e599948075e3ce51795cc">addAnimationLine</a> (<a class="el" href="struct_kap_engine_1_1_animation_1_1_animation_line.html">AnimationLine</a> nd)</td></tr>
+<tr class="memdesc:a1d3587d49d3e599948075e3ce51795cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add new animation line.  <a href="class_kap_engine_1_1_animation.html#a1d3587d49d3e599948075e3ce51795cc">More...</a><br /></td></tr>
 <tr class="separator:a1d3587d49d3e599948075e3ce51795cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3c1939169669cc1cb020273714debe3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_kap_engine_1_1_events_1_1_event_action.html">Events::EventAction</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_animation.html#ac3c1939169669cc1cb020273714debe3">getOnEnd</a> ()</td></tr>
+<tr class="separator:ac3c1939169669cc1cb020273714debe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4884ea49b804f44478ca68e8934b0cd0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_kap_engine_1_1_events_1_1_event_action.html">Events::EventAction</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_animation.html#a4884ea49b804f44478ca68e8934b0cd0">getOnStart</a> ()</td></tr>
+<tr class="separator:a4884ea49b804f44478ca68e8934b0cd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb79fbdd31d512e526fa412a15d2bf6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_kap_engine_1_1_events_1_1_event_action.html">Events::EventAction</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_animation.html#aeb79fbdd31d512e526fa412a15d2bf6a">getOnRestart</a> ()</td></tr>
+<tr class="separator:aeb79fbdd31d512e526fa412a15d2bf6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_kap_engine_1_1_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_kap_engine_1_1_component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_kap_engine_1_1_component.html">KapEngine::Component</a></td></tr>
-<tr class="memitem:a71558f129d7d654b8d5f5a308ac33117 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a71558f129d7d654b8d5f5a308ac33117">Component</a> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt; &amp;go, std::string const &amp;name, int threadRunning=2)</td></tr>
-<tr class="separator:a71558f129d7d654b8d5f5a308ac33117 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48ff9372dc0cf2d87e041ddb9376f244 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a48ff9372dc0cf2d87e041ddb9376f244">Component</a> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt; &amp;go, std::string const &amp;name, int threadRunning=1)</td></tr>
+<tr class="separator:a48ff9372dc0cf2d87e041ddb9376f244 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4d873a457165858e316208435cb91c0 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#ac4d873a457165858e316208435cb91c0">~Component</a> ()</td></tr>
 <tr class="separator:ac4d873a457165858e316208435cb91c0 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f3e4b50304b20acc1e7602354b3f0ca inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a6f3e4b50304b20acc1e7602354b3f0ca">__update</a> ()</td></tr>
@@ -150,6 +161,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a9f72bf6a001d632e69e9ca09e503a23f inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Game Object object.  <a href="class_kap_engine_1_1_component.html#a9f72bf6a001d632e69e9ca09e503a23f">More...</a><br /></td></tr>
 <tr class="separator:a9f72bf6a001d632e69e9ca09e503a23f inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c5bf2477b3c13dac2d31229c12f3dab inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a8c5bf2477b3c13dac2d31229c12f3dab">getGameObjectConst</a> () const</td></tr>
+<tr class="memdesc:a8c5bf2477b3c13dac2d31229c12f3dab inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> in const result.  <a href="class_kap_engine_1_1_component.html#a8c5bf2477b3c13dac2d31229c12f3dab">More...</a><br /></td></tr>
 <tr class="separator:a8c5bf2477b3c13dac2d31229c12f3dab inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15c4ebae3ca398b69c96ff4c33306970 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a15c4ebae3ca398b69c96ff4c33306970">onInit</a> () override</td></tr>
 <tr class="memdesc:a15c4ebae3ca398b69c96ff4c33306970 inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">call on component init  <a href="class_kap_engine_1_1_component.html#a15c4ebae3ca398b69c96ff4c33306970">More...</a><br /></td></tr>
@@ -169,15 +181,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ace3517e90f834811b3db4f3e372eb734 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#ace3517e90f834811b3db4f3e372eb734">onDisplay</a> () override</td></tr>
 <tr class="memdesc:ace3517e90f834811b3db4f3e372eb734 inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">use to display some things this function is call after all updates fucntion  <a href="class_kap_engine_1_1_component.html#ace3517e90f834811b3db4f3e372eb734">More...</a><br /></td></tr>
 <tr class="separator:ace3517e90f834811b3db4f3e372eb734 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae41f81b2b8fc2df74b49aa053ccfdfef inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#ae41f81b2b8fc2df74b49aa053ccfdfef">onTriggerEnter</a> () override</td></tr>
-<tr class="memdesc:ae41f81b2b8fc2df74b49aa053ccfdfef inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">something enter in object  <a href="class_kap_engine_1_1_component.html#ae41f81b2b8fc2df74b49aa053ccfdfef">More...</a><br /></td></tr>
-<tr class="separator:ae41f81b2b8fc2df74b49aa053ccfdfef inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb06f4a35e00e15885489b42756111a1 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#abb06f4a35e00e15885489b42756111a1">onTriggerStay</a> () override</td></tr>
-<tr class="memdesc:abb06f4a35e00e15885489b42756111a1 inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">something stay in object  <a href="class_kap_engine_1_1_component.html#abb06f4a35e00e15885489b42756111a1">More...</a><br /></td></tr>
-<tr class="separator:abb06f4a35e00e15885489b42756111a1 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12ef147fe66ad77cfd29a38f873fe5a4 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a12ef147fe66ad77cfd29a38f873fe5a4">onTriggerExit</a> () override</td></tr>
-<tr class="memdesc:a12ef147fe66ad77cfd29a38f873fe5a4 inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">something out of object  <a href="class_kap_engine_1_1_component.html#a12ef147fe66ad77cfd29a38f873fe5a4">More...</a><br /></td></tr>
-<tr class="separator:a12ef147fe66ad77cfd29a38f873fe5a4 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c2f3b1e54171db306e88d605c44e3ee inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a3c2f3b1e54171db306e88d605c44e3ee">onTriggerEnter</a> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt; go) override</td></tr>
+<tr class="memdesc:a3c2f3b1e54171db306e88d605c44e3ee inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">something enter in object  <a href="class_kap_engine_1_1_component.html#a3c2f3b1e54171db306e88d605c44e3ee">More...</a><br /></td></tr>
+<tr class="separator:a3c2f3b1e54171db306e88d605c44e3ee inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2281d91b4d138a69a57ba87651c50df7 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a2281d91b4d138a69a57ba87651c50df7">onTriggerStay</a> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt; go) override</td></tr>
+<tr class="memdesc:a2281d91b4d138a69a57ba87651c50df7 inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">something stay in object  <a href="class_kap_engine_1_1_component.html#a2281d91b4d138a69a57ba87651c50df7">More...</a><br /></td></tr>
+<tr class="separator:a2281d91b4d138a69a57ba87651c50df7 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3aa4aee06d39a2520c3e43366a4cfd9c inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a3aa4aee06d39a2520c3e43366a4cfd9c">onTriggerExit</a> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt; go) override</td></tr>
+<tr class="memdesc:a3aa4aee06d39a2520c3e43366a4cfd9c inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">something out of object  <a href="class_kap_engine_1_1_component.html#a3aa4aee06d39a2520c3e43366a4cfd9c">More...</a><br /></td></tr>
+<tr class="separator:a3aa4aee06d39a2520c3e43366a4cfd9c inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5f400f3fb831b23cc92f8cf2acad628 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#ad5f400f3fb831b23cc92f8cf2acad628">onMouseEnter</a> () override</td></tr>
 <tr class="memdesc:ad5f400f3fb831b23cc92f8cf2acad628 inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when mouse enter object  <a href="class_kap_engine_1_1_component.html#ad5f400f3fb831b23cc92f8cf2acad628">More...</a><br /></td></tr>
 <tr class="separator:ad5f400f3fb831b23cc92f8cf2acad628 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,6 +199,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aaad927d96f8a50e917d3ecd29030cc8f inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#aaad927d96f8a50e917d3ecd29030cc8f">onMouseExit</a> () override</td></tr>
 <tr class="memdesc:aaad927d96f8a50e917d3ecd29030cc8f inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when mouse leave object  <a href="class_kap_engine_1_1_component.html#aaad927d96f8a50e917d3ecd29030cc8f">More...</a><br /></td></tr>
 <tr class="separator:aaad927d96f8a50e917d3ecd29030cc8f inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38ff04c83b24dd3075fc06e990ae6a71 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a38ff04c83b24dd3075fc06e990ae6a71">checkComponentValidity</a> () override</td></tr>
+<tr class="memdesc:a38ff04c83b24dd3075fc06e990ae6a71 inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check you component is runnable With this function you can add some conditions to make your component runnable or not.  <a href="class_kap_engine_1_1_component.html#a38ff04c83b24dd3075fc06e990ae6a71">More...</a><br /></td></tr>
+<tr class="separator:a38ff04c83b24dd3075fc06e990ae6a71 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a4e8b0f239a538fdc8a64a8e9850197 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a1a4e8b0f239a538fdc8a64a8e9850197">onGameQuit</a> () override</td></tr>
+<tr class="memdesc:a1a4e8b0f239a538fdc8a64a8e9850197 inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">call when game is turn off  <a href="class_kap_engine_1_1_component.html#a1a4e8b0f239a538fdc8a64a8e9850197">More...</a><br /></td></tr>
+<tr class="separator:a1a4e8b0f239a538fdc8a64a8e9850197 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac95c005f4b953ceacefaaba6fb936e28 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#ac95c005f4b953ceacefaaba6fb936e28">onDestroy</a> () override</td></tr>
+<tr class="memdesc:ac95c005f4b953ceacefaaba6fb936e28 inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">call when component destroyed  <a href="class_kap_engine_1_1_component.html#ac95c005f4b953ceacefaaba6fb936e28">More...</a><br /></td></tr>
+<tr class="separator:ac95c005f4b953ceacefaaba6fb936e28 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8e296f52708cb6ad0ffe3eacb5e420c inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#af8e296f52708cb6ad0ffe3eacb5e420c">onDisable</a> () override</td></tr>
+<tr class="memdesc:af8e296f52708cb6ad0ffe3eacb5e420c inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">call when <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> is disable after being enable  <a href="class_kap_engine_1_1_component.html#af8e296f52708cb6ad0ffe3eacb5e420c">More...</a><br /></td></tr>
+<tr class="separator:af8e296f52708cb6ad0ffe3eacb5e420c inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64a2619b7ec240819cecef7a35a676cf inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a64a2619b7ec240819cecef7a35a676cf">onEnable</a> () override</td></tr>
+<tr class="memdesc:a64a2619b7ec240819cecef7a35a676cf inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">call when <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> is enable after being disable  <a href="class_kap_engine_1_1_component.html#a64a2619b7ec240819cecef7a35a676cf">More...</a><br /></td></tr>
+<tr class="separator:a64a2619b7ec240819cecef7a35a676cf inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a923ba8a08cbf090602e913481606ca5f inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a923ba8a08cbf090602e913481606ca5f">getLevel</a> () const</td></tr>
 <tr class="memdesc:a923ba8a08cbf090602e913481606ca5f inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Level component.  <a href="class_kap_engine_1_1_component.html#a923ba8a08cbf090602e913481606ca5f">More...</a><br /></td></tr>
 <tr class="separator:a923ba8a08cbf090602e913481606ca5f inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -194,21 +221,36 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0fdb96a9a57f40d209db19f53e3602b4 inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Level object.  <a href="class_kap_engine_1_1_component.html#a0fdb96a9a57f40d209db19f53e3602b4">More...</a><br /></td></tr>
 <tr class="separator:a0fdb96a9a57f40d209db19f53e3602b4 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3414dab00832f6387db8ed9a8e60af4d inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a3414dab00832f6387db8ed9a8e60af4d">isEnable</a> () const</td></tr>
+<tr class="memdesc:a3414dab00832f6387db8ed9a8e60af4d inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">return if component is enable  <a href="class_kap_engine_1_1_component.html#a3414dab00832f6387db8ed9a8e60af4d">More...</a><br /></td></tr>
 <tr class="separator:a3414dab00832f6387db8ed9a8e60af4d inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3262363beda01d748da4d07a69dac33b inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a3262363beda01d748da4d07a69dac33b">isDisable</a> () const</td></tr>
+<tr class="memdesc:a3262363beda01d748da4d07a69dac33b inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">return if component is disbale  <a href="class_kap_engine_1_1_component.html#a3262363beda01d748da4d07a69dac33b">More...</a><br /></td></tr>
 <tr class="separator:a3262363beda01d748da4d07a69dac33b inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a878679cb880a44dc94e6035e6ce76aaa inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a878679cb880a44dc94e6035e6ce76aaa">setActive</a> (bool b)</td></tr>
+<tr class="memdesc:a878679cb880a44dc94e6035e6ce76aaa inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the active status of component if true : component is active else component is disable.  <a href="class_kap_engine_1_1_component.html#a878679cb880a44dc94e6035e6ce76aaa">More...</a><br /></td></tr>
 <tr class="separator:a878679cb880a44dc94e6035e6ce76aaa inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a298bf57d9d823a13668b2550005da2d4 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a298bf57d9d823a13668b2550005da2d4">getName</a> () const</td></tr>
+<tr class="memdesc:a298bf57d9d823a13668b2550005da2d4 inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the component name.  <a href="class_kap_engine_1_1_component.html#a298bf57d9d823a13668b2550005da2d4">More...</a><br /></td></tr>
 <tr class="separator:a298bf57d9d823a13668b2550005da2d4 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33d42ff5dd16585a3112840f1f99e636 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a33d42ff5dd16585a3112840f1f99e636">__engineStop</a> ()</td></tr>
 <tr class="separator:a33d42ff5dd16585a3112840f1f99e636 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b91d8cfa5390bc2abd715615d23f930 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a8b91d8cfa5390bc2abd715615d23f930">getThreadRunning</a> () const</td></tr>
+<tr class="memdesc:a8b91d8cfa5390bc2abd715615d23f930 inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Thread Running index index of thread component.  <a href="class_kap_engine_1_1_component.html#a8b91d8cfa5390bc2abd715615d23f930">More...</a><br /></td></tr>
 <tr class="separator:a8b91d8cfa5390bc2abd715615d23f930 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67419fc40fedd4cc91ad6758db5b2ce7 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_kap_engine_1_1_events_1_1_input.html">Events::Input</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a67419fc40fedd4cc91ad6758db5b2ce7">getInput</a> ()</td></tr>
+<tr class="memdesc:a67419fc40fedd4cc91ad6758db5b2ce7 inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get input events.  <a href="class_kap_engine_1_1_component.html#a67419fc40fedd4cc91ad6758db5b2ce7">More...</a><br /></td></tr>
 <tr class="separator:a67419fc40fedd4cc91ad6758db5b2ce7 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab250709b4dceb560b1e7d15a5cc9bf93 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_kap_engine_1_1_events_1_1_mouse.html">Events::Mouse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#ab250709b4dceb560b1e7d15a5cc9bf93">getMouse</a> ()</td></tr>
+<tr class="memdesc:ab250709b4dceb560b1e7d15a5cc9bf93 inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get mouse events.  <a href="class_kap_engine_1_1_component.html#ab250709b4dceb560b1e7d15a5cc9bf93">More...</a><br /></td></tr>
 <tr class="separator:ab250709b4dceb560b1e7d15a5cc9bf93 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2164610991c285f395da90565c0be9bf inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a2164610991c285f395da90565c0be9bf">addRequireComponent</a> (std::string const &amp;componentName)</td></tr>
+<tr class="memdesc:a2164610991c285f395da90565c0be9bf inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add require component If your component need another component to work, you can add it's name with this function. Without the component require this component cannot run.  <a href="class_kap_engine_1_1_component.html#a2164610991c285f395da90565c0be9bf">More...</a><br /></td></tr>
+<tr class="separator:a2164610991c285f395da90565c0be9bf inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ea1d50a5139358763cfdd20c3040508 inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#a4ea1d50a5139358763cfdd20c3040508">__fixedUpdate</a> ()</td></tr>
+<tr class="separator:a4ea1d50a5139358763cfdd20c3040508 inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af203c57248f1f2c0b3c03e8fa9f3a22d inherit pub_methods_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#af203c57248f1f2c0b3c03e8fa9f3a22d">__awake</a> ()</td></tr>
+<tr class="memdesc:af203c57248f1f2c0b3c03e8fa9f3a22d inherit pub_methods_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">check awake validity  <a href="class_kap_engine_1_1_component.html#af203c57248f1f2c0b3c03e8fa9f3a22d">More...</a><br /></td></tr>
+<tr class="separator:af203c57248f1f2c0b3c03e8fa9f3a22d inherit pub_methods_class_kap_engine_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_kap_engine_1_1_i_component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_kap_engine_1_1_i_component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_kap_engine_1_1_i_component.html">KapEngine::IComponent</a></td></tr>
 <tr class="memitem:a65e72b02d1ad60b00dbe0d6fe81acdcd inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a65e72b02d1ad60b00dbe0d6fe81acdcd">~IComponent</a> ()</td></tr>
 <tr class="separator:a65e72b02d1ad60b00dbe0d6fe81acdcd inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -230,15 +272,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9f6d442a72bc9d7da87d599239368f59 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a9f6d442a72bc9d7da87d599239368f59">onDisplay</a> ()=0</td></tr>
 <tr class="memdesc:a9f6d442a72bc9d7da87d599239368f59 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">use to display some things this function is call after all updates fucntion  <a href="class_kap_engine_1_1_i_component.html#a9f6d442a72bc9d7da87d599239368f59">More...</a><br /></td></tr>
 <tr class="separator:a9f6d442a72bc9d7da87d599239368f59 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addd4790bdea76e96eb45b889f13ad774 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#addd4790bdea76e96eb45b889f13ad774">onTriggerEnter</a> ()=0</td></tr>
-<tr class="memdesc:addd4790bdea76e96eb45b889f13ad774 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">something enter in object  <a href="class_kap_engine_1_1_i_component.html#addd4790bdea76e96eb45b889f13ad774">More...</a><br /></td></tr>
-<tr class="separator:addd4790bdea76e96eb45b889f13ad774 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9df614aea7cd9757db4bae9c42e0f314 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a9df614aea7cd9757db4bae9c42e0f314">onTriggerStay</a> ()=0</td></tr>
-<tr class="memdesc:a9df614aea7cd9757db4bae9c42e0f314 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">something stay in object  <a href="class_kap_engine_1_1_i_component.html#a9df614aea7cd9757db4bae9c42e0f314">More...</a><br /></td></tr>
-<tr class="separator:a9df614aea7cd9757db4bae9c42e0f314 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3463cec919c89a6f7ee8848dc0293cd inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#ad3463cec919c89a6f7ee8848dc0293cd">onTriggerExit</a> ()=0</td></tr>
-<tr class="memdesc:ad3463cec919c89a6f7ee8848dc0293cd inherit pub_methods_class_kap_engine_1_1_i_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">something out of object  <a href="class_kap_engine_1_1_i_component.html#ad3463cec919c89a6f7ee8848dc0293cd">More...</a><br /></td></tr>
-<tr class="separator:ad3463cec919c89a6f7ee8848dc0293cd inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1c9729d03290823e6a91330957357d7 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#ae1c9729d03290823e6a91330957357d7">onTriggerEnter</a> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt; go)=0</td></tr>
+<tr class="memdesc:ae1c9729d03290823e6a91330957357d7 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">something enter in object  <a href="class_kap_engine_1_1_i_component.html#ae1c9729d03290823e6a91330957357d7">More...</a><br /></td></tr>
+<tr class="separator:ae1c9729d03290823e6a91330957357d7 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47644f2666e35a2a47101faa3dacd974 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a47644f2666e35a2a47101faa3dacd974">onTriggerStay</a> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt; go)=0</td></tr>
+<tr class="memdesc:a47644f2666e35a2a47101faa3dacd974 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">something stay in object  <a href="class_kap_engine_1_1_i_component.html#a47644f2666e35a2a47101faa3dacd974">More...</a><br /></td></tr>
+<tr class="separator:a47644f2666e35a2a47101faa3dacd974 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c37dd7e1dd3e0ee4d5aa04dae8737dd inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a5c37dd7e1dd3e0ee4d5aa04dae8737dd">onTriggerExit</a> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt; go)=0</td></tr>
+<tr class="memdesc:a5c37dd7e1dd3e0ee4d5aa04dae8737dd inherit pub_methods_class_kap_engine_1_1_i_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">something out of object  <a href="class_kap_engine_1_1_i_component.html#a5c37dd7e1dd3e0ee4d5aa04dae8737dd">More...</a><br /></td></tr>
+<tr class="separator:a5c37dd7e1dd3e0ee4d5aa04dae8737dd inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a912e1e80c223ff56401b1ebc33ff1dea inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a912e1e80c223ff56401b1ebc33ff1dea">onMouseEnter</a> ()=0</td></tr>
 <tr class="memdesc:a912e1e80c223ff56401b1ebc33ff1dea inherit pub_methods_class_kap_engine_1_1_i_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when mouse enter object  <a href="class_kap_engine_1_1_i_component.html#a912e1e80c223ff56401b1ebc33ff1dea">More...</a><br /></td></tr>
 <tr class="separator:a912e1e80c223ff56401b1ebc33ff1dea inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -248,6 +290,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad49a4898abe859c7b657779a42b38b62 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#ad49a4898abe859c7b657779a42b38b62">onMouseExit</a> ()=0</td></tr>
 <tr class="memdesc:ad49a4898abe859c7b657779a42b38b62 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when mouse leave object  <a href="class_kap_engine_1_1_i_component.html#ad49a4898abe859c7b657779a42b38b62">More...</a><br /></td></tr>
 <tr class="separator:ad49a4898abe859c7b657779a42b38b62 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0ce747cc480c673680e7c8a6b2d773c inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#ab0ce747cc480c673680e7c8a6b2d773c">checkComponentValidity</a> ()=0</td></tr>
+<tr class="memdesc:ab0ce747cc480c673680e7c8a6b2d773c inherit pub_methods_class_kap_engine_1_1_i_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check you component is runnable With this function you can add some conditions to make your component runnable or not.  <a href="class_kap_engine_1_1_i_component.html#ab0ce747cc480c673680e7c8a6b2d773c">More...</a><br /></td></tr>
+<tr class="separator:ab0ce747cc480c673680e7c8a6b2d773c inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabb8d97371fdedc6812acc3a49e4e9a9 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#aabb8d97371fdedc6812acc3a49e4e9a9">onDestroy</a> ()=0</td></tr>
+<tr class="memdesc:aabb8d97371fdedc6812acc3a49e4e9a9 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">call when component destroyed  <a href="class_kap_engine_1_1_i_component.html#aabb8d97371fdedc6812acc3a49e4e9a9">More...</a><br /></td></tr>
+<tr class="separator:aabb8d97371fdedc6812acc3a49e4e9a9 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a767db4fe6519a7b53b13831b641e06c1 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a767db4fe6519a7b53b13831b641e06c1">onGameQuit</a> ()=0</td></tr>
+<tr class="memdesc:a767db4fe6519a7b53b13831b641e06c1 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">call when game is turn off  <a href="class_kap_engine_1_1_i_component.html#a767db4fe6519a7b53b13831b641e06c1">More...</a><br /></td></tr>
+<tr class="separator:a767db4fe6519a7b53b13831b641e06c1 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add978dce1249cf57ae1dccadfdd55611 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#add978dce1249cf57ae1dccadfdd55611">onDisable</a> ()=0</td></tr>
+<tr class="memdesc:add978dce1249cf57ae1dccadfdd55611 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">call when <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> is disable after being enable  <a href="class_kap_engine_1_1_i_component.html#add978dce1249cf57ae1dccadfdd55611">More...</a><br /></td></tr>
+<tr class="separator:add978dce1249cf57ae1dccadfdd55611 inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a386981d99fb1b83f8391a5028006354c inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a386981d99fb1b83f8391a5028006354c">onEnable</a> ()=0</td></tr>
+<tr class="memdesc:a386981d99fb1b83f8391a5028006354c inherit pub_methods_class_kap_engine_1_1_i_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">call when <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> is enable after being disable  <a href="class_kap_engine_1_1_i_component.html#a386981d99fb1b83f8391a5028006354c">More...</a><br /></td></tr>
+<tr class="separator:a386981d99fb1b83f8391a5028006354c inherit pub_methods_class_kap_engine_1_1_i_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -263,6 +320,12 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a88da16de8f081154310dcac15dacea27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada3d33cecb2a332ec62d0116601803c3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_kap_engine_1_1_animation_1_1_animation_line.html">AnimationLine</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_animation.html#ada3d33cecb2a332ec62d0116601803c3">_nodes</a></td></tr>
 <tr class="separator:ada3d33cecb2a332ec62d0116601803c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a976462931bd53dbe6f01be761be766be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_kap_engine_1_1_events_1_1_event_action.html">Events::EventAction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_animation.html#a976462931bd53dbe6f01be761be766be">_onEnd</a></td></tr>
+<tr class="separator:a976462931bd53dbe6f01be761be766be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37a8bd826f289088a6365d5e3544230b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_kap_engine_1_1_events_1_1_event_action.html">Events::EventAction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_animation.html#a37a8bd826f289088a6365d5e3544230b">_onRestart</a></td></tr>
+<tr class="separator:a37a8bd826f289088a6365d5e3544230b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00c5ad3477a85217130ece53900a5cb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_kap_engine_1_1_events_1_1_event_action.html">Events::EventAction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_animation.html#a00c5ad3477a85217130ece53900a5cb9">_onStart</a></td></tr>
+<tr class="separator:a00c5ad3477a85217130ece53900a5cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_kap_engine_1_1_component"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_kap_engine_1_1_component')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_kap_engine_1_1_component.html">KapEngine::Component</a></td></tr>
 <tr class="memitem:adcf99f72eea159651e3678e9671c1822 inherit pro_attribs_class_kap_engine_1_1_component"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_component.html#adcf99f72eea159651e3678e9671c1822">_name</a></td></tr>
 <tr class="memdesc:adcf99f72eea159651e3678e9671c1822 inherit pro_attribs_class_kap_engine_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_kap_engine_1_1_component.html">Component</a> name.  <a href="class_kap_engine_1_1_component.html#adcf99f72eea159651e3678e9671c1822">More...</a><br /></td></tr>
@@ -328,6 +391,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Reimplemented in <a class="el" href="class_kap_engine_1_1_animation_fade_in.html#a49145feb8232af401f2d1b6c99eacece">KapEngine::AnimationFadeIn</a>, and <a class="el" href="class_kap_engine_1_1_animation_fade_out.html#a8a4c7c1e67ca9bd3e50495f0f1b5d2ba">KapEngine::AnimationFadeOut</a>.</p>
+
 </div>
 </div>
 <a id="a1b9bffc37eaf9c2223d86a2dbb8ecc7d" name="a1b9bffc37eaf9c2223d86a2dbb8ecc7d"></a>
@@ -352,6 +417,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="class_kap_engine_1_1_animation_fade_in.html#addf2b94867e6218a446b76c28eff53c3">KapEngine::AnimationFadeIn</a>, and <a class="el" href="class_kap_engine_1_1_animation_fade_out.html#a5c83d5468e4254bf850aef17811e9a4f">KapEngine::AnimationFadeOut</a>.</p>
 
 </div>
 </div>
@@ -378,6 +445,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Reimplemented in <a class="el" href="class_kap_engine_1_1_animation_fade_in.html#a5e5e4cf0f7d3e563087044ab80af01e6">KapEngine::AnimationFadeIn</a>, and <a class="el" href="class_kap_engine_1_1_animation_fade_out.html#a3948fb13bbd6a363845f3f00a08ca33c">KapEngine::AnimationFadeOut</a>.</p>
+
 </div>
 </div>
 <a id="a1d3587d49d3e599948075e3ce51795cc" name="a1d3587d49d3e599948075e3ce51795cc"></a>
@@ -394,6 +463,89 @@ Protected Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_kap_engine_1_1_animation_1_1_animation_line.html">AnimationLine</a>&#160;</td>
           <td class="paramname"><em>nd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add new animation line. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nd</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac3c1939169669cc1cb020273714debe3" name="ac3c1939169669cc1cb020273714debe3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3c1939169669cc1cb020273714debe3">&#9670;&nbsp;</a></span>getOnEnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_kap_engine_1_1_events_1_1_event_action.html">Events::EventAction</a> &amp; KapEngine::Animation::getOnEnd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeb79fbdd31d512e526fa412a15d2bf6a" name="aeb79fbdd31d512e526fa412a15d2bf6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb79fbdd31d512e526fa412a15d2bf6a">&#9670;&nbsp;</a></span>getOnRestart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_kap_engine_1_1_events_1_1_event_action.html">Events::EventAction</a> &amp; KapEngine::Animation::getOnRestart </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4884ea49b804f44478ca68e8934b0cd0" name="a4884ea49b804f44478ca68e8934b0cd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4884ea49b804f44478ca68e8934b0cd0">&#9670;&nbsp;</a></span>getOnStart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_kap_engine_1_1_events_1_1_event_action.html">Events::EventAction</a> &amp; KapEngine::Animation::getOnStart </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -689,6 +841,72 @@ Protected Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">std::vector&lt;<a class="el" href="struct_kap_engine_1_1_animation_1_1_animation_line.html">AnimationLine</a>&gt; KapEngine::Animation::_nodes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a976462931bd53dbe6f01be761be766be" name="a976462931bd53dbe6f01be761be766be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a976462931bd53dbe6f01be761be766be">&#9670;&nbsp;</a></span>_onEnd</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_kap_engine_1_1_events_1_1_event_action.html">Events::EventAction</a> KapEngine::Animation::_onEnd</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a37a8bd826f289088a6365d5e3544230b" name="a37a8bd826f289088a6365d5e3544230b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37a8bd826f289088a6365d5e3544230b">&#9670;&nbsp;</a></span>_onRestart</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_kap_engine_1_1_events_1_1_event_action.html">Events::EventAction</a> KapEngine::Animation::_onRestart</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a00c5ad3477a85217130ece53900a5cb9" name="a00c5ad3477a85217130ece53900a5cb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00c5ad3477a85217130ece53900a5cb9">&#9670;&nbsp;</a></span>_onStart</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_kap_engine_1_1_events_1_1_event_action.html">Events::EventAction</a> KapEngine::Animation::_onStart</td>
         </tr>
       </table>
   </td>

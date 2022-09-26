@@ -31,6 +31,26 @@ Certaines fonctions seront automatiquement appelées par KapEngine ce qui permet
 
 Cette méthode de calcul vous permet d'avoir un jeu plus performant. Cependant il se peut que vous ayez des réécriute de valeur. Ce sera à vous d'y faire attention.
 
+## Fonctions utiles
+
+Tous les composants on des fonctions très utiles permettant de connaître certains évenements de votre jeu comme les touches appuyées ou la position de votre souris en jeu.
+
+Pour cela 2 fonctions sont crées : getInput() et getMouse().
+
+- getInput() : vous permet de récupérer les évenements des touches du jeu. [page de input](inputFr.md).
+- getMouse() : vous permet de récupérer les informations sur la souris. [page de la souris](mouseFr.md).
+
+pour récupérer l'objet sur lequel votre composant est attaché vous devez utiliser ces commandes :
+- getGameObject()
+- getGameObjectCont()
+
+#### Vous souhaitez faire fonctionner votre composant que si il est accompagné d'un autre composan sur le même objett ?
+
+Une fonction spécifique a été pensé pour cela.
+- addRequireComponent("AutreComposant")
+
+Cette fonction prend en argument le nom de l'autre composant voulue pour faire fonctionner le votre. Si jamais le composant donné n'est pas sur l'objet rattaché à votre composant, votre composant sera comme désactivé (sans l'être).
+
 ## Créer le sien
 
 Créer un composant est très simple. Vous devez créer un nouveau fichier .hpp. Ce fichier contiendra la classe de votre composant : [exemple](#Démarrage-rapide). Une fois que vous aurez créé ce composant, il fous suffira de l'ajouter sur un objet.
@@ -129,6 +149,16 @@ namespace KapEngine {
                 void onTriggerStay(std::shared_ptr<GameObject> go) override;
                 //appelé lorsqu'un objet sort dans l'objet rattaché
                 void onTriggerExit(std::shared_ptr<GameObject> go) override;
+                //ajoutez des conditions au lancement de votre composant
+                bool checkComponentValidity() override;
+                //appelé lorsque votre objet est détruit
+                void onDestroy() override;
+                //appelé lorsque le jeu se quitte
+                void onGameQuit() override;
+                //appelé lorsque le GameObject se désactive
+                void onDisable() override;
+                //appelé lorsque le GameObject s'active
+                void onEnable() override;
 
         }
 
@@ -190,6 +220,31 @@ namespace KapEngine {
 
         void MonComposant::onTriggerExit(std::shared_ptr<GameObject> go) {
             Debug::log("L'objet " + go->getName() + " sort de mon objet");
+        }
+
+        bool MonComposant::checkComponentValidity() {
+            if (...) {
+                //mon composant ne doit pas se lancer
+                return false;
+            }
+            //mon composant peut se lancer
+            return true;
+        }
+
+        void MonComposant::onDestroy() {
+            Debug::log("L'objet " + go->getName() + " est détruit");
+        }
+
+        void MonComposant::onGameQuit() {
+            Debug::log("Le jeu s'arrête");
+        }
+
+        void MonComposant::onDisable() {
+            Debug::log("L'object " + go->getName() + " s'est désactivé");
+        }
+
+        void MonComposant::onEnable() {
+            Debug::log("L'object " + go->getName() + " s'est activé");
         }
 
     }

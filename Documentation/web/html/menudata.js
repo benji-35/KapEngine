@@ -25,6 +25,7 @@
 var menudata={children:[
 {text:"Main Page",url:"index.html"},
 {text:"Related Pages",url:"pages.html"},
+{text:"Modules",url:"modules.html"},
 {text:"Namespaces",url:"namespaces.html",children:[
 {text:"Namespace List",url:"namespaces.html"}]},
 {text:"Classes",url:"annotated.html",children:[
@@ -69,10 +70,12 @@ var menudata={children:[
 {text:"d",url:"functions_func_d.html#index_d"},
 {text:"e",url:"functions_func_e.html#index_e"},
 {text:"g",url:"functions_func_g.html#index_g"},
+{text:"h",url:"functions_func_h.html#index_h"},
 {text:"i",url:"functions_func_i.html#index_i"},
 {text:"k",url:"functions_func_k.html#index_k"},
 {text:"l",url:"functions_func_l.html#index_l"},
 {text:"m",url:"functions_func_m.html#index_m"},
+{text:"n",url:"functions_func_n.html#index_n"},
 {text:"o",url:"functions_func_o.html#index_o"},
 {text:"p",url:"functions_func_p.html#index_p"},
 {text:"r",url:"functions_func_r.html#index_r"},
@@ -82,8 +85,23 @@ var menudata={children:[
 {text:"v",url:"functions_func_v.html#index_v"},
 {text:"w",url:"functions_func_w.html#index_w"},
 {text:"y",url:"functions_func_y.html#index_y"},
+{text:"z",url:"functions_func_z.html#index_z"},
 {text:"~",url:"functions_func_~.html#index__7E"}]},
-{text:"Variables",url:"functions_vars.html"},
+{text:"Variables",url:"functions_vars.html",children:[
+{text:"_",url:"functions_vars.html#index__5F"},
+{text:"a",url:"functions_vars.html#index_a"},
+{text:"c",url:"functions_vars.html#index_c"},
+{text:"d",url:"functions_vars.html#index_d"},
+{text:"g",url:"functions_vars.html#index_g"},
+{text:"i",url:"functions_vars.html#index_i"},
+{text:"j",url:"functions_vars.html#index_j"},
+{text:"l",url:"functions_vars.html#index_l"},
+{text:"m",url:"functions_vars.html#index_m"},
+{text:"n",url:"functions_vars.html#index_n"},
+{text:"p",url:"functions_vars.html#index_p"},
+{text:"r",url:"functions_vars.html#index_r"},
+{text:"s",url:"functions_vars.html#index_s"},
+{text:"t",url:"functions_vars.html#index_t"}]},
 {text:"Enumerations",url:"functions_enum.html"},
 {text:"Enumerator",url:"functions_eval.html",children:[
 {text:"a",url:"functions_eval.html#index_a"},
@@ -113,4 +131,7 @@ var menudata={children:[
 {text:"y",url:"functions_eval.html#index_y"},
 {text:"z",url:"functions_eval.html#index_z"}]}]}]},
 {text:"Files",url:"files.html",children:[
-{text:"File List",url:"files.html"}]}]}
+{text:"File List",url:"files.html"},
+{text:"File Members",url:"globals.html",children:[
+{text:"All",url:"globals.html"},
+{text:"Macros",url:"globals_defs.html"}]}]}]}

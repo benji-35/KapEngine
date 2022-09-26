@@ -107,3 +107,70 @@ bool KapEngine::GameObject::hasComponent(std::string const& componentName) const
     }
     return false;
 }
+
+void KapEngine::GameObject::__destroyIt() {
+    _destroyed = true;
+    for (std::size_t i = 0; i < _components.size(); i++) {
+        _components[i]->onDestroy();
+    }
+    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+        _componentsRun[i]->onDestroy();
+        _componentsRun[i].reset();
+    }
+    _componentsRun.clear();
+}
+
+void KapEngine::GameObject::__init() {
+    _destroyed = false;
+    _active = _startActive;
+    _componentsRun.clear();
+    for (std::size_t i = 0; i < _components.size(); i++) {
+        _components[i]->__awake();
+    }
+}
+
+void KapEngine::GameObject::setActive(bool b) {
+    if (getEngine().isRunning()) {
+        if (!b && _active) {
+            for (std::size_t i = 0; i < _components.size(); i++) {
+                _components[i]->onDisable();
+            }
+            for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                _componentsRun[i]->onDisable();
+            }
+        } else if (b && !_active) {
+            for (std::size_t i = 0; i < _components.size(); i++) {
+                _components[i]->onEnable();
+            }
+            for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                _componentsRun[i]->onEnable();
+            }
+        }
+        _active = b;
+    } else {
+        _startActive = b;
+    }
+}
+
+void KapEngine::GameObject::__stoppingGame() {
+    for (std::size_t i = 0; i < _components.size(); i++) {
+        _components[i]->onGameQuit();
+    }
+    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+        _componentsRun[i]->onGameQuit();
+    }
+}
+
+void KapEngine::GameObject::dump(int tab) {
+    Debug::log("-GameObject: " + getName());
+    std::string prefix = "";
+    for (std::size_t i = 0; i < tab; i++) {
+        prefix += "  ";
+    }
+    for (std::size_t i = 0; i < _components.size(); i++) {
+        Debug::log(prefix + ": " + _components[i]->getName());
+    }
+    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+        Debug::log(prefix + ": " + _componentsRun[i]->getName());
+    }
+}
