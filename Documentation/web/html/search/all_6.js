@@ -18,5 +18,8 @@ var searchData=
   ['f9_15',['F9',['../class_kap_engine_1_1_events_1_1_key.html#a0a19ffa51eb1c92b8e84621c9522dd65aeec2048cbe45d4d9e4748ed84b8d9196',1,'KapEngine::Events::Key']]],
   ['factory_16',['Factory',['../class_kap_engine_1_1_factory.html',1,'KapEngine']]],
   ['factory_2ehpp_17',['Factory.hpp',['../_factory_8hpp.html',1,'']]],
-  ['factory_5fhpp_5f_18',['FACTORY_HPP_',['../_ui_factory_8hpp.html#a337038fdbdf40ba80707973a65e2b000',1,'UiFactory.hpp']]]
+  ['faqen_18',['FaqEn',['../md__documentation_md__faq_en.html',1,'']]],
+  ['faqen_2emd_19',['FaqEn.md',['../_faq_en_8md.html',1,'']]],
+  ['faqfr_20',['FaqFr',['../md__documentation_md__faq_fr.html',1,'']]],
+  ['faqfr_2emd_21',['FaqFr.md',['../_faq_fr_8md.html',1,'']]]
 ];

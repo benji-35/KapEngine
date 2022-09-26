@@ -71,8 +71,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="class_kap_engine_1_1_kap_engine-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">KapEngine::KapEngine Class Reference</div></div>
 </div><!--header-->
@@ -154,18 +152,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7ddda4343f5a6dbb994b6eb55ba556ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af566b9b7d57bed1c9c8be1ada3336bb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_kap_engine.html#af566b9b7d57bed1c9c8be1ada3336bb6">setFixedTime</a> (<a class="el" href="class_kap_engine_1_1_time_1_1_e_time.html">Time::ETime</a> time)</td></tr>
 <tr class="separator:af566b9b7d57bed1c9c8be1ada3336bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a47ce9f509b4edbf2e7fcb44b72b122dc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_kap_engine.html#a47ce9f509b4edbf2e7fcb44b72b122dc">__threadRun</a> (<a class="el" href="class_kap_engine_1_1_kap_engine.html">KapEngine</a> *engine, int threadId)</td></tr>
-<tr class="memdesc:a47ce9f509b4edbf2e7fcb44b72b122dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">function for thread  <a href="class_kap_engine_1_1_kap_engine.html#a47ce9f509b4edbf2e7fcb44b72b122dc">More...</a><br /></td></tr>
-<tr class="separator:a47ce9f509b4edbf2e7fcb44b72b122dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr class="memitem:ae53b73d3134e913fdce42aa26b456d37"><td class="memItemLeft" align="right" valign="top">static std::recursive_mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_kap_engine.html#ae53b73d3134e913fdce42aa26b456d37">debugMutex</a></td></tr>
-<tr class="memdesc:ae53b73d3134e913fdce42aa26b456d37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutex for threading.  <a href="class_kap_engine_1_1_kap_engine.html#ae53b73d3134e913fdce42aa26b456d37">More...</a><br /></td></tr>
-<tr class="separator:ae53b73d3134e913fdce42aa26b456d37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aeb64dacf536bc1d34106c4a445d88cda" name="aeb64dacf536bc1d34106c4a445d88cda"></a>
@@ -259,57 +245,6 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a47ce9f509b4edbf2e7fcb44b72b122dc" name="a47ce9f509b4edbf2e7fcb44b72b122dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47ce9f509b4edbf2e7fcb44b72b122dc">&#9670;&nbsp;</a></span>__threadRun()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void KapEngine::KapEngine::__threadRun </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_kap_engine.html">KapEngine</a> *&#160;</td>
-          <td class="paramname"><em>engine</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>threadId</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>function for thread </p>
-<dl class="section warning"><dt>Warning</dt><dd>Do not use this function </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">engine</td><td></td></tr>
-    <tr><td class="paramname">threadId</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<p>threadId : 0 = graphics <br  />
- threadId : 1 = component <br  />
- threadId : 2 = component <br  />
- threadId : 3 = component <br  />
- threadId : 4 = component </p>
 
 </div>
 </div>
@@ -431,7 +366,12 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the Event Manager of game. </p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_kap_engine_1_1_events_1_1_event_manager.html" title="Event manager.">KapEngine::Events::EventManager</a>&amp; </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_kap_engine_1_1_events_1_1_event_manager.html" title="Event manager.">KapEngine::Events::EventManager</a>&amp;</dd></dl>
+<p>threadId : 0 = graphics <br  />
+ threadId : 1 = component <br  />
+ threadId : 2 = component <br  />
+ threadId : 3 = component <br  />
+ threadId : 4 = component </p>
 
 </div>
 </div>
@@ -948,31 +888,6 @@ false if lib does not exist </dd></dl>
 </div><div class="memdoc">
 
 <p>stop your game (can be call by component) </p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="ae53b73d3134e913fdce42aa26b456d37" name="ae53b73d3134e913fdce42aa26b456d37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae53b73d3134e913fdce42aa26b456d37">&#9670;&nbsp;</a></span>debugMutex</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::recursive_mutex KapEngine::KapEngine::debugMutex</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Mutex for threading. </p>
 
 </div>
 </div>

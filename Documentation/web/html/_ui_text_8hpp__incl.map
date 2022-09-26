@@ -1,33 +1,33 @@
 <map id="KapEngine/Legacy/UI/Text/UiText.hpp" name="KapEngine/Legacy/UI/Text/UiText.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="960,5,1109,47"/>
-<area shape="rect" id="node2" href="$_vectors_8hpp.html" title=" " alt="" coords="890,543,982,569"/>
-<area shape="rect" id="node3" href="$_colors_8hpp.html" title=" " alt="" coords="1418,95,1505,121"/>
-<area shape="rect" id="node5" href="$_component_8hpp.html" title=" " alt="" coords="978,95,1091,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="1691,169,1763,196"/>
-<area shape="rect" id="node6" href="$_game_object_8hpp.html" title=" " alt="" coords="1134,169,1253,196"/>
-<area shape="rect" id="node11" title=" " alt="" coords="353,692,407,719"/>
-<area shape="rect" id="node13" title=" " alt="" coords="1434,617,1491,644"/>
-<area shape="rect" id="node14" title=" " alt="" coords="1257,468,1327,495"/>
-<area shape="rect" id="node17" href="$_input_8hpp.html" title=" " alt="" coords="268,543,343,569"/>
-<area shape="rect" id="node30" href="$_i_component_8hpp.html" title=" " alt="" coords="1085,244,1203,271"/>
-<area shape="rect" id="node31" href="$_mouse_8hpp.html" title=" " alt="" coords="137,468,223,495"/>
-<area shape="rect" id="node7" href="$_scene_8hpp.html" title=" " alt="" coords="1278,244,1362,271"/>
-<area shape="rect" id="node20" href="$_entity_8hpp.html" title=" " alt="" coords="417,543,497,569"/>
-<area shape="rect" id="node8" href="$_kap_engine_8hpp.html" title=" " alt="" coords="675,319,786,345"/>
-<area shape="rect" id="node9" href="$_errors_8hpp.html" title=" " alt="" coords="373,393,456,420"/>
-<area shape="rect" id="node12" href="$_scene_manager_8hpp.html" title=" " alt="" coords="1329,393,1463,420"/>
-<area shape="rect" id="node15" href="$_graphical_lib_manager_8hpp.html" title=" " alt="" coords="646,393,815,420"/>
-<area shape="rect" id="node23" href="$_splash_screen_8hpp.html" title=" " alt="" coords="973,393,1101,420"/>
-<area shape="rect" id="node25" href="$_e_clock_8hpp.html" title=" " alt="" coords="481,393,570,420"/>
-<area shape="rect" id="node29" title=" " alt="" coords="840,393,899,420"/>
-<area shape="rect" id="node10" title=" " alt="" coords="400,468,477,495"/>
-<area shape="rect" id="node16" href="$_graphical_lib_8hpp.html" title=" " alt="" coords="697,468,815,495"/>
-<area shape="rect" id="node22" title=" " alt="" coords="840,468,899,495"/>
-<area shape="rect" id="node21" title=" " alt="" coords="717,543,795,569"/>
-<area shape="rect" id="node18" href="$_key_8hpp.html" title=" " alt="" coords="274,617,342,644"/>
-<area shape="rect" id="node19" href="$_event_manager_8hpp.html" title=" " alt="" coords="119,617,249,644"/>
-<area shape="rect" id="node24" href="$_rectangle_8hpp.html" title=" " alt="" coords="1025,468,1130,495"/>
-<area shape="rect" id="node26" title=" " alt="" coords="611,468,672,495"/>
-<area shape="rect" id="node27" href="$_e_time_8hpp.html" title=" " alt="" coords="501,468,587,495"/>
-<area shape="rect" id="node28" title=" " alt="" coords="521,543,583,569"/>
+<area shape="rect" id="node1" title=" " alt="" coords="55,5,205,47"/>
+<area shape="rect" id="node2" href="$_vectors_8hpp.html" title=" " alt="" coords="448,543,540,569"/>
+<area shape="rect" id="node4" href="$_colors_8hpp.html" title=" " alt="" coords="5,95,92,121"/>
+<area shape="rect" id="node6" href="$_component_8hpp.html" title=" " alt="" coords="627,95,740,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="1277,692,1332,719"/>
+<area shape="rect" id="node5" title=" " alt="" coords="13,169,85,196"/>
+<area shape="rect" id="node7" href="$_game_object_8hpp.html" title=" " alt="" coords="1277,169,1396,196"/>
+<area shape="rect" id="node13" title=" " alt="" coords="1364,617,1421,644"/>
+<area shape="rect" id="node14" title=" " alt="" coords="191,468,261,495"/>
+<area shape="rect" id="node17" href="$_input_8hpp.html" title=" " alt="" coords="769,543,843,569"/>
+<area shape="rect" id="node30" href="$_i_component_8hpp.html" title=" " alt="" coords="167,244,285,271"/>
+<area shape="rect" id="node31" href="$_mouse_8hpp.html" title=" " alt="" coords="519,468,605,495"/>
+<area shape="rect" id="node8" href="$_scene_8hpp.html" title=" " alt="" coords="1295,244,1379,271"/>
+<area shape="rect" id="node20" href="$_entity_8hpp.html" title=" " alt="" coords="1506,543,1586,569"/>
+<area shape="rect" id="node9" href="$_kap_engine_8hpp.html" title=" " alt="" coords="801,319,912,345"/>
+<area shape="rect" id="node10" href="$_errors_8hpp.html" title=" " alt="" coords="1049,393,1131,420"/>
+<area shape="rect" id="node12" href="$_scene_manager_8hpp.html" title=" " alt="" coords="1269,393,1404,420"/>
+<area shape="rect" id="node15" href="$_graphical_lib_manager_8hpp.html" title=" " alt="" coords="772,393,941,420"/>
+<area shape="rect" id="node23" href="$_splash_screen_8hpp.html" title=" " alt="" coords="417,393,545,420"/>
+<area shape="rect" id="node25" href="$_e_clock_8hpp.html" title=" " alt="" coords="1156,393,1245,420"/>
+<area shape="rect" id="node29" title=" " alt="" coords="966,393,1025,420"/>
+<area shape="rect" id="node11" title=" " alt="" coords="1009,468,1086,495"/>
+<area shape="rect" id="node16" href="$_graphical_lib_8hpp.html" title=" " alt="" coords="783,468,901,495"/>
+<area shape="rect" id="node22" title=" " alt="" coords="926,468,985,495"/>
+<area shape="rect" id="node21" title=" " alt="" coords="868,543,947,569"/>
+<area shape="rect" id="node18" href="$_key_8hpp.html" title=" " alt="" coords="876,617,944,644"/>
+<area shape="rect" id="node19" href="$_event_manager_8hpp.html" title=" " alt="" coords="578,617,709,644"/>
+<area shape="rect" id="node24" href="$_rectangle_8hpp.html" title=" " alt="" coords="337,468,443,495"/>
+<area shape="rect" id="node26" title=" " alt="" coords="1161,468,1222,495"/>
+<area shape="rect" id="node27" href="$_e_time_8hpp.html" title=" " alt="" coords="1246,468,1331,495"/>
+<area shape="rect" id="node28" title=" " alt="" coords="1258,543,1319,569"/>
 </map>
