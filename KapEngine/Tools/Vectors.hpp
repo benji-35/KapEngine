@@ -8,6 +8,8 @@
 #ifndef VECTORS_HPP_
 #define VECTORS_HPP_
 
+#include <string>
+
 namespace KapEngine {
 
     namespace Tools {
@@ -95,6 +97,15 @@ namespace KapEngine {
 
                 static Vector2 one() {
                     return Vector2(1.f, 1.f);
+                }
+
+                std::string to_string() const {
+                    std::string res = "{";
+
+                    res += std::to_string(x) + "; ";
+                    res += std::to_string(y) + "}";
+
+                    return res;
                 }
 
             private:
@@ -194,6 +205,16 @@ namespace KapEngine {
 
                 static Vector3 one() {
                     return Vector3(1.f, 1.f, 1.f);
+                }
+
+                std::string to_string() const {
+                    std::string res = "{";
+
+                    res += std::to_string(x) + "; ";
+                    res += std::to_string(y) + "; ";
+                    res += std::to_string(z) + "}";
+
+                    return res;
                 }
 
             private:

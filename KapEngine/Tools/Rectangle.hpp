@@ -63,6 +63,8 @@ namespace KapEngine {
                     return _size;
                 }
 
+                std::string to_string() const;
+
             protected:
             private:
                 Vector2 _pos;
