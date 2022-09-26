@@ -12,12 +12,7 @@
 
 KapEngine::SceneManagement::Scene::Scene(SceneManager &manager, std::string const& name) : manager(manager) {
     _name = name;
-
-    auto mainCamera = Factory::createEmptyGameObject(*this, "Main Camera");
-    auto cam = std::make_shared<Camera>(mainCamera);
-    mainCamera->addComponent(cam);
-
-    addGameObject(mainCamera);
+    __finit();
 }
 
 KapEngine::SceneManagement::Scene::~Scene() {
@@ -178,4 +173,12 @@ void KapEngine::SceneManagement::Scene::__init() {
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         _gameObjects[i]->__init();
     }
+}
+
+void KapEngine::SceneManagement::Scene::__finit() {
+    auto mainCamera = Factory::createEmptyGameObject(*this, "Main Camera");
+    auto cam = std::make_shared<Camera>(mainCamera);
+    mainCamera->addComponent(cam);
+
+    addGameObject(mainCamera);
 }
