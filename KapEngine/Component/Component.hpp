@@ -30,7 +30,7 @@ namespace KapEngine {
 
     class Component : public IComponent {
         public:
-            Component(std::shared_ptr<GameObject> go, std::string const& name, int threadRunning = 1);
+            Component(std::shared_ptr<GameObject> &go, std::string const& name, int threadRunning = 1);
             ~Component();
 
             /**

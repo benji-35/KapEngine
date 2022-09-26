@@ -10,7 +10,7 @@
 #include "Transform.hpp"
 #include "Debug.hpp"
 
-KapEngine::Component::Component(std::shared_ptr<GameObject> go, std::string const& name, int threadId) {
+KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string const& name, int threadId) {
     _go = go;
     _name = name;
     threadRunning = threadId;
