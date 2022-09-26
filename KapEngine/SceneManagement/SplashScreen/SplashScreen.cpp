@@ -52,9 +52,6 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
     //create splash screen scene
     auto sceneSplash = Factory::createScene(_engine, "SplashScreen");
     
-    //set splash screen scene as first scene
-    _engine.getSceneManager()->loadScene(sceneSplash->getId());
-    
     auto canvas = UI::UiFactory::createCanvas(*sceneSplash);
 
     auto animator = std::make_shared<Animator>(canvas);
@@ -135,4 +132,6 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
     } catch(...) {
         Debug::error("Camera not found for splashscreen creation");
     }
+    //set splash screen scene as first scene
+    _engine.getSceneManager()->loadScene(sceneSplash->getId());
 }
