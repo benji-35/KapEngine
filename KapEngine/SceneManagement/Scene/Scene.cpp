@@ -86,6 +86,10 @@ void KapEngine::SceneManagement::Scene::__update(int threadId) {
 }
 
 void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {
+    if (go->getId() != 0) {
+        Debug::warning("Object " + go->getName() + " already added in scene: " + go->getScene().getName());
+        return;
+    }
     _idObjectMax++;
     go->__setId(_idObjectMax);
     if (getEngine().debugMode()) {
@@ -179,8 +183,6 @@ void KapEngine::SceneManagement::Scene::__finit() {
     auto mainCamera = Factory::createEmptyGameObject(*this, "Main Camera");
     auto cam = std::make_shared<Camera>(mainCamera);
     mainCamera->addComponent(cam);
-
-    addGameObject(mainCamera);
 }
 
 void KapEngine::SceneManagement::Scene::dump(bool b) {
