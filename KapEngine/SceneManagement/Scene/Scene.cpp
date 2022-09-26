@@ -26,8 +26,8 @@ KapEngine::SceneManagement::Scene::~Scene() {
 
 KapEngine::Component &KapEngine::SceneManagement::Scene::getActiveCamera() const {
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        Debug::warning("found object: " + _gameObjects[i]->getName());
         if (_gameObjects[i]->isActive() && !_gameObjects[i]->isDestroyed()) {
-            Debug::warning("found object: " + _gameObjects[i]->getName());
             try {
                 Component &comp = _gameObjects[i]->getComponent("Camera");
                 Debug::log("Camera found on object " + _gameObjects[i]->getName());
@@ -38,8 +38,8 @@ KapEngine::Component &KapEngine::SceneManagement::Scene::getActiveCamera() const
         }
     }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        Debug::warning("found object: " + _gameObjectsRun[i]->getName());
         if (_gameObjectsRun[i]->isActive() && !_gameObjectsRun[i]->isDestroyed()) {
-            Debug::warning("found object: " + _gameObjectsRun[i]->getName());
             try {
                 Component &comp = _gameObjectsRun[i]->getComponent("Camera");
                 Debug::log("Camera found on object " + _gameObjectsRun[i]->getName());
