@@ -8,11 +8,15 @@
 #include "Transform.hpp"
 #include "Debug.hpp"
 
-KapEngine::Transform::Transform(std::shared_ptr<GameObject> go) : Component(go, "Transform") {}
+KapEngine::Transform::Transform(std::shared_ptr<GameObject> go) : Component(go, "Transform") {
+    _startPos = Tools::Vector3(0.f, 0.f, 0.f);
+    _startRot = Tools::Vector3(0.f, 0.f, 0.f);
+    _startScale = Tools::Vector3(1.f, 1.f, 1.f);
+}
 
 KapEngine::Transform::~Transform() {}
 
-void KapEngine::Transform::onStart() {
+void KapEngine::Transform::onAwake() {
     _pos = _startPos;
     _rot = _startRot;
     _scale = _startScale;

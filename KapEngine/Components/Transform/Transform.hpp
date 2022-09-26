@@ -23,7 +23,7 @@ namespace KapEngine {
             Transform(std::shared_ptr<GameObject> go);
             ~Transform();
 
-            void onStart() override;
+            void onAwake() override;
 
             void setPosition(Tools::Vector3 pos);
             void setRotation(Tools::Vector3 rot);
@@ -99,9 +99,9 @@ namespace KapEngine {
             Tools::Vector3 _rot;
             Tools::Vector3 _scale;
 
-            Tools::Vector3 _startPos = Tools::Vector3::zero();
-            Tools::Vector3 _startRot = Tools::Vector3::zero();
-            Tools::Vector3 _startScale = Tools::Vector3::one();
+            Tools::Vector3 _startPos;
+            Tools::Vector3 _startRot;
+            Tools::Vector3 _startScale;
 
             Tools::Vector3 getParentPos() const;
             Tools::Vector3 getParentRot() const;
