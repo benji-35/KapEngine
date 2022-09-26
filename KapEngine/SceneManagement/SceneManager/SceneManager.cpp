@@ -10,8 +10,10 @@
 #include "Factory.hpp"
 
 KapEngine::SceneManagement::SceneManager::SceneManager(KapEngine &engine) : _engine(engine) {
+    Debug::log("Create Default Scene");
     std::shared_ptr<Scene> baseScene = std::make_shared<Scene>(*this, "Default Scene");
     addScene(baseScene);
+    Debug::log("End init sceneManager");
 }
 
 KapEngine::SceneManagement::SceneManager::~SceneManager() {

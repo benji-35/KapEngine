@@ -11,8 +11,10 @@
 #include "Factory.hpp"
 
 KapEngine::SceneManagement::Scene::Scene(SceneManager &manager, std::string const& name) : manager(manager) {
+    Debug::log("Start init scene");
     _name = name;
     __finit();
+    Debug::log("Stop init scene");
 }
 
 KapEngine::SceneManagement::Scene::~Scene() {

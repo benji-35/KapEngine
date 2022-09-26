@@ -29,6 +29,7 @@ KapEngine::KapEngine::~KapEngine() {
 }
 
 void KapEngine::KapEngine::run() {
+    Debug::warning("[ RUNNING ] running game");
     _run = true;
     _splashsScreen->__init();
     _internalClock.restart();
@@ -66,10 +67,12 @@ std::size_t KapEngine::KapEngine::getCurrentGraphicalLibIndex() const {
 }
 
 void KapEngine::KapEngine::__init() {
+    Debug::log("[INIT] KapEngine");
     _sceneManager = std::make_shared<SceneManagement::SceneManager>(*this);
     _libManager = std::make_shared<Graphical::GraphicalLibManager>(*this);
     _eventManager = std::make_shared<Events::EventManager>(*this);
     _splashsScreen = std::make_shared<SceneManagement::SplashScreen>(*this);
+    Debug::log("[INIT] end init KapEngine");
 }
 
 /**
