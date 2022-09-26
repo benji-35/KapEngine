@@ -19,7 +19,9 @@ KapEngine::SceneManagement::SplashScreen::SplashScreen(KapEngine &engine) : _eng
 KapEngine::SceneManagement::SplashScreen::~SplashScreen() {}
 
 void KapEngine::SceneManagement::SplashScreen::__init() {
-    _sceneName = _engine.getSceneManager()->getCurrentScene().getName();
+    _sceneId = _engine.getSceneManager()->getCurrentSceneId();
+    if (_sceneId == 0)
+        _sceneId = 1;
 
     //init KapEngine Splash Screen
     if (_displayKapEngineLogo) {
@@ -105,7 +107,7 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
 
         if (i == _splahes.size() - 1) {
             animOut->getOnEnd().registerAction([this](){
-                this->_engine.getSceneManager()->loadScene(this->_sceneName);
+                this->_engine.getSceneManager()->loadScene(this->_sceneId);
             });
         }
 
