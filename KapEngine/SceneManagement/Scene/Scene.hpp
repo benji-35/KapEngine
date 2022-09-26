@@ -101,6 +101,13 @@ namespace KapEngine {
                  */
                 void __finit();
 
+                /**
+                 * @brief Display all objects in scene
+                 * 
+                 * @param showComponents if you want to display components attached to your objects
+                 */
+                void dump(bool showComponents = false);
+
             protected:
             private:
                 std::size_t _id = 0;

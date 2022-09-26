@@ -83,6 +83,8 @@ namespace KapEngine {
             void __init();
             void __stoppingGame();
 
+            void dump(int tab = 0);
+
         protected:
         private:
             std::string _name;

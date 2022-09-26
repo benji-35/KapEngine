@@ -182,3 +182,21 @@ void KapEngine::SceneManagement::Scene::__finit() {
 
     addGameObject(mainCamera);
 }
+
+void KapEngine::SceneManagement::Scene::dump(bool b) {
+    Debug::log("Scene: " + getName());
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (b) {
+            _gameObjects[i]->dump();
+        } else {
+            Debug::log("-GameObject: " + _gameObjects[i]->getName());
+        }
+    }
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (b) {
+            _gameObjectsRun[i]->dump();
+        } else {
+            Debug::log("-GameObject: " + _gameObjectsRun[i]->getName());
+        }
+    }
+}
