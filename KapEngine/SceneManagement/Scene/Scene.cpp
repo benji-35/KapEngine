@@ -28,11 +28,9 @@ KapEngine::SceneManagement::Scene::~Scene() {
 
 KapEngine::Component &KapEngine::SceneManagement::Scene::getActiveCamera() const {
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-        Debug::warning("found object: " + _gameObjects[i]->getName());
         if (_gameObjects[i]->isActive() && !_gameObjects[i]->isDestroyed()) {
             try {
                 Component &comp = _gameObjects[i]->getComponent("Camera");
-                Debug::log("Camera found on object " + _gameObjects[i]->getName());
                 if (comp.isEnable()) {
                     return comp;
                 }
@@ -40,11 +38,9 @@ KapEngine::Component &KapEngine::SceneManagement::Scene::getActiveCamera() const
         }
     }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
-        Debug::warning("found object: " + _gameObjectsRun[i]->getName());
         if (_gameObjectsRun[i]->isActive() && !_gameObjectsRun[i]->isDestroyed()) {
             try {
                 Component &comp = _gameObjectsRun[i]->getComponent("Camera");
-                Debug::log("Camera found on object " + _gameObjectsRun[i]->getName());
                 if (comp.isEnable()) {
                     return comp;
                 }
@@ -101,10 +97,8 @@ void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject
         Debug::log("Add object " + go->getName() + " in scene " + getName());
     }
     if (!getEngine().isRunning()) {
-        Debug::log("add object " + go->getName() + " in _gameObjects");
         _gameObjects.push_back(go);
     } else {
-        Debug::log("add object " + go->getName() + " in _gameObjectsRun");
         _gameObjectsRun.push_back(go);
     }
     KapEngine::debugMutex.unlock();
