@@ -55,7 +55,7 @@ namespace KapEngine {
                 KapEngine &_engine;
                 std::vector<std::shared_ptr<SplashScreenNode>> _splahes;
                 bool _displayKapEngineLogo = true;
-                std::string _sceneName = "";
+                std::size_t _sceneId = 0;
         };
 
     }

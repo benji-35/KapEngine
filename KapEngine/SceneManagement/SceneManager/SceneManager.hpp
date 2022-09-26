@@ -50,16 +50,20 @@ namespace KapEngine {
                 Scene &getScene(std::string const& name);
                 Scene &getCurrentScene();
 
+                std::size_t getSceneIndex(std::string const& sceneName);
+                std::size_t getSceneIndexInList(std::size_t id);
+                std::size_t getSceneIndexInList(std::string const& sceneName);
+
+                std::size_t getCurrentSceneId() const {
+                    return _indexScene;
+                }
+
             protected:
             private:
                 std::size_t _indexScene = 0;
                 std::size_t _maxIndex = 0;
                 std::vector<std::shared_ptr<Scene>> _scenes;
                 KapEngine &_engine;
-
-                std::size_t getSceneIndex(std::string const& sceneName);
-                std::size_t getSceneIndexInList(std::size_t id);
-                std::size_t getSceneIndexInList(std::string const& sceneName);
 
                 std::string getSceneName(std::size_t index);
 

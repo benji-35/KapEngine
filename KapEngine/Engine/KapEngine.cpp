@@ -32,6 +32,8 @@ void KapEngine::KapEngine::run() {
     _run = true;
     _splashsScreen->__init();
     _internalClock.restart();
+    if (getSceneManager()->getCurrentSceneId() == 0)
+        getSceneManager()->loadScene(1);
     while (_run) {
         _elapsed = _internalClock.getElapseTime();
         _runFixed = false;
