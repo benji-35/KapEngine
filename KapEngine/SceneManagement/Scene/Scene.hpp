@@ -83,7 +83,7 @@ namespace KapEngine {
                 /**
                  * @warning Do not call or modifie this function
                  */
-                void __update(int threadId);
+                void __update();
                 /**
                  * @warning Do not call or modifie this function
                  */

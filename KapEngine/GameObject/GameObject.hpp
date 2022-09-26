@@ -48,7 +48,7 @@ namespace KapEngine {
             KapEngine &getEngine();
 
             //all functions call by engine
-            void __update(int threadId);
+            void __update();
 
             void setActive(bool b);
 
