@@ -33,8 +33,6 @@ namespace KapEngine {
                 transform->setRotation(rot);
                 transform->setPosition(pos);
                 transform->setScale(scale);
-
-                scene.addGameObject(result);
                 
                 return result;
             }
