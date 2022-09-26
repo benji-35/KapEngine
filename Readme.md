@@ -22,6 +22,7 @@ You can fork this example to build your own game based on KapEngine.
 | Create Component              | [SHOW](Documentation/md/NewComponentEn.md) | :large_orange_diamond: |
 | Manage Grpahical Library      | [SHOW](Documentation/md/LibGraphEn.md)     | :large_orange_diamond: |
 | Compile your game             | [SHOW](Documentation/md/compileEn.md)      | :large_orange_diamond: |
+| FAQ            | [VOIR](Documentation/md/FaqEn.md)      | :green_circle: |
 
 ## Français
 | Titre                         | Lien                                       | Status                 |
@@ -30,6 +31,7 @@ You can fork this example to build your own game based on KapEngine.
 | Créer un composant            | [VOIR](Documentation/md/NewComponentFr.md) | :large_orange_diamond: |
 | Gérer une librairie graphique | [VOIR](Documentation/md/LibGraphFr.md)     | :large_orange_diamond: |
 | Compiler votre jeu            | [VOIR](Documentation/md/compileFr.md)      | :large_orange_diamond: |
+| FAQ            | [VOIR](Documentation/md/FaqFr.md)      | :green_circle: |
 
 ## Table of icons
 
