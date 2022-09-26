@@ -10,10 +10,12 @@
 #include "Factory.hpp"
 
 KapEngine::SceneManagement::SceneManager::SceneManager(KapEngine &engine) : _engine(engine) {
-    Debug::log("Create Default Scene");
+    if (_engine.debugMode())
+        Debug::log("Create Default Scene");
     std::shared_ptr<Scene> baseScene = std::make_shared<Scene>(*this, "Default Scene");
     addScene(baseScene);
-    Debug::log("End init sceneManager");
+    if (_engine.debugMode())
+        Debug::log("End init sceneManager");
 }
 
 KapEngine::SceneManagement::SceneManager::~SceneManager() {
@@ -140,8 +142,10 @@ void KapEngine::SceneManagement::SceneManager::loadScene(std::size_t index) {
     } catch(...) {}
     _indexScene = index;
     getCurrentScene().__init();
-    getCurrentScene().dump(true);
-    Debug::warning("Changing scene to scene " + getSceneName(index));
+    if (_engine.debugMode()) {
+        getCurrentScene().dump(true);
+        Debug::warning("Changing scene to scene " + getSceneName(index));
+    }
 }
 
 std::string KapEngine::SceneManagement::SceneManager::getSceneName(std::size_t index) {
