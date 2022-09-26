@@ -30,8 +30,8 @@ KapEngine::KapEngine::~KapEngine() {
 
 void KapEngine::KapEngine::run() {
     Debug::warning("[ RUNNING ] running game");
-    _run = true;
     _splashsScreen->__init();
+    _run = true;
     _internalClock.restart();
     if (getSceneManager()->getCurrentSceneId() == 0)
         getSceneManager()->loadScene(1);
