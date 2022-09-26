@@ -160,3 +160,17 @@ void KapEngine::GameObject::__stoppingGame() {
         _componentsRun[i]->onGameQuit();
     }
 }
+
+void KapEngine::GameObject::dump(int tab) {
+    Debug::log("-GameObject: " + getName());
+    std::string prefix = "";
+    for (std::size_t i = 0; i < tab; i++) {
+        prefix += "  ";
+    }
+    for (std::size_t i = 0; i < _components.size(); i++) {
+        Debug::log(prefix + ": " + _components[i]->getName());
+    }
+    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+        Debug::log(prefix + ": " + _componentsRun[i]->getName());
+    }
+}
