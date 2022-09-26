@@ -86,6 +86,7 @@ void KapEngine::SceneManagement::Scene::__update(int threadId) {
 }
 
 void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {
+    std::lock_guard<std::recursive_mutex> lk(KapEngine::debugMutex);
     if (go->getId() != 0) {
         Debug::warning("Object " + go->getName() + " already added in scene: " + go->getScene().getName());
         return;
@@ -96,10 +97,13 @@ void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject
         Debug::log("Add object " + go->getName() + " in scene " + getName());
     }
     if (getEngine().isRunning()) {
+        Debug::log("add object " + go->getName() + " in _gameObjects");
         _gameObjects.push_back(go);
     } else {
+        Debug::log("add object " + go->getName() + " in _gameObjectsRun");
         _gameObjectsRun.push_back(go);
     }
+    KapEngine::debugMutex.unlock();
 }
 
 void KapEngine::SceneManagement::Scene::__changingScene() {
