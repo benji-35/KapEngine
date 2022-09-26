@@ -96,7 +96,7 @@ void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject
     if (getEngine().debugMode()) {
         Debug::log("Add object " + go->getName() + " in scene " + getName());
     }
-    if (!getEngine().isRunning()) {
+    if (!getEngine().isRunning() || manager.getCurrentSceneId() != getId()) {
         _gameObjects.push_back(go);
     } else {
         _gameObjectsRun.push_back(go);
