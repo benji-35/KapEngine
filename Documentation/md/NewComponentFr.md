@@ -85,7 +85,7 @@ Ces étapes sont obligatoires pour pouvoir ajouter un composant à un objet.
 :warning: Il est primordiale de ne pas mélanger les GameObjects pour le composant. L'objet dans lequel vous ajouté le composant doit être le même objet qui se trouve dans le constructeur du composant comme dans l'exemple.
 
 ### Liste des fonctions disponibles
-Important : Les focntions proposés ne sont pas toutes à réécrire. Vous pouvez réécrire uniquement celle que vous souhaitez utiliser. Cela peut également rendre votre code plus beau et épuré.
+Important : Les fonctions proposées ne sont pas toutes à réécrire. Vous pouvez réécrire uniquement celle que vous souhaitez utiliser. Cela peut également rendre votre code plus beau et épuré.
 
 #### onInit [DEPRECATED]
 Cette fonction n'est plus utilisée. Elle sera prochainement supprimé
@@ -94,7 +94,7 @@ Cette fonction n'est plus utilisée. Elle sera prochainement supprimé
 Cette fonction est lancé sur tous les composants actif ou non de la scène 1 seule fois (lorsque le GameObject appaprait dans la scène au runtime). Elle permet en règle général d'initialiser les valeurs qui ne sont toujours pas initialisées.
 
 #### onStart
-Cette fonction ressemble énormément à onAwake. Elle ne se lance qu'une seule fois (lorsque le GameObject appaprait dans la scène au runtime ET qu'il est activé et utilisable).
+Cette fonction ressemble énormément à onAwake. Elle ne se lance qu'une seule fois (lorsque le GameObject appaprait dans la scène au runtime ET qu'il est activé et utilisable).<br>
 En effet la seule différence c'est que le composant doit être activé et utilisable pour entrer dans cette fonction.
 
 #### onUpdate
@@ -108,7 +108,7 @@ Cette fonction permet tout comme la onUpdate de mettre à jour vos informations.
 Cette fonction est appelée après toutes les fonctions énoncées précédement. Elle vous permet comme son nom l'indique, intéragir avec les lib graphiques si vous le souhaitez (c'est pour cela que cette fonction à été faite ;) ).
 
 #### onDestroy [EVENT]
-Cette fonction est appelée lorsque le KapEngine::GameObject sur lequel votre composant est rattaché, va être détruit.
+Cette fonction est appelée lorsque le KapEngine::GameObject sur lequel votre composant est rattaché, va être détruit.<br>
 Cella permet de faire une dernière action avant la destruction définitive de votre objet.<br>
 Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
 
