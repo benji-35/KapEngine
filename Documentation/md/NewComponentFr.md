@@ -69,7 +69,7 @@ int main() {
         La variable scene ici contiendra une scène déjà initialisée
     */
 
-    //sur cette ligne vous demandez à l'engine de créer un objet de votre scene
+    //sur cette ligne vous demandez à l'engine de créer un objet de votre scenes
     std::shared_ptr<GameObject> monObjet = KapEngine::Factory::createEmptyGameObject(scene, "Le nom de mon objet");
 
     //sur cette ligne vous demandez de la mémoire pour votre nouveau composant
