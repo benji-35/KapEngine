@@ -30,6 +30,10 @@ namespace KapEngine {
 
             void onUpdate() override;
 
+            void setCheckZone(Tools::Rectangle zone) {
+                _square = zone;
+            }
+
         protected:
             void __callMouses(HoverType const& type);
         private:
