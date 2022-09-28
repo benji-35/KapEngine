@@ -175,3 +175,14 @@ void KapEngine::GameObject::dump(int tab) {
         Debug::log(prefix + ": " + _componentsRun[i]->getName());
     }
 }
+
+std::vector<std::shared_ptr<KapEngine::Component>> KapEngine::GameObject::getAllComponents() const {
+    std::vector<std::shared_ptr<Component>> result;
+
+    for (std::size_t i = 0; i < _components.size(); i++)
+        result.push_back(_components[i]);
+    for (std::size_t i = 0; i < _componentsRun.size(); i++)
+        result.push_back(_componentsRun[i]);
+
+    return result;
+}

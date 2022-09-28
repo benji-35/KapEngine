@@ -85,6 +85,8 @@ namespace KapEngine {
 
             void dump(int tab = 0);
 
+            std::vector<std::shared_ptr<Component>> getAllComponents() const;
+
         protected:
         private:
             std::string _name;
