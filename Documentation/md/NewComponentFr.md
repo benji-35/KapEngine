@@ -51,6 +51,10 @@ Une fonction spécifique a été pensé pour cela.
 
 Cette fonction prend en argument le nom de l'autre composant voulue pour faire fonctionner le votre. Si jamais le composant donné n'est pas sur l'objet rattaché à votre composant, votre composant sera comme désactivé (sans l'être).
 
+Vous souhaitez ajouter des conditions qui permettent de faire focntionner ou non votre composant ?
+Lisez les explications de la foncton :
+- bool checkComponentValidity()
+
 ## Créer le sien
 
 Créer un composant est très simple. Vous devez créer un nouveau fichier .hpp. Ce fichier contiendra la classe de votre composant : [exemple](#Démarrage-rapide). Une fois que vous aurez créé ce composant, il fous suffira de l'ajouter sur un objet.
@@ -81,9 +85,63 @@ Ces étapes sont obligatoires pour pouvoir ajouter un composant à un objet.
 :warning: Il est primordiale de ne pas mélanger les GameObjects pour le composant. L'objet dans lequel vous ajouté le composant doit être le même objet qui se trouve dans le constructeur du composant comme dans l'exemple.
 
 ### Liste des fonctions disponibles
+Important : Les focntions proposés ne sont pas toutes à réécrire. Vous pouvez réécrire uniquement celle que vous souhaitez utiliser. Cela peut également rendre votre code plus beau et épuré.
 
-#### onInit
-Cette fonction est appelée lors de l'initialisation du composant au runtime.
+#### onInit [DEPRECATED]
+Cette fonction n'est plus utilisée. Elle sera prochainement supprimé
+
+#### onAwake
+Cette fonction est lancé sur tous les composants actif ou non de la scène 1 seule fois (lorsque le GameObject appaprait dans la scène au runtime). Elle permet en règle général d'initialiser les valeurs qui ne sont toujours pas initialisées.
+
+#### onStart
+Cette fonction ressemble énormément à onAwake. Elle ne se lance qu'une seule fois (lorsque le GameObject appaprait dans la scène au runtime ET qu'il est activé et utilisable).
+En effet la seule différence c'est que le composant doit être activé et utilisable pour entrer dans cette fonction.
+
+#### onUpdate
+Cette fonction comme son nom l'indique vous permettra d'update votre composant. Cette fonction sera appelé à chaque frame de votre jeu.
+Cela peut devenir un peu énergivore et temps ivore sur vos calculs (réfléchissez bien si il ne faut pas utiliser le [onFixedUpdate](####onFixedUpdate)).
+
+#### onFixedUpdate
+Cette fonction permet tout comme la onUpdate de mettre à jour vos informations. Mais elle n'est appelé que sur un temps donné. Votre engine contient cette valeur de temps, qui est modifiable. Cette valeur est également général à tout votre jeu. Ce qui veut dire que tous les composants appellent le onFixedUpdate en même temps.
+
+#### onDisplay
+Cette fonction est appelée après toutes les fonctions énoncées précédement. Elle vous permet comme son nom l'indique, intéragir avec les lib graphiques si vous le souhaitez (c'est pour cela que cette fonction à été faite ;) ).
+
+#### onDestroy [EVENT]
+Cette fonction est appelée lorsque le KapEngine::GameObject sur lequel votre composant est rattaché, va être détruit.
+Cella permet de faire une dernière action avant la destruction définitive de votre objet.
+Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
+
+#### onGameQuit [EVENT]
+Cette fonction est appelée lorsque votre jeu va être sur le point de se quitter. Cela vous permet de faire une dernière action avant que le jeu s'éteigne.
+Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
+
+#### onDisable [EVENT]
+Cette fonction est appelée lorsque votre composant se désactive.
+Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
+
+#### onEnable [EVENT]
+Cette fonction est appelée lorsque votre composant s'active.
+Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
+
+
+#### onMouseEnter [BESOIN D'UN COMPOSANT]
+Composant: "Mouse Detector"
+--------------------------
+Cette fonction vous permet de détecter quand la souris rentre dans une zone que vous avez prédéfinie.
+Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
+
+#### onMouseStay [BESOIN D'UN COMPOSANT]
+Composant: "Mouse Detector"
+--------------------------
+Cette fonction vous permet de détecter quand la souris reste dans une zone que vous avez prédéfinie.
+Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
+
+#### onMouseExit [BESOIN D'UN COMPOSANT]
+Composant: "Mouse Detector"
+--------------------------
+Cette fonction vous permet de détecter quand la souris sort dans une zone que vous avez prédéfinie.
+Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
 
 ## Démarrage Rapide 
 
@@ -115,7 +173,7 @@ namespace KapEngine {
                  * Fonctionnalité de base d'un composant
                 */
 
-                //appelé lors de l'initialisation du composant (au runtime)
+                //appelé lors de l'initialisation du composant (au runtime) deprecated
                 void onInit() override;
                 //appelé lors du premier chargement de la scène OU quand on charge la scène après qu'une autre scène ai été chargé
                 void onAwake() override;
