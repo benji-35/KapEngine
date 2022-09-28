@@ -36,9 +36,11 @@ void KapEngine::MouseDetector::onUpdate() {
         } else {
             type = HoverType::JUSTE_HOVER;
         }
+        _inSquare = true;
     } else {
         if (_inSquare)
             type = HoverType::LEAVE_HOVER;
+        _inSquare = false;
     }
     __callMouses(type);
 }
