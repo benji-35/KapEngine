@@ -9,18 +9,18 @@
 par Benjamin DELVERT
 ```
 
-# [#0400fa](Créer ton composant)
+# <span color="blue">Créer ton composant</span>
 
 Sur cette page tu vas apprendre qu'est ce qu'un KapEngine::Component, pourquoi il existse et comment en créer un.
 
-## [#0400fa](Table des matières)
+## <span color="blue">Table des matières</span>
 | Titre                     | Lien                           | Statut         |
 |---------------------------|--------------------------------|----------------|
 | Qu'est ce qu'un composant | [GO](#Quest-ce-quun-composant) | :green_circle: |
 | Créer le sien             | [GO](#Créer-le-sien)           | :large_orange_diamond:   |
 | Démarrage Rapide          | [GO](#Démarrage-rapide)        | :green_circle: |
 
-## [#0400fa](Qu'est ce qu'un composant)
+## <span color="blue">Qu'est ce qu'un composant</span>
 
 Un composant est un script rattaché à un objet de jeu (KapEngine::GameObject). Il a pour but de donner une logique ou une action à votre objet.
 
@@ -31,7 +31,7 @@ Certaines fonctions seront automatiquement appelées par KapEngine ce qui permet
 
 Cette méthode de calcul vous permet d'avoir un jeu plus performant. Cependant il se peut que vous ayez des réécriute de valeur. Ce sera à vous d'y faire attention.
 
-## [#0400fa](Fonctions utiles)
+## <span color="blue">Fonctions utiles</span>
 
 Tous les composants on des fonctions très utiles permettant de connaître certains évenements de votre jeu comme les touches appuyées ou la position de votre souris en jeu.
 
@@ -55,7 +55,7 @@ Vous souhaitez ajouter des conditions qui permettent de faire focntionner ou non
 Lisez les explications de la foncton :
 - bool checkComponentValidity()
 
-## [#0400fa](Créer le sien)
+## <span color="blue">Créer le sien</span>
 
 Créer un composant est très simple. Vous devez créer un nouveau fichier .hpp. Ce fichier contiendra la classe de votre composant : [exemple](#Démarrage-rapide). Une fois que vous aurez créé ce composant, il fous suffira de l'ajouter sur un objet.
 
@@ -143,7 +143,7 @@ Composant: "Mouse Detector"
 Cette fonction vous permet de détecter quand la souris sort dans une zone que vous avez prédéfinie.
 Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
 
-## [#0400fa](Démarrage Rapide)
+## <span color="blue">Démarrage Rapide</span>
 
 ```C++
 
