@@ -32,7 +32,7 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
         kapEngineNode->rect.setY(0);
         kapEngineNode->rect.setWidth(1436);
         kapEngineNode->rect.setHeigth(1080);
-        kapEngineNode->size.setX(450.0f);
+        kapEngineNode->size.setX(0.3f);
         kapEngineNode->size.setY(400.0f);
         kapEngineNode->pos.setY((_engine.getScreenSize().getY() / 2.0f) - (400.f / 2.0f));
         kapEngineNode->pos.setX((_engine.getScreenSize().getX() / 2.f) - (450.f / 2.0f));
