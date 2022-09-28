@@ -21,17 +21,8 @@ namespace KapEngine {
     class Animation : public Component {
         public:
 
-            struct AnimationLine {
-                Component &comp;
-                std::size_t curr = 0;
-                std::vector<std::function<void (Component &co)>> nodes;
-                std::vector<int32_t> nodeTiming;
-            };
-
             Animation(std::shared_ptr<GameObject> go);
             ~Animation();
-
-            virtual void __onPlay() {}
 
             void onFixedUpdate() override;
 
@@ -66,19 +57,20 @@ namespace KapEngine {
                 if (b) {
                     _end = false;
                     _currTime = 0;
-                    __onPlay();
+                    onPlay();
                 }
             }
 
             void setTiming(int64_t const& time) {
-                // _timing = time;
+                _timing = time;
             }
             void setTiming(Time::ETime const& time) {
                 _timing = time;
             }
 
-            virtual void __updateAnim();
-            virtual void __resetAnim();
+            virtual void onPlay() {}
+            virtual void onUpdateAnim();
+            virtual void onResetAnim();
 
             virtual Animation &operator=(Animation const& anim) {
 
@@ -89,19 +81,6 @@ namespace KapEngine {
                 _currTime = anim._currTime;
 
                 return *this;
-            }
-
-            /**
-             * @brief Add new animation line
-             * 
-             * @param nd 
-             */
-            void addAnimationLine(AnimationLine nd) {
-                if (nd.nodes.size() != nd.nodeTiming.size()) {
-                    Debug::error("[ANIMATION] : the node that adding does not contains same number of keys timing that nodes functions.");
-                    return;
-                }
-                _nodes.push_back(nd);
             }
 
             Events::EventAction &getOnEnd() {
@@ -122,12 +101,11 @@ namespace KapEngine {
             Time::ETime _timing;
             int64_t _currTime = 0;
 
-            std::vector<AnimationLine> _nodes;
-
             Events::EventAction _onEnd;
             Events::EventAction _onRestart;
             Events::EventAction _onStart;
         private:
+            bool _reseted = false;
     };
 
 }

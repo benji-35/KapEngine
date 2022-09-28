@@ -15,7 +15,7 @@ KapEngine::AnimationFadeIn::AnimationFadeIn(std::shared_ptr<GameObject> go) : An
 
 KapEngine::AnimationFadeIn::~AnimationFadeIn() {}
 
-void KapEngine::AnimationFadeIn::__onPlay() {
+void KapEngine::AnimationFadeIn::onPlay() {
     //lors du début de l'animation, initialiser les valeurs souhaitées
 
     UI::Image &img = (UI::Image &)getGameObject().getComponent("Image");
@@ -26,7 +26,7 @@ void KapEngine::AnimationFadeIn::__onPlay() {
     img.setActive(true);
 }
 
-void KapEngine::AnimationFadeIn::__updateAnim() {
+void KapEngine::AnimationFadeIn::onUpdateAnim() {
     float val = ((float)_currTime / (float)_timing.asMicroSecond());
 
     Debug::log("Fade in [" + std::to_string(val) + "/1]");
@@ -39,7 +39,7 @@ void KapEngine::AnimationFadeIn::__updateAnim() {
     img.setColor(cColor);
 }
 
-void KapEngine::AnimationFadeIn::__resetAnim() {
+void KapEngine::AnimationFadeIn::onResetAnim() {
     UI::Image &img = (UI::Image &)getGameObject().getComponent("Image");
     Tools::Color cColor = img.getColorSprite();
 

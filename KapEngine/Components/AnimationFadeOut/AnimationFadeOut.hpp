@@ -28,9 +28,9 @@ namespace KapEngine {
             AnimationFadeOut(std::shared_ptr<GameObject>);
             ~AnimationFadeOut();
 
-            void __onPlay() override;
-            void __updateAnim() override;
-            void __resetAnim() override;
+            void onPlay() override;
+            void onUpdateAnim() override;
+            void onResetAnim() override;
 
         protected:
         private:
