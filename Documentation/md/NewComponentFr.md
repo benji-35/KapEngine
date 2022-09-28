@@ -109,35 +109,35 @@ Cette fonction est appelée après toutes les fonctions énoncées précédement
 
 #### onDestroy [EVENT]
 Cette fonction est appelée lorsque le KapEngine::GameObject sur lequel votre composant est rattaché, va être détruit.
-Cella permet de faire une dernière action avant la destruction définitive de votre objet.
+Cella permet de faire une dernière action avant la destruction définitive de votre objet.<br>
 Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
 
 #### onGameQuit [EVENT]
-Cette fonction est appelée lorsque votre jeu va être sur le point de se quitter. Cela vous permet de faire une dernière action avant que le jeu s'éteigne.
+Cette fonction est appelée lorsque votre jeu va être sur le point de se quitter. Cela vous permet de faire une dernière action avant que le jeu s'éteigne.<br>
 Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
 
 #### onDisable [EVENT]
-Cette fonction est appelée lorsque votre composant se désactive.
+Cette fonction est appelée lorsque votre composant se désactive.<br>
 Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
 
 #### onEnable [EVENT]
-Cette fonction est appelée lorsque votre composant s'active.
+Cette fonction est appelée lorsque votre composant s'active.<br>
 Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
 
 
 #### onMouseEnter [BESOIN D'UN COMPOSANT]
-Composant: "Mouse Detector"
-Cette fonction vous permet de détecter quand la souris rentre dans une zone que vous avez prédéfinie.
+Composant: "Mouse Detector"<br>
+Cette fonction vous permet de détecter quand la souris rentre dans une zone que vous avez prédéfinie.<br>
 Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
 
 #### onMouseStay [BESOIN D'UN COMPOSANT]
-Composant: "Mouse Detector"
-Cette fonction vous permet de détecter quand la souris reste dans une zone que vous avez prédéfinie.
+Composant: "Mouse Detector"<br>
+Cette fonction vous permet de détecter quand la souris reste dans une zone que vous avez prédéfinie.<br>
 Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
 
 #### onMouseExit [BESOIN D'UN COMPOSANT]
-Composant: "Mouse Detector"
-Cette fonction vous permet de détecter quand la souris sort dans une zone que vous avez prédéfinie.
+Composant: "Mouse Detector"<br>
+Cette fonction vous permet de détecter quand la souris sort dans une zone que vous avez prédéfinie.<br>
 Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
 
 ## <span color="blue">Démarrage Rapide</span>
