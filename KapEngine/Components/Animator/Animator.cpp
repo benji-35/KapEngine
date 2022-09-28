@@ -35,7 +35,6 @@ void KapEngine::Animator::onFixedUpdate() {
             }
         }
     }
-    _anim->_anim->__fixedUpdate();
 }
 
 void KapEngine::Animator::addAnim(std::shared_ptr<Animation> anim, std::string name) {
@@ -112,9 +111,9 @@ void KapEngine::Animator::addLink(std::string animName, std::string outAnim, std
         isMainExit = true;
     std::shared_ptr<LinkAnim> nLink = std::make_shared<LinkAnim>();
 
-    nLink.get()->mainExit = isMainExit;
-    nLink.get()->target = out;
-    nLink.get()->triggers = triggers;
+    nLink->mainExit = isMainExit;
+    nLink->target = out;
+    nLink->triggers = triggers;
 
     node->links.push_back(nLink);
 }
