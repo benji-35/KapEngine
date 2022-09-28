@@ -29,8 +29,6 @@ void KapEngine::AnimationFadeIn::onPlay() {
 void KapEngine::AnimationFadeIn::onUpdateAnim() {
     float val = ((float)_currTime / (float)_timing.asMicroSecond());
 
-    Debug::log("Fade in [" + std::to_string(val) + "/1]");
-
     if (val >= 1.0f)
         return;
     UI::Image &img = (UI::Image &)getGameObject().getComponent("Image");
