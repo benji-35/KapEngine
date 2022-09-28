@@ -7,7 +7,7 @@
 
 #include "Camera.hpp"
 
-KapEngine::Camera::Camera(std::shared_ptr<GameObject> go) : Component(go, "Camera") {
+KapEngine::Camera::Camera(std::shared_ptr<GameObject> go) : Component(go, "Camera", 1) {
 }
 
 KapEngine::Camera::~Camera() {
