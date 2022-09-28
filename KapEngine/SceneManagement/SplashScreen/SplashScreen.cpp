@@ -25,7 +25,7 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
 
     //init KapEngine Splash Screen
     if (_displayKapEngineLogo) {
-        std::shared_ptr<SplashScreenNode> kapEngineNode = std::make_shared<SplashScreenNode>("Documentation/Engine/images/KapEngineBannerNeg.png", 4);
+        std::shared_ptr<SplashScreenNode> kapEngineNode = std::make_shared<SplashScreenNode>("Library/KapEngine/Documentation/Engine/images/KapEngineBannerNeg.png", 4);
         std::vector<std::shared_ptr<SplashScreenNode>> nNodes;
 
         kapEngineNode->rect.setX(0);
