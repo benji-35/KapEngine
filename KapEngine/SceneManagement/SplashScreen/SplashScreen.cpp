@@ -10,7 +10,6 @@
 #include "UiFactory.hpp"
 
 #include "Animator.hpp"
-#include "SplashScreenManager.hpp"
 #include "AnimationFadeIn.hpp"
 #include "AnimationFadeOut.hpp"
 
@@ -56,8 +55,6 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
 
     auto animator = std::make_shared<Animator>(canvas);
     canvas->addComponent(animator);
-
-    std::shared_ptr<SplashScreenManager> previousSplash;
 
     //init all GameObjects in splashScreen scene
     for (std::size_t i = 0; i < _splahes.size(); i++) {
