@@ -8,8 +8,9 @@
 #include "UiText.hpp"
 #include "Transform.hpp"
 
-KapEngine::UI::Text::Text(std::shared_ptr<GameObject> &go) : Component(go, "Text")
+KapEngine::UI::Text::Text(std::shared_ptr<GameObject> &go, std::string const& textContent) : Component(go, "Text")
 {
+    setText(textContent);
 }
 
 KapEngine::UI::Text::~Text()
