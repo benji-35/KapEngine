@@ -28,7 +28,7 @@ You can fork this example to build your own game based on KapEngine.
 | Titre                         | Lien                                       | Status                 |
 |-------------------------------|--------------------------------------------|------------------------|
 | Qu'est ce que KapEngine       | [VOIR](Documentation/md/KapEngineFr.md)    | :large_orange_diamond: |
-| Créer un composant            | [VOIR](Documentation/md/NewComponentFr.md) | :large_orange_diamond: |
+| Créer un composant            | [VOIR](Documentation/md/NewComponentFr.md) | :green_circle: |
 | Gérer une librairie graphique | [VOIR](Documentation/md/LibGraphFr.md)     | :large_orange_diamond: |
 | Compiler votre jeu            | [VOIR](Documentation/md/compileFr.md)      | :large_orange_diamond: |
 | FAQ            | [VOIR](Documentation/md/FaqFr.md)      | :green_circle: |

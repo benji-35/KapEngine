@@ -17,7 +17,7 @@ Sur cette page tu vas apprendre qu'est ce qu'un KapEngine::Component, pourquoi i
 | Titre                     | Lien                           | Statut         |
 |---------------------------|--------------------------------|----------------|
 | Qu'est ce qu'un composant | [GO](#Quest-ce-quun-composant) | :green_circle: |
-| Créer le sien             | [GO](#Créer-le-sien)           | :large_orange_diamond:   |
+| Créer le sien             | [GO](#Créer-le-sien)           | :green_circle:   |
 | Démarrage Rapide          | [GO](#Démarrage-rapide)        | :green_circle: |
 
 ## <span color="blue">Qu'est ce qu'un composant</span>
@@ -107,6 +107,12 @@ Cette fonction permet tout comme la onUpdate de mettre à jour vos informations.
 #### onDisplay
 Cette fonction est appelée après toutes les fonctions énoncées précédement. Elle vous permet comme son nom l'indique, intéragir avec les lib graphiques si vous le souhaitez (c'est pour cela que cette fonction à été faite ;) ).
 
+#### checkComponentValidity
+Cette fonction est une fonction de vérification. C'est pour cela qu'elle retourne une valeur boolean.<br>
+Cette fontion vous permet de faire des vérifications qui par la suite va indiquer à l'engine si il faut éxecuter ou non votre composant.<br>
+TRUE : l'engine va lire votre composant<br>
+FALSE : l'engine ne va pas lire votre composant
+
 #### onDestroy [EVENT]
 Cette fonction est appelée lorsque le KapEngine::GameObject sur lequel votre composant est rattaché, va être détruit.<br>
 Cella permet de faire une dernière action avant la destruction définitive de votre objet.<br>
@@ -139,6 +145,22 @@ Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être
 Composant: "Mouse Detector"<br>
 Cette fonction vous permet de détecter quand la souris sort dans une zone que vous avez prédéfinie.<br>
 Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
+
+#### onTriggerEnter[BESOIN D'UN COMPOSANT]
+Composant: "Collider"<br>
+Cette fonction est appelé lorsque le composant collider aura détecté un autre objet de la scène entré dans la zone de collision spécifiée.<br>
+Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
+
+#### onTriggerStay[BESOIN D'UN COMPOSANT]
+Composant: "Collider"<br>
+Cette fonction est appelé lorsque le composant collider aura détecté un autre objet de la scène rester dans la zone de collision spécifiée.<br>
+Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
+
+#### onTriggerExit[BESOIN D'UN COMPOSANT]
+Composant: "Collider"<br>
+Cette fonction est appelé lorsque le composant collider aura détecté un autre objet de la scène sortir dans la zone de collision spécifiée.<br>
+Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
+
 
 ## <span color="blue">Démarrage Rapide</span>
 
