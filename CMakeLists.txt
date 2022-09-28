@@ -32,7 +32,7 @@ include(${KapEngine_SOURCE_DIR}/CMake/engine_include.cmake)
 # KapEngine sources
 file(GLOB_RECURSE SOURCES ${KapEngine_SOURCE_DIR}/KapEngine/*.cpp)
 
-add_library(KapEngine SHARED ${SOURCES} ${HEADERS})
+add_library(KapEngine STATIC ${SOURCES} ${HEADERS})
 
 # C++ Flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
