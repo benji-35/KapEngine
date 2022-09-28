@@ -127,19 +127,16 @@ Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être
 
 #### onMouseEnter [BESOIN D'UN COMPOSANT]
 Composant: "Mouse Detector"
---------------------------
 Cette fonction vous permet de détecter quand la souris rentre dans une zone que vous avez prédéfinie.
 Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
 
 #### onMouseStay [BESOIN D'UN COMPOSANT]
 Composant: "Mouse Detector"
---------------------------
 Cette fonction vous permet de détecter quand la souris reste dans une zone que vous avez prédéfinie.
 Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
 
 #### onMouseExit [BESOIN D'UN COMPOSANT]
 Composant: "Mouse Detector"
---------------------------
 Cette fonction vous permet de détecter quand la souris sort dans une zone que vous avez prédéfinie.
 Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
 
