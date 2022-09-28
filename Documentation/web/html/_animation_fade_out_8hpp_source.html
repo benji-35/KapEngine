@@ -25,7 +25,7 @@
   <td id="projectalign">
    <div id="projectname">KapEngine<span id="projectnumber">&#160;1.1</span>
    </div>
-   <div id="projectbrief">ECS engine in C++</div>
+   <div id="projectbrief">C++ easy ECS</div>
   </td>
  </tr>
  </tbody>
@@ -72,7 +72,7 @@ $(function() {
   <div class="headertitle"><div class="title">AnimationFadeOut.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_animation_fade_out_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">** EPITECH PROJECT, 2022</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">** indieStudio</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">** File description:</span></div>
@@ -82,8 +82,8 @@ $(function() {
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef ANIMATIONFADEOUT_HPP_</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define ANIMATIONFADEOUT_HPP_</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="_animation_8hpp.html">Animation.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="_ui_image_8hpp.html">UiImage.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;Animation.hpp&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;UiImage.hpp&quot;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_kap_engine.html">KapEngine</a> {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">class </span>Component;</div>
@@ -99,12 +99,12 @@ $(function() {
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="class_kap_engine_1_1_animation_fade_out.html">   26</a></span>    <span class="keyword">class </span><a class="code hl_class" href="class_kap_engine_1_1_animation_fade_out.html">AnimationFadeOut</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_kap_engine_1_1_animation.html">Animation</a> {</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            <a class="code hl_function" href="class_kap_engine_1_1_animation_fade_out.html#ad1d3e03e1d479e99bd3f7f25bb8250b4">AnimationFadeOut</a>(std::shared_ptr&lt;GameObject&gt;);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <a class="code hl_function" href="class_kap_engine_1_1_animation_fade_out.html#aeed3adfd9ee29fef01e9636239c55211">~AnimationFadeOut</a>();</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            <a class="code hl_class" href="class_kap_engine_1_1_animation_fade_out.html">AnimationFadeOut</a>(std::shared_ptr&lt;GameObject&gt;);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <a class="code hl_class" href="class_kap_engine_1_1_animation_fade_out.html">~AnimationFadeOut</a>();</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            <span class="keywordtype">void</span> <a class="code hl_function" href="class_kap_engine_1_1_animation_fade_out.html#a8a4c7c1e67ca9bd3e50495f0f1b5d2ba">__onPlay</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keywordtype">void</span> <a class="code hl_function" href="class_kap_engine_1_1_animation_fade_out.html#a3948fb13bbd6a363845f3f00a08ca33c">__updateAnim</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            <span class="keywordtype">void</span> <a class="code hl_function" href="class_kap_engine_1_1_animation_fade_out.html#a5c83d5468e4254bf850aef17811e9a4f">__resetAnim</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            <span class="keywordtype">void</span> __onPlay() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keywordtype">void</span> __updateAnim() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            <span class="keywordtype">void</span> __resetAnim() <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keyword">private</span>:</div>
@@ -113,14 +113,7 @@ $(function() {
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#endif </span><span class="comment">/* !ANIMATIONFADEOUT_HPP_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a_animation_8hpp_html"><div class="ttname"><a href="_animation_8hpp.html">Animation.hpp</a></div></div>
-<div class="ttc" id="a_ui_image_8hpp_html"><div class="ttname"><a href="_ui_image_8hpp.html">UiImage.hpp</a></div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_animation_fade_out_html"><div class="ttname"><a href="class_kap_engine_1_1_animation_fade_out.html">KapEngine::AnimationFadeOut</a></div><div class="ttdef"><b>Definition:</b> AnimationFadeOut.hpp:26</div></div>
-<div class="ttc" id="aclass_kap_engine_1_1_animation_fade_out_html_a3948fb13bbd6a363845f3f00a08ca33c"><div class="ttname"><a href="class_kap_engine_1_1_animation_fade_out.html#a3948fb13bbd6a363845f3f00a08ca33c">KapEngine::AnimationFadeOut::__updateAnim</a></div><div class="ttdeci">void __updateAnim() override</div><div class="ttdef"><b>Definition:</b> AnimationFadeOut.cpp:29</div></div>
-<div class="ttc" id="aclass_kap_engine_1_1_animation_fade_out_html_a5c83d5468e4254bf850aef17811e9a4f"><div class="ttname"><a href="class_kap_engine_1_1_animation_fade_out.html#a5c83d5468e4254bf850aef17811e9a4f">KapEngine::AnimationFadeOut::__resetAnim</a></div><div class="ttdeci">void __resetAnim() override</div><div class="ttdef"><b>Definition:</b> AnimationFadeOut.cpp:41</div></div>
-<div class="ttc" id="aclass_kap_engine_1_1_animation_fade_out_html_a8a4c7c1e67ca9bd3e50495f0f1b5d2ba"><div class="ttname"><a href="class_kap_engine_1_1_animation_fade_out.html#a8a4c7c1e67ca9bd3e50495f0f1b5d2ba">KapEngine::AnimationFadeOut::__onPlay</a></div><div class="ttdeci">void __onPlay() override</div><div class="ttdef"><b>Definition:</b> AnimationFadeOut.cpp:20</div></div>
-<div class="ttc" id="aclass_kap_engine_1_1_animation_fade_out_html_ad1d3e03e1d479e99bd3f7f25bb8250b4"><div class="ttname"><a href="class_kap_engine_1_1_animation_fade_out.html#ad1d3e03e1d479e99bd3f7f25bb8250b4">KapEngine::AnimationFadeOut::AnimationFadeOut</a></div><div class="ttdeci">AnimationFadeOut(std::shared_ptr&lt; GameObject &gt;)</div><div class="ttdef"><b>Definition:</b> AnimationFadeOut.cpp:10</div></div>
-<div class="ttc" id="aclass_kap_engine_1_1_animation_fade_out_html_aeed3adfd9ee29fef01e9636239c55211"><div class="ttname"><a href="class_kap_engine_1_1_animation_fade_out.html#aeed3adfd9ee29fef01e9636239c55211">KapEngine::AnimationFadeOut::~AnimationFadeOut</a></div><div class="ttdeci">~AnimationFadeOut()</div><div class="ttdef"><b>Definition:</b> AnimationFadeOut.cpp:18</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_animation_html"><div class="ttname"><a href="class_kap_engine_1_1_animation.html">KapEngine::Animation</a></div><div class="ttdef"><b>Definition:</b> Animation.hpp:21</div></div>
 <div class="ttc" id="anamespace_kap_engine_html"><div class="ttname"><a href="namespace_kap_engine.html">KapEngine</a></div><div class="ttdoc">main namespace</div><div class="ttdef"><b>Definition:</b> Component.hpp:16</div></div>
 </div><!-- fragment --></div><!-- contents -->

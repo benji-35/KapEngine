@@ -25,7 +25,7 @@
   <td id="projectalign">
    <div id="projectname">KapEngine<span id="projectnumber">&#160;1.1</span>
    </div>
-   <div id="projectbrief">ECS engine in C++</div>
+   <div id="projectbrief">C++ easy ECS</div>
   </td>
  </tr>
  </tbody>
@@ -75,345 +75,34 @@ $(function() {
   <div class="headertitle"><div class="title">KapEngine::Factory Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="_factory_8hpp_source.html">Factory.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ac0696e020a0b94dab6617fad2aaa9dae"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_factory.html#ac0696e020a0b94dab6617fad2aaa9dae">createEmptyGameObject</a> (<a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &amp;scene, std::string const &amp;name=&quot;Empty&quot;, Tools::Vector3 pos=<a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html#aa660af68dd1b5957073c60403e7f069f">Tools::Vector3::zero</a>(), <a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a> rot=<a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html#aa660af68dd1b5957073c60403e7f069f">Tools::Vector3::zero</a>(), <a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a> scale=<a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html#a78cfd1962bad49439a0dac5755c9579a">Tools::Vector3::one</a>())</td></tr>
+<tr class="memitem:ac0696e020a0b94dab6617fad2aaa9dae"><td class="memItemLeft" align="right" valign="top"><a id="ac0696e020a0b94dab6617fad2aaa9dae" name="ac0696e020a0b94dab6617fad2aaa9dae"></a>
+static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>createEmptyGameObject</b> (<a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &amp;scene, std::string const &amp;name=&quot;Empty&quot;, Tools::Vector3 pos=Tools::Vector3::zero(), <a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a> rot=Tools::Vector3::zero(), <a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a> scale=Tools::Vector3::one())</td></tr>
 <tr class="separator:ac0696e020a0b94dab6617fad2aaa9dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5d7e4a59749753c24a1fb8a2fbd1d1c"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_factory.html#af5d7e4a59749753c24a1fb8a2fbd1d1c">createEmptyGameObject</a> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &gt;scene, std::string const &amp;name=&quot;Empty&quot;, Tools::Vector3 pos=<a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html#aa660af68dd1b5957073c60403e7f069f">Tools::Vector3::zero</a>(), <a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a> rot=<a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html#aa660af68dd1b5957073c60403e7f069f">Tools::Vector3::zero</a>())</td></tr>
+<tr class="memitem:af5d7e4a59749753c24a1fb8a2fbd1d1c"><td class="memItemLeft" align="right" valign="top"><a id="af5d7e4a59749753c24a1fb8a2fbd1d1c" name="af5d7e4a59749753c24a1fb8a2fbd1d1c"></a>
+static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>createEmptyGameObject</b> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &gt;scene, std::string const &amp;name=&quot;Empty&quot;, Tools::Vector3 pos=Tools::Vector3::zero(), <a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a> rot=Tools::Vector3::zero())</td></tr>
 <tr class="separator:af5d7e4a59749753c24a1fb8a2fbd1d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a666dec3dec6899b3314f974ce7a4e310"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_factory.html#a666dec3dec6899b3314f974ce7a4e310">createCamera</a> (<a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &amp;scene, std::string const &amp;name=&quot;Camera&quot;, Tools::Vector3 pos={0, 0, 0}, <a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a> rot={0, 0, 0}, <a class="el" href="class_kap_engine_1_1_tools_1_1_color.html">Tools::Color</a> bgColor=<a class="el" href="class_kap_engine_1_1_tools_1_1_color.html#a7f84b29e32196456057918ab7bad70b4">Tools::Color::blue</a>())</td></tr>
+<tr class="memitem:a666dec3dec6899b3314f974ce7a4e310"><td class="memItemLeft" align="right" valign="top"><a id="a666dec3dec6899b3314f974ce7a4e310" name="a666dec3dec6899b3314f974ce7a4e310"></a>
+static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>createCamera</b> (<a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &amp;scene, std::string const &amp;name=&quot;Camera&quot;, Tools::Vector3 pos={0, 0, 0}, <a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a> rot={0, 0, 0}, <a class="el" href="class_kap_engine_1_1_tools_1_1_color.html">Tools::Color</a> bgColor=Tools::Color::blue())</td></tr>
 <tr class="separator:a666dec3dec6899b3314f974ce7a4e310"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7632c166f214ba0dc50d25856b60109"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_factory.html#ac7632c166f214ba0dc50d25856b60109">createCamera</a> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &gt; scene, std::string const &amp;name, <a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a> pos={0, 0, 0}, <a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a> rot={0, 0, 0}, <a class="el" href="class_kap_engine_1_1_tools_1_1_color.html">Tools::Color</a> bgColor=<a class="el" href="class_kap_engine_1_1_tools_1_1_color.html#a7f84b29e32196456057918ab7bad70b4">Tools::Color::blue</a>())</td></tr>
+<tr class="memitem:ac7632c166f214ba0dc50d25856b60109"><td class="memItemLeft" align="right" valign="top"><a id="ac7632c166f214ba0dc50d25856b60109" name="ac7632c166f214ba0dc50d25856b60109"></a>
+static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>createCamera</b> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &gt; scene, std::string const &amp;name, <a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a> pos={0, 0, 0}, <a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a> rot={0, 0, 0}, <a class="el" href="class_kap_engine_1_1_tools_1_1_color.html">Tools::Color</a> bgColor=Tools::Color::blue())</td></tr>
 <tr class="separator:ac7632c166f214ba0dc50d25856b60109"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7a8025fe6796bacce0e3150b4e7eec1"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_factory.html#ab7a8025fe6796bacce0e3150b4e7eec1">createScene</a> (<a class="el" href="class_kap_engine_1_1_kap_engine.html">KapEngine</a> &amp;engine, std::string const &amp;name)</td></tr>
+<tr class="memitem:ab7a8025fe6796bacce0e3150b4e7eec1"><td class="memItemLeft" align="right" valign="top"><a id="ab7a8025fe6796bacce0e3150b4e7eec1" name="ab7a8025fe6796bacce0e3150b4e7eec1"></a>
+static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>createScene</b> (<a class="el" href="class_kap_engine_1_1_kap_engine.html">KapEngine</a> &amp;engine, std::string const &amp;name)</td></tr>
 <tr class="separator:ab7a8025fe6796bacce0e3150b4e7eec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99b7dbc2c6ccf3914c8b8198f6ed5025"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_factory.html#a99b7dbc2c6ccf3914c8b8198f6ed5025">createScene</a> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene_manager.html">SceneManagement::SceneManager</a> &gt; manager, std::string const &amp;name)</td></tr>
+<tr class="memitem:a99b7dbc2c6ccf3914c8b8198f6ed5025"><td class="memItemLeft" align="right" valign="top"><a id="a99b7dbc2c6ccf3914c8b8198f6ed5025" name="a99b7dbc2c6ccf3914c8b8198f6ed5025"></a>
+static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>createScene</b> (std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene_manager.html">SceneManagement::SceneManager</a> &gt; manager, std::string const &amp;name)</td></tr>
 <tr class="separator:a99b7dbc2c6ccf3914c8b8198f6ed5025"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acec8b758f6f6025360c9aced4ee3e17d"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_factory.html#acec8b758f6f6025360c9aced4ee3e17d">createScene</a> (<a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene_manager.html">SceneManagement::SceneManager</a> &amp;manager, std::string const &amp;name)</td></tr>
+<tr class="memitem:acec8b758f6f6025360c9aced4ee3e17d"><td class="memItemLeft" align="right" valign="top"><a id="acec8b758f6f6025360c9aced4ee3e17d" name="acec8b758f6f6025360c9aced4ee3e17d"></a>
+static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>createScene</b> (<a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene_manager.html">SceneManagement::SceneManager</a> &amp;manager, std::string const &amp;name)</td></tr>
 <tr class="separator:acec8b758f6f6025360c9aced4ee3e17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a666dec3dec6899b3314f974ce7a4e310" name="a666dec3dec6899b3314f974ce7a4e310"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a666dec3dec6899b3314f974ce7a4e310">&#9670;&nbsp;</a></span>createCamera() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt; KapEngine::Factory::createCamera </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &amp;&#160;</td>
-          <td class="paramname"><em>scene</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string const &amp;&#160;</td>
-          <td class="paramname"><em>name</em> = <code>&quot;Camera&quot;</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a>&#160;</td>
-          <td class="paramname"><em>pos</em> = <code>{0,&#160;0,&#160;0}</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a>&#160;</td>
-          <td class="paramname"><em>rot</em> = <code>{0,&#160;0,&#160;0}</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_tools_1_1_color.html">Tools::Color</a>&#160;</td>
-          <td class="paramname"><em>bgColor</em> = <code><a class="el" href="class_kap_engine_1_1_tools_1_1_color.html#a7f84b29e32196456057918ab7bad70b4">Tools::Color::blue</a>()</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac7632c166f214ba0dc50d25856b60109" name="ac7632c166f214ba0dc50d25856b60109"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7632c166f214ba0dc50d25856b60109">&#9670;&nbsp;</a></span>createCamera() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt; KapEngine::Factory::createCamera </td>
-          <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &gt;&#160;</td>
-          <td class="paramname"><em>scene</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string const &amp;&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a>&#160;</td>
-          <td class="paramname"><em>pos</em> = <code>{0,&#160;0,&#160;0}</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a>&#160;</td>
-          <td class="paramname"><em>rot</em> = <code>{0,&#160;0,&#160;0}</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_tools_1_1_color.html">Tools::Color</a>&#160;</td>
-          <td class="paramname"><em>bgColor</em> = <code><a class="el" href="class_kap_engine_1_1_tools_1_1_color.html#a7f84b29e32196456057918ab7bad70b4">Tools::Color::blue</a>()</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac0696e020a0b94dab6617fad2aaa9dae" name="ac0696e020a0b94dab6617fad2aaa9dae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0696e020a0b94dab6617fad2aaa9dae">&#9670;&nbsp;</a></span>createEmptyGameObject() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt; KapEngine::Factory::createEmptyGameObject </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &amp;&#160;</td>
-          <td class="paramname"><em>scene</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string const &amp;&#160;</td>
-          <td class="paramname"><em>name</em> = <code>&quot;Empty&quot;</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a>&#160;</td>
-          <td class="paramname"><em>pos</em> = <code><a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html#aa660af68dd1b5957073c60403e7f069f">Tools::Vector3::zero</a>()</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a>&#160;</td>
-          <td class="paramname"><em>rot</em> = <code><a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html#aa660af68dd1b5957073c60403e7f069f">Tools::Vector3::zero</a>()</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a>&#160;</td>
-          <td class="paramname"><em>scale</em> = <code><a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html#a78cfd1962bad49439a0dac5755c9579a">Tools::Vector3::one</a>()</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af5d7e4a59749753c24a1fb8a2fbd1d1c" name="af5d7e4a59749753c24a1fb8a2fbd1d1c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5d7e4a59749753c24a1fb8a2fbd1d1c">&#9670;&nbsp;</a></span>createEmptyGameObject() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> &gt; KapEngine::Factory::createEmptyGameObject </td>
-          <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &gt;&#160;</td>
-          <td class="paramname"><em>scene</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string const &amp;&#160;</td>
-          <td class="paramname"><em>name</em> = <code>&quot;Empty&quot;</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a>&#160;</td>
-          <td class="paramname"><em>pos</em> = <code><a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html#aa660af68dd1b5957073c60403e7f069f">Tools::Vector3::zero</a>()</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html">Tools::Vector3</a>&#160;</td>
-          <td class="paramname"><em>rot</em> = <code><a class="el" href="class_kap_engine_1_1_tools_1_1_vector3.html#aa660af68dd1b5957073c60403e7f069f">Tools::Vector3::zero</a>()</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ab7a8025fe6796bacce0e3150b4e7eec1" name="ab7a8025fe6796bacce0e3150b4e7eec1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7a8025fe6796bacce0e3150b4e7eec1">&#9670;&nbsp;</a></span>createScene() <span class="overload">[1/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &gt; KapEngine::Factory::createScene </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_kap_engine.html">KapEngine</a> &amp;&#160;</td>
-          <td class="paramname"><em>engine</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string const &amp;&#160;</td>
-          <td class="paramname"><em>name</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="acec8b758f6f6025360c9aced4ee3e17d" name="acec8b758f6f6025360c9aced4ee3e17d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acec8b758f6f6025360c9aced4ee3e17d">&#9670;&nbsp;</a></span>createScene() <span class="overload">[2/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &gt; KapEngine::Factory::createScene </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene_manager.html">SceneManagement::SceneManager</a> &amp;&#160;</td>
-          <td class="paramname"><em>manager</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string const &amp;&#160;</td>
-          <td class="paramname"><em>name</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a99b7dbc2c6ccf3914c8b8198f6ed5025" name="a99b7dbc2c6ccf3914c8b8198f6ed5025"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99b7dbc2c6ccf3914c8b8198f6ed5025">&#9670;&nbsp;</a></span>createScene() <span class="overload">[3/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene.html">SceneManagement::Scene</a> &gt; KapEngine::Factory::createScene </td>
-          <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_kap_engine_1_1_scene_management_1_1_scene_manager.html">SceneManagement::SceneManager</a> &gt;&#160;</td>
-          <td class="paramname"><em>manager</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string const &amp;&#160;</td>
-          <td class="paramname"><em>name</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>KapEngine/Engine/<a class="el" href="_factory_8hpp_source.html">Factory.hpp</a></li>
+</ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

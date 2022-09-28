@@ -25,7 +25,7 @@
   <td id="projectalign">
    <div id="projectname">KapEngine<span id="projectnumber">&#160;1.1</span>
    </div>
-   <div id="projectbrief">ECS engine in C++</div>
+   <div id="projectbrief">C++ easy ECS</div>
   </td>
  </tr>
  </tbody>
@@ -75,23 +75,22 @@ $(function() {
   <div class="headertitle"><div class="title">KapEngine::IComponent Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="_i_component_8hpp_source.html">IComponent.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for KapEngine::IComponent:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_kap_engine_1_1_i_component__inherit__graph.png" border="0" usemap="#a_kap_engine_1_1_i_component_inherit__map" alt="Inheritance graph"/></div>
 <map name="a_kap_engine_1_1_i_component_inherit__map" id="a_kap_engine_1_1_i_component_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,220,169,247"/>
-<area shape="rect" href="class_kap_engine_1_1_component.html" title=" " alt="" coords="217,220,377,247"/>
+<area shape="rect" title=" " alt="" coords="5,241,169,268"/>
+<area shape="rect" href="class_kap_engine_1_1_component.html" title=" " alt="" coords="217,241,377,268"/>
 <area shape="rect" href="class_kap_engine_1_1_animation.html" title=" " alt="" coords="453,31,603,57"/>
 <area shape="rect" href="class_kap_engine_1_1_animator.html" title=" " alt="" coords="455,81,601,108"/>
 <area shape="rect" href="class_kap_engine_1_1_camera.html" title=" " alt="" coords="459,132,597,159"/>
-<area shape="rect" href="class_kap_engine_1_1_scene_management_1_1_splash_screen_manager.html" title=" " alt="" coords="425,183,631,225"/>
-<area shape="rect" href="class_kap_engine_1_1_transform.html" title=" " alt="" coords="453,249,603,276"/>
-<area shape="rect" href="class_kap_engine_1_1_u_i_1_1_canvas.html" title=" " alt="" coords="449,300,607,327"/>
-<area shape="rect" href="class_kap_engine_1_1_u_i_1_1_image.html" title=" " alt="" coords="453,351,603,377"/>
-<area shape="rect" href="class_kap_engine_1_1_u_i_1_1_text.html" title=" " alt="" coords="458,401,598,428"/>
+<area shape="rect" href="class_kap_engine_1_1_mouse_detector.html" title=" " alt="" coords="437,183,619,209"/>
+<area shape="rect" href="class_kap_engine_1_1_scene_management_1_1_splash_screen_manager.html" title=" " alt="" coords="425,234,631,275"/>
+<area shape="rect" href="class_kap_engine_1_1_transform.html" title=" " alt="" coords="453,300,603,327"/>
+<area shape="rect" href="class_kap_engine_1_1_u_i_1_1_canvas.html" title=" " alt="" coords="449,351,607,377"/>
+<area shape="rect" href="class_kap_engine_1_1_u_i_1_1_image.html" title=" " alt="" coords="453,401,603,428"/>
+<area shape="rect" href="class_kap_engine_1_1_u_i_1_1_text.html" title=" " alt="" coords="458,452,598,479"/>
 <area shape="rect" href="class_kap_engine_1_1_animation_fade_in.html" title=" " alt="" coords="684,5,875,32"/>
 <area shape="rect" href="class_kap_engine_1_1_animation_fade_out.html" title=" " alt="" coords="679,56,880,83"/>
 </map>
@@ -99,8 +98,6 @@ Inheritance diagram for KapEngine::IComponent:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a65e72b02d1ad60b00dbe0d6fe81acdcd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a65e72b02d1ad60b00dbe0d6fe81acdcd">~IComponent</a> ()</td></tr>
-<tr class="separator:a65e72b02d1ad60b00dbe0d6fe81acdcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d8cd476e96a0f2e6157053c2243bd27"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kap_engine_1_1_i_component.html#a7d8cd476e96a0f2e6157053c2243bd27">onInit</a> ()=0</td></tr>
 <tr class="memdesc:a7d8cd476e96a0f2e6157053c2243bd27"><td class="mdescLeft">&#160;</td><td class="mdescRight">call on component init  <a href="class_kap_engine_1_1_i_component.html#a7d8cd476e96a0f2e6157053c2243bd27">More...</a><br /></td></tr>
 <tr class="separator:a7d8cd476e96a0f2e6157053c2243bd27"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,32 +150,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a386981d99fb1b83f8391a5028006354c"><td class="mdescLeft">&#160;</td><td class="mdescRight">call when <a class="el" href="class_kap_engine_1_1_game_object.html">GameObject</a> is enable after being disable  <a href="class_kap_engine_1_1_i_component.html#a386981d99fb1b83f8391a5028006354c">More...</a><br /></td></tr>
 <tr class="separator:a386981d99fb1b83f8391a5028006354c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a65e72b02d1ad60b00dbe0d6fe81acdcd" name="a65e72b02d1ad60b00dbe0d6fe81acdcd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a65e72b02d1ad60b00dbe0d6fe81acdcd">&#9670;&nbsp;</a></span>~IComponent()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">KapEngine::IComponent::~IComponent </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab0ce747cc480c673680e7c8a6b2d773c" name="ab0ce747cc480c673680e7c8a6b2d773c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab0ce747cc480c673680e7c8a6b2d773c">&#9670;&nbsp;</a></span>checkComponentValidity()</h2>
@@ -440,7 +411,7 @@ false if your component is not runnable </dd></dl>
 </div><div class="memdoc">
 
 <p>call on component init </p>
-<p >will be called during the component creation process. Be advised that some engine features cannot be used in this function. </p>
+<p >will be called during the component creation process. Be advised that some engine features cannot be used in this function. </p><dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd></dd></dl>
 
 <p>Implemented in <a class="el" href="class_kap_engine_1_1_component.html#a15c4ebae3ca398b69c96ff4c33306970">KapEngine::Component</a>.</p>
 
@@ -678,10 +649,13 @@ false if your component is not runnable </dd></dl>
 
 <p>call each frame </p>
 
-<p>Implemented in <a class="el" href="class_kap_engine_1_1_scene_management_1_1_splash_screen_manager.html#afa2b8cff7019b54ea565b4a8f443e863">KapEngine::SceneManagement::SplashScreenManager</a>, and <a class="el" href="class_kap_engine_1_1_component.html#a2ddabe99b1a7ef5c9a5eba56b20b05eb">KapEngine::Component</a>.</p>
+<p>Implemented in <a class="el" href="class_kap_engine_1_1_scene_management_1_1_splash_screen_manager.html#afa2b8cff7019b54ea565b4a8f443e863">KapEngine::SceneManagement::SplashScreenManager</a>, <a class="el" href="class_kap_engine_1_1_component.html#a2ddabe99b1a7ef5c9a5eba56b20b05eb">KapEngine::Component</a>, and <a class="el" href="class_kap_engine_1_1_mouse_detector.html#a2d19204e614846a1a9806bc1e22b3e38">KapEngine::MouseDetector</a>.</p>
 
 </div>
 </div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>KapEngine/Component/<a class="el" href="_i_component_8hpp_source.html">IComponent.hpp</a></li>
+</ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

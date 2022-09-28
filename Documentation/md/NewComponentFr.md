@@ -9,18 +9,18 @@
 par Benjamin DELVERT
 ```
 
-# <span color="blue">Créer ton composant</span>
+# Créer ton composant
 
 Sur cette page tu vas apprendre qu'est ce qu'un KapEngine::Component, pourquoi il existse et comment en créer un.
 
-## <span color="blue">Table des matières</span>
+## Table des matières
 | Titre                     | Lien                           | Statut         |
 |---------------------------|--------------------------------|----------------|
 | Qu'est ce qu'un composant | [GO](#Quest-ce-quun-composant) | :green_circle: |
 | Créer le sien             | [GO](#Créer-le-sien)           | :green_circle:   |
 | Démarrage Rapide          | [GO](#Démarrage-rapide)        | :green_circle: |
 
-## <span color="blue">Qu'est ce qu'un composant</span>
+## Qu'est ce qu'un composant
 
 Un composant est un script rattaché à un objet de jeu (KapEngine::GameObject). Il a pour but de donner une logique ou une action à votre objet.
 
@@ -31,7 +31,7 @@ Certaines fonctions seront automatiquement appelées par KapEngine ce qui permet
 
 Cette méthode de calcul vous permet d'avoir un jeu plus performant. Cependant il se peut que vous ayez des réécriute de valeur. Ce sera à vous d'y faire attention.
 
-## <span color="blue">Fonctions utiles</span>
+## Fonctions utiles
 
 Tous les composants on des fonctions très utiles permettant de connaître certains évenements de votre jeu comme les touches appuyées ou la position de votre souris en jeu.
 
@@ -55,7 +55,7 @@ Vous souhaitez ajouter des conditions qui permettent de faire focntionner ou non
 Lisez les explications de la foncton :
 - bool checkComponentValidity()
 
-## <span color="blue">Créer le sien</span>
+## Créer le sien
 
 Créer un composant est très simple. Vous devez créer un nouveau fichier .hpp. Ce fichier contiendra la classe de votre composant : [exemple](#Démarrage-rapide). Une fois que vous aurez créé ce composant, il fous suffira de l'ajouter sur un objet.
 
@@ -162,7 +162,7 @@ Cette fonction est appelé lorsque le composant collider aura détecté un autre
 Attention : cette fonction ne suit pas un ordre logique d'appel. Elle peut être appelé avant ou après les updates. Prenez ça en compte dans vos codes
 
 
-## <span color="blue">Démarrage Rapide</span>
+## Démarrage Rapide
 
 ```C++
 

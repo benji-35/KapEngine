@@ -25,7 +25,7 @@
   <td id="projectalign">
    <div id="projectname">KapEngine<span id="projectnumber">&#160;1.1</span>
    </div>
-   <div id="projectbrief">ECS engine in C++</div>
+   <div id="projectbrief">C++ easy ECS</div>
   </td>
  </tr>
  </tbody>
@@ -72,7 +72,7 @@ $(function() {
   <div class="headertitle"><div class="title">Component.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_component_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">** EPITECH PROJECT, 2022</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">** gameEngine2</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">** File description:</span></div>
@@ -82,10 +82,10 @@ $(function() {
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef COMPONENT_HPP_</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define COMPONENT_HPP_</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="_game_object_8hpp.html">GameObject.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="_i_component_8hpp.html">IComponent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;GameObject.hpp&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;IComponent.hpp&quot;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="_input_8hpp.html">Input.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="_mouse_8hpp.html">Mouse.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;Mouse.hpp&quot;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="namespace_kap_engine.html">   16</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_kap_engine.html">KapEngine</a> {</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">class </span><a class="code hl_class" href="class_kap_engine_1_1_game_object.html">GameObject</a>;</div>
@@ -104,8 +104,8 @@ $(function() {
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_kap_engine_1_1_component.html">   31</a></span>    <span class="keyword">class </span><a class="code hl_class" href="class_kap_engine_1_1_component.html">Component</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_kap_engine_1_1_i_component.html">IComponent</a> {</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            <a class="code hl_function" href="class_kap_engine_1_1_component.html#afa28b101b6305596a3fd683bfc19eeae">Component</a>(std::shared_ptr&lt;GameObject&gt; go, std::string <span class="keyword">const</span>&amp; name, <span class="keywordtype">int</span> threadRunning = 1);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            <a class="code hl_function" href="class_kap_engine_1_1_component.html#ac4d873a457165858e316208435cb91c0">~Component</a>();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            <a class="code hl_class" href="class_kap_engine_1_1_component.html">Component</a>(std::shared_ptr&lt;GameObject&gt; &amp;go, std::string <span class="keyword">const</span>&amp; name, <span class="keywordtype">int</span> threadRunning = 2);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            <a class="code hl_class" href="class_kap_engine_1_1_component.html">~Component</a>();</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            <span class="keywordtype">void</span> <a class="code hl_function" href="class_kap_engine_1_1_component.html#a6f3e4b50304b20acc1e7602354b3f0ca">__update</a>();</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
@@ -204,10 +204,7 @@ $(function() {
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>}</div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="preprocessor">#endif </span><span class="comment">/* !COMPONENT_HPP_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a_game_object_8hpp_html"><div class="ttname"><a href="_game_object_8hpp.html">GameObject.hpp</a></div></div>
-<div class="ttc" id="a_i_component_8hpp_html"><div class="ttname"><a href="_i_component_8hpp.html">IComponent.hpp</a></div></div>
 <div class="ttc" id="a_input_8hpp_html"><div class="ttname"><a href="_input_8hpp.html">Input.hpp</a></div></div>
-<div class="ttc" id="a_mouse_8hpp_html"><div class="ttname"><a href="_mouse_8hpp.html">Mouse.hpp</a></div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_component_html"><div class="ttname"><a href="class_kap_engine_1_1_component.html">KapEngine::Component</a></div><div class="ttdef"><b>Definition:</b> Component.hpp:31</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_component_html_a0fdb96a9a57f40d209db19f53e3602b4"><div class="ttname"><a href="class_kap_engine_1_1_component.html#a0fdb96a9a57f40d209db19f53e3602b4">KapEngine::Component::setLevel</a></div><div class="ttdeci">void setLevel(std::size_t lvl)</div><div class="ttdoc">Set the Level object.</div><div class="ttdef"><b>Definition:</b> Component.hpp:108</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_component_html_a15c4ebae3ca398b69c96ff4c33306970"><div class="ttname"><a href="class_kap_engine_1_1_component.html#a15c4ebae3ca398b69c96ff4c33306970">KapEngine::Component::onInit</a></div><div class="ttdeci">virtual void onInit() override</div><div class="ttdoc">call on component init</div><div class="ttdef"><b>Definition:</b> Component.hpp:68</div></div>
@@ -237,7 +234,6 @@ $(function() {
 <div class="ttc" id="aclass_kap_engine_1_1_component_html_a9f72bf6a001d632e69e9ca09e503a23f"><div class="ttname"><a href="class_kap_engine_1_1_component.html#a9f72bf6a001d632e69e9ca09e503a23f">KapEngine::Component::getGameObject</a></div><div class="ttdeci">GameObject &amp; getGameObject()</div><div class="ttdoc">Get the Game Object object.</div><div class="ttdef"><b>Definition:</b> Component.cpp:23</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_component_html_aaad927d96f8a50e917d3ecd29030cc8f"><div class="ttname"><a href="class_kap_engine_1_1_component.html#aaad927d96f8a50e917d3ecd29030cc8f">KapEngine::Component::onMouseExit</a></div><div class="ttdeci">virtual void onMouseExit() override</div><div class="ttdoc">called when mouse leave object</div><div class="ttdef"><b>Definition:</b> Component.hpp:82</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_component_html_ab250709b4dceb560b1e7d15a5cc9bf93"><div class="ttname"><a href="class_kap_engine_1_1_component.html#ab250709b4dceb560b1e7d15a5cc9bf93">KapEngine::Component::getMouse</a></div><div class="ttdeci">Events::Mouse getMouse()</div><div class="ttdoc">Get mouse events.</div><div class="ttdef"><b>Definition:</b> Component.cpp:74</div></div>
-<div class="ttc" id="aclass_kap_engine_1_1_component_html_ac4d873a457165858e316208435cb91c0"><div class="ttname"><a href="class_kap_engine_1_1_component.html#ac4d873a457165858e316208435cb91c0">KapEngine::Component::~Component</a></div><div class="ttdeci">~Component()</div><div class="ttdef"><b>Definition:</b> Component.cpp:19</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_component_html_ac95c005f4b953ceacefaaba6fb936e28"><div class="ttname"><a href="class_kap_engine_1_1_component.html#ac95c005f4b953ceacefaaba6fb936e28">KapEngine::Component::onDestroy</a></div><div class="ttdeci">virtual void onDestroy() override</div><div class="ttdoc">call when component destroyed</div><div class="ttdef"><b>Definition:</b> Component.hpp:87</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_component_html_ace3517e90f834811b3db4f3e372eb734"><div class="ttname"><a href="class_kap_engine_1_1_component.html#ace3517e90f834811b3db4f3e372eb734">KapEngine::Component::onDisplay</a></div><div class="ttdeci">virtual void onDisplay() override</div><div class="ttdoc">use to display some things this function is call after all updates fucntion</div><div class="ttdef"><b>Definition:</b> Component.hpp:74</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_component_html_ad5f400f3fb831b23cc92f8cf2acad628"><div class="ttname"><a href="class_kap_engine_1_1_component.html#ad5f400f3fb831b23cc92f8cf2acad628">KapEngine::Component::onMouseEnter</a></div><div class="ttdeci">virtual void onMouseEnter() override</div><div class="ttdoc">called when mouse enter object</div><div class="ttdef"><b>Definition:</b> Component.hpp:80</div></div>
@@ -245,7 +241,6 @@ $(function() {
 <div class="ttc" id="aclass_kap_engine_1_1_component_html_ae7324857a80396521eae33fef7877d5f"><div class="ttname"><a href="class_kap_engine_1_1_component.html#ae7324857a80396521eae33fef7877d5f">KapEngine::Component::onStart</a></div><div class="ttdeci">virtual void onStart() override</div><div class="ttdoc">call component start</div><div class="ttdef"><b>Definition:</b> Component.hpp:70</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_component_html_af203c57248f1f2c0b3c03e8fa9f3a22d"><div class="ttname"><a href="class_kap_engine_1_1_component.html#af203c57248f1f2c0b3c03e8fa9f3a22d">KapEngine::Component::__awake</a></div><div class="ttdeci">void __awake()</div><div class="ttdoc">check awake validity</div><div class="ttdef"><b>Definition:</b> Component.cpp:51</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_component_html_af8e296f52708cb6ad0ffe3eacb5e420c"><div class="ttname"><a href="class_kap_engine_1_1_component.html#af8e296f52708cb6ad0ffe3eacb5e420c">KapEngine::Component::onDisable</a></div><div class="ttdeci">virtual void onDisable() override</div><div class="ttdoc">call when GameObject is disable after being enable</div><div class="ttdef"><b>Definition:</b> Component.hpp:88</div></div>
-<div class="ttc" id="aclass_kap_engine_1_1_component_html_afa28b101b6305596a3fd683bfc19eeae"><div class="ttname"><a href="class_kap_engine_1_1_component.html#afa28b101b6305596a3fd683bfc19eeae">KapEngine::Component::Component</a></div><div class="ttdeci">Component(std::shared_ptr&lt; GameObject &gt; go, std::string const &amp;name, int threadRunning=1)</div><div class="ttdef"><b>Definition:</b> Component.cpp:13</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_events_1_1_input_html"><div class="ttname"><a href="class_kap_engine_1_1_events_1_1_input.html">KapEngine::Events::Input</a></div><div class="ttdoc">Ations des touches.</div><div class="ttdef"><b>Definition:</b> Input.hpp:38</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_events_1_1_mouse_html"><div class="ttname"><a href="class_kap_engine_1_1_events_1_1_mouse.html">KapEngine::Events::Mouse</a></div><div class="ttdef"><b>Definition:</b> Mouse.hpp:30</div></div>
 <div class="ttc" id="aclass_kap_engine_1_1_game_object_html"><div class="ttname"><a href="class_kap_engine_1_1_game_object.html">KapEngine::GameObject</a></div><div class="ttdef"><b>Definition:</b> GameObject.hpp:32</div></div>

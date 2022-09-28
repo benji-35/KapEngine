@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['j_0',['J',['../class_kap_engine_1_1_events_1_1_key.html#a0a19ffa51eb1c92b8e84621c9522dd65ad2359df1541335b22f2bdd8bf905a292',1,'KapEngine::Events::Key']]],
-  ['joystickid_1',['joystickId',['../struct_kap_engine_1_1_events_1_1_input_1_1_axis.html#a96a52171be75cf354b87f70367f2e850',1,'KapEngine::Events::Input::Axis']]]
+  ['maxvalue_0',['maxValue',['../class_kap_engine_1_1_events_1_1_key.html#a4447003f35da885280e1af101926ff96',1,'KapEngine::Events::Key']]],
+  ['minvalue_1',['minValue',['../class_kap_engine_1_1_events_1_1_key.html#adf9098d8cb41bd0e4c7ddcb9ea85286b',1,'KapEngine::Events::Key']]],
+  ['mouse_2',['Mouse',['../class_kap_engine_1_1_events_1_1_mouse.html',1,'KapEngine::Events']]],
+  ['mousedetector_3',['MouseDetector',['../class_kap_engine_1_1_mouse_detector.html',1,'KapEngine']]],
+  ['mousemoved_4',['mouseMoved',['../class_kap_engine_1_1_events_1_1_mouse.html#ac2a1e2614c3a343338b25edf31c69c54',1,'KapEngine::Events::Mouse']]]
 ];
