@@ -21,7 +21,7 @@ void KapEngine::AnimationFadeIn::onPlay() {
     UI::Image &img = (UI::Image &)getGameObject().getComponent("Image");
     Tools::Color cColor = img.getColorSprite();
 
-    cColor.setA(0.0f);
+    cColor.setA(0);
     img.setColor(cColor);
     img.setActive(true);
 }
@@ -35,7 +35,7 @@ void KapEngine::AnimationFadeIn::onUpdateAnim() {
         return;
     UI::Image &img = (UI::Image &)getGameObject().getComponent("Image");
     Tools::Color cColor = img.getColorSprite();
-    cColor.setA(val);
+    cColor.setA((char)(val * 255));
     img.setColor(cColor);
 }
 
@@ -43,6 +43,6 @@ void KapEngine::AnimationFadeIn::onResetAnim() {
     UI::Image &img = (UI::Image &)getGameObject().getComponent("Image");
     Tools::Color cColor = img.getColorSprite();
 
-    cColor.setA(0.0f);
+    cColor.setA(0);
     img.setColor(cColor);
 }
