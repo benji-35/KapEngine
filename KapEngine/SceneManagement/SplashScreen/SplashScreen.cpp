@@ -56,6 +56,13 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
     auto animator = std::make_shared<Animator>(canvas);
     canvas->addComponent(animator);
 
+    try {
+        auto &canvasC = (UI::Canvas &)canvas->getComponent("Canvas");
+        canvasC.setResizeType(UI::Canvas::resizyngType::RESIZE_WITH_SCREEN);
+    } catch(...) {
+        Debug::error("Splashscreen failed to acces canvas component");
+    }
+
     //init all GameObjects in splashScreen scene
     for (std::size_t i = 0; i < _splahes.size(); i++) {
         std::string objName = "Image(" + std::to_string(i) + ")";
