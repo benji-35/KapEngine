@@ -45,6 +45,8 @@ namespace KapEngine {
                     return currLib;
                 }
 
+                std::shared_ptr<GraphicalLib> getCurrentLib() const;
+
                 KapEngine &getEngine() const {
                     return _engine;
                 }

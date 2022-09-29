@@ -9,6 +9,7 @@
 #include "UiImage.hpp"
 #include "UiCanvas.hpp"
 #include "Debug.hpp"
+#include "GraphicalLib.hpp"
 
 KapEngine::UI::Image::Image(std::shared_ptr<GameObject> &go) : Component(go, "Image") {}
 
@@ -23,7 +24,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
 
     Tools::Vector3 currPos = transform.getWorldPosition();
     Canvas::resizyngType resizeType = Canvas::resizyngType::RESIZE_WITH_SCREEN;
-    Tools::Vector2 getCompare = getGameObjectConst().getEngine().getScreenSize();
+    Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
     try {
         std::shared_ptr<GameObject> canvasObject = getGameObjectConst().getScene().getObject(transform.getParentContainsComponent("Canvas"));
@@ -47,7 +48,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
 
     Tools::Vector3 currSize = transform.getWorldScale();
     Canvas::resizyngType resizeType = Canvas::resizyngType::RESIZE_WITH_SCREEN;
-    Tools::Vector2 getCompare = getGameObjectConst().getEngine().getScreenSize();
+    Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
 
     try {
