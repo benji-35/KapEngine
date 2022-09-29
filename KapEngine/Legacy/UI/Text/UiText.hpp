@@ -75,6 +75,8 @@ namespace KapEngine {
                 void onDisplay() override;
                 bool checkComponentValidity() override;
 
+                Tools::Vector2 getCalculatedPos();
+
             protected:
             private:
                 float _space = 0.5f;

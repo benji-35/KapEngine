@@ -42,7 +42,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
         nPos.setY(screenSize.getY() * currPos.getY() / getCompare.getY());
         return nPos;
     }
-    return Tools::Vector2(currPos.getX(), currPos.getY());;
+    return Tools::Vector2(currPos.getX(), currPos.getY());
 }
 
 KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
