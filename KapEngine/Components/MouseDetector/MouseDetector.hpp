@@ -32,6 +32,7 @@ namespace KapEngine {
 
             void setCheckZone(Tools::Rectangle zone) {
                 _square = zone;
+                _setted = true;
             }
 
         protected:
@@ -39,6 +40,7 @@ namespace KapEngine {
         private:
             Tools::Rectangle _square;
             bool _inSquare = false;
+            bool _setted = false;
     };
 
 }

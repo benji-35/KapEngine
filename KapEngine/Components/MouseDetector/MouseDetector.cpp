@@ -6,12 +6,37 @@
 */
 
 #include "MouseDetector.hpp"
+#include "Debug.hpp"
+#include "Transform.hpp"
 
 KapEngine::MouseDetector::MouseDetector(std::shared_ptr<GameObject> go) : Component(go, "Mouse Detector", 1) {}
 
 KapEngine::MouseDetector::~MouseDetector() {}
 
 void KapEngine::MouseDetector::onUpdate() {
+    
+    if (!_setted) {
+
+        try {
+
+            auto &tr = (Transform &)getGameObject().getTransform();
+
+            Tools::Rectangle rect;
+            Tools::Vector3 pos = tr.getWorldPosition();
+            Tools::Vector3 scale = tr.getWorldScale();
+
+            rect.setPos(Tools::Vector2(pos.getX(), pos.getY()));
+            rect.setSize(Tools::Vector2(scale.getX(), scale.getY()));
+
+            _square = rect;
+
+        } catch(...) {
+            Debug::error("[MOUSE DETECTOR] failed to get transform");
+        }
+
+    }
+    
+    
     Tools::Vector2 pos = getMouse().getPosition();
 
     float pX = _square.getX();
