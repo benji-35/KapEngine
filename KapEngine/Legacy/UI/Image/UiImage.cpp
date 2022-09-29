@@ -32,7 +32,9 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
         Canvas &canvas = (Canvas &)canvasObject->getComponent("Canvas");
         resizeType = canvas.getResizeType();
         getCompare = canvas.getScreenSizeCompare();
-    } catch(...) {}
+    } catch(...) {
+        Debug::warning("Failed to get canvas intels for positions");
+    }
 
     if (resizeType == Canvas::resizyngType::RESIZE_WITH_SCREEN) {
         Tools::Vector2 nPos;
@@ -59,7 +61,9 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
         resizeType = canvas.getResizeType();
         getCompare = canvas.getScreenSizeCompare();
 
-    } catch(...) {}
+    } catch(...) {
+        Debug::warning("Failed to get canvas intels for scale");
+    }
 
     if (resizeType == Canvas::resizyngType::RESIZE_WITH_SCREEN) {
 
