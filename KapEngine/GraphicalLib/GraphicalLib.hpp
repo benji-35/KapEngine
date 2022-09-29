@@ -85,6 +85,8 @@ namespace KapEngine {
 
                 virtual void startDisplay() {}
 
+                virtual Tools::Vector2 getScreenSize();
+
                 //graphical call
 
                 void setDrawText(std::function<void(UI::Text &)> f) {
