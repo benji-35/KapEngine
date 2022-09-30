@@ -26,6 +26,7 @@ include_directories(${KapEngine_SOURCE_DIR}/KapEngine/SceneManagement/SplashScre
 ## Tools
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Tools)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Debug)
+include_directories(${KapEngine_SOURCE_DIR}/KapEngine/PlayerPrefs)
 
 ## Graphical
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/GraphicalLib)
