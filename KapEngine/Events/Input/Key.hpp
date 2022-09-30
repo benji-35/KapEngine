@@ -560,6 +560,135 @@ namespace KapEngine {
                     }
                 }
 
+                std::string getTextValue() const {
+                    switch (_last) {
+                        case A:
+                            return "A";
+                        case B:
+                            return "B";
+                        case C:
+                            return "C";
+                        case D:
+                            return "D";
+                        case E:
+                            return "E";
+                        case F:
+                            return "F";
+                        case G:
+                            return "G";
+                        case H:
+                            return "H";
+                        case I:
+                            return "I";
+                        case J:
+                            return "J";
+                        case K:
+                            return "K";
+                        case L:
+                            return "L";
+                        case M:
+                            return "M";
+                        case N:
+                            return "N";
+                        case O:
+                            return "O";
+                        case P:
+                            return "P";
+                        case Q:
+                            return "Q";
+                        case R:
+                            return "R";
+                        case S:
+                            return "S";
+                        case T:
+                            return "T";
+                        case U:
+                            return "U";
+                        case V:
+                            return "V";
+                        case W:
+                            return "W";
+                        case X:
+                            return "X";
+                        case Y:
+                            return "Y";
+                        case Z:
+                            return "Z";
+                        case NUM0:
+                            return "0";
+                        case NUM1:
+                            return "1";
+                        case NUM2:
+                            return "2";
+                        case NUM3:
+                            return "3";
+                        case NUM4:
+                            return "4";
+                        case NUM5:
+                            return "5";
+                        case NUM6:
+                            return "6";
+                        case NUM7:
+                            return "7";
+                        case NUM8:
+                            return "8";
+                        case NUM9:
+                            return "9";
+                        case LEFT_BRACKET:
+                            return "{";
+                        case RIGHT_BRACKET:
+                            return "}";
+                        case SEMICOLON:
+                            return ";";
+                        case COMMA:
+                            return ",";
+                        case PERIOD:
+                            return ".";
+                        case SLASH:
+                            return "/";
+                        case BACKSLASH:
+                            return "\\";
+                        case EQUAL:
+                            return "=";
+                        case UNDERSCORE:
+                            return "_";
+                        case SPACE:
+                            return " ";
+                        case ENTER:
+                            return "\n";
+                        case TAB:
+                            return "\t";
+                        case KP_ADD:
+                            return "+";
+                        case SUBSTRACT:
+                            return "-";
+                        case KP_MULTIPLY:
+                            return "*";
+                        case KP_0:
+                            return "0";
+                        case KP_1:
+                            return "1";
+                        case KP_2:
+                            return "2";
+                        case KP_3:
+                            return "3";
+                        case KP_4:
+                            return "4";
+                        case KP_5:
+                            return "5";
+                        case KP_6:
+                            return "6";
+                        case KP_7:
+                            return "7";
+                        case KP_8:
+                            return "8";
+                        case KP_9:
+                            return "9";
+                        default:
+                            return "";
+                    }
+                }
+
                 EKey get() const {
                     return _last;
                 }
