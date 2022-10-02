@@ -158,7 +158,7 @@ bool KapEngine::Transform::allParentIsActive() {
 std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::Transform::getChildren() {
     std::vector<std::shared_ptr<GameObject>> gos = getGameObject().getScene().getAllObjects();
     std::vector<std::shared_ptr<GameObject>> result;
-    
+
     for (std::size_t i = 0; i < gos.size(); i++) {
         if (((Transform &)gos[i]->getTransform()).getParentId() == getGameObject().getId())
             result.push_back(gos[i]);
@@ -186,7 +186,7 @@ bool KapEngine::Transform::parentContainsComponent(std::string const& componentN
     std::shared_ptr<GameObject> parent = getParent();
     if (parent.use_count() == 0)
         return false;
-    
+
     if (parent->hasComponent(componentName))
         return true;
     if (recurcively) {

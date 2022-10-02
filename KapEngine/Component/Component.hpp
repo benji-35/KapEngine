@@ -49,12 +49,12 @@ namespace KapEngine {
                 _id = i;
                 return true;
             }
-            
+
             /**
              * @fn GameObject &getGameObject()
              * @brief Get the Game Object object
              * @throw KapEngine::Errors::ComponentError if the object does not exist in scene
-             * @return KapEngine::GameObject & 
+             * @return KapEngine::GameObject &
              */
             GameObject &getGameObject();
 
@@ -92,8 +92,8 @@ namespace KapEngine {
              * @fn std::size_t getLevel() const
              * the level gives call priority to the component. The higher the level, the sooner it will be updated
              * @brief Get the Level component
-             * 
-             * @return std::size_t 
+             *
+             * @return std::size_t
              */
             std::size_t getLevel() const {
                 return _level;
@@ -102,8 +102,8 @@ namespace KapEngine {
              * @fn void setLevel(std::size_t lvl)
              * the level gives call priority to the component. The higher the level, the sooner it will be updated
              * @brief Set the Level object
-             * 
-             * @param lvl 
+             *
+             * @param lvl
              */
             void setLevel(std::size_t lvl) {
                 _level = lvl;
@@ -111,9 +111,9 @@ namespace KapEngine {
 
             /**
              * @brief return if component is enable
-             * 
-             * @return true 
-             * @return false 
+             *
+             * @return true
+             * @return false
              */
             bool isEnable() const {
                 return _enable;
@@ -121,9 +121,9 @@ namespace KapEngine {
 
             /**
              * @brief return if component is disbale
-             * 
-             * @return true 
-             * @return false 
+             *
+             * @return true
+             * @return false
              */
             bool isDisable() const {
                 return !_enable;
@@ -132,7 +132,7 @@ namespace KapEngine {
             /**
              * @brief Set the active status of component
              * if true : component is active else component is disable
-             * @param b 
+             * @param b
              */
             void setActive(bool b) {
                 _enable = b;
@@ -140,7 +140,7 @@ namespace KapEngine {
 
             /**
              * @brief Get the component name
-             * @return std::string 
+             * @return std::string
              */
             std::string getName() const {
                 return _name;
@@ -156,7 +156,7 @@ namespace KapEngine {
             /**
              * @brief Get the Thread Running index
              * index of thread component
-             * @return int 
+             * @return int
              */
             int getThreadRunning() const {
                 return threadRunning;
@@ -164,19 +164,19 @@ namespace KapEngine {
 
             /**
              * @brief Get input events
-             * @return KapEngine::Events::Input 
+             * @return KapEngine::Events::Input
              */
             Events::Input getInput();
             /**
              * @brief Get mouse events
-             * @return KapEngine::Events::Mouse 
+             * @return KapEngine::Events::Mouse
              */
             Events::Mouse getMouse();
 
             /**
              * @brief Add require component
              * If your component need another component to work, you can add it's name with this function. Without the component require this component cannot run
-             * @param componentName 
+             * @param componentName
              */
             void addRequireComponent(std::string const& componentName) {
                 _componentsNeeded.push_back(componentName);

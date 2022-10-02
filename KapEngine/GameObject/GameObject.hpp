@@ -43,6 +43,11 @@ namespace KapEngine {
 
             Component &getComponent(std::string const& componentName);
 
+            template<typename T>
+            T &getComponent(std::string const& componentName) {
+                return dynamic_cast<T &>(getComponent(componentName));
+            }
+
             bool hasComponent(std::string const& componentName) const;
 
             KapEngine &getEngine();
