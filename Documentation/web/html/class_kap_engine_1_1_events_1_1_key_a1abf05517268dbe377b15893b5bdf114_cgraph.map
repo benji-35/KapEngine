@@ -1,5 +1,0 @@
-<map id="KapEngine::Events::Key::isGamepadKey" name="KapEngine::Events::Key::isGamepadKey">
-<area shape="rect" id="node1" title="Check is a gamepad key." alt="" coords="5,39,147,80"/>
-<area shape="rect" id="node2" href="$class_kap_engine_1_1_events_1_1_key.html#a7f24251ddc6edad03685b9855c5e446f" title="Check is a keyboard key." alt="" coords="195,5,336,47"/>
-<area shape="rect" id="node3" href="$class_kap_engine_1_1_events_1_1_key.html#a59ff9c1b383859e3e93d64431a434961" title="vérifie si la touche provient de la souris" alt="" coords="195,71,336,112"/>
-</map>
