@@ -48,6 +48,19 @@ namespace KapEngine {
                 return dynamic_cast<T &>(getComponent(componentName));
             }
 
+            template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
+            T &getComponent() {
+                for (std::size_t i = 0; i < _components.size(); i++) {
+                    if (_components[i] && typeid(*_components[i]).name() == typeid(T).name())
+                        return dynamic_cast<T &>(*_components[i]);
+                }
+                for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                    if (_componentsRun[i] && typeid(*_componentsRun[i]).name() == typeid(T).name())
+                        return dynamic_cast<T &>(*_componentsRun[i]);
+                }
+                throw Errors::GameObjectError("No component found");
+            }
+
             bool hasComponent(std::string const& componentName) const;
 
             KapEngine &getEngine();
