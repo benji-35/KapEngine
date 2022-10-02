@@ -217,6 +217,9 @@ void KapEngine::SceneManagement::Scene::dump(bool b) {
 std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::createGameObject(std::string const& name) {
     auto object = std::make_shared<GameObject>(*this, name);
 
+    auto tr = std::make_shared<Transform>(object);
+    object->addComponent(tr);
+
     addGameObject(object);
     return object;
 }
