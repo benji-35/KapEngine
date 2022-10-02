@@ -8,12 +8,12 @@
 #include "SceneManager.hpp"
 #include "Debug.hpp"
 #include "Factory.hpp"
+#include "Camera.hpp"
 
 KapEngine::SceneManagement::SceneManager::SceneManager(KapEngine &engine) : _engine(engine) {
     if (_engine.debugMode())
         Debug::log("Create Default Scene");
-    std::shared_ptr<Scene> baseScene = std::make_shared<Scene>(*this, "Default Scene");
-    addScene(baseScene);
+    createScene("Default Scene");
     if (_engine.debugMode())
         Debug::log("End init sceneManager");
 }
@@ -177,4 +177,16 @@ KapEngine::SceneManagement::Scene &KapEngine::SceneManagement::SceneManager::get
             return *_scenes[i];
     }
     throw Errors::SceneError("Unknown error while getting current scene");
+}
+
+std::shared_ptr<KapEngine::SceneManagement::Scene> KapEngine::SceneManagement::SceneManager::createScene(std::string const& name) {
+    std::shared_ptr<Scene> nScene = std::make_shared<Scene>(*this, name);
+
+    auto obj = nScene->createGameObject("Main Camera");
+
+    auto cam = std::make_shared<Camera>(obj);
+    obj->addComponent(cam);
+
+    addScene(nScene);
+    return nScene;
 }

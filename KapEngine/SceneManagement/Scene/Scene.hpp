@@ -108,6 +108,8 @@ namespace KapEngine {
                  */
                 void dump(bool showComponents = false);
 
+                std::shared_ptr<GameObject> createGameObject(std::string const& name);
+
             protected:
             private:
                 std::size_t _id = 0;
