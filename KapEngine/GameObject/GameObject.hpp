@@ -43,7 +43,7 @@ namespace KapEngine {
 
             Component &getComponent(std::string const& componentName);
 
-            template<typename T>
+            template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
             T &getComponent(std::string const& componentName) {
                 return dynamic_cast<T &>(getComponent(componentName));
             }
