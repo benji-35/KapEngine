@@ -8,18 +8,8 @@
 #ifndef ANIMATIONFADEOUT_HPP_
 #define ANIMATIONFADEOUT_HPP_
 
-#include "Animation.hpp"
-#include "UiImage.hpp"
-
-namespace KapEngine {
-    class Component;
-    class GameObject;
-    class Animation;
-
-    namespace UI {
-        class Image;
-    }
-}
+#include "KapEngine.hpp"
+#include "KapEngineUi.hpp"
 
 namespace KapEngine {
 

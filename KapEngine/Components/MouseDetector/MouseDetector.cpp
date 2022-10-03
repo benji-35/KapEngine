@@ -6,8 +6,6 @@
 */
 
 #include "MouseDetector.hpp"
-#include "Debug.hpp"
-#include "Transform.hpp"
 
 KapEngine::MouseDetector::MouseDetector(std::shared_ptr<GameObject> go) : Component(go, "Mouse Detector", 1) {}
 

@@ -21,6 +21,13 @@ namespace KapEngine {
     class Debug;
     class PlayerPrefs;
 
+    //components created
+    class Camera;
+    class Transform;
+    class MouseDetector;
+    class Animator;
+    class Animation;
+
     namespace Errors {
         class Error;
     }
@@ -62,6 +69,26 @@ namespace KapEngine {
 
 #ifndef PLAYERPREFS_HPP_
     #include "PlayerPrefs/PlayerPrefs.hpp"
+#endif
+
+#ifndef CAMERA_HPP_
+    #include "Camera.hpp"
+#endif
+
+#ifndef TRANSFORM_HPP_
+    #include "Transform.hpp"
+#endif
+
+#ifndef MOUSEDETECTOR_HPP_
+    #include "MouseDetector.hpp"
+#endif
+
+#ifndef ANIMATOR_HPP_
+    #include "Animator.hpp"
+#endif
+
+#ifndef ANIMATION_HPP_
+    #include "Animation.hpp"
 #endif
 
 #endif /* !INCLUDES_KAPENGINE_HPP_ */

@@ -8,11 +8,7 @@
 #ifndef MOUSEDETECTOR_HPP_
 #define MOUSEDETECTOR_HPP_
 
-#include "Component.hpp"
-
-namespace KapEngine {
-    class Component;
-}
+#include "KapEngine.hpp"
 
 namespace KapEngine {
 
