@@ -36,7 +36,7 @@ Ces 2 points sont très important pour une meilleur compréhension du moteur de 
 //KapEngine includes
 #include "Debug.hpp"
 #include "Factory.hpp"
-#include "KapEngine.hpp"
+#include "Engine.hpp"
 
 void createUI(KapEngine::SceneManagement::Scene &scene) {
 

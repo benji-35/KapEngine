@@ -8,7 +8,7 @@
 #ifndef GRAPHICALLIB_HPP_
 #define GRAPHICALLIB_HPP_
 
-#include "KapEngine.hpp"
+#include "Engine.hpp"
 #include "Input.hpp"
 #include "Vectors.hpp"
 #include "Entity.hpp"

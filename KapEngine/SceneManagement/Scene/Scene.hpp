@@ -8,7 +8,7 @@
 #ifndef SCENE_HPP_
 #define SCENE_HPP_
 
-#include "KapEngine.hpp"
+#include "Engine.hpp"
 #include "GameObject.hpp"
 
 namespace KapEngine {

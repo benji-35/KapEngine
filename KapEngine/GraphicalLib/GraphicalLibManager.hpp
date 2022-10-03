@@ -8,7 +8,7 @@
 #ifndef GRAPHICALLIBMANAGER_HPP_
 #define GRAPHICALLIBMANAGER_HPP_
 
-#include "KapEngine.hpp"
+#include "Engine.hpp"
 #include "GraphicalLib.hpp"
 #include <thread>
 
