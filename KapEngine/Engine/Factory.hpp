@@ -8,7 +8,9 @@
 #ifndef FACTORY_HPP_
 #define FACTORY_HPP_
 
-#include "KapEngine.hpp"
+#include "GameObject.hpp"
+#include "Vectors.hpp"
+#include "Colors.hpp"
 #include "Transform.hpp"
 #include "Camera.hpp"
 
