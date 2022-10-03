@@ -53,4 +53,4 @@ include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Text)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Canvas)
 
 ## includes
-include_directories(${KapEngine_SOURCE_DIR}/KapEngine)
+include_directories(${KapEngine_SOURCE_DIR})
