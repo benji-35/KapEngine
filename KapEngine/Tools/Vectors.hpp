@@ -227,37 +227,109 @@ namespace KapEngine {
                     return Vector3(x + vec.getX(), y + vec.getY(), z + vec.getZ());
                 }
 
+                Vector3 operator+(float const& f) {
+                    return Vector3(x + f, y + f, z + f);
+                }
+
+                Vector3 operator+(Vector2 const& vec);
+
+
                 Vector3 &operator+=(Vector3 const& vec) {
                     *this = *this + vec;
                     return *this;
                 }
 
+                Vector3 &operator+=(Vector2 const& vec) {
+                    *this = *this + vec;
+                    return *this;
+                }
+
+                Vector3 &operator+=(float const& f) {
+                    *this = *this + f;
+                    return *this;
+                }
+
+
                 Vector3 operator-(Vector3 const& vec) {
                     return Vector3(x - vec.getX(), y - vec.getY(), z - vec.getZ());
                 }
+
+                Vector3 operator-(Vector2 const& vec);
+
+                Vector3 operator-(float const& f) {
+                    return Vector3(x - f, y - f, z - f);
+                }
+
 
                 Vector3 &operator-=(Vector3 const& vec) {
                     *this = *this - vec;
                     return *this;
                 }
 
+                Vector3 &operator-=(Vector2 const& vec) {
+                    *this = *this - vec;
+                    return *this;
+                }
+
+                Vector3 &operator-=(float const& f) {
+                    *this = *this - f;
+                    return *this;
+                }
+
+
                 Vector3 operator*(Vector3 const& vec) {
                     return Vector3(x * vec.getX(), y * vec.getY(), z * vec.getZ());
                 }
+
+                Vector3 operator*(Vector2 const& vec);
+
+                Vector3 operator*(float const& f) {
+                    return Vector3(x * f, y * f, z * f);
+                }
+
 
                 Vector3 &operator*=(Vector3 const& vec) {
                     *this = *this * vec;
                     return *this;
                 }
+                
+                Vector3 &operator*=(Vector2 const& vec) {
+                    *this = *this * vec;
+                    return *this;
+                }
+
+                Vector3 &operator*=(float const& f) {
+                    *this = *this * f;
+                    return *this;
+                }
+
 
                 Vector3 operator/(Vector3 const& vec) {
                     return Vector3(x / vec.getX(), y / vec.getY(), z / vec.getZ());
                 }
 
+                Vector3 operator/(Vector2 const& vec);
+
+                Vector3 operator/(float const& f) {
+                    return Vector3(x / f, y / f, z / f);
+                }
+
+
                 Vector3 &operator/=(Vector3 const& vec) {
                     *this = *this / vec;
                     return *this;
                 }
+
+                Vector3 &operator/=(Vector2 const& vec) {
+                    *this = *this / vec;
+                    return *this;
+                }
+
+                Vector3 &operator/=(float const& f) {
+                    *this = *this / f;
+                    return *this;
+                }
+
 
                 Vector3 &operator=(Vector3 const& vec) {
                     x = vec.getX();
@@ -265,6 +337,9 @@ namespace KapEngine {
                     z = vec.getZ();
                     return *this;
                 }
+
+                Vector3 &operator=(Vector2 const& vec);
+
 
                 bool operator==(Vector3 const& vec) {
                     if (vec.getX() != x)
