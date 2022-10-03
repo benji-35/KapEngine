@@ -12,7 +12,7 @@
 #include "Engine/Engine.hpp"
 #include "Entity/Entity.hpp"
 #include "GameObject/GameObject.hpp"
-// #include "Component/Component.hpp"
+#include "Component/Component.hpp"
 #include "Debug/Debug.hpp"
 #include "Errors/Errors.hpp"
 #include "PlayerPrefs/PlayerPrefs.hpp"
