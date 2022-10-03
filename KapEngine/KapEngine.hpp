@@ -33,12 +33,12 @@
 #include "Tools/Vectors.hpp"
 
 //include components
-#include "Components/Camera/Camera.hpp"
-#include "Components/Animation/Animation.hpp"
-#include "Components/AnimationFadeIn/AnimationFadeIn.hpp"
-#include "Components/AnimationFadeOut/AnimationFadeOut.hpp"
-#include "Components/Animator/Animator.hpp"
-#include "Components/MouseDetector/MouseDetector.hpp"
-#include "Components/Transform/Transform.hpp"
+// #include "Components/Camera/Camera.hpp"
+// #include "Components/Animation/Animation.hpp"
+// #include "Components/AnimationFadeIn/AnimationFadeIn.hpp"
+// #include "Components/AnimationFadeOut/AnimationFadeOut.hpp"
+// #include "Components/Animator/Animator.hpp"
+// #include "Components/MouseDetector/MouseDetector.hpp"
+// #include "Components/Transform/Transform.hpp"
 
 #endif /* !INCLUDES_KAPENGINE_ENGINE_HPP_ */
