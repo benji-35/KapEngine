@@ -182,11 +182,6 @@ KapEngine::SceneManagement::Scene &KapEngine::SceneManagement::SceneManager::get
 std::shared_ptr<KapEngine::SceneManagement::Scene> KapEngine::SceneManagement::SceneManager::createScene(std::string const& name) {
     std::shared_ptr<Scene> nScene = std::make_shared<Scene>(*this, name);
 
-    auto obj = nScene->createGameObject("Main Camera");
-
-    auto cam = std::make_shared<Camera>(obj);
-    obj->addComponent(cam);
-
     addScene(nScene);
     return nScene;
 }

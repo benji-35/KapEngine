@@ -191,7 +191,7 @@ void KapEngine::SceneManagement::Scene::__init() {
 }
 
 void KapEngine::SceneManagement::Scene::__finit() {
-    auto mainCamera = Factory::createEmptyGameObject(*this, "Main Camera");
+    auto mainCamera = createGameObject("Main Camera");
     auto cam = std::make_shared<Camera>(mainCamera);
     mainCamera->addComponent(cam);
 }
