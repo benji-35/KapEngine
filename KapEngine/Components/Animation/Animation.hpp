@@ -10,11 +10,8 @@
 
 #include <functional>
 
-#include "Component.hpp"
-#include "Debug.hpp"
-#include "ETime.hpp"
-
-#include "EventAction.hpp"
+#include "KapEngine.hpp"
+#include "KapEngineEvents.hpp"
 
 namespace KapEngine {
 
