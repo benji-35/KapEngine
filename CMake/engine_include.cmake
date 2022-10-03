@@ -51,3 +51,6 @@ include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Factory)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Image)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Text)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Canvas)
+
+## Includes
+include_directories(${KapEngine_SOURCE_DIR}/KapEngine/)
