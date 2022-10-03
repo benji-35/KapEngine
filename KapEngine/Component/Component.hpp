@@ -15,6 +15,7 @@
 
 namespace KapEngine {
     class GameObject;
+    class Transform;
 
     namespace Events {
         class Input;
@@ -192,6 +193,9 @@ namespace KapEngine {
              * @warning Do not call by your selves. KapEngine will call it itself
              */
             void __awake();
+
+            Transform &getTransform();
+
         protected:
             /**
              * @brief Component name

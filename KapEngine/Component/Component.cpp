@@ -95,3 +95,7 @@ bool KapEngine::Component::__checkValidity() {
 
     return true;
 }
+
+KapEngine::Transform &KapEngine::Component::getTransform() {
+    return getGameObject().getComponent<Transform>();
+}
