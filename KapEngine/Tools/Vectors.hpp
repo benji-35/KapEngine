@@ -11,6 +11,13 @@
 #include <string>
 
 namespace KapEngine {
+    namespace Tools {
+        class Vector2;
+        class Vector3;
+    }
+}
+
+namespace KapEngine {
 
     namespace Tools {
 
@@ -38,46 +45,120 @@ namespace KapEngine {
                 }
 
                 Vector2 operator+(Vector2 const& vec) {
-                    return Vector2(x + vec.getX(), y + vec.getY());
+                    return Vector2(getX() + vec.getX(), y + vec.getY());
                 }
+
+                Vector2 operator+(float const& f) {
+                    return Vector2(x + f, y + f);
+                }
+
+                Vector2 operator+(Vector3 const& vec);
+
 
                 Vector2 &operator+=(Vector2 const& vec) {
                     *this = *this + vec;
                     return *this;
                 }
 
+                Vector2 &operator+=(float const& f) {
+                    *this = *this + f;
+                    return *this;
+                }
+
+                Vector2 &operator+=(Vector3 const& vec) {
+                    *this = *this + vec;
+                    return *this;
+                }
+
+
                 Vector2 operator-(Vector2 const& vec) {
                     return Vector2(x - vec.getX(), y - vec.getY());
                 }
+
+                Vector2 operator-(float const& f) {
+                    return Vector2(x - f, y - f);
+                }
+
+                Vector2 operator-(Vector3 const& vec);
+
 
                 Vector2 &operator-=(Vector2 const& vec) {
                     *this = *this - vec;
                     return *this;
                 }
 
+                Vector2 &operator-=(float const& f) {
+                    *this = *this - f;
+                    return *this;
+                }
+
+                Vector2 &operator-=(Vector3 const& vec) {
+                    *this = *this - vec;
+                    return *this;
+                }
+
+
                 Vector2 operator*(Vector2 const& vec) {
                     return Vector2(x * vec.getX(), y * vec.getY());
                 }
+
+                Vector2 operator*(float const& f) {
+                    return Vector2(x * f, y * f);
+                }
+
+                Vector2 operator*(Vector3 const& vec);
+
 
                 Vector2 &operator*=(Vector2 const& vec) {
                     *this = *this * vec;
                     return *this;
                 }
 
+                Vector2 &operator*=(float const& f) {
+                    *this = *this * f;
+                    return *this;
+                }
+
+                Vector2 &operator*=(Vector3 const& vec) {
+                    *this = *this * vec;
+                    return *this;
+                }
+
+
                 Vector2 operator/(Vector2 const& vec) {
                     return Vector2(x / vec.getX(), y / vec.getY());
                 }
+
+                Vector2 operator/(float const& f) {
+                    return Vector2(x / f, y / f);
+                }
+
+                Vector2 operator/(Vector3 const& vec);
+
 
                 Vector2 &operator/=(Vector2 const& vec) {
                     *this = *this / vec;
                     return *this;
                 }
 
+                Vector2 &operator/=(float const& f) {
+                    *this = *this / f;
+                    return *this;
+                }
+
+                Vector2 &operator/=(Vector3 const& vec) {
+                    *this = *this / vec;
+                    return *this;
+                }
+
+
                 Vector2 &operator=(Vector2 const& vec) {
                     x = vec.getX();
                     y = vec.getY();
                     return *this;
                 }
+
+                Vector2 &operator=(Vector3 const& vec);
 
                 bool operator==(Vector2 const& vec) {
                     if (vec.getX() != x)
