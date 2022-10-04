@@ -98,7 +98,7 @@ namespace KapEngine {
              * @return true 
              * @return false 
              */
-            bool hasChanged() const;
+            bool hasChanged();
 
         protected:
         //variables

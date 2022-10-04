@@ -243,7 +243,7 @@ bool KapEngine::Transform::allParentsActive() const {
     }
 }
 
-bool KapEngine::Transform::hasChanged() const {
+bool KapEngine::Transform::hasChanged() {
     if (_updatePos != _pos)
         return true;
     if (_updateRot != _rot)
