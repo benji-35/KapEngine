@@ -238,7 +238,7 @@ namespace KapEngine {
             }
 
             std::string getIconPath() const {
-                _icon;
+                return _icon;
             }
 
         protected:
