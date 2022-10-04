@@ -7,6 +7,7 @@
 
 #include "Transform.hpp"
 #include "KapEngineDebug.hpp"
+#include "Vectors.hpp"
 
 KapEngine::Transform::Transform(std::shared_ptr<GameObject> go) : Component(go, "Transform") {
     _startPos = Tools::Vector3(0.f, 0.f, 0.f);
@@ -21,6 +22,11 @@ void KapEngine::Transform::onAwake() {
     _rot = _startRot;
     _scale = _startScale;
     _awkaeTr = true;
+}
+void KapEngine::Transform::onDisplay() {
+    _updatePos = _pos;
+    _updateScale = _scale;
+    _updateRot = _rot;
 }
 
 void KapEngine::Transform::setPosition(Tools::Vector3 pos) {
@@ -235,4 +241,14 @@ bool KapEngine::Transform::allParentsActive() const {
     } catch(...) {
         return false;
     }
+}
+
+bool KapEngine::Transform::hasChanged() const {
+    if (_updatePos != _pos)
+        return true;
+    if (_updateRot != _rot)
+        return true;
+    if (_updateScale != _scale)
+        return true;
+    return false;
 }
