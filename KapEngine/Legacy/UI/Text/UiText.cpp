@@ -8,7 +8,7 @@
 #include "UiText.hpp"
 #include "Transform.hpp"
 #include "UiCanvas.hpp"
-#include "Debug.hpp"
+#include "KapEngineDebug.hpp"
 
 KapEngine::UI::Text::Text(std::shared_ptr<GameObject> &go, std::string const& textContent) : Component(go, "Text")
 {
@@ -46,7 +46,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedPos() {
         resizeType = canvas.getResizeType();
         getCompare = canvas.getScreenSizeCompare();
     } catch(...) {
-        Debug::warning("Failed to get canvas intels for positions");
+        DEBUG_WARNING("Failed to get canvas intels for positions");
     }
 
     if (resizeType == Canvas::resizyngType::RESIZE_WITH_SCREEN) {

@@ -6,7 +6,7 @@
 */
 
 #include "Engine.hpp"
-#include "Debug.hpp"
+#include "KapEngineDebug.hpp"
 #include "EventManager.hpp"
 
 KapEngine::KapEngine::KapEngine(bool debug, std::string const& gameName, std::string const& version, std::string const& company) {
@@ -27,7 +27,7 @@ KapEngine::KapEngine::~KapEngine() {
 }
 
 void KapEngine::KapEngine::run() {
-    Debug::warning("[ RUNNING ] running game");
+    DEBUG_WARNING("[ RUNNING ] running game");
     _splashsScreen->__init();
     _run = true;
     _internalClock.restart();
@@ -71,12 +71,12 @@ std::size_t KapEngine::KapEngine::getCurrentGraphicalLibIndex() const {
 }
 
 void KapEngine::KapEngine::__init() {
-    Debug::log("[INIT] KapEngine");
+    DEBUG_LOG("[INIT] KapEngine");
     _sceneManager = std::make_shared<SceneManagement::SceneManager>(*this);
     _libManager = std::make_shared<Graphical::GraphicalLibManager>(*this);
     _eventManager = std::make_shared<Events::EventManager>(*this);
     _splashsScreen = std::make_shared<SceneManagement::SplashScreen>(*this);
-    Debug::log("[INIT] end init KapEngine");
+    DEBUG_LOG("[INIT] end init KapEngine");
 }
 
 /**

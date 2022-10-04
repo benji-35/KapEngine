@@ -63,8 +63,8 @@ namespace KapEngine {
     #include "Errors/Errors.hpp"
 #endif
 
-#ifndef DEBUG_HPP_
-    #include "Debug/Debug.hpp"
+#ifndef INCLUDES_KAPENGINE_DEBUG_HPP_
+    #include "KapEngineDebug.hpp"
 #endif
 
 #ifndef PLAYERPREFS_HPP_

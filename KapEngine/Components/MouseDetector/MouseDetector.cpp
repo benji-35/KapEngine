@@ -29,7 +29,7 @@ void KapEngine::MouseDetector::onUpdate() {
             _square = rect;
 
         } catch(...) {
-            Debug::error("[MOUSE DETECTOR] failed to get transform");
+            DEBUG_ERROR("[MOUSE DETECTOR] failed to get transform");
         }
 
     }
