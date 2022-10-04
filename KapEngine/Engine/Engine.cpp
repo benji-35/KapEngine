@@ -23,6 +23,7 @@ KapEngine::KapEngine::KapEngine(bool debug, std::string const& gameName, std::st
 
 KapEngine::KapEngine::~KapEngine() {
     _sceneManager.reset();
+    _prefabManager.reset();
     _libManager.reset();
 }
 
@@ -73,6 +74,7 @@ std::size_t KapEngine::KapEngine::getCurrentGraphicalLibIndex() const {
 void KapEngine::KapEngine::__init() {
     DEBUG_LOG("[INIT] KapEngine");
     _sceneManager = std::make_shared<SceneManagement::SceneManager>(*this);
+    _prefabManager = std::make_shared<Prefabs::PrefabManager>(*this);
     _libManager = std::make_shared<Graphical::GraphicalLibManager>(*this);
     _eventManager = std::make_shared<Events::EventManager>(*this);
     _splashsScreen = std::make_shared<SceneManagement::SplashScreen>(*this);
@@ -80,10 +82,10 @@ void KapEngine::KapEngine::__init() {
 }
 
 /**
- * threadId : 0 = graphics  
- * threadId : 1 = component  
- * threadId : 2 = component  
- * threadId : 3 = component  
+ * threadId : 0 = graphics
+ * threadId : 1 = component
+ * threadId : 2 = component
+ * threadId : 3 = component
  * threadId : 4 = component
  */
 

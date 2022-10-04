@@ -10,6 +10,7 @@
 
 #include "Errors.hpp"
 #include "SceneManager.hpp"
+#include "PrefabManager.hpp"
 #include "GraphicalLibManager.hpp"
 #include "SplashScreen.hpp"
 #include "EClock.hpp"
@@ -20,6 +21,10 @@ namespace KapEngine {
     namespace SceneManagement {
         class SceneManager;
         class SplashScreen;
+    }
+
+    namespace Prefabs {
+        class PrefabManager;
     }
 
     namespace Graphical {
@@ -85,7 +90,7 @@ namespace KapEngine {
             }
             /**
              * @brief check debug mode
-             * 
+             *
              * @retval true if debug mode is enable
              * @retval false if debug mode is disable
              */
@@ -94,7 +99,7 @@ namespace KapEngine {
             }
             /**
              * @brief Set the debug mode
-             * @param b 
+             * @param b
              */
             void setDebugMod(bool b) {
                 _debug = b;
@@ -102,15 +107,15 @@ namespace KapEngine {
 
             /**
              * @brief Get the Current Graphical Lib
-             * 
-             * @return std::shared_ptr<KapEngine::Graphical::GraphicalLib> 
+             *
+             * @return std::shared_ptr<KapEngine::Graphical::GraphicalLib>
              */
             std::shared_ptr<Graphical::GraphicalLib> getCurrentGraphicalLib();
 
             /**
              * @brief Check if lib exists from it's id in engine
-             * 
-             * @param index 
+             *
+             * @param index
              * @return true if lib exists
              * @return false if lib does not exist
              */
@@ -118,8 +123,8 @@ namespace KapEngine {
 
             /**
              * @brief Check graphical lib exists from it's name in engine
-             * 
-             * @param name 
+             *
+             * @param name
              * @return true if lib exists
              * @return false if lib does not exist
              */
@@ -127,14 +132,14 @@ namespace KapEngine {
 
             /**
              * @brief Get the Current Graphical Lib Index
-             * 
-             * @return std::size_t 
+             *
+             * @return std::size_t
              */
             std::size_t getCurrentGraphicalLibIndex() const;
 
             /**
              * @brief Get the Game Name
-             * @return std::string 
+             * @return std::string
              */
             std::string getGameName() const {
                 return _gameName;
@@ -142,7 +147,7 @@ namespace KapEngine {
 
             /**
              * @brief Get the Game Version
-             * @return std::string 
+             * @return std::string
              */
             std::string getGameVersion() const {
                 return _gameVersion;
@@ -150,7 +155,7 @@ namespace KapEngine {
 
             /**
              * @brief Get the Game Company name
-             * @return std::string 
+             * @return std::string
              */
             std::string getGameCompany() const {
                 return _gameCompany;
@@ -158,11 +163,20 @@ namespace KapEngine {
 
             /**
              * @brief Get the Scene Manager of game
-             * 
-             * @return std::shared_ptr<KapEngine::SceneManagement::SceneManager> 
+             *
+             * @return std::shared_ptr<KapEngine::SceneManagement::SceneManager>
              */
             std::shared_ptr<SceneManagement::SceneManager> getSceneManager() const {
                 return _sceneManager;
+            }
+
+            /**
+             * @brief Get the Prefab Manager of game
+             *
+             * @return std::shared_ptr<KapEngine::Prefabs::PrefabManager>
+             */
+            std::shared_ptr<Prefabs::PrefabManager> getPrefabManager() const {
+                return _prefabManager;
             }
 
             /**
@@ -179,14 +193,14 @@ namespace KapEngine {
 
             /**
              * @brief Get the Event Manager of game
-             * @return KapEngine::Events::EventManager& 
+             * @return KapEngine::Events::EventManager&
              */
             Events::EventManager &getEventManager();
 
             /**
              * @brief Set the Delta Time of game
              * more delta time increase more the game gonna be fast. more delta decrease, more the game gonna be slow
-             * @param dTime 
+             * @param dTime
              */
             void setDeltaTime(float dTime) {
                 deltaTime = dTime;
@@ -239,9 +253,12 @@ namespace KapEngine {
             std::string _gameName;
             std::string _gameVersion;
             std::string _gameCompany;
-    
+
             //scene manager
             std::shared_ptr<SceneManagement::SceneManager> _sceneManager;
+
+            //prefab manager
+            std::shared_ptr<Prefabs::PrefabManager> _prefabManager;
 
             //graphical libs
             std::shared_ptr<Graphical::GraphicalLibManager> _libManager;
