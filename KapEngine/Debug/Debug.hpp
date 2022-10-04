@@ -56,7 +56,7 @@ namespace KapEngine {
             }
 
             static void warning(std::string const& _msg, const char *fileName, int const line) {
-                warning(std::string(_msg), "[" + colorGreen() + std::string(fileName) + colorNone() + " " + colorBlue() + "l. " + std::to_string(line) + colorNone() + "]");
+                warning(std::string(_msg), "[" + colorYellow() + std::string(fileName) + colorNone() + " " + colorBlue() + "l. " + std::to_string(line) + colorNone() + "]");
             }
             /**
             * @fn error(std::string _msg)
@@ -76,7 +76,7 @@ namespace KapEngine {
             }
 
             static void error(std::string const& _msg, const char *fileName, int const line) {
-                error(std::string(_msg), "[" + colorGreen() + std::string(fileName) + colorNone() + " " + colorBlue() + "l. " + std::to_string(line) + colorNone() + "]");
+                error(std::string(_msg), "[" + colorRed() + std::string(fileName) + colorNone() + " " + colorBlue() + "l. " + std::to_string(line) + colorNone() + "]");
             }
 
             static std::string colorNone() {
