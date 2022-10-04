@@ -176,9 +176,9 @@ void KapEngine::SceneManagement::Scene::destroyGameObject(std::size_t index) {
 }
 
 void KapEngine::SceneManagement::Scene::__checkDestroy() {
-    for (std::size_t i = 0; i < _gameObjectsToDestroy.size(); i++) {
+    for (std::size_t x = 0; x < _gameObjectsToDestroy.size(); x++) {
         for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
-            if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == _gameObjectsToDestroy[i]) {
+            if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == _gameObjectsToDestroy[x]) {
                 _gameObjectsRun[i]->__destroyIt();
                 _gameObjectsRun[i]->__engineStop();
                 _gameObjectsRun[i].reset();
@@ -187,7 +187,7 @@ void KapEngine::SceneManagement::Scene::__checkDestroy() {
             }
         }
         for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-            if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == _gameObjectsToDestroy[i]) {
+            if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == _gameObjectsToDestroy[x]) {
                 _gameObjectsRun[i]->__destroyIt();
                 break;
             }
