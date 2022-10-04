@@ -237,3 +237,24 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::create
     addGameObject(object);
     return object;
 }
+
+// template<typename T>
+// std::vector<KapEngine::GameObject &> KapEngine::SceneManagement::Scene::getGameObject(T) {
+
+// }
+
+std::vector<KapEngine::GameObject &> KapEngine::SceneManagement::Scene::getGameObject(std::string const& name) {
+    std::vector<GameObject &> result;
+
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (_gameObjects[i]->getName() == name)
+            result.push_back(*_gameObjects[i]);
+    }
+
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (_gameObjectsRun[i]->getName() == name)
+            result.push_back(*_gameObjectsRun[i]);
+    }
+
+    return result;
+}
