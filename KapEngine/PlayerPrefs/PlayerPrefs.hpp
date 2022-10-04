@@ -14,7 +14,7 @@
 #include <sstream>
 #include <vector>
 
-#include "Debug.hpp"
+#include "KapEngineDebug.hpp"
 
 namespace KapEngine {
 
@@ -101,7 +101,7 @@ namespace KapEngine {
                     if (name == intels.at(i).key)
                         return intels.at(i).content;
                 }
-                Debug::error("no content with key: " + name);
+                DEBUG_ERROR("no content with key: " + name);
                 return "";
             }
 
@@ -158,7 +158,7 @@ namespace KapEngine {
                     }
                     myfile.close();
                 } else {
-                    Debug::error("PlayerPref file does not exists. Please save something with PlayerPref to create this file");
+                    DEBUG_ERROR("PlayerPref file does not exists. Please save something with PlayerPref to create this file");
                     return res;
                 }
 
@@ -189,7 +189,7 @@ namespace KapEngine {
 
                 myfile.open (filePlayerPrefName);
                 if (!myfile.is_open()) {
-                    Debug::error("PlayerPrefs can't save anything. File does not open");
+                    DEBUG_ERROR("PlayerPrefs can't save anything. File does not open");
                     return;
                 }
                 myfile << content;
