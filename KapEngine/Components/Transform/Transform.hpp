@@ -108,6 +108,7 @@ namespace KapEngine {
             Tools::Vector3 getParentScale() const;
 
             std::size_t _parentId = 0;
+            bool _awkaeTr = false;
 
     };
 

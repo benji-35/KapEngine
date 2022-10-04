@@ -20,24 +20,25 @@ void KapEngine::Transform::onAwake() {
     _pos = _startPos;
     _rot = _startRot;
     _scale = _startScale;
+    _awkaeTr = true;
 }
 
 void KapEngine::Transform::setPosition(Tools::Vector3 pos) {
-    if (getGameObject().getEngine().isRunning()) {
+    if (_awkaeTr) {
         _pos = pos;
     } else {
         _startPos = pos;
     }
 }
 void KapEngine::Transform::setRotation(Tools::Vector3 rot) {
-    if (getGameObject().getEngine().isRunning()) {
+    if (_awkaeTr) {
         _rot = rot;
     } else {
         _startRot = rot;
     }
 }
 void KapEngine::Transform::setScale(Tools::Vector3 scale) {
-    if (getGameObject().getEngine().isRunning()) {
+    if (_awkaeTr) {
         _scale = scale;
     } else {
         _startScale = scale;
