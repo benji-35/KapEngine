@@ -79,10 +79,7 @@ namespace KapEngine {
                 std::vector<std::shared_ptr<GameObject>> getAllObjects();
                 std::shared_ptr<GameObject> getObject(Entity const& en);
                 
-                std::vector<GameObject &> getGameObject(std::string const& name);
-
-                // template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
-                // std::vector<GameObject &> getGameObject(T);
+                std::vector<std::shared_ptr<GameObject>> getGameObjects(std::string const& name);
 
                 KapEngine &getEngine();
 
