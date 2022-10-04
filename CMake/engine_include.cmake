@@ -46,11 +46,17 @@ include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Time)
 ## Entity
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Entity)
 
+## Prefabs
+include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Prefabs)
+
 ## UI
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Factory)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Image)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Text)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Canvas)
 
+## Utils
+include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Utils)
+
 ## Includes
-include_directories(${KapEngine_SOURCE_DIR}/KapEngine/)
+include_directories(${KapEngine_SOURCE_DIR}/KapEngine)
