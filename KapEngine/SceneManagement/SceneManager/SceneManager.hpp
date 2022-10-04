@@ -61,6 +61,10 @@ namespace KapEngine {
 
                 std::shared_ptr<Scene> createScene(std::string const& name);
 
+                std::vector<std::shared_ptr<Scene>> &getAllScenes() {
+                    return _scenes;
+                }
+
             protected:
             private:
                 std::size_t _indexScene = 0;
