@@ -36,8 +36,9 @@ namespace KapEngine {
                 ~Scene();
 
                 void addGameObject(std::shared_ptr<GameObject> go);
-                void removeGameObject(std::shared_ptr<GameObject> go);
-                void removeGameObject(std::size_t id);
+                void destroyGameObject(std::shared_ptr<GameObject> const go);
+                void destroyGameObject(GameObject const& go);
+                void destroyGameObject(std::size_t id);
 
                 bool setId(std::size_t id) {
                     if (_id != 0)

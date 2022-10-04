@@ -186,3 +186,7 @@ std::vector<std::shared_ptr<KapEngine::Component>> KapEngine::GameObject::getAll
 
     return result;
 }
+
+void KapEngine::GameObject::destroy() {
+    getScene().destroyGameObject(getId());
+}

@@ -105,6 +105,8 @@ namespace KapEngine {
 
             std::vector<std::shared_ptr<Component>> getAllComponents() const;
 
+            void destroy();
+
         protected:
         private:
             std::string _name;

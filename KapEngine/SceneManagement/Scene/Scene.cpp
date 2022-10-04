@@ -158,13 +158,19 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::getObj
     return getObject(en.getId());
 }
 
-void KapEngine::SceneManagement::Scene::removeGameObject(std::shared_ptr<GameObject> go) {
-    if (go.use_count() == 0)
+void KapEngine::SceneManagement::Scene::destroyGameObject(std::shared_ptr<GameObject> const go) {
+    if (go.use_count() == 0 || go->getScene().getId() != getId())
         return;
-    removeGameObject(go->getId());
+    destroyGameObject(go->getId());
 }
 
-void KapEngine::SceneManagement::Scene::removeGameObject(std::size_t index) {
+void KapEngine::SceneManagement::Scene::destroyGameObject(GameObject const& go) {
+    if (go.getSceneConst().getId() != getId())
+        return;
+    destroyGameObject(go.getId());
+}
+
+void KapEngine::SceneManagement::Scene::destroyGameObject(std::size_t index) {
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
         if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == index) {
             _gameObjectsRun[i]->__destroyIt();
