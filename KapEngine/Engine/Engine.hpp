@@ -233,6 +233,14 @@ namespace KapEngine {
                 _fixedTime = time;
             }
 
+            void setIconGame(std::string const& iconPath) {
+                _icon = iconPath;
+            }
+
+            std::string getIconPath() const {
+                _icon;
+            }
+
         protected:
         private:
             bool _run = false;
@@ -253,6 +261,7 @@ namespace KapEngine {
             std::string _gameName;
             std::string _gameVersion;
             std::string _gameCompany;
+            std::string _icon = "Library/KapEngine/Documentation/images/KapEngineLogo100x100.png";
 
             //scene manager
             std::shared_ptr<SceneManagement::SceneManager> _sceneManager;
