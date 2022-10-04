@@ -6,7 +6,7 @@
 */
 
 #include "GraphicalLibManager.hpp"
-#include "Debug.hpp"
+#include "KapEngineDebug.hpp"
 #include "LegacyGraphicalLib.hpp"
 
 KapEngine::Graphical::GraphicalLibManager::GraphicalLibManager(KapEngine &engine) : _engine(engine) {
@@ -97,7 +97,7 @@ void KapEngine::Graphical::GraphicalLibManager::changeLib(std::size_t const& lib
     }
 
     if (getEngine().debugMode()) {
-        Debug::warning("[Graphic Manager] : changing to lib " + std::to_string(libId));
+        DEBUG_WARNING("[Graphic Manager] : changing to lib " + std::to_string(libId));
     }
 
     std::shared_ptr<GraphicalLib> nLib = getLib(libId);

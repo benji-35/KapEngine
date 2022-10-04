@@ -6,7 +6,7 @@
 */
 
 #include "LegacyGraphicalLib.hpp"
-#include "Debug.hpp"
+#include "KapEngineDebug.hpp"
 #include <iostream>
 
 KapEngine::Graphical::LegacyGraphicalLib::LegacyGraphicalLib(GraphicalLibManager &manager) : GraphicalLib("Legacy", manager) {
@@ -14,22 +14,22 @@ KapEngine::Graphical::LegacyGraphicalLib::LegacyGraphicalLib(GraphicalLibManager
         this->manager.getEngine().stop();
     });
     registerCommand("next", [this](){
-        Debug::log("next Graphical Library");
+        DEBUG_LOG("next Graphical Library");
     });
     registerCommand("previous", [this](){
-        Debug::log("previous Graphical Library");
+        DEBUG_LOG("previous Graphical Library");
     });
     registerCommand("dump", [this](){
-        Debug::log("Dump scene");
+        DEBUG_LOG("Dump scene");
     });
     registerCommand("intel", [this](){
-        Debug::log("Game intel:");
-        Debug::log("Game name: " + this->manager.getEngine().getGameName());
-        Debug::log("Version: " + this->manager.getEngine().getGameVersion());
-        Debug::log("Company: " + this->manager.getEngine().getGameCompany());
+        DEBUG_LOG("Game intel:");
+        DEBUG_LOG("Game name: " + this->manager.getEngine().getGameName());
+        DEBUG_LOG("Version: " + this->manager.getEngine().getGameVersion());
+        DEBUG_LOG("Company: " + this->manager.getEngine().getGameCompany());
     });
     registerCommand("help", [this](){
-        Debug::log("Helper");
+        DEBUG_LOG("Helper");
     });
 }
 
@@ -45,7 +45,7 @@ void KapEngine::Graphical::LegacyGraphicalLib::display() {
             exit(0);
         }
     } catch (Errors::EngineError e) {
-        Debug::warning(e.what());
+        DEBUG_WARNING(e.what());
     }
 }
 

@@ -7,7 +7,7 @@
 
 #include "GameObject.hpp"
 #include "Errors.hpp"
-#include "Debug.hpp"
+#include "KapEngineDebug.hpp"
 #include "Transform.hpp"
 
 KapEngine::GameObject::GameObject(SceneManagement::Scene &scene, std::string const& name) : _scene(scene) {
@@ -163,16 +163,16 @@ void KapEngine::GameObject::__stoppingGame() {
 }
 
 void KapEngine::GameObject::dump(int tab) {
-    Debug::log("-GameObject: " + getName());
+    DEBUG_LOG("-GameObject: " + getName());
     std::string prefix = "";
     for (std::size_t i = 0; i < tab; i++) {
         prefix += "  ";
     }
     for (std::size_t i = 0; i < _components.size(); i++) {
-        Debug::log(prefix + ": " + _components[i]->getName());
+        DEBUG_LOG(prefix + ": " + _components[i]->getName());
     }
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
-        Debug::log(prefix + ": " + _componentsRun[i]->getName());
+        DEBUG_LOG(prefix + ": " + _componentsRun[i]->getName());
     }
 }
 

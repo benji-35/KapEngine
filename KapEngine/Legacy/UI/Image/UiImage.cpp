@@ -8,7 +8,7 @@
 #include "Transform.hpp"
 #include "UiImage.hpp"
 #include "UiCanvas.hpp"
-#include "Debug.hpp"
+#include "KapEngineDebug.hpp"
 #include "GraphicalLib.hpp"
 
 KapEngine::UI::Image::Image(std::shared_ptr<GameObject> &go) : Component(go, "Image") {}
@@ -33,7 +33,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
         resizeType = canvas.getResizeType();
         getCompare = canvas.getScreenSizeCompare();
     } catch(...) {
-        Debug::warning("Failed to get canvas intels for positions");
+        DEBUG_WARNING("Failed to get canvas intels for positions");
     }
 
     if (resizeType == Canvas::resizyngType::RESIZE_WITH_SCREEN) {
@@ -62,7 +62,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
         getCompare = canvas.getScreenSizeCompare();
 
     } catch(...) {
-        Debug::warning("Failed to get canvas intels for scale");
+        DEBUG_WARNING("Failed to get canvas intels for scale");
     }
 
     if (resizeType == Canvas::resizyngType::RESIZE_WITH_SCREEN) {
@@ -82,7 +82,7 @@ bool KapEngine::UI::Image::checkComponentValidity() {
         auto res = tr.parentContainsComponent("Canvas", true);
         
         if (res == false) {
-            Debug::warning("Cannot use Image because no canvas found!");
+            DEBUG_WARNING("Cannot use Image because no canvas found!");
         }
         
         return res;

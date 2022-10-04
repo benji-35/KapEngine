@@ -7,14 +7,14 @@
 
 #include "Scene.hpp"
 #include "Errors.hpp"
-#include "Debug.hpp"
+#include "KapEngineDebug.hpp"
 #include "Factory.hpp"
 
 KapEngine::SceneManagement::Scene::Scene(SceneManager &manager, std::string const& name) : manager(manager) {
-    Debug::log("Start init scene");
+    DEBUG_LOG("Start init scene");
     _name = name;
     __finit();
-    Debug::log("Stop init scene");
+    DEBUG_LOG("Stop init scene");
 }
 
 KapEngine::SceneManagement::Scene::~Scene() {
@@ -71,7 +71,7 @@ void KapEngine::SceneManagement::Scene::__update() {
         Component camera = getActiveCamera();
     } catch(...) {
         if (getEngine().debugMode()) {
-            Debug::error("No camera found in scene");
+            DEBUG_ERROR("No camera found in scene");
         }
         return;
     }
@@ -97,13 +97,13 @@ void KapEngine::SceneManagement::Scene::__update() {
 
 void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {
     if (go->getId() != 0) {
-        Debug::warning("Object " + go->getName() + " already added in scene: " + go->getScene().getName());
+        DEBUG_WARNING("Object " + go->getName() + " already added in scene: " + go->getScene().getName());
         return;
     }
     _idObjectMax++;
     go->__setId(_idObjectMax);
     if (getEngine().debugMode()) {
-        Debug::log("Add object " + go->getName() + " in scene " + getName());
+        DEBUG_LOG("Add object " + go->getName() + " in scene " + getName());
     }
     if (!getEngine().isRunning() || manager.getCurrentSceneId() != getId()) {
         _gameObjects.push_back(go);
@@ -197,19 +197,19 @@ void KapEngine::SceneManagement::Scene::__finit() {
 }
 
 void KapEngine::SceneManagement::Scene::dump(bool b) {
-    Debug::log("Scene: " + getName());
+    DEBUG_LOG("Scene: " + getName());
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         if (b) {
             _gameObjects[i]->dump();
         } else {
-            Debug::log("-GameObject: " + _gameObjects[i]->getName());
+            DEBUG_LOG("-GameObject: " + _gameObjects[i]->getName());
         }
     }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
         if (b) {
             _gameObjectsRun[i]->dump();
         } else {
-            Debug::log("-GameObject: " + _gameObjectsRun[i]->getName());
+            DEBUG_LOG("-GameObject: " + _gameObjectsRun[i]->getName());
         }
     }
 }
