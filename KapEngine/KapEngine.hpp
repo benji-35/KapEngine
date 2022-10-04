@@ -31,6 +31,13 @@ namespace KapEngine {
     namespace Errors {
         class Error;
     }
+
+    namespace Tools {
+        class Vector2;
+        class Vector3;
+        class Color;
+        class Rectangle;
+    }
 }
 
 //include basics includes
@@ -72,23 +79,35 @@ namespace KapEngine {
 #endif
 
 #ifndef CAMERA_HPP_
-    #include "Camera.hpp"
+    #include "Components/Camera/Camera.hpp"
 #endif
 
 #ifndef TRANSFORM_HPP_
-    #include "Transform.hpp"
+    #include "Components/Transform/Transform.hpp"
 #endif
 
 #ifndef MOUSEDETECTOR_HPP_
-    #include "MouseDetector.hpp"
+    #include "Components/MouseDetector/MouseDetector.hpp"
 #endif
 
 #ifndef ANIMATOR_HPP_
-    #include "Animator.hpp"
+    #include "Components/Animator/Animator.hpp"
 #endif
 
 #ifndef ANIMATION_HPP_
-    #include "Animation.hpp"
+    #include "Components/Animation/Animation.hpp"
+#endif
+
+#ifndef COLORS_HPP_
+    #include "Tools/Colors.hpp"
+#endif
+
+#ifndef RECTANGLE_HPP_
+    #include "Tools/Rectangle.hpp"
+#endif
+
+#ifndef VECTORS_HPP_
+    #include "Tools/Vectors.hpp"
 #endif
 
 #endif /* !INCLUDES_KAPENGINE_HPP_ */
