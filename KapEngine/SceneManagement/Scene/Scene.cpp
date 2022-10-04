@@ -67,6 +67,7 @@ KapEngine::KapEngine &KapEngine::SceneManagement::Scene::getEngine() {
 }
 
 void KapEngine::SceneManagement::Scene::__update() {
+    __checkDestroy();
     try {
         Component camera = getActiveCamera();
     } catch(...) {
@@ -171,21 +172,28 @@ void KapEngine::SceneManagement::Scene::destroyGameObject(GameObject const& go) 
 }
 
 void KapEngine::SceneManagement::Scene::destroyGameObject(std::size_t index) {
-    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
-        if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == index) {
-            _gameObjectsRun[i]->__destroyIt();
-            _gameObjectsRun[i]->__engineStop();
-            _gameObjectsRun[i].reset();
-            _gameObjectsRun.erase(_gameObjectsRun.begin() + i);
-            break;
+    _gameObjectsToDestroy.push_back(index);
+}
+
+void KapEngine::SceneManagement::Scene::__checkDestroy() {
+    for (std::size_t i = 0; i < _gameObjectsToDestroy.size(); i++) {
+        for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+            if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == _gameObjectsToDestroy[i]) {
+                _gameObjectsRun[i]->__destroyIt();
+                _gameObjectsRun[i]->__engineStop();
+                _gameObjectsRun[i].reset();
+                _gameObjectsRun.erase(_gameObjectsRun.begin() + i);
+                break;
+            }
+        }
+        for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+            if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == _gameObjectsToDestroy[i]) {
+                _gameObjectsRun[i]->__destroyIt();
+                break;
+            }
         }
     }
-    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-        if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == index) {
-            _gameObjectsRun[i]->__destroyIt();
-            break;
-        }
-    }
+    _gameObjectsToDestroy.clear();
 }
 
 void KapEngine::SceneManagement::Scene::__init() {

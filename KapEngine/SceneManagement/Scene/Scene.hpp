@@ -119,6 +119,9 @@ namespace KapEngine {
                 SceneManager &manager;
                 std::vector<std::shared_ptr<GameObject>> _gameObjects;
                 std::vector<std::shared_ptr<GameObject>> _gameObjectsRun;
+                std::vector<std::size_t> _gameObjectsToDestroy;
+
+                void __checkDestroy();
         };
 
     }
