@@ -12,6 +12,7 @@ bool PrefabManager::instantiatePrefab(std::string const& name, SceneManagement::
     std::shared_ptr<Prefab> handler;
     if (_prefabs.tryGetValue(name, handler)) {
         gameObject = (*handler)(scene);
+        gameObject->__setPrefab(name);
         return true;
     }
     return false;
