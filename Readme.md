@@ -9,7 +9,7 @@
                                                                         
 by Benjamin DELVERT                               
 ```
-# KapEngine (https://github.com/benji-35/KapEngine) [<!--lint ignore no-dead-urls-->![GitHub Actions status | benji-35/KapEngine](https://github.com/benji-35/KapEngine/workflows/KapEngine%20Build/badge.svg)](https://github.com/benji-35/KapEngine/actions?workflow=KapEngine+Build)
+# KapEngine [<!--lint ignore no-dead-urls-->![GitHub Actions status | benji-35/KapEngine](https://github.com/benji-35/KapEngine/workflows/KapEngine%20Build/badge.svg)](https://github.com/benji-35/KapEngine/actions?workflow=KapEngine+Build)
 
 
 ### Game Example
