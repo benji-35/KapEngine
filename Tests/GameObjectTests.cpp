@@ -6,24 +6,12 @@
 */
 
 #include "KapEngine.hpp"
-#include "criterion/criterion.h"
+#include <gtest/gtest.h>
 
-Test(GameObject, GameObject_Creation1) {
+TEST(GameObject, Test1) {
     KapEngine::KapEngine engine;
-    auto &scene = engine.getSceneManager()->getScene(1);
 
-    auto go = std::make_shared<KapEngine::GameObject>(scene, "TestObject");
+    auto go = engine.getSceneManager()->getScene(1).createGameObject("Toto");
 
-    auto found = scene.getObject(go->getId());
-    cr_assert((found.use_count() > 0));
-}
-
-Test(GameObject, GameObject_Creation2) {
-    KapEngine::KapEngine engine;
-    auto &scene = engine.getSceneManager()->getScene(1);
-
-    auto go = scene.createGameObject("TestObject");
-
-    auto found = scene.getObject(go->getId());
-    cr_assert((found.use_count() > 0));
+    ASSERT_NE((int)go.use_count(), 0);
 }
