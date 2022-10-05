@@ -8,7 +8,7 @@
 #ifndef EVENTMANAGER_HPP_
 #define EVENTMANAGER_HPP_
 
-#include "KapEngine.hpp"
+#include "Engine.hpp"
 
 namespace KapEngine {
 

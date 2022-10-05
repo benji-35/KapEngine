@@ -25,6 +25,7 @@ namespace KapEngine {
              * @fn virtual void onInit()
              * will be called during the component creation process. Be advised that some engine features cannot be used in this function.
              * @brief call on component init
+             * @deprecated
              */
             virtual void onInit() = 0;
             /**

@@ -23,7 +23,8 @@ namespace KapEngine {
             Transform(std::shared_ptr<GameObject> go);
             ~Transform();
 
-            void onStart() override;
+            void onAwake() override;
+            void onDisplay() override;
 
             void setPosition(Tools::Vector3 pos);
             void setRotation(Tools::Vector3 rot);
@@ -92,6 +93,13 @@ namespace KapEngine {
              */
             bool allParentsActive() const;
 
+            /**
+             * @brief check if transform changed since last update
+             * @return true 
+             * @return false 
+             */
+            bool hasChanged();
+
         protected:
         //variables
         private:
@@ -99,15 +107,22 @@ namespace KapEngine {
             Tools::Vector3 _rot;
             Tools::Vector3 _scale;
 
-            Tools::Vector3 _startPos = Tools::Vector3::zero();
-            Tools::Vector3 _startRot = Tools::Vector3::zero();
-            Tools::Vector3 _startScale = Tools::Vector3::one();
+            //start values
+            Tools::Vector3 _startPos;
+            Tools::Vector3 _startRot;
+            Tools::Vector3 _startScale;
+
+            //update values
+            Tools::Vector3 _updatePos;
+            Tools::Vector3 _updateRot;
+            Tools::Vector3 _updateScale;
 
             Tools::Vector3 getParentPos() const;
             Tools::Vector3 getParentRot() const;
             Tools::Vector3 getParentScale() const;
 
             std::size_t _parentId = 0;
+            bool _awkaeTr = false;
 
     };
 

@@ -10,7 +10,6 @@
 #include "UiFactory.hpp"
 
 #include "Animator.hpp"
-#include "SplashScreenManager.hpp"
 #include "AnimationFadeIn.hpp"
 #include "AnimationFadeOut.hpp"
 
@@ -25,16 +24,16 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
 
     //init KapEngine Splash Screen
     if (_displayKapEngineLogo) {
-        std::shared_ptr<SplashScreenNode> kapEngineNode = std::make_shared<SplashScreenNode>("Documentation/Engine/images/KapEngineBannerNeg.png", 4);
+        std::shared_ptr<SplashScreenNode> kapEngineNode = std::make_shared<SplashScreenNode>("./Library/KapEngine/Documentation/images/KapEngineBannerNeg.png", 4);
         std::vector<std::shared_ptr<SplashScreenNode>> nNodes;
 
         kapEngineNode->rect.setX(0);
         kapEngineNode->rect.setY(0);
         kapEngineNode->rect.setWidth(1436);
         kapEngineNode->rect.setHeigth(1080);
-        kapEngineNode->size.setX(450.0f);
-        kapEngineNode->size.setY(400.0f);
-        kapEngineNode->pos.setY((_engine.getScreenSize().getY() / 2.0f) - (400.f / 2.0f));
+        kapEngineNode->size.setX(450.f);
+        kapEngineNode->size.setY(338.44f);
+        kapEngineNode->pos.setY((_engine.getScreenSize().getY() / 2.0f) - (338.f / 2.0f));
         kapEngineNode->pos.setX((_engine.getScreenSize().getX() / 2.f) - (450.f / 2.0f));
 
         nNodes.push_back(kapEngineNode);
@@ -57,14 +56,19 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
     auto animator = std::make_shared<Animator>(canvas);
     canvas->addComponent(animator);
 
-    std::shared_ptr<SplashScreenManager> previousSplash;
+    try {
+        auto &canvasC = (UI::Canvas &)canvas->getComponent("Canvas");
+        canvasC.setResizeType(UI::Canvas::resizyngType::RESIZE_WITH_SCREEN);
+    } catch(...) {
+        DEBUG_ERROR("Splashscreen failed to acces canvas component");
+    }
 
     //init all GameObjects in splashScreen scene
     for (std::size_t i = 0; i < _splahes.size(); i++) {
         std::string objName = "Image(" + std::to_string(i) + ")";
         std::shared_ptr<GameObject> img = UI::UiFactory::createImage(*sceneSplash, objName, _splahes[i]->pathImage);
 
-        Debug::log("Create splash screen " + objName);
+        DEBUG_LOG("Create splash screen " + objName);
 
         Tools::Vector3 startPos(_splahes[i]->pos.getX(), _splahes[i]->pos.getY(), 0);
         Tools::Vector3 startScale(_splahes[i]->size.getX(), _splahes[i]->size.getY(), 0);
@@ -128,9 +132,9 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
     try {
         Camera &cam = (Camera&)sceneSplash->getActiveCamera();
         cam.setBackgroundColor(Tools::Color::black());
-        Debug::log("[Splash Screen]Active camera on object " + std::to_string(cam.getGameObject().getId()));
+        DEBUG_LOG("[Splash Screen]Active camera on object " + std::to_string(cam.getGameObject().getId()));
     } catch(...) {
-        Debug::error("Camera not found for splashscreen creation");
+        DEBUG_ERROR("Camera not found for splashscreen creation");
     }
     //set splash screen scene as first scene
     _engine.getSceneManager()->loadScene(sceneSplash->getId());

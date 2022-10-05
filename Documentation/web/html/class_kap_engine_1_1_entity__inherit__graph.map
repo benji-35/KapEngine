@@ -1,6 +1,0 @@
-<map id="KapEngine::Entity" name="KapEngine::Entity">
-<area shape="rect" id="node1" title=" " alt="" coords="116,5,243,32"/>
-<area shape="rect" id="node2" href="$class_kap_engine_1_1_game_object.html" title=" " alt="" coords="5,87,172,114"/>
-<area shape="rect" id="node3" href="$class_kap_engine_1_1_graphical_1_1_graphical_lib.html" title=" " alt="" coords="196,80,344,121"/>
-<area shape="rect" id="node4" href="$class_kap_engine_1_1_graphical_1_1_legacy_graphical_lib.html" title=" " alt="" coords="196,169,344,211"/>
-</map>

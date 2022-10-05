@@ -8,6 +8,15 @@
 #ifndef VECTORS_HPP_
 #define VECTORS_HPP_
 
+#include <string>
+
+namespace KapEngine {
+    namespace Tools {
+        class Vector2;
+        class Vector3;
+    }
+}
+
 namespace KapEngine {
 
     namespace Tools {
@@ -36,46 +45,120 @@ namespace KapEngine {
                 }
 
                 Vector2 operator+(Vector2 const& vec) {
-                    return Vector2(x + vec.getX(), y + vec.getY());
+                    return Vector2(getX() + vec.getX(), y + vec.getY());
                 }
+
+                Vector2 operator+(float const& f) {
+                    return Vector2(x + f, y + f);
+                }
+
+                Vector2 operator+(Vector3 const& vec);
+
 
                 Vector2 &operator+=(Vector2 const& vec) {
                     *this = *this + vec;
                     return *this;
                 }
 
+                Vector2 &operator+=(float const& f) {
+                    *this = *this + f;
+                    return *this;
+                }
+
+                Vector2 &operator+=(Vector3 const& vec) {
+                    *this = *this + vec;
+                    return *this;
+                }
+
+
                 Vector2 operator-(Vector2 const& vec) {
                     return Vector2(x - vec.getX(), y - vec.getY());
                 }
+
+                Vector2 operator-(float const& f) {
+                    return Vector2(x - f, y - f);
+                }
+
+                Vector2 operator-(Vector3 const& vec);
+
 
                 Vector2 &operator-=(Vector2 const& vec) {
                     *this = *this - vec;
                     return *this;
                 }
 
+                Vector2 &operator-=(float const& f) {
+                    *this = *this - f;
+                    return *this;
+                }
+
+                Vector2 &operator-=(Vector3 const& vec) {
+                    *this = *this - vec;
+                    return *this;
+                }
+
+
                 Vector2 operator*(Vector2 const& vec) {
                     return Vector2(x * vec.getX(), y * vec.getY());
                 }
+
+                Vector2 operator*(float const& f) {
+                    return Vector2(x * f, y * f);
+                }
+
+                Vector2 operator*(Vector3 const& vec);
+
 
                 Vector2 &operator*=(Vector2 const& vec) {
                     *this = *this * vec;
                     return *this;
                 }
 
+                Vector2 &operator*=(float const& f) {
+                    *this = *this * f;
+                    return *this;
+                }
+
+                Vector2 &operator*=(Vector3 const& vec) {
+                    *this = *this * vec;
+                    return *this;
+                }
+
+
                 Vector2 operator/(Vector2 const& vec) {
                     return Vector2(x / vec.getX(), y / vec.getY());
                 }
+
+                Vector2 operator/(float const& f) {
+                    return Vector2(x / f, y / f);
+                }
+
+                Vector2 operator/(Vector3 const& vec);
+
 
                 Vector2 &operator/=(Vector2 const& vec) {
                     *this = *this / vec;
                     return *this;
                 }
 
+                Vector2 &operator/=(float const& f) {
+                    *this = *this / f;
+                    return *this;
+                }
+
+                Vector2 &operator/=(Vector3 const& vec) {
+                    *this = *this / vec;
+                    return *this;
+                }
+
+
                 Vector2 &operator=(Vector2 const& vec) {
                     x = vec.getX();
                     y = vec.getY();
                     return *this;
                 }
+
+                Vector2 &operator=(Vector3 const& vec);
 
                 bool operator==(Vector2 const& vec) {
                     if (vec.getX() != x)
@@ -95,6 +178,15 @@ namespace KapEngine {
 
                 static Vector2 one() {
                     return Vector2(1.f, 1.f);
+                }
+
+                std::string to_string() const {
+                    std::string res = "{";
+
+                    res += std::to_string(x) + "; ";
+                    res += std::to_string(y) + "}";
+
+                    return res;
                 }
 
             private:
@@ -135,37 +227,109 @@ namespace KapEngine {
                     return Vector3(x + vec.getX(), y + vec.getY(), z + vec.getZ());
                 }
 
+                Vector3 operator+(float const& f) {
+                    return Vector3(x + f, y + f, z + f);
+                }
+
+                Vector3 operator+(Vector2 const& vec);
+
+
                 Vector3 &operator+=(Vector3 const& vec) {
                     *this = *this + vec;
                     return *this;
                 }
 
+                Vector3 &operator+=(Vector2 const& vec) {
+                    *this = *this + vec;
+                    return *this;
+                }
+
+                Vector3 &operator+=(float const& f) {
+                    *this = *this + f;
+                    return *this;
+                }
+
+
                 Vector3 operator-(Vector3 const& vec) {
                     return Vector3(x - vec.getX(), y - vec.getY(), z - vec.getZ());
                 }
+
+                Vector3 operator-(Vector2 const& vec);
+
+                Vector3 operator-(float const& f) {
+                    return Vector3(x - f, y - f, z - f);
+                }
+
 
                 Vector3 &operator-=(Vector3 const& vec) {
                     *this = *this - vec;
                     return *this;
                 }
 
+                Vector3 &operator-=(Vector2 const& vec) {
+                    *this = *this - vec;
+                    return *this;
+                }
+
+                Vector3 &operator-=(float const& f) {
+                    *this = *this - f;
+                    return *this;
+                }
+
+
                 Vector3 operator*(Vector3 const& vec) {
                     return Vector3(x * vec.getX(), y * vec.getY(), z * vec.getZ());
                 }
+
+                Vector3 operator*(Vector2 const& vec);
+
+                Vector3 operator*(float const& f) {
+                    return Vector3(x * f, y * f, z * f);
+                }
+
 
                 Vector3 &operator*=(Vector3 const& vec) {
                     *this = *this * vec;
                     return *this;
                 }
+                
+                Vector3 &operator*=(Vector2 const& vec) {
+                    *this = *this * vec;
+                    return *this;
+                }
+
+                Vector3 &operator*=(float const& f) {
+                    *this = *this * f;
+                    return *this;
+                }
+
 
                 Vector3 operator/(Vector3 const& vec) {
                     return Vector3(x / vec.getX(), y / vec.getY(), z / vec.getZ());
                 }
 
+                Vector3 operator/(Vector2 const& vec);
+
+                Vector3 operator/(float const& f) {
+                    return Vector3(x / f, y / f, z / f);
+                }
+
+
                 Vector3 &operator/=(Vector3 const& vec) {
                     *this = *this / vec;
                     return *this;
                 }
+
+                Vector3 &operator/=(Vector2 const& vec) {
+                    *this = *this / vec;
+                    return *this;
+                }
+
+                Vector3 &operator/=(float const& f) {
+                    *this = *this / f;
+                    return *this;
+                }
+
 
                 Vector3 &operator=(Vector3 const& vec) {
                     x = vec.getX();
@@ -173,6 +337,9 @@ namespace KapEngine {
                     z = vec.getZ();
                     return *this;
                 }
+
+                Vector3 &operator=(Vector2 const& vec);
+
 
                 bool operator==(Vector3 const& vec) {
                     if (vec.getX() != x)
@@ -194,6 +361,16 @@ namespace KapEngine {
 
                 static Vector3 one() {
                     return Vector3(1.f, 1.f, 1.f);
+                }
+
+                std::string to_string() const {
+                    std::string res = "{";
+
+                    res += std::to_string(x) + "; ";
+                    res += std::to_string(y) + "; ";
+                    res += std::to_string(z) + "}";
+
+                    return res;
                 }
 
             private:

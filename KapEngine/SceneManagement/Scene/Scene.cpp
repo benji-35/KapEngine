@@ -7,14 +7,14 @@
 
 #include "Scene.hpp"
 #include "Errors.hpp"
-#include "Debug.hpp"
+#include "KapEngineDebug.hpp"
 #include "Factory.hpp"
 
 KapEngine::SceneManagement::Scene::Scene(SceneManager &manager, std::string const& name) : manager(manager) {
-    Debug::log("Start init scene");
+    DEBUG_LOG("Start init scene");
     _name = name;
     __finit();
-    Debug::log("Stop init scene");
+    DEBUG_LOG("Stop init scene");
 }
 
 KapEngine::SceneManagement::Scene::~Scene() {
@@ -67,33 +67,44 @@ KapEngine::KapEngine &KapEngine::SceneManagement::Scene::getEngine() {
 }
 
 void KapEngine::SceneManagement::Scene::__update() {
+    __checkDestroy();
     try {
         Component camera = getActiveCamera();
     } catch(...) {
         if (getEngine().debugMode()) {
-            Debug::error("No camera found in scene");
+            DEBUG_ERROR("No camera found in scene");
         }
         return;
     }
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-        if (_gameObjects[i]->isActive() && !_gameObjects[i]->isDestroyed())
-            _gameObjects[i]->__update();
+        if (_gameObjects[i]->isActive() && !_gameObjects[i]->isDestroyed()) {
+            try {
+                Transform &tr = (Transform &)_gameObjects[i]->getTransform();
+                if (tr.getParentId() == 0)
+                    _gameObjects[i]->__update();
+            } catch(...) {}
+        }
     }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
-        if (_gameObjectsRun[i]->isActive() && !_gameObjectsRun[i]->isDestroyed())
-            _gameObjectsRun[i]->__update();
+        if (_gameObjectsRun[i]->isActive() && !_gameObjectsRun[i]->isDestroyed()) {
+            try {
+                Transform &tr = (Transform &)_gameObjectsRun[i]->getTransform();
+                if (tr.getParentId() == 0)
+                    _gameObjectsRun[i]->__update();
+            } catch(...) {}
+        }
     }
 }
 
 void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {
     if (go->getId() != 0) {
-        Debug::warning("Object " + go->getName() + " already added in scene: " + go->getScene().getName());
+        DEBUG_WARNING("Object " + go->getName() + " already added in scene: " + go->getScene().getName());
         return;
     }
     _idObjectMax++;
     go->__setId(_idObjectMax);
     if (getEngine().debugMode()) {
-        Debug::log("Add object " + go->getName() + " in scene " + getName());
+        DEBUG_LOG("Add object " + go->getName() + " in scene " + getName());
     }
     if (!getEngine().isRunning() || manager.getCurrentSceneId() != getId()) {
         _gameObjects.push_back(go);
@@ -148,28 +159,41 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::getObj
     return getObject(en.getId());
 }
 
-void KapEngine::SceneManagement::Scene::removeGameObject(std::shared_ptr<GameObject> go) {
-    if (go.use_count() == 0)
+void KapEngine::SceneManagement::Scene::destroyGameObject(std::shared_ptr<GameObject> const go) {
+    if (go.use_count() == 0 || go->getScene().getId() != getId())
         return;
-    removeGameObject(go->getId());
+    destroyGameObject(go->getId());
 }
 
-void KapEngine::SceneManagement::Scene::removeGameObject(std::size_t index) {
-    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
-        if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == index) {
-            _gameObjectsRun[i]->__destroyIt();
-            _gameObjectsRun[i]->__engineStop();
-            _gameObjectsRun[i].reset();
-            _gameObjectsRun.erase(_gameObjectsRun.begin() + i);
-            break;
+void KapEngine::SceneManagement::Scene::destroyGameObject(GameObject const& go) {
+    if (go.getSceneConst().getId() != getId())
+        return;
+    destroyGameObject(go.getId());
+}
+
+void KapEngine::SceneManagement::Scene::destroyGameObject(std::size_t index) {
+    _gameObjectsToDestroy.push_back(index);
+}
+
+void KapEngine::SceneManagement::Scene::__checkDestroy() {
+    for (std::size_t x = 0; x < _gameObjectsToDestroy.size(); x++) {
+        for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+            if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == _gameObjectsToDestroy[x]) {
+                _gameObjectsRun[i]->__destroyIt();
+                _gameObjectsRun[i]->__engineStop();
+                _gameObjectsRun[i].reset();
+                _gameObjectsRun.erase(_gameObjectsRun.begin() + i);
+                break;
+            }
+        }
+        for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+            if (_gameObjects[i].use_count() != 0 && _gameObjects[i]->getId() == _gameObjectsToDestroy[x]) {
+                _gameObjectsRun[i]->__destroyIt();
+                break;
+            }
         }
     }
-    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-        if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == index) {
-            _gameObjectsRun[i]->__destroyIt();
-            break;
-        }
-    }
+    _gameObjectsToDestroy.clear();
 }
 
 void KapEngine::SceneManagement::Scene::__init() {
@@ -181,25 +205,51 @@ void KapEngine::SceneManagement::Scene::__init() {
 }
 
 void KapEngine::SceneManagement::Scene::__finit() {
-    auto mainCamera = Factory::createEmptyGameObject(*this, "Main Camera");
+    auto mainCamera = createGameObject("Main Camera");
     auto cam = std::make_shared<Camera>(mainCamera);
     mainCamera->addComponent(cam);
 }
 
 void KapEngine::SceneManagement::Scene::dump(bool b) {
-    Debug::log("Scene: " + getName());
+    DEBUG_LOG("Scene: " + getName());
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         if (b) {
             _gameObjects[i]->dump();
         } else {
-            Debug::log("-GameObject: " + _gameObjects[i]->getName());
+            DEBUG_LOG("-GameObject: " + _gameObjects[i]->getName());
         }
     }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
         if (b) {
             _gameObjectsRun[i]->dump();
         } else {
-            Debug::log("-GameObject: " + _gameObjectsRun[i]->getName());
+            DEBUG_LOG("-GameObject: " + _gameObjectsRun[i]->getName());
         }
     }
+}
+
+std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::createGameObject(std::string const& name) {
+    auto object = std::make_shared<GameObject>(*this, name);
+
+    auto tr = std::make_shared<Transform>(object);
+    object->addComponent(tr);
+
+    addGameObject(object);
+    return object;
+}
+
+std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::Scene::getGameObjects(std::string const& name) {
+    std::vector<std::shared_ptr<GameObject>> result;
+
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (_gameObjects[i]->getName() == name)
+            result.push_back(_gameObjects[i]);
+    }
+
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (_gameObjectsRun[i]->getName() == name)
+            result.push_back(_gameObjectsRun[i]);
+    }
+
+    return result;
 }

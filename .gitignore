@@ -12,5 +12,6 @@ Build/
 # OSX
 .DS_Store
 
+**doxygen**
 **Doxyfile**
 **buildTest.**

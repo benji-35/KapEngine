@@ -29,7 +29,7 @@ namespace KapEngine {
 
         class Text : public Component {
             public:
-                Text(std::shared_ptr<GameObject> &go);
+                Text(std::shared_ptr<GameObject> &go, std::string const& textContent = "");
                 ~Text();
 
                 void setFont(std::string const& fontPath) {
@@ -74,6 +74,8 @@ namespace KapEngine {
 
                 void onDisplay() override;
                 bool checkComponentValidity() override;
+
+                Tools::Vector2 getCalculatedPos();
 
             protected:
             private:

@@ -63,6 +63,13 @@ namespace KapEngine {
                     return _size;
                 }
 
+                float getX() const;
+                float getY() const;
+                float getWidth() const;
+                float getHeigth() const;
+
+                std::string to_string() const;
+
             protected:
             private:
                 Vector2 _pos;

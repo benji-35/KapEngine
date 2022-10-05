@@ -8,8 +8,7 @@
 #ifndef ANIMATOR_HPP_
 #define ANIMATOR_HPP_
 
-#include "Component.hpp"
-#include "Animation.hpp"
+#include "KapEngine.hpp"
 
 namespace KapEngine {
     
