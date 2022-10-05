@@ -1,6 +1,9 @@
 name: KapEngine Build
 
-on: [push, delete, pull_request]
+on:
+  push
+  delete
+  pull_request
 
 jobs:
   build:
