@@ -12,6 +12,7 @@
 
 KapEngine::GameObject::GameObject(SceneManagement::Scene &scene, std::string const& name) : _scene(scene) {
     _name = name;
+    _prefabName = "";
 }
 
 KapEngine::GameObject::~GameObject() {
@@ -189,4 +190,8 @@ std::vector<std::shared_ptr<KapEngine::Component>> KapEngine::GameObject::getAll
 
 void KapEngine::GameObject::destroy() {
     getScene().destroyGameObject(getId());
+}
+
+void KapEngine::GameObject::__setPrefab(std::string const& name) {
+    _prefabName = name;
 }

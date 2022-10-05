@@ -120,6 +120,12 @@ namespace KapEngine {
 
             void destroy();
 
+            void __setPrefab(std::string const& name);
+
+            std::string getPrefabName() const {
+                return _prefabName;
+            }
+
         protected:
         private:
             std::string _name;
@@ -131,6 +137,7 @@ namespace KapEngine {
             std::vector<std::shared_ptr<Component>> _componentsRun;
             SceneManagement::Scene &_scene;
             std::size_t _idComp = 0;
+            std::string _prefabName;
     };
 
 }
