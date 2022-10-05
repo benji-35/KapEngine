@@ -9,7 +9,7 @@
 #include "Transform.hpp"
 
 KapEngine::UI::Canvas::Canvas(std::shared_ptr<GameObject> &go) : Component(go, "Canvas") {
-    _screenSizeCompare = Tools::Vector2(720, 480);
+    _screenSizeCompare = go->getEngine().getScreenSize();
 }
 
 KapEngine::UI::Canvas::~Canvas() {}

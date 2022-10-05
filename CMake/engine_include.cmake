@@ -8,7 +8,8 @@ include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Components/Animation)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Components/Animator)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Components/AnimationFadeIn)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Components/AnimationFadeOut)
-include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Components/SplashScreenManager)
+include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Components/MouseDetector)
+include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Components/Collider)
 
 ## Component + GameObject
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Component)
@@ -26,6 +27,7 @@ include_directories(${KapEngine_SOURCE_DIR}/KapEngine/SceneManagement/SplashScre
 ## Tools
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Tools)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Debug)
+include_directories(${KapEngine_SOURCE_DIR}/KapEngine/PlayerPrefs)
 
 ## Graphical
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/GraphicalLib)
@@ -45,8 +47,17 @@ include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Time)
 ## Entity
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Entity)
 
+## Prefabs
+include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Prefabs)
+
 ## UI
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Factory)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Image)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Text)
 include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Legacy/UI/Canvas)
+
+## Utils
+include_directories(${KapEngine_SOURCE_DIR}/KapEngine/Utils)
+
+## Includes
+include_directories(${KapEngine_SOURCE_DIR}/KapEngine)

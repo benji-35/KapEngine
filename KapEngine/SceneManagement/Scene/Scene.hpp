@@ -8,7 +8,7 @@
 #ifndef SCENE_HPP_
 #define SCENE_HPP_
 
-#include "KapEngine.hpp"
+#include "Engine.hpp"
 #include "GameObject.hpp"
 
 namespace KapEngine {
@@ -36,8 +36,9 @@ namespace KapEngine {
                 ~Scene();
 
                 void addGameObject(std::shared_ptr<GameObject> go);
-                void removeGameObject(std::shared_ptr<GameObject> go);
-                void removeGameObject(std::size_t id);
+                void destroyGameObject(std::shared_ptr<GameObject> const go);
+                void destroyGameObject(GameObject const& go);
+                void destroyGameObject(std::size_t id);
 
                 bool setId(std::size_t id) {
                     if (_id != 0)
@@ -77,6 +78,8 @@ namespace KapEngine {
                 std::shared_ptr<GameObject> getObjectConst(std::size_t id) const;
                 std::vector<std::shared_ptr<GameObject>> getAllObjects();
                 std::shared_ptr<GameObject> getObject(Entity const& en);
+                
+                std::vector<std::shared_ptr<GameObject>> getGameObjects(std::string const& name);
 
                 KapEngine &getEngine();
 
@@ -108,6 +111,8 @@ namespace KapEngine {
                  */
                 void dump(bool showComponents = false);
 
+                std::shared_ptr<GameObject> createGameObject(std::string const& name);
+
             protected:
             private:
                 std::size_t _id = 0;
@@ -116,6 +121,9 @@ namespace KapEngine {
                 SceneManager &manager;
                 std::vector<std::shared_ptr<GameObject>> _gameObjects;
                 std::vector<std::shared_ptr<GameObject>> _gameObjectsRun;
+                std::vector<std::size_t> _gameObjectsToDestroy;
+
+                void __checkDestroy();
         };
 
     }

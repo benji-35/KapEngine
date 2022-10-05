@@ -12,7 +12,7 @@
 #include <map>
 
 #include "GraphicalLib.hpp"
-#include "Debug.hpp"
+#include "KapEngineDebug.hpp"
 
 namespace KapEngine {
 
@@ -36,7 +36,7 @@ namespace KapEngine {
                 void display() override;
 
                 void startDisplay() override {
-                    Debug::log("Use " + getName());
+                    DEBUG_LOG("Use " + getName());
                 }
 
             private:

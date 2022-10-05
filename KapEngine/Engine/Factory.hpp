@@ -23,7 +23,7 @@ namespace KapEngine {
                 Create empty GameObject
             */
 
-            static std::shared_ptr<GameObject> createEmptyGameObject(SceneManagement::Scene &scene, std::string const& name = "Empty", Tools::Vector3 pos = Tools::Vector3::zero(), Tools::Vector3 rot = Tools::Vector3::zero(), Tools::Vector3 scale = Tools::Vector3::zero()) {
+            static std::shared_ptr<GameObject> createEmptyGameObject(SceneManagement::Scene &scene, std::string const& name = "Empty", Tools::Vector3 pos = Tools::Vector3::zero(), Tools::Vector3 rot = Tools::Vector3::zero(), Tools::Vector3 scale = Tools::Vector3::one()) {
                 auto result = std::make_shared<GameObject>(scene, name);
                 scene.addGameObject(result);
 
@@ -33,7 +33,7 @@ namespace KapEngine {
                 transform->setRotation(rot);
                 transform->setPosition(pos);
                 transform->setScale(scale);
-                
+
                 return result;
             }
 

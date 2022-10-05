@@ -8,7 +8,7 @@
 #ifndef GRAPHICALLIB_HPP_
 #define GRAPHICALLIB_HPP_
 
-#include "KapEngine.hpp"
+#include "Engine.hpp"
 #include "Input.hpp"
 #include "Vectors.hpp"
 #include "Entity.hpp"
@@ -84,6 +84,16 @@ namespace KapEngine {
                 virtual void stopDisplay() {}
 
                 virtual void startDisplay() {}
+
+                virtual Tools::Vector2 getScreenSize();
+
+                virtual void playMusic(std::string const& musicPath, float volume = 1.0f) {}
+                virtual void stopMusic() {}
+                virtual void pauseMusic() {}
+                virtual void resumMusic() {}
+                virtual void restartMusic() {}
+
+                virtual void playSound(std::string const& soundPath) {}
 
                 //graphical call
 

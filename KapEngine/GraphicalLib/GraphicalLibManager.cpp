@@ -6,7 +6,7 @@
 */
 
 #include "GraphicalLibManager.hpp"
-#include "Debug.hpp"
+#include "KapEngineDebug.hpp"
 #include "LegacyGraphicalLib.hpp"
 
 KapEngine::Graphical::GraphicalLibManager::GraphicalLibManager(KapEngine &engine) : _engine(engine) {
@@ -97,7 +97,7 @@ void KapEngine::Graphical::GraphicalLibManager::changeLib(std::size_t const& lib
     }
 
     if (getEngine().debugMode()) {
-        Debug::warning("[Graphic Manager] : changing to lib " + std::to_string(libId));
+        DEBUG_WARNING("[Graphic Manager] : changing to lib " + std::to_string(libId));
     }
 
     std::shared_ptr<GraphicalLib> nLib = getLib(libId);
@@ -109,4 +109,16 @@ void KapEngine::Graphical::GraphicalLibManager::changeLib(std::string const& lib
     if (!isLibExists(libName))
         return;
     changeLib(getLibIndexFromName(libName));
+}
+
+std::shared_ptr<KapEngine::Graphical::GraphicalLib> KapEngine::Graphical::GraphicalLibManager::getCurrentLib() const {
+
+    std::size_t id = getCurrLib();
+
+    for (std::size_t i = 0; i < _libs.size(); i++) {
+        if (_libs[i]->getId() == id)
+            return _libs[i];
+    }
+
+    throw Errors::GraphicalSystemError("No current graphical library found");
 }

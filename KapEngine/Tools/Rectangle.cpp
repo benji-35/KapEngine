@@ -54,3 +54,19 @@ std::string KapEngine::Tools::Rectangle::to_string() const {
 
     return res;
 }
+
+float KapEngine::Tools::Rectangle::getX() const {
+    return getPos().getX();
+}
+
+float KapEngine::Tools::Rectangle::getY() const {
+    return getPos().getY();
+}
+
+float KapEngine::Tools::Rectangle::getWidth() const {
+    return getSize().getX();
+}
+
+float KapEngine::Tools::Rectangle::getHeigth() const {
+    return getSize().getY();
+}

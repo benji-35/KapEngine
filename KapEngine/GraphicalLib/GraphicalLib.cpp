@@ -27,3 +27,7 @@ void KapEngine::Graphical::GraphicalLib::getEvents() {
 void KapEngine::Graphical::GraphicalLib::display() {
 
 }
+
+KapEngine::Tools::Vector2 KapEngine::Graphical::GraphicalLib::getScreenSize() {
+    return manager.getEngine().getScreenSize();
+}

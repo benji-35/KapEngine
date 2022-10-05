@@ -8,7 +8,8 @@
 #include "Transform.hpp"
 #include "UiImage.hpp"
 #include "UiCanvas.hpp"
-#include "Debug.hpp"
+#include "KapEngineDebug.hpp"
+#include "GraphicalLib.hpp"
 
 KapEngine::UI::Image::Image(std::shared_ptr<GameObject> &go) : Component(go, "Image") {}
 
@@ -23,7 +24,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
 
     Tools::Vector3 currPos = transform.getWorldPosition();
     Canvas::resizyngType resizeType = Canvas::resizyngType::RESIZE_WITH_SCREEN;
-    Tools::Vector2 getCompare = getGameObjectConst().getEngine().getScreenSize();
+    Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
     try {
         std::shared_ptr<GameObject> canvasObject = getGameObjectConst().getScene().getObject(transform.getParentContainsComponent("Canvas"));
@@ -31,7 +32,9 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
         Canvas &canvas = (Canvas &)canvasObject->getComponent("Canvas");
         resizeType = canvas.getResizeType();
         getCompare = canvas.getScreenSizeCompare();
-    } catch(...) {}
+    } catch(...) {
+        DEBUG_WARNING("Failed to get canvas intels for positions");
+    }
 
     if (resizeType == Canvas::resizyngType::RESIZE_WITH_SCREEN) {
         Tools::Vector2 nPos;
@@ -39,7 +42,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
         nPos.setY(screenSize.getY() * currPos.getY() / getCompare.getY());
         return nPos;
     }
-    return Tools::Vector2(currPos.getX(), currPos.getY());;
+    return Tools::Vector2(currPos.getX(), currPos.getY());
 }
 
 KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
@@ -47,7 +50,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
 
     Tools::Vector3 currSize = transform.getWorldScale();
     Canvas::resizyngType resizeType = Canvas::resizyngType::RESIZE_WITH_SCREEN;
-    Tools::Vector2 getCompare = getGameObjectConst().getEngine().getScreenSize();
+    Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
 
     try {
@@ -58,7 +61,9 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
         resizeType = canvas.getResizeType();
         getCompare = canvas.getScreenSizeCompare();
 
-    } catch(...) {}
+    } catch(...) {
+        DEBUG_WARNING("Failed to get canvas intels for scale");
+    }
 
     if (resizeType == Canvas::resizyngType::RESIZE_WITH_SCREEN) {
 
@@ -77,7 +82,7 @@ bool KapEngine::UI::Image::checkComponentValidity() {
         auto res = tr.parentContainsComponent("Canvas", true);
         
         if (res == false) {
-            Debug::warning("Cannot use Image because no canvas found!");
+            DEBUG_WARNING("Cannot use Image because no canvas found!");
         }
         
         return res;
