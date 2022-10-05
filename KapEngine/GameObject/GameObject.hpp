@@ -63,6 +63,19 @@ namespace KapEngine {
 
             bool hasComponent(std::string const& componentName) const;
 
+            template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
+            bool hasComponent() const {
+                for (std::size_t i = 0; i < _components.size(); i++) {
+                    if (_components[i] && typeid(*_components[i]).name() == typeid(T).name())
+                        return true;
+                }
+                for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                    if (_componentsRun[i] && typeid(*_componentsRun[i]).name() == typeid(T).name())
+                        return true;
+                }
+                return false;
+            }
+
             KapEngine &getEngine();
 
             //all functions call by engine
