@@ -1,2 +1,0 @@
-# onGameQuit \[EVENT]
-
