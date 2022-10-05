@@ -87,6 +87,14 @@ namespace KapEngine {
 
                 virtual Tools::Vector2 getScreenSize();
 
+                virtual void playMusic(std::string const& musicPath, float volume = 1.0f);
+                virtual void stopMusic();
+                virtual void pauseMusic();
+                virtual void resumMusic();
+                virtual void restartMusic();
+
+                virtual void playSound(std::string const& soundPath);
+
                 //graphical call
 
                 void setDrawText(std::function<void(UI::Text &)> f) {
