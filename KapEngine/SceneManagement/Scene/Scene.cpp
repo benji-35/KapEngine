@@ -187,7 +187,7 @@ void KapEngine::SceneManagement::Scene::__checkDestroy() {
             }
         }
         for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-            if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == _gameObjectsToDestroy[x]) {
+            if (_gameObjects[i].use_count() != 0 && _gameObjects[i]->getId() == _gameObjectsToDestroy[x]) {
                 _gameObjectsRun[i]->__destroyIt();
                 break;
             }
