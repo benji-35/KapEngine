@@ -5,8 +5,8 @@
 ** Factory
 */
 
-#ifndef FACTORY_HP_
-#define FACTORY_HPP_
+#ifndef UI_FACTORY_HPP_
+#define UI_FACTORY_HPP_
 
 #include "Factory.hpp"
 #include "GameObject.hpp"
@@ -69,4 +69,4 @@ namespace KapEngine {
 
 }
 
-#endif /* !FACTORY_HPP_ */
+#endif /* !UI_FACTORY_HPP_ */

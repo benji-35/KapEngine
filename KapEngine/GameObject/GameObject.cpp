@@ -7,11 +7,12 @@
 
 #include "GameObject.hpp"
 #include "Errors.hpp"
-#include "Debug.hpp"
+#include "KapEngineDebug.hpp"
 #include "Transform.hpp"
 
 KapEngine::GameObject::GameObject(SceneManagement::Scene &scene, std::string const& name) : _scene(scene) {
     _name = name;
+    _prefabName = "";
 }
 
 KapEngine::GameObject::~GameObject() {
@@ -26,10 +27,12 @@ KapEngine::GameObject::~GameObject() {
 void KapEngine::GameObject::__update() {
     if (!_active || _destroyed)
         return;
+    std::vector<std::shared_ptr<GameObject>> _children;
     try {
         Transform &tr = (Transform &)getTransform();
         if (!tr.allParentIsActive())
             return;
+        _children = tr.getChildren();
     } catch (...) {}
     for (std::size_t i = 0; i < _components.size(); i++) {
         try {
@@ -46,6 +49,9 @@ void KapEngine::GameObject::__update() {
                 return;
         } catch (...) {}
         _componentsRun[i]->__update();
+    }
+    for (std::size_t i = 0; i < _children.size(); i++) {
+        _children[i]->__update();
     }
 }
 
@@ -158,15 +164,34 @@ void KapEngine::GameObject::__stoppingGame() {
 }
 
 void KapEngine::GameObject::dump(int tab) {
-    Debug::log("-GameObject: " + getName());
+    DEBUG_LOG("-GameObject: " + getName());
     std::string prefix = "";
     for (std::size_t i = 0; i < tab; i++) {
         prefix += "  ";
     }
     for (std::size_t i = 0; i < _components.size(); i++) {
-        Debug::log(prefix + ": " + _components[i]->getName());
+        DEBUG_LOG(prefix + ": " + _components[i]->getName());
     }
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
-        Debug::log(prefix + ": " + _componentsRun[i]->getName());
+        DEBUG_LOG(prefix + ": " + _componentsRun[i]->getName());
     }
+}
+
+std::vector<std::shared_ptr<KapEngine::Component>> KapEngine::GameObject::getAllComponents() const {
+    std::vector<std::shared_ptr<Component>> result;
+
+    for (std::size_t i = 0; i < _components.size(); i++)
+        result.push_back(_components[i]);
+    for (std::size_t i = 0; i < _componentsRun.size(); i++)
+        result.push_back(_componentsRun[i]);
+
+    return result;
+}
+
+void KapEngine::GameObject::destroy() {
+    getScene().destroyGameObject(getId());
+}
+
+void KapEngine::GameObject::__setPrefab(std::string const& name) {
+    _prefabName = name;
 }

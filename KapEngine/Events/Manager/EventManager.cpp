@@ -6,7 +6,7 @@
 */
 
 #include "EventManager.hpp"
-#include "Debug.hpp"
+#include "KapEngineDebug.hpp"
 
 KapEngine::Events::EventManager::EventManager(KapEngine &engine) : _engine(engine)
 {

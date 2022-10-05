@@ -43,7 +43,38 @@ namespace KapEngine {
 
             Component &getComponent(std::string const& componentName);
 
+            template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
+            T &getComponent(std::string const& componentName) {
+                return dynamic_cast<T &>(getComponent(componentName));
+            }
+
+            template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
+            T &getComponent() {
+                for (std::size_t i = 0; i < _components.size(); i++) {
+                    if (_components[i] && typeid(*_components[i]).name() == typeid(T).name())
+                        return dynamic_cast<T &>(*_components[i]);
+                }
+                for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                    if (_componentsRun[i] && typeid(*_componentsRun[i]).name() == typeid(T).name())
+                        return dynamic_cast<T &>(*_componentsRun[i]);
+                }
+                throw Errors::GameObjectError("No component found");
+            }
+
             bool hasComponent(std::string const& componentName) const;
+
+            template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
+            bool hasComponent() const {
+                for (std::size_t i = 0; i < _components.size(); i++) {
+                    if (_components[i] && typeid(*_components[i]).name() == typeid(T).name())
+                        return true;
+                }
+                for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                    if (_componentsRun[i] && typeid(*_componentsRun[i]).name() == typeid(T).name())
+                        return true;
+                }
+                return false;
+            }
 
             KapEngine &getEngine();
 
@@ -85,6 +116,16 @@ namespace KapEngine {
 
             void dump(int tab = 0);
 
+            std::vector<std::shared_ptr<Component>> getAllComponents() const;
+
+            void destroy();
+
+            void __setPrefab(std::string const& name);
+
+            std::string getPrefabName() const {
+                return _prefabName;
+            }
+
         protected:
         private:
             std::string _name;
@@ -96,6 +137,7 @@ namespace KapEngine {
             std::vector<std::shared_ptr<Component>> _componentsRun;
             SceneManagement::Scene &_scene;
             std::size_t _idComp = 0;
+            std::string _prefabName;
     };
 
 }

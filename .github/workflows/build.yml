@@ -1,0 +1,21 @@
+name: KapEngine Build
+
+on:
+  push
+  delete
+  pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Creation build area
+        run: rm -rf build && mkdir build
+      - name: Go to build area
+        run: cd build
+      - name: Check build
+        run: cmake ..
+        run: make

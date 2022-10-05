@@ -1,7 +1,0 @@
-<map id="KapEngine::Events::Input::__update" name="KapEngine::Events::Input::__update">
-<area shape="rect" id="node1" title="mettre à jour les touches" alt="" coords="5,104,147,145"/>
-<area shape="rect" id="node2" href="$class_kap_engine_1_1_kap_engine.html#a0b001ef2ae3390c14d82518a4a1f25d7" title="Get the Current Graphical Lib." alt="" coords="211,5,373,47"/>
-<area shape="rect" id="node3" href="$class_kap_engine_1_1_kap_engine.html#aad7b7230f8c296c8df7f5a35e4ba54ac" title="Get the Current Graphical Lib Index." alt="" coords="195,71,389,112"/>
-<area shape="rect" id="node4" href="$class_kap_engine_1_1_events_1_1_event_manager.html#aa9db5ee61d3c040b7ce5263a77c4963f" title="Get the engine." alt="" coords="207,136,377,177"/>
-<area shape="rect" id="node5" href="$class_kap_engine_1_1_kap_engine.html#a3a5584ee5a7c16fba650a3127ae7f226" title="Check if lib exists from it&#39;s id in engine." alt="" coords="214,201,370,243"/>
-</map>

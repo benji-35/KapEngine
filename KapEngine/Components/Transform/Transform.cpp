@@ -6,7 +6,8 @@
 */
 
 #include "Transform.hpp"
-#include "Debug.hpp"
+#include "KapEngineDebug.hpp"
+#include "Vectors.hpp"
 
 KapEngine::Transform::Transform(std::shared_ptr<GameObject> go) : Component(go, "Transform") {
     _startPos = Tools::Vector3(0.f, 0.f, 0.f);
@@ -20,24 +21,30 @@ void KapEngine::Transform::onAwake() {
     _pos = _startPos;
     _rot = _startRot;
     _scale = _startScale;
+    _awkaeTr = true;
+}
+void KapEngine::Transform::onDisplay() {
+    _updatePos = _pos;
+    _updateScale = _scale;
+    _updateRot = _rot;
 }
 
 void KapEngine::Transform::setPosition(Tools::Vector3 pos) {
-    if (getGameObject().getEngine().isRunning()) {
+    if (_awkaeTr) {
         _pos = pos;
     } else {
         _startPos = pos;
     }
 }
 void KapEngine::Transform::setRotation(Tools::Vector3 rot) {
-    if (getGameObject().getEngine().isRunning()) {
+    if (_awkaeTr) {
         _rot = rot;
     } else {
         _startRot = rot;
     }
 }
 void KapEngine::Transform::setScale(Tools::Vector3 scale) {
-    if (getGameObject().getEngine().isRunning()) {
+    if (_awkaeTr) {
         _scale = scale;
     } else {
         _startScale = scale;
@@ -158,7 +165,7 @@ bool KapEngine::Transform::allParentIsActive() {
 std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::Transform::getChildren() {
     std::vector<std::shared_ptr<GameObject>> gos = getGameObject().getScene().getAllObjects();
     std::vector<std::shared_ptr<GameObject>> result;
-    
+
     for (std::size_t i = 0; i < gos.size(); i++) {
         if (((Transform &)gos[i]->getTransform()).getParentId() == getGameObject().getId())
             result.push_back(gos[i]);
@@ -186,7 +193,7 @@ bool KapEngine::Transform::parentContainsComponent(std::string const& componentN
     std::shared_ptr<GameObject> parent = getParent();
     if (parent.use_count() == 0)
         return false;
-    
+
     if (parent->hasComponent(componentName))
         return true;
     if (recurcively) {
@@ -216,7 +223,7 @@ std::size_t KapEngine::Transform::getParentContainsComponent(std::string const& 
         Transform &tr = (Transform &)parent->getTransform();
         return tr.getParentContainsComponent(componentName);
     } catch(...) {
-        Debug::error("Failled to get Transform of parent");
+        DEBUG_ERROR("Failled to get Transform of parent");
         return 0;
     }
 }
@@ -234,4 +241,14 @@ bool KapEngine::Transform::allParentsActive() const {
     } catch(...) {
         return false;
     }
+}
+
+bool KapEngine::Transform::hasChanged() {
+    if (_updatePos != _pos)
+        return true;
+    if (_updateRot != _rot)
+        return true;
+    if (_updateScale != _scale)
+        return true;
+    return false;
 }
