@@ -14,19 +14,30 @@ jobs:
     #
     #
     #
+    - name: Update apt
+      run: sudo apt-get update
     - name: Install Ninja
       run: sudo apt install ninja-build
     - name: Install Pip3
       run: sudo apt-get install python3 python3-pip python3-setuptools python3-wheel ninja-build
     - name: Install Meson
       run: sudo pip3 install meson
+    - name: Instal pkg
+      run: sudo apt-get install pkg-config
+    - name: Install libffi
+      run: sudo apt-get install libffi-dev
+    - name: Install libgit2
+      run: sudo apt-get install libgit2-dev
     - name: Install criterion
-      run: sudo apt-get install libcriterion-dev
-    
+      run: git clone https://github.com/Snaipe/Criterion Criterion
+    - name: Compile Criterion
+      working-directory: ${{github.workspace}}/Criterion
+      run: meson build && ninja -C build install && ldconfig
     #
     #
     #
     - name: Configure CMake
+      working-directory: ${{github.workspace}}/
       run: cmake -B ${{github.workspace}}/build
     - name: Build Library
       run: cmake --build ${{github.workspace}}/build
