@@ -21,4 +21,4 @@ jobs:
 
     - name: Test
       working-directory: ${{github.workspace}}/build
-      run: find -name "KapEngine.a"
+      run: find -name "libKapEngine.a"
