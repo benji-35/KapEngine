@@ -93,7 +93,7 @@ namespace KapEngine {
                 virtual void resumMusic() {}
                 virtual void restartMusic() {}
 
-                virtual void playSound(std::string const& soundPath);
+                virtual void playSound(std::string const& soundPath) {}
 
                 //graphical call
 
