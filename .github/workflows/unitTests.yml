@@ -11,6 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    #
+    #
+    #
+    - name: Install Ninja
+      run: sudo apt install ninja-build
+    - name: Install Pip3
+      run: sudo apt-get install python3 python3-pip python3-setuptools python3-wheel ninja-build
+    - name: Install Meson
+      run: sudo pip3 install meson
+    - name: Install criterion
+      run: sudo apt-get install libcriterion-dev
+    
+    #
+    #
+    #
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build
     - name: Build Library
