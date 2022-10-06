@@ -17,8 +17,10 @@ jobs:
       working-directory: ${{github.workspace}}/build_gtest
       run: wget https://github.com/google/googletest/archive/release-1.8.0.tar.gz
     - name: Unpack gtest
+      working-directory: ${{github.workspace}}/build_gtest
       run: tar xf release-1.8.0.tar.gz && cd googletest-release-1.8.0 && cmake -DBUILD_SHARED_LIBS=ON . && make
     - name: Install gtest
+      working-directory: ${{github.workspace}}/build_gtest
       run: sudo cp -a googletest/include/gtest /usr/include && sudo cp -a googlemock/gtest/libgtest_main.so googlemock/gtest/libgtest.so /usr/lib/
     - name: clear copy Gtest
       working-directory: ${{github.workspace}}/
