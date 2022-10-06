@@ -25,10 +25,10 @@ jobs:
     # ACTIONS
     - uses: actions/checkout@v1
     #INSTALL GTESTS
-    - name: Get GTests
-      run: sudo apt-get install libgtest-dev
-    - name: check gtest version
-      run: gtester --version
+    # - name: Get GTests
+    #   run: sudo apt-get install libgtest-dev
+    # - name: check gtest version
+    #   run: gtester --version
     # RUN ENGINE
     - name: Configure CMake
       working-directory: ${{github.workspace}}/
