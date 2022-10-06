@@ -13,7 +13,7 @@ TEST(GameObject, Test1) {
 
     auto go = engine.getSceneManager()->getScene(1).createGameObject("Toto");
 
-    ASSERT_NE((int)go.use_count(), 0);
+    EXPECT_NE(go.use_count(), 0);
 }
 
 int main(int ac, char **av) {
