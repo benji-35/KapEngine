@@ -22,12 +22,13 @@ jobs:
     # - name: Install gtest
     #   working-directory: ${{github.workspace}}/build_gtest/googletest-release-1.8.0
     #   run: sudo cp -a googletest/include/gtest /usr/include && sudo cp -a googlemock/gtest/libgtest_main.so googlemock/gtest/libgtest.so /usr/lib/ && sudo cp -a googlemock/gtest/libgtest_main.so googlemock/gtest/libgtest.so /usr/lib64/
-    # - name: check gtest version
-    #   run: gtester --version
-    - name: Get GTests
-      run: sudo apt-get install libgtest-dev
     # ACTIONS
     - uses: actions/checkout@v1
+    #INSTALL GTESTS
+    - name: Get GTests
+      run: sudo apt-get install libgtest-dev
+    - name: check gtest version
+      run: gtester --version
     # RUN ENGINE
     - name: Configure CMake
       working-directory: ${{github.workspace}}/
