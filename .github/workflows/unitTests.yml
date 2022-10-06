@@ -22,9 +22,6 @@ jobs:
     - name: Install gtest
       working-directory: ${{github.workspace}}/build_gtest/googletest-release-1.8.0
       run: sudo cp -a googletest/include/gtest /usr/include && sudo cp -a googlemock/gtest/libgtest_main.so googlemock/gtest/libgtest.so /usr/lib/ && sudo cp -a googlemock/gtest/libgtest_main.so googlemock/gtest/libgtest.so /usr/lib64/
-    - name: clear copy Gtest
-      working-directory: ${{github.workspace}}/
-      run: rm -rf build_gtest
     - name: check gtest version
       run: gtester --version
     # ACTIONS
