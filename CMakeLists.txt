@@ -49,7 +49,7 @@ if(BUILD_TESTS)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
 	# Linker flags
-	set_target_properties(KapEngineTest PROPERTIES LINK_FLAGS "-pthread -lcriterion")
+	set_target_properties(KapEngineTest PROPERTIES LINK_FLAGS "-pthread -lgtest -lpthread")
 else ()
 
 	#build library
