@@ -11,19 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     # CLONE GOOGLE ACTIONS
-    - name: Gtest Require
-      run: mkdir build_gtest
-    - name: Get Gtest
-      working-directory: ${{github.workspace}}/build_gtest
-      run: wget https://github.com/google/googletest/archive/release-1.8.0.tar.gz
-    - name: Unpack gtest
-      working-directory: ${{github.workspace}}/build_gtest
-      run: tar xf release-1.8.0.tar.gz && cd googletest-release-1.8.0 && cmake -DBUILD_SHARED_LIBS=ON . && make
-    - name: Install gtest
-      working-directory: ${{github.workspace}}/build_gtest/googletest-release-1.8.0
-      run: sudo cp -a googletest/include/gtest /usr/include && sudo cp -a googlemock/gtest/libgtest_main.so googlemock/gtest/libgtest.so /usr/lib/ && sudo cp -a googlemock/gtest/libgtest_main.so googlemock/gtest/libgtest.so /usr/lib64/
-    - name: check gtest version
-      run: gtester --version
+    # - name: Gtest Require
+    #   run: mkdir build_gtest
+    # - name: Get Gtest
+    #   working-directory: ${{github.workspace}}/build_gtest
+    #   run: wget https://github.com/google/googletest/archive/release-1.8.0.tar.gz
+    # - name: Unpack gtest
+    #   working-directory: ${{github.workspace}}/build_gtest
+    #   run: tar xf release-1.8.0.tar.gz && cd googletest-release-1.8.0 && cmake -DBUILD_SHARED_LIBS=ON . && make
+    # - name: Install gtest
+    #   working-directory: ${{github.workspace}}/build_gtest/googletest-release-1.8.0
+    #   run: sudo cp -a googletest/include/gtest /usr/include && sudo cp -a googlemock/gtest/libgtest_main.so googlemock/gtest/libgtest.so /usr/lib/ && sudo cp -a googlemock/gtest/libgtest_main.so googlemock/gtest/libgtest.so /usr/lib64/
+    # - name: check gtest version
+    #   run: gtester --version
+    - name: Get GTests
+      run: sudo apt-get install libgtest-dev
     # ACTIONS
     - uses: actions/checkout@v1
     # RUN ENGINE
