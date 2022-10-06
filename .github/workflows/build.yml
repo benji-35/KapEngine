@@ -2,9 +2,9 @@ name: KapEngine Build
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "ft/**" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "ft/**" ]
 
 jobs:
   build:
