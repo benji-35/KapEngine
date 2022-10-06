@@ -25,6 +25,8 @@ jobs:
     - name: clear copy Gtest
       working-directory: ${{github.workspace}}/
       run: rm -rf build_gtest
+    - name: check gtest version
+      run: gtester --version
     # ACTIONS
     - uses: actions/checkout@v1
     # RUN ENGINE
