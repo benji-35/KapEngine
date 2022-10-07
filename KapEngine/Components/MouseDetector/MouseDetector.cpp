@@ -129,6 +129,16 @@ bool KapEngine::MouseDetector::__checkCanvas(Tools::Vector2 const& posMouse) {
 
 KapEngine::Tools::Vector2 KapEngine::MouseDetector::crossProductScreen(Tools::Vector2 value) {
     Tools::Vector2 baseScreenSize = getGameObject().getScene().getEngine().getScreenSize();
+    try {
+        auto canvasId = getTransform().getParentContainsComponent("Canvas");
+        if (canvasId == 0)
+            return value;
+
+        auto &canvas = getGameObject().getScene().getObject(canvasId)->getComponent<UI::Canvas>();
+        baseScreenSize = canvas.getScreenSizeCompare();
+    } catch(...) {
+
+    }
     Tools::Vector2 currentScreenSize = getGameObject().getScene().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
 
     Tools::Vector2 result = value;
