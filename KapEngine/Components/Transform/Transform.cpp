@@ -237,7 +237,7 @@ bool KapEngine::Transform::allParentsActive() const {
         auto parent = getParent();
 
         Transform &tr = (Transform &)parent->getTransform();
-        return tr.allParentIsActive();
+        return tr.allParentsActive();
     } catch(...) {
         return false;
     }
