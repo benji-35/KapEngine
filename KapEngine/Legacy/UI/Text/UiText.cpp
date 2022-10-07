@@ -32,6 +32,32 @@ bool KapEngine::UI::Text::checkComponentValidity() {
     }
 }
 
+KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedScale() {
+    Transform &transform = (Transform &)getGameObjectConst().getComponent("Transform");
+
+    Tools::Vector3 currScale = transform.getWorldScale();
+    Canvas::resizyngType resizeType = Canvas::resizyngType::RESIZE_WITH_SCREEN;
+    Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
+    Tools::Vector2 screenSize = getCompare;
+    try {
+        std::shared_ptr<GameObject> canvasObject = getGameObjectConst().getScene().getObject(transform.getParentContainsComponent("Canvas"));
+
+        Canvas &canvas = (Canvas &)canvasObject->getComponent("Canvas");
+        resizeType = canvas.getResizeType();
+        getCompare = canvas.getScreenSizeCompare();
+    } catch(...) {
+        DEBUG_WARNING("Failed to get canvas intels for positions");
+    }
+
+    if (resizeType == Canvas::resizyngType::RESIZE_WITH_SCREEN) {
+        Tools::Vector2 nPos;
+        nPos.setX(screenSize.getX() * currScale.getX() / getCompare.getX());
+        nPos.setY(screenSize.getY() * currScale.getY() / getCompare.getY());
+        return nPos;
+    }
+    return Tools::Vector2(currScale.getX(), currScale.getY());
+}
+
 KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedPos() {
     Transform &transform = (Transform &)getGameObjectConst().getComponent("Transform");
 

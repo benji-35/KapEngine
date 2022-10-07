@@ -76,6 +76,7 @@ namespace KapEngine {
                 bool checkComponentValidity() override;
 
                 Tools::Vector2 getCalculatedPos();
+                Tools::Vector2 getCalculatedScale();
 
             protected:
             private:
