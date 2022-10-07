@@ -12,7 +12,9 @@
     #include "Debug/Debug.hpp"
 #endif
 
-#ifndef __PRETTY_FUNCTION__
+#include "Platform.hpp"
+
+#if __WINDOWS__
     #define __PRETTY_FUNCTION__ __FUNCTION__
 #endif
 
