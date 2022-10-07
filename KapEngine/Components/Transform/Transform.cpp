@@ -229,14 +229,12 @@ std::size_t KapEngine::Transform::getParentContainsComponent(std::string const& 
 }
 
 bool KapEngine::Transform::allParentsActive() const {
-    if (!getGameObjectConst().isActive())
-        return false;
-    if (_parentId == 0)
-        return true;
+    if (_parentId == 0 || getGameObjectConst().isActive() == false)
+        return getGameObjectConst().isActive();
     try {
         auto parent = getParent();
 
-        Transform &tr = (Transform &)parent->getTransform();
+        auto &tr = parent->getComponent<Transform>();
         return tr.allParentsActive();
     } catch(...) {
         return false;
