@@ -50,6 +50,8 @@ void KapEngine::GameObject::__update() {
         } catch (...) {}
         _componentsRun[i]->__update();
     }
+    if (_active == false || _destroyed)
+        return;
     for (std::size_t i = 0; i < _children.size(); i++) {
         _children[i]->__update();
     }
