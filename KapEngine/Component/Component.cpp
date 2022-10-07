@@ -85,6 +85,8 @@ bool KapEngine::Component::__checkValidity() {
         DEBUG_WARNING("Component " + getName() + " is disable or destroy");
         return false;
     }
+    if (!getTransform().allParentsActive())
+        return false;
     if (!checkComponentValidity()) {
         DEBUG_WARNING("Component " + getName() + " is disable by the creator");
         return false;
