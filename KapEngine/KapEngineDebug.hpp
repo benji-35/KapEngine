@@ -12,6 +12,10 @@
     #include "Debug/Debug.hpp"
 #endif
 
+#ifndef __PRETTY_FUNCTION__
+    #define __PRETTY_FUNCTION__ __FUNCTION__
+#endif
+
 #ifndef KAPENGINE_DEBUGS_MACROS
 #define KAPENGINE_DEBUGS_MACROS
     #ifndef KAP_DEBUG_LOG

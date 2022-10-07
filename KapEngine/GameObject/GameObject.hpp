@@ -26,6 +26,7 @@ namespace KapEngine {
 #include <vector>
 #include <memory>
 #include <string>
+#include <typeinfo>
 
 namespace KapEngine {
 
