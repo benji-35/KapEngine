@@ -81,6 +81,8 @@ KapEngine::GameObject &KapEngine::Component::getGameObjectConst() const {
 }
 
 bool KapEngine::Component::__checkValidity() {
+    if (!_enable)
+        return false;
     if (!getGameObject().isActive() || getGameObject().isDestroyed()) {
         DEBUG_WARNING("Component " + getName() + " is disable or destroy");
         return false;
