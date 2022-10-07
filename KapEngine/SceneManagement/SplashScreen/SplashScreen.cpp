@@ -12,6 +12,7 @@
 #include "Animator.hpp"
 #include "AnimationFadeIn.hpp"
 #include "AnimationFadeOut.hpp"
+#include "AnimationSplashScreen.hpp"
 
 KapEngine::SceneManagement::SplashScreen::SplashScreen(KapEngine &engine) : _engine(engine) {}
 
@@ -82,19 +83,14 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
             imgC.setRectangle(_splahes[i]->rect);
         } catch(...) {}
         
-        std::shared_ptr<AnimationFadeIn> animIn = std::make_shared<AnimationFadeIn>(img);
-        std::shared_ptr<AnimationFadeOut> animOut = std::make_shared<AnimationFadeOut>(img);
+        std::shared_ptr<AnimationSplashScreen> anim = std::make_shared<AnimationSplashScreen>(img);
 
         Time::ETime timeAnim;
         timeAnim.setSeconds(_splahes[i]->timing);
 
-        animIn->setTiming(timeAnim);
-        animOut->setTiming(timeAnim);
+        anim->setTiming(timeAnim);
 
-        animator->addAnim(animIn, "animIn "+ std::to_string(i));
-        animator->addAnim(animOut, "animOut "+ std::to_string(i));
-
-        animator->addLink("animIn "+ std::to_string(i), "animOut "+ std::to_string(i));
+        animator->addAnim(anim, "animIn "+ std::to_string(i));
 
         try {
             UI::Image &imgC = (UI::Image &)img->getComponent("Image");
@@ -107,13 +103,12 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
         } catch(...) {}
 
         if (i == _splahes.size() - 1) {
-            animOut->getOnEnd().registerAction([this](){
+            anim->getOnEnd().registerAction([this](){
                 this->_engine.getSceneManager()->loadScene(this->_sceneId);
             });
         }
 
-        img->addComponent(animIn);
-        img->addComponent(animOut);
+        img->addComponent(anim);
 
         try {
             Transform &tr = (Transform &)img->getTransform();
@@ -124,7 +119,7 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
     //add animations links
     for (std::size_t i = 0; i < _splahes.size(); i++) {
         if (i != _splahes.size() - 1) {
-            animator->addLink("animOut "+ std::to_string(i), "animIn "+ std::to_string(i + 1));
+            animator->addLink("anim "+ std::to_string(i), "anim "+ std::to_string(i + 1));
         }
     }
 
