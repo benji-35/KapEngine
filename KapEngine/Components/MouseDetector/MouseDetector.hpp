@@ -31,9 +31,23 @@ namespace KapEngine {
                 _setted = true;
             }
 
-        protected:
-            void __callMouses(HoverType const& type);
+            /**
+             * @brief set if check mouse is in canvas or not
+             * if mouse is in canvas, it gonna try to get canvas parent and make calculations in reference of canvas render type
+             * @param b 
+             */
+            void detectMouseInCanvas(bool b) {
+                _inCanvas = b;
+            }
+
         private:
+            void __callMouses(HoverType const& type);
+            bool __checkNoCanvas(Tools::Vector2 const& pos);
+            bool __checkCanvas(Tools::Vector2 const& pos);
+
+            Tools::Vector2 crossProductScreen(Tools::Vector2 value);
+        private:
+            bool _inCanvas;
             Tools::Rectangle _square;
             bool _inSquare = false;
             bool _setted = false;
