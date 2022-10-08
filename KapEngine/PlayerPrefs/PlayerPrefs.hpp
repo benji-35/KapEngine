@@ -116,7 +116,7 @@ namespace KapEngine {
             static int getInt(std::string const& name) {
                 std::stringstream sstr;
                 std::string str = getString(name);
-                int res;
+                int res = 0;
 
                 sstr << str;
                 sstr >> res;
