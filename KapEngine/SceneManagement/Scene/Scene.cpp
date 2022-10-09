@@ -249,3 +249,12 @@ std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::
 
     return result;
 }
+
+std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::findFirstGameObject(std::string const& name) {
+    std::shared_ptr<GameObject> result;
+    auto found = getGameObjects(name);
+
+    if (found.size() != 0)
+        result = found[0];
+    return result;
+}

@@ -113,6 +113,14 @@ namespace KapEngine {
 
                 std::shared_ptr<GameObject> createGameObject(std::string const& name);
 
+                /**
+                 * @brief get first GameObject with it's name
+                 * 
+                 * @param name 
+                 * @return std::shared_ptr<GameObject> 
+                 */
+                std::shared_ptr<GameObject> findFirstGameObject(std::string const& name);
+
             protected:
             private:
                 std::size_t _id = 0;
