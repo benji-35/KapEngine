@@ -165,17 +165,19 @@ void KapEngine::GameObject::__stoppingGame() {
     }
 }
 
-void KapEngine::GameObject::dump(int tab) {
+void KapEngine::GameObject::dump(bool displayComponent, std::string prefix) {
     DEBUG_LOG("-GameObject: " + getName());
-    std::string prefix = "";
-    for (std::size_t i = 0; i < tab; i++) {
-        prefix += "  ";
+    if (displayComponent) {
+        for (std::size_t i = 0; i < _components.size(); i++) {
+            DEBUG_LOG(prefix + ": " + _components[i]->getName());
+        }
+        for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+            DEBUG_LOG(prefix + ": " + _componentsRun[i]->getName());
+        }
     }
-    for (std::size_t i = 0; i < _components.size(); i++) {
-        DEBUG_LOG(prefix + ": " + _components[i]->getName());
-    }
-    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
-        DEBUG_LOG(prefix + ": " + _componentsRun[i]->getName());
+    auto children = getComponent<Transform>().getChildren();
+    for (std::size_t i = 0; i < children.size(); i++) {
+        children[i]->dump(displayComponent, prefix + "  ");
     }
 }
 
