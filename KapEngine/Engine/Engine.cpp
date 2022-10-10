@@ -9,7 +9,7 @@
 #include "KapEngineDebug.hpp"
 #include "EventManager.hpp"
 
-KapEngine::KEngine::KapEngine(bool debug, std::string const& gameName, std::string const& version, std::string const& company) {
+KapEngine::KEngine::KEngine(bool debug, std::string const& gameName, std::string const& version, std::string const& company) {
     _debug = debug;
     _gameName = gameName;
     _gameVersion = version;
@@ -21,7 +21,7 @@ KapEngine::KEngine::KapEngine(bool debug, std::string const& gameName, std::stri
     setFixedTime(_baseTime);
 }
 
-KapEngine::KEngine::~KapEngine() {
+KapEngine::KEngine::~KEngine() {
     _sceneManager.reset();
     _prefabManager.reset();
     _libManager.reset();
