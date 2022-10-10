@@ -209,12 +209,12 @@ void KapEngine::SceneManagement::Scene::__finit() {
 void KapEngine::SceneManagement::Scene::dump(bool b) {
     DEBUG_LOG("Scene: " + getName());
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-        if (_gameObjects[i]->getComponent<Transform>().getParentId() != 0) {
+        if (_gameObjects[i]->getComponent<Transform>().getParentId() == 0) {
             _gameObjects[i]->dump(b, "");
         }
     }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
-        if (_gameObjectsRun[i]->getComponent<Transform>().getParentId() != 0) {
+        if (_gameObjectsRun[i]->getComponent<Transform>().getParentId() == 0) {
             _gameObjectsRun[i]->dump(b, "");
         }
     }
