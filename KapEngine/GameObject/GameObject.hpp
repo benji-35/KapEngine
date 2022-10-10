@@ -115,7 +115,7 @@ namespace KapEngine {
             void __init();
             void __stoppingGame();
 
-            void dump(int tab = 0);
+            void dump(bool displayComponent = false, std::string prefix = "");
 
             std::vector<std::shared_ptr<Component>> getAllComponents() const;
 
