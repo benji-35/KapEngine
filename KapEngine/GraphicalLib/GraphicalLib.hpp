@@ -16,7 +16,7 @@
 #include <functional>
 
 namespace KapEngine {
-    class KapEngine;
+    class KEngine;
     class Entity;
 
     namespace Events {

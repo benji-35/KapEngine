@@ -9,7 +9,7 @@
 #define INCLUDES_KAPENGINE_HPP_
 
 namespace KapEngine {
-    class KapEngine;
+    class KEngine;
 
     class IComponent;
     class Component;
@@ -41,7 +41,7 @@ namespace KapEngine {
 }
 
 //include basics includes
-#ifndef ENGINE_HPP_
+#ifndef KENGINE_HPP_
     #include "Engine/Engine.hpp"
 #endif
 

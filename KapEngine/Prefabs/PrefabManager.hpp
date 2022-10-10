@@ -15,7 +15,7 @@
 #include <string>
 
 namespace KapEngine {
-    class KapEngine;
+    class KEngine;
     class GameObject;
     class Component;
 

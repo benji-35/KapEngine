@@ -16,7 +16,7 @@
 
 namespace KapEngine {
 
-    class KapEngine;
+    class KEngine;
 
     namespace Graphical {
         class GraphicalLib;

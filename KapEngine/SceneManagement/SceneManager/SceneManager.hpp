@@ -13,7 +13,7 @@
 #include "Scene.hpp"
 
 namespace KapEngine {
-    class KapEngine;
+    class KEngine;
 
     namespace SceneManagement {
         class Scene;
@@ -26,7 +26,7 @@ namespace KapEngine {
 
         class SceneManager {
             public:
-                SceneManager(KapEngine &engine);
+                SceneManager(KEngine &engine);
                 ~SceneManager();
 
                 void addScene(std::shared_ptr<Scene> scene);
@@ -40,7 +40,7 @@ namespace KapEngine {
 
                 void __update();
 
-                KapEngine &getEngine() {
+                KEngine &getEngine() {
                     return _engine;
                 }
 
@@ -70,7 +70,7 @@ namespace KapEngine {
                 std::size_t _indexScene = 0;
                 std::size_t _maxIndex = 0;
                 std::vector<std::shared_ptr<Scene>> _scenes;
-                KapEngine &_engine;
+                KEngine &_engine;
 
                 std::string getSceneName(std::size_t index);
 

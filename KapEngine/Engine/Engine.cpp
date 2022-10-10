@@ -9,7 +9,7 @@
 #include "KapEngineDebug.hpp"
 #include "EventManager.hpp"
 
-KapEngine::KapEngine::KapEngine(bool debug, std::string const& gameName, std::string const& version, std::string const& company) {
+KapEngine::KEngine::KapEngine(bool debug, std::string const& gameName, std::string const& version, std::string const& company) {
     _debug = debug;
     _gameName = gameName;
     _gameVersion = version;
@@ -21,13 +21,13 @@ KapEngine::KapEngine::KapEngine(bool debug, std::string const& gameName, std::st
     setFixedTime(_baseTime);
 }
 
-KapEngine::KapEngine::~KapEngine() {
+KapEngine::KEngine::~KapEngine() {
     _sceneManager.reset();
     _prefabManager.reset();
     _libManager.reset();
 }
 
-void KapEngine::KapEngine::run() {
+void KapEngine::KEngine::run() {
     DEBUG_WARNING("[ RUNNING ] running game");
     _splashsScreen->__init();
     _run = true;
@@ -51,27 +51,27 @@ void KapEngine::KapEngine::run() {
     }
 }
 
-void KapEngine::KapEngine::stop() {
+void KapEngine::KEngine::stop() {
     _run = false;
 }
 
-std::shared_ptr<KapEngine::Graphical::GraphicalLib> KapEngine::KapEngine::getCurrentGraphicalLib() {
+std::shared_ptr<KapEngine::Graphical::GraphicalLib> KapEngine::KEngine::getCurrentGraphicalLib() {
     return _libManager->getLib(_libManager->getCurrLib());
 }
 
-bool KapEngine::KapEngine::isGraphicalLibExists(std::size_t const& index) const {
+bool KapEngine::KEngine::isGraphicalLibExists(std::size_t const& index) const {
     return _libManager->isLibExists(index);
 }
 
-bool KapEngine::KapEngine::isGraphicalLibExists(std::string const& name) const {
+bool KapEngine::KEngine::isGraphicalLibExists(std::string const& name) const {
     return _libManager->isLibExists(name);
 }
 
-std::size_t KapEngine::KapEngine::getCurrentGraphicalLibIndex() const {
+std::size_t KapEngine::KEngine::getCurrentGraphicalLibIndex() const {
     return _libManager->getCurrLib();
 }
 
-void KapEngine::KapEngine::__init() {
+void KapEngine::KEngine::__init() {
     DEBUG_LOG("[INIT] KapEngine");
     _sceneManager = std::make_shared<SceneManagement::SceneManager>(*this);
     _prefabManager = std::make_shared<Prefabs::PrefabManager>(*this);
@@ -89,15 +89,15 @@ void KapEngine::KapEngine::__init() {
  * threadId : 4 = component
  */
 
-KapEngine::Events::EventManager &KapEngine::KapEngine::getEventManager() {
+KapEngine::Events::EventManager &KapEngine::KEngine::getEventManager() {
     return *_eventManager;
 }
 
-void KapEngine::KapEngine::setScreenSize(float width, float heigth) {
+void KapEngine::KEngine::setScreenSize(float width, float heigth) {
     screenSize.setX(width);
     screenSize.setY(heigth);
 }
 
-void KapEngine::KapEngine::setScreenSize(Tools::Vector2 size) {
+void KapEngine::KEngine::setScreenSize(Tools::Vector2 size) {
     screenSize = size;
 }

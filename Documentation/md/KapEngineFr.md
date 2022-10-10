@@ -28,7 +28,7 @@ Vous l'aurez compris, KapEngine à un système vous permettant de garder votre s
 KapEngine c'est également le choix d'une librairie Graphique.
 En effet KapEngine n'inclus pas de librairie graphique spécifique pour l'affichage de votre jeu. Cela signifie que vous pouvez choisir n'importe quel librairie graphique. Mais également que vous pouvez introduire votre propre librairie graphique si vous le souhaitez.
 
-Ce système d'implémentation est facilité par le système de class KapEngine::Graphical. Vous pourrez retrouver toutes les indications sur [cette page](LibGraphFr.md).
+Ce système d'implémentation est facilité par le système de class KEngine::Graphical. Vous pourrez retrouver toutes les indications sur [cette page](LibGraphFr.md).
 L'édition des composants est également à retrouver sur [cette page](NewComponentFr.md).
 
 ## Qu'est ce qu'un ECS

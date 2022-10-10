@@ -78,7 +78,7 @@ void createUI(KapEngine::SceneManagement::Scene &scene) {
 }
 
 int main() {
-    KapEngine::KapEngine engine(true, "Mon Jeu", "Version", "Ma Compagnie");
+    KapEngine::KEngine engine(true, "Mon Jeu", "Version", "Ma Compagnie");
 
     //on définie la taille de l'écran
     engine.setScreenSize(KapEngine::Tools::Vector2(720, 480));

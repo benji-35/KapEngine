@@ -12,7 +12,7 @@
 #include "GameObject.hpp"
 
 namespace KapEngine {
-    class KapEngine;
+    class KEngine;
     class GameObject;
     class Component;
     class Entity;
@@ -126,7 +126,7 @@ namespace KapEngine {
                 
                 std::vector<std::shared_ptr<GameObject>> getGameObjects(std::string const& name);
 
-                KapEngine &getEngine();
+                KEngine &getEngine();
 
                 /**
                  * @warning Do not call or modifie this function

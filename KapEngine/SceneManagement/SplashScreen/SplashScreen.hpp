@@ -37,7 +37,7 @@ namespace KapEngine {
                     }
                 };
             public:
-                SplashScreen(KapEngine &engine);
+                SplashScreen(KEngine &engine);
                 ~SplashScreen();
 
                 void addSplashScreen(std::shared_ptr<SplashScreenNode> splash) {
@@ -52,7 +52,7 @@ namespace KapEngine {
 
             protected:
             private:
-                KapEngine &_engine;
+                KEngine &_engine;
                 std::vector<std::shared_ptr<SplashScreenNode>> _splahes;
                 bool _displayKapEngineLogo = true;
                 std::size_t _sceneId = 0;

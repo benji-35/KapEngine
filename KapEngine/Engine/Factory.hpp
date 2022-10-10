@@ -69,7 +69,7 @@ namespace KapEngine {
                  CREATE SCENE
             */
 
-            static std::shared_ptr<SceneManagement::Scene> createScene(KapEngine &engine, std::string const& name) {
+            static std::shared_ptr<SceneManagement::Scene> createScene(KEngine &engine, std::string const& name) {
                 return createScene(engine.getSceneManager(), name);
             }
 

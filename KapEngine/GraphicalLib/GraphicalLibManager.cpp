@@ -9,7 +9,7 @@
 #include "KapEngineDebug.hpp"
 #include "LegacyGraphicalLib.hpp"
 
-KapEngine::Graphical::GraphicalLibManager::GraphicalLibManager(KapEngine &engine) : _engine(engine) {
+KapEngine::Graphical::GraphicalLibManager::GraphicalLibManager(KEngine &engine) : _engine(engine) {
     std::shared_ptr<LegacyGraphicalLib> legacy = std::make_shared<LegacyGraphicalLib>(*this);
     addLib(legacy);
     changeLib(1);

@@ -16,7 +16,7 @@
 namespace KapEngine {
 
     class Component;
-    class KapEngine;
+    class KEngine;
     class Entity;
 
     namespace SceneManagement {
@@ -84,7 +84,7 @@ namespace KapEngine {
                 return false;
             }
 
-            KapEngine &getEngine();
+            KEngine &getEngine();
 
             //all functions call by engine
             void __update();

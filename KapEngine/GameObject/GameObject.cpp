@@ -77,7 +77,7 @@ KapEngine::Component &KapEngine::GameObject::getTransform() {
     }
 }
 
-KapEngine::KapEngine &KapEngine::GameObject::getEngine() {
+KapEngine::KEngine &KapEngine::GameObject::getEngine() {
     return _scene.getEngine();
 }
 

@@ -12,7 +12,7 @@
 
 namespace KapEngine {
 
-    class KapEngine;
+    class KEngine;
 
     namespace Events {
         class Input;
@@ -35,15 +35,15 @@ namespace KapEngine {
          */
         class EventManager {
             public:
-                EventManager(KapEngine &engine);
+                EventManager(KEngine &engine);
                 ~EventManager() {}
 
                 /**
-                 * @fn KapEngine &getEngine()
+                 * @fn KEngine &getEngine()
                  * @brief Get the engine
-                 * @return KapEngine::KapEngine &
+                 * @return KapEngine::KEngine &
                  */
-                KapEngine &getEngine() {
+                KEngine &getEngine() {
                     return _engine;
                 }
 
@@ -76,7 +76,7 @@ namespace KapEngine {
             private:
                 std::shared_ptr<Input> _input;
                 std::shared_ptr<Mouse> _mouse;
-                KapEngine &_engine;
+                KEngine &_engine;
         };
     }
 }

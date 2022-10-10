@@ -62,7 +62,7 @@ std::shared_ptr<KapEngine::GameObject> &KapEngine::SceneManagement::Scene::getGa
     throw Errors::SceneError("No object has id: " + std::to_string(id));
 }
 
-KapEngine::KapEngine &KapEngine::SceneManagement::Scene::getEngine() {
+KapEngine::KEngine &KapEngine::SceneManagement::Scene::getEngine() {
     return manager.getEngine();
 }
 

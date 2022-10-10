@@ -5,8 +5,8 @@
 ** Engine
 */
 
-#ifndef ENGINE_HPP_
-#define ENGINE_HPP_
+#ifndef KENGINE_HPP_
+#define KENGINE_HPP_
 
 #include "Errors.hpp"
 #include "SceneManager.hpp"
@@ -50,19 +50,19 @@ namespace KapEngine {
 
     /**
      * @brief Class of engine
-     * @class KapEngine
+     * @class KEngine
      */
-    class KapEngine {
+    class KEngine {
         public:
             /**
-             * @brief Construct a new KapEngine
+             * @brief Construct a new KapEngine Engine
              * @param debug enable/disable debug mode
              * @param gameName name of your game
              * @param version version of your game
              * @param company company name that developpe the game
              */
-            KapEngine(bool debug = false, std::string const& gameName = "Game", std::string const& version = "1.0.0", std::string const& company = "Default Company");
-            ~KapEngine();
+            KEngine(bool debug = false, std::string const& gameName = "Game", std::string const& version = "1.0.0", std::string const& company = "Default Company");
+            ~KEngine();
 
             /**
              * @brief Fix max fps of game

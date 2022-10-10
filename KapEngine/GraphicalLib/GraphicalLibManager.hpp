@@ -24,7 +24,7 @@ namespace KapEngine {
 
         class GraphicalLibManager {
             public:
-                GraphicalLibManager(KapEngine &engine);
+                GraphicalLibManager(KEngine &engine);
                 ~GraphicalLibManager();
 
                 void addLib(std::shared_ptr<GraphicalLib> lib);
@@ -47,7 +47,7 @@ namespace KapEngine {
 
                 std::shared_ptr<GraphicalLib> getCurrentLib() const;
 
-                KapEngine &getEngine() const {
+                KEngine &getEngine() const {
                     return _engine;
                 }
 
@@ -60,7 +60,7 @@ namespace KapEngine {
                 std::size_t _maxLib = 0;
 
                 std::vector<std::shared_ptr<GraphicalLib>> _libs;
-                KapEngine &_engine;
+                KEngine &_engine;
         };
 
     }

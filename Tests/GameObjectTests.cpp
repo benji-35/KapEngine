@@ -9,7 +9,7 @@
 #include "criterion/criterion.h"
 
 Test(GameObject, GameObject_Creation1) {
-    KapEngine::KapEngine engine;
+    KapEngine::KEngine engine;
     auto &scene = engine.getSceneManager()->getScene(1);
 
     auto go = std::make_shared<KapEngine::GameObject>(scene, "TestObject");
@@ -19,7 +19,7 @@ Test(GameObject, GameObject_Creation1) {
 }
 
 Test(GameObject, GameObject_Creation2) {
-    KapEngine::KapEngine engine;
+    KapEngine::KEngine engine;
     auto &scene = engine.getSceneManager()->getScene(1);
 
     auto go = scene.createGameObject("TestObject");

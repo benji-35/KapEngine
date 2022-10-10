@@ -10,7 +10,7 @@
 #include "Factory.hpp"
 #include "Camera.hpp"
 
-KapEngine::SceneManagement::SceneManager::SceneManager(KapEngine &engine) : _engine(engine) {
+KapEngine::SceneManagement::SceneManager::SceneManager(KEngine &engine) : _engine(engine) {
     if (_engine.debugMode())
         DEBUG_LOG("Create Default Scene");
     createScene("Default Scene");

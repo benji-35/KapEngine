@@ -14,7 +14,7 @@
 #include "AnimationFadeOut.hpp"
 #include "AnimationSplashScreen.hpp"
 
-KapEngine::SceneManagement::SplashScreen::SplashScreen(KapEngine &engine) : _engine(engine) {}
+KapEngine::SceneManagement::SplashScreen::SplashScreen(KEngine &engine) : _engine(engine) {}
 
 KapEngine::SceneManagement::SplashScreen::~SplashScreen() {}
 
