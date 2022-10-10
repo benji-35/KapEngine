@@ -107,7 +107,7 @@ bool KapEngine::MouseDetector::__checkCanvas(Tools::Vector2 const& posMouse) {
         if (canvasId == 0)
             return __checkNoCanvas(posMouse);
 
-        auto &canvas = getGameObject().getScene().getObject(canvasId)->getComponent<UI::Canvas>();
+        auto &canvas = getGameObject().getScene().getGameObject(canvasId)->getComponent<UI::Canvas>();
         if (canvas.getResizeType() == UI::Canvas::RESIZE_WITH_SCREEN)
             _resized = true;
     } catch(...) {}
@@ -135,7 +135,7 @@ KapEngine::Tools::Vector2 KapEngine::MouseDetector::crossProductScreen(Tools::Ve
         if (canvasId == 0)
             return value;
 
-        auto &canvas = getGameObject().getScene().getObject(canvasId)->getComponent<UI::Canvas>();
+        auto &canvas = getGameObject().getScene().getGameObject(canvasId)->getComponent<UI::Canvas>();
         baseScreenSize = canvas.getScreenSizeCompare();
     } catch(...) { 
         DEBUG_ERROR("Failed to get canvas parent");

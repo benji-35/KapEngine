@@ -74,10 +74,10 @@ namespace KapEngine {
 
                 Component &getActiveCamera() const;
 
-                std::shared_ptr<GameObject> &getObject(std::size_t id);
-                std::shared_ptr<GameObject> getObjectConst(std::size_t id) const;
-                std::vector<std::shared_ptr<GameObject>> getAllObjects();
-                std::shared_ptr<GameObject> getObject(Entity const& en);
+                std::shared_ptr<GameObject> &getGameObject(std::size_t id);
+                std::shared_ptr<GameObject> getGameObjectConst(std::size_t id) const;
+                std::vector<std::shared_ptr<GameObject>> getAllGameObjects();
+                std::shared_ptr<GameObject> &getGameObject(Entity const& en);
                 
                 std::vector<std::shared_ptr<GameObject>> getGameObjects(std::string const& name);
 

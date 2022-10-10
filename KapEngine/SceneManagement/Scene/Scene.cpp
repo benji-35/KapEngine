@@ -50,7 +50,7 @@ KapEngine::Component &KapEngine::SceneManagement::Scene::getActiveCamera() const
     throw Errors::SceneError("No active camera found in this scene");
 }
 
-std::shared_ptr<KapEngine::GameObject> &KapEngine::SceneManagement::Scene::getObject(std::size_t id) {
+std::shared_ptr<KapEngine::GameObject> &KapEngine::SceneManagement::Scene::getGameObject(std::size_t id) {
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         if (_gameObjects[i]->getId() == id)
             return _gameObjects[i];
@@ -129,7 +129,7 @@ void KapEngine::SceneManagement::Scene::__engineStop(bool currentScene) {
     }
 }
 
-std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::getObjectConst(std::size_t id) const {
+std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::getGameObjectConst(std::size_t id) const {
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         if (_gameObjects[i]->getId() == id)
             return _gameObjects[i];
@@ -141,7 +141,7 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::getObj
     throw Errors::SceneError("No object has id: " + std::to_string(id));
 }
 
-std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::Scene::getAllObjects() {
+std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::Scene::getAllGameObjects() {
     std::vector<std::shared_ptr<GameObject>> result;
 
     result = _gameObjects;
@@ -151,8 +151,8 @@ std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::
     return result;    
 }
 
-std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::getObject(Entity const& en) {
-    return getObject(en.getId());
+std::shared_ptr<KapEngine::GameObject> &KapEngine::SceneManagement::Scene::getGameObject(Entity const& en) {
+    return getGameObject(en.getId());
 }
 
 void KapEngine::SceneManagement::Scene::destroyGameObject(std::shared_ptr<GameObject> const go) {

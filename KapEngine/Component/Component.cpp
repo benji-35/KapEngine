@@ -23,7 +23,7 @@ KapEngine::Component::~Component() {
 
 KapEngine::GameObject &KapEngine::Component::getGameObject() {
     try {
-        return *_go->getScene().getObject(_go->getId());
+        return *_go->getScene().getGameObject(_go->getId());
     } catch (Errors::SceneError e) {
         throw Errors::ComponentError(std::string(e.what()));
     }
@@ -77,7 +77,7 @@ KapEngine::Events::Mouse KapEngine::Component::getMouse() {
 }
 
 KapEngine::GameObject &KapEngine::Component::getGameObjectConst() const {
-    return *_go->getSceneConst().getObjectConst(_go->getId());
+    return *_go->getSceneConst().getGameObjectConst(_go->getId());
 }
 
 bool KapEngine::Component::__checkValidity() {
