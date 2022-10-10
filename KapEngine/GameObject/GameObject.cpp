@@ -182,8 +182,9 @@ void KapEngine::GameObject::dump(bool displayComponent, std::string prefix) {
         }
     }
     auto children = getComponent<Transform>().getChildren();
+    prefix = prefix + "   ";
     for (std::size_t i = 0; i < children.size(); i++) {
-        children[i]->dump(displayComponent, prefix + "  ");
+        children[i]->dump(displayComponent, prefix);
     }
 }
 
