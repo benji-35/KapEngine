@@ -23,7 +23,7 @@ namespace KapEngine {
             * @brief afficher un log
             */
             static void log(std::string _msg, std::string prefix = "") {
-                std::cout << "[" << __getCDate() << "] " + prefix + "\e[1;37m log: \e[0m" << _msg << "\e[0m" << std::endl;
+                std::cout << "[" << __getCDate() << "] " + prefix + "\\e[1;37m log: \\e[0m" << _msg << "\\e[0m" << std::endl;
             }
 
             static void log(char const* _msg, std::string prefix = "") {
@@ -44,7 +44,7 @@ namespace KapEngine {
             * @brief afficher un warning
             */
             static void warning(std::string _msg, std::string prefix = "") {
-                std::cout << "[" << __getCDate() << "] " + prefix + "\e[1;33m warning: \e[0m" << _msg << "\e[0m" << std::endl;
+                std::cout << "[" << __getCDate() << "] " + prefix + "\\e[1;33m warning: \\e[0m" << _msg << "\\e[0m" << std::endl;
             }
 
             static void warning(char const* _msg, std::string prefix = "") {
@@ -64,7 +64,7 @@ namespace KapEngine {
             * @brief afficher une erreur
             */
             static void error(std::string _msg, std::string prefix = "") {
-                std::cout << "[" << __getCDate() << "] " + prefix + "\e[1;31m error: \e[0m" << _msg << "\e[0m" << std::endl;
+                std::cout << "[" << __getCDate() << "] " + prefix + "\\e[1;31m error: \\e[0m" << _msg << "\\e[0m" << std::endl;
             }
 
             static void error(char const* _msg, std::string prefix = "") {
@@ -80,39 +80,39 @@ namespace KapEngine {
             }
 
             static std::string colorNone() {
-                return "\e[0m";
+                return "\\e[0m";
             }
 
             static std::string colorRed() {
-                return "\e[31m";
+                return "\\e[31m";
             }
 
             static std::string colorYellow() {
-                return "\e[33m";
+                return "\\e[33m";
             }
 
             static std::string colorWhite() {
-                return "\e[97m";
+                return "\\e[97m";
             }
 
             static std::string colorBlue() {
-                return "\e[34m";
+                return "\\e[34m";
             }
 
             static std::string colorBlack() {
-                return "\e[30m";
+                return "\\e[30m";
             }
 
             static std::string colorGreen() {
-                return "\e[32m";
+                return "\\e[32m";
             }
 
             static std::string colorMagenta() {
-                return "\e[35m";
+                return "\\e[35m";
             }
 
             static std::string colorCyan() {
-                return "\e[36m";
+                return "\\e[36m";
             }
         protected:
         private:
