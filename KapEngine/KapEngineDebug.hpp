@@ -14,7 +14,7 @@
 
 #include "Platform.hpp"
 
-#if __WINDOWS__
+#ifdef __WINDOWS__
     #define __PRETTY_FUNCTION__ __FUNCSIG__
 #endif
 
