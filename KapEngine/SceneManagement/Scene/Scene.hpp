@@ -74,10 +74,55 @@ namespace KapEngine {
 
                 Component &getActiveCamera() const;
 
+                /**
+                 * @brief Get the Game Object object
+                 * 
+                 * @param id 
+                 * @return std::shared_ptr<GameObject>& 
+                 */
                 std::shared_ptr<GameObject> &getGameObject(std::size_t id);
+                /**
+                 * @brief Get GameObject object
+                 * 
+                 * @param id 
+                 * @return std::shared_ptr<GameObject>&
+                 * @deprecated please use getGameObject
+                 */
+                std::shared_ptr<GameObject> &getObject(std::size_t id) {
+                    return getGameObject(id);
+                }
                 std::shared_ptr<GameObject> getGameObjectConst(std::size_t id) const;
+                /**
+                 * @brief Get the Object Const object
+                 * 
+                 * @param id 
+                 * @return std::shared_ptr<GameObject>
+                 * @deprecated 
+                 */
+                std::shared_ptr<GameObject> getObjectConst(std::size_t id) const {
+                    return getGameObjectConst(id);
+                }
                 std::vector<std::shared_ptr<GameObject>> getAllGameObjects();
+                /**
+                 * @brief Get the All Objects object
+                 * 
+                 * @return std::vector<std::shared_ptr<GameObject>> 
+                 * @deprecated
+                 */
+                std::vector<std::shared_ptr<GameObject>> getAllObjects() {
+                    return getAllGameObjects();
+                }
                 std::shared_ptr<GameObject> &getGameObject(Entity const& en);
+                /**
+                 * @brief Get the Object object
+                 * 
+                 * @param en 
+                 * @return std::shared_ptr<GameObject>&
+                 * @deprecated 
+                 */
+                std::shared_ptr<GameObject> &getObject(Entity const& en) {
+                    return getGameObject(en);
+                }
                 
                 std::vector<std::shared_ptr<GameObject>> getGameObjects(std::string const& name);
 
