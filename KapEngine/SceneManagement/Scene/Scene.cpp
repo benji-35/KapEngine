@@ -148,7 +148,7 @@ std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
         result.push_back(_gameObjectsRun[i]);
     }
-    return result;    
+    return result;
 }
 
 std::shared_ptr<KapEngine::GameObject> &KapEngine::SceneManagement::Scene::getGameObject(Entity const& en) {
@@ -251,10 +251,14 @@ std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::
 }
 
 std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::findFirstGameObject(std::string const& name) {
-    std::shared_ptr<GameObject> result;
-    auto found = getGameObjects(name);
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (_gameObjects[i]->getName() == name)
+            return _gameObjects[i];
+    }
 
-    if (found.size() != 0)
-        result = found[0];
-    return result;
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (_gameObjectsRun[i]->getName() == name)
+            return _gameObjectsRun[i];
+    }
+    throw Errors::SceneError("No object has name: " + name);
 }
