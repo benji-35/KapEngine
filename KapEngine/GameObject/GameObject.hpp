@@ -11,6 +11,7 @@
 #include "Component.hpp"
 #include "Scene.hpp"
 #include "Entity.hpp"
+#include "Type.hpp"
 
 namespace KapEngine {
 
@@ -51,12 +52,15 @@ namespace KapEngine {
 
             template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
             T &getComponent() {
+                std::size_t hash = Type::getHashCode<T>();
                 for (std::size_t i = 0; i < _components.size(); i++) {
-                    if (_components[i] && typeid(*_components[i]).name() == typeid(T).name())
+                    std::size_t componentHash = Type::getHashCode(*_components[i]);
+                    if (_components[i] && componentHash == hash)
                         return dynamic_cast<T &>(*_components[i]);
                 }
                 for (std::size_t i = 0; i < _componentsRun.size(); i++) {
-                    if (_componentsRun[i] && typeid(*_componentsRun[i]).name() == typeid(T).name())
+                    std::size_t componentHash = Type::getHashCode(*_componentsRun[i]);
+                    if (_componentsRun[i] && componentHash == hash)
                         return dynamic_cast<T &>(*_componentsRun[i]);
                 }
                 throw Errors::GameObjectError("No component found");
@@ -66,12 +70,15 @@ namespace KapEngine {
 
             template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
             bool hasComponent() const {
+                std::size_t hash = Type::getHashCode<T>();
                 for (std::size_t i = 0; i < _components.size(); i++) {
-                    if (_components[i] && typeid(*_components[i]).name() == typeid(T).name())
+                    std::size_t componentHash = Type::getHashCode(*_components[i]);
+                    if (_components[i] && componentHash == hash)
                         return true;
                 }
                 for (std::size_t i = 0; i < _componentsRun.size(); i++) {
-                    if (_componentsRun[i] && typeid(*_componentsRun[i]).name() == typeid(T).name())
+                    std::size_t componentHash = Type::getHashCode(*_componentsRun[i]);
+                    if (_componentsRun[i] && componentHash == hash)
                         return true;
                 }
                 return false;
