@@ -25,27 +25,27 @@ namespace KapEngine {
 }
 
 namespace KapEngine {
-namespace Prefabs {
-    class PrefabManager {
-        private:
-        KapEngine& _engine;
+    namespace Prefabs {
+        class PrefabManager {
+            private:
+            KEngine &_engine;
 
-        using Prefab = std::function<std::shared_ptr<GameObject>(SceneManagement::Scene&)>;
-        Dictionary<std::string, std::shared_ptr<Prefab>> _prefabs;
+            using Prefab = std::function<std::shared_ptr<GameObject>(SceneManagement::Scene&)>;
+            Dictionary<std::string, std::shared_ptr<Prefab>> _prefabs;
 
-        public:
-        PrefabManager(KapEngine& engine);
-        ~PrefabManager() = default;
+            public:
+            PrefabManager(KEngine &engine);
+            ~PrefabManager() = default;
 
-        void createPrefab(std::string const& name, Prefab hander);
+            void createPrefab(std::string const& name, Prefab hander);
 
-        bool instantiatePrefab(std::string const& name, SceneManagement::Scene& scene, std::shared_ptr<GameObject>& gameObject);
+            bool instantiatePrefab(std::string const& name, SceneManagement::Scene& scene, std::shared_ptr<GameObject>& gameObject);
 
-        bool instantiatePrefab(std::string const& name, std::size_t sceneId, std::shared_ptr<GameObject>& gameObject);
+            bool instantiatePrefab(std::string const& name, std::size_t sceneId, std::shared_ptr<GameObject>& gameObject);
 
-        void removePrefab(std::string const& name);
-    };
-}
+            void removePrefab(std::string const& name);
+        };
+    }
 }
 
 #endif

@@ -2,7 +2,7 @@
 
 using namespace KapEngine::Prefabs;
 
-PrefabManager::PrefabManager(KapEngine& engine) : _engine(engine) {};
+PrefabManager::PrefabManager(KEngine &engine) : _engine(engine) {};
 
 void PrefabManager::createPrefab(std::string const& name, Prefab hander) {
     _prefabs[name] = std::make_shared<Prefab>(hander);
