@@ -189,8 +189,6 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::Transform::getParent() const {
 
 bool KapEngine::Transform::parentContainsComponent(std::string const& componentName, bool recurcively) {
     if (_parentId == 0) {
-        if (getGameObject().hasComponent(componentName))
-            return true;
         return false;
     }
     std::shared_ptr<GameObject> parent = getParent();
@@ -201,12 +199,8 @@ bool KapEngine::Transform::parentContainsComponent(std::string const& componentN
         return true;
     if (recurcively) {
         Transform &tr = (Transform &)parent->getTransform();
-        if (tr.parentContainsComponent(componentName, recurcively)) {
-            return true;
-        }
+        return tr.parentContainsComponent(componentName, recurcively);
     }
-    if (getGameObject().hasComponent(componentName))
-        return true;
     return false;
 }
 
@@ -232,10 +226,11 @@ std::size_t KapEngine::Transform::getParentContainsComponent(std::string const& 
     try {
         Transform &tr = (Transform &)parent->getTransform();
         auto val = tr.getParentContainsComponent(componentName);
-        if (val != 0)
-            return val;
-        if (getGameObject().hasComponent(componentName))
-            return getGameObject().getId();
+        if (val == 0) {
+            if (getGameObject().hasComponent(componentName))
+                val = getGameObject().getId();
+        }
+        return val;
     } catch(...) {
         DEBUG_ERROR("Failled to get Transform of parent");
         return 0;

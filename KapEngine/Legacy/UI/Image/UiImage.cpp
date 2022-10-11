@@ -82,6 +82,8 @@ bool KapEngine::UI::Image::checkComponentValidity() {
         auto res = tr.parentContainsComponent("Canvas", true);
         
         if (res == false) {
+            if (getGameObject().hasComponent<Canvas>())
+                return true;
             DEBUG_WARNING("Cannot use Image because no canvas found!");
         }
         
