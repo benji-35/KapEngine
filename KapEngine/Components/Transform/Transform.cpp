@@ -201,8 +201,12 @@ bool KapEngine::Transform::parentContainsComponent(std::string const& componentN
         return true;
     if (recurcively) {
         Transform &tr = (Transform &)parent->getTransform();
-        return tr.parentContainsComponent(componentName, recurcively);
+        if (tr.parentContainsComponent(componentName, recurcively)) {
+            return true;
+        }
     }
+    if (getGameObject().hasComponent(componentName))
+        return true;
     return false;
 }
 
@@ -227,7 +231,11 @@ std::size_t KapEngine::Transform::getParentContainsComponent(std::string const& 
         return parent->getId();
     try {
         Transform &tr = (Transform &)parent->getTransform();
-        return tr.getParentContainsComponent(componentName);
+        auto val = tr.getParentContainsComponent(componentName);
+        if (val != 0)
+            return val;
+        if (getGameObject().hasComponent(componentName))
+            return getGameObject().getId();
     } catch(...) {
         DEBUG_ERROR("Failled to get Transform of parent");
         return 0;
