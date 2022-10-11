@@ -13,6 +13,8 @@
 #include <iostream>
 #include <mutex>
 
+#include "Utils/Platform.hpp"
+
 namespace KapEngine {
     class Debug {
         public:
@@ -80,39 +82,75 @@ namespace KapEngine {
             }
 
             static std::string colorNone() {
-                return "\\e[0m";
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[0m";
+                #endif
             }
 
             static std::string colorRed() {
-                return "\\e[31m";
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[31m";
+                #endif
             }
 
             static std::string colorYellow() {
-                return "\\e[33m";
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[33m";
+                #endif
             }
 
             static std::string colorWhite() {
-                return "\\e[97m";
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[97m";
+                #endif
             }
 
             static std::string colorBlue() {
-                return "\\e[34m";
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[34m";
+                #endif
             }
 
             static std::string colorBlack() {
-                return "\\e[30m";
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[30m";
+                #endif
             }
 
             static std::string colorGreen() {
-                return "\\e[32m";
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[32m";
+                #endif
             }
 
             static std::string colorMagenta() {
-                return "\\e[35m";
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[35m";
+                #endif
             }
 
             static std::string colorCyan() {
-                return "\\e[36m";
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[36m";
+                #endif
             }
         protected:
         private:
