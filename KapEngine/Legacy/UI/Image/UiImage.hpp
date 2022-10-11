@@ -13,8 +13,8 @@
 #include "Rectangle.hpp"
 
 #include "Component.hpp"
-
 #include <filesystem>
+
 
 namespace KapEngine {
 
@@ -57,8 +57,10 @@ namespace KapEngine {
                 }
 
                 void setPathSpriteRoot(std::string const& pathSprite) {
-                    std::string rt(std::filesystem::current_path().root_path().u8string());
-                    _pathSprite = rt + pathSprite;
+                    std::stringstream gdPath;
+                    gdPath << std::filesystem::current_path().root_path();
+                    gdPath << pathSprite;
+                    gdPath >> _pathSprite;
                 }
 
                 void setColor(Tools::Color const& color) {
