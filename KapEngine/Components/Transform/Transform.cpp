@@ -188,8 +188,11 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::Transform::getParent() const {
 }
 
 bool KapEngine::Transform::parentContainsComponent(std::string const& componentName, bool recurcively) {
-    if (_parentId == 0)
+    if (_parentId == 0) {
+        if (getGameObject().hasComponent(componentName))
+            return true;
         return false;
+    }
     std::shared_ptr<GameObject> parent = getParent();
     if (parent.use_count() == 0)
         return false;
@@ -212,8 +215,11 @@ bool KapEngine::Transform::parentContainsComponents(std::vector<std::string> com
 }
 
 std::size_t KapEngine::Transform::getParentContainsComponent(std::string const& componentName) {
-    if (_parentId == 0)
+    if (_parentId == 0) {
+        if (getGameObject().hasComponent(componentName))
+            return getGameObject().getId();
         return 0;
+    }
     std::shared_ptr<GameObject> parent = getParent();
     if (parent.use_count() == 0)
         return 0;
