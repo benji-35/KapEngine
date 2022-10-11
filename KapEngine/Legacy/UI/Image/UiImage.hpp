@@ -57,7 +57,7 @@ namespace KapEngine {
                 }
 
                 void setPathSpriteRoot(std::string const& pathSprite) {
-                    _pathSprite = std::filesystem::current_path().generic_string() + pathSprite;
+                    _pathSprite = std::filesystem::current_path().generic_string() + "/" + pathSprite;
                 }
 
                 void setColor(Tools::Color const& color) {
