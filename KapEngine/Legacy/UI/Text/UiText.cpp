@@ -26,7 +26,12 @@ void KapEngine::UI::Text::onDisplay() {
 bool KapEngine::UI::Text::checkComponentValidity() {
     try {
         Transform &tr = (Transform &)getGameObject().getTransform();
-        return tr.parentContainsComponent("Canvas", true);
+        auto val = tr.parentContainsComponent("Canvas", true);
+        if (!val) {
+            if (getGameObject().hasComponent<Canvas>())
+                val = true;
+        }
+        return val;
     } catch(...) {
         return false;
     }
