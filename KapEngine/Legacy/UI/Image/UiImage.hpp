@@ -14,6 +14,8 @@
 
 #include "Component.hpp"
 
+#include <filesystem>
+
 namespace KapEngine {
 
     class Component;
@@ -52,6 +54,11 @@ namespace KapEngine {
 
                 void setPathSprite(std::string const& pathSprite) {
                     _pathSprite = pathSprite;
+                }
+
+                void setPathSpriteRoot(std::string const& pathSprite) {
+                    std::string rt(std::filesystem::current_path().root_path().u8string());
+                    _pathSprite = rt + pathSprite;
                 }
 
                 void setColor(Tools::Color const& color) {
