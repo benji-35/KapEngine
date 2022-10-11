@@ -25,7 +25,7 @@ namespace KapEngine {
             * @brief afficher un log
             */
             static void log(std::string _msg, std::string prefix = "") {
-                std::cout << "[" << __getCDate() << "] " + prefix + "\\e[1;37m log: \\e[0m" << _msg << "\\e[0m" << std::endl;
+                std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << " log: " << colorNone() << _msg << colorNone() << std::endl;
             }
 
             static void log(char const* _msg, std::string prefix = "") {
@@ -46,7 +46,7 @@ namespace KapEngine {
             * @brief afficher un warning
             */
             static void warning(std::string _msg, std::string prefix = "") {
-                std::cout << "[" << __getCDate() << "] " + prefix + "\\e[1;33m warning: \\e[0m" << _msg << "\\e[0m" << std::endl;
+                std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << colorYellow() << " warning: " << colorNone() << _msg << colorNone() << std::endl;
             }
 
             static void warning(char const* _msg, std::string prefix = "") {
@@ -66,7 +66,7 @@ namespace KapEngine {
             * @brief afficher une erreur
             */
             static void error(std::string _msg, std::string prefix = "") {
-                std::cout << "[" << __getCDate() << "] " + prefix + "\\e[1;31m error: \\e[0m" << _msg << "\\e[0m" << std::endl;
+                std::cout << "[" << __getCDate() << "] " << prefix << colorRed() << " error: " << colorNone() << _msg << colorNone() << std::endl;
             }
 
             static void error(char const* _msg, std::string prefix = "") {
@@ -150,6 +150,86 @@ namespace KapEngine {
                     return "";
                 #else
                     return "\e[36m";
+                #endif
+            }
+        
+            static std::string colorBackgroundDefault() {
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[49m";
+                #endif
+            }
+
+            static std::string colorBackgroundRed() {
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[101m";
+                #endif
+            }
+
+            static std::string colorBackgroundYellow() {
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[103m";
+                #endif
+            }
+
+            static std::string colorBackgroundWhite() {
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[107m";
+                #endif
+            }
+
+            static std::string colorBackgroundBlue() {
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[104m";
+                #endif
+            }
+
+            static std::string colorBackgroundBlack() {
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[40m";
+                #endif
+            }
+
+            static std::string colorBackgroundGreen() {
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[102m";
+                #endif
+            }
+
+            static std::string colorBackgroundMagenta() {
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[105m";
+                #endif
+            }
+
+            static std::string colorBackgroundCyan() {
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[106m";
+                #endif
+            }
+
+            static std::string boldStyle() {
+                #ifdef __WINDOWS__
+                    return "";
+                #else
+                    return "\e[1m";
                 #endif
             }
         protected:
