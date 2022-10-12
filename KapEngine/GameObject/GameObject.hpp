@@ -134,6 +134,15 @@ namespace KapEngine {
                 return _prefabName;
             }
 
+            /**
+             * @brief Set the Name of GameObject
+             * 
+             * @param name 
+             */
+            void setName(std::string const& name) {
+                _name = name;
+            }
+
         protected:
         private:
             std::string _name;
