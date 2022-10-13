@@ -90,6 +90,22 @@ void KapEngine::SceneManagement::Scene::__update() {
             } catch(...) {}
         }
     }
+
+    //call after update
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (_gameObjects[i]->getComponent<Transform>().getParentId() == 0) {
+            try {
+                _gameObjects[i]->__onSceneUpdated();
+            } catch(...) {}
+        }
+    }
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (_gameObjectsRun[i]->getComponent<Transform>().getParentId() == 0) {
+            try {
+                _gameObjectsRun[i]->__onSceneUpdated();
+            } catch(...) {}
+        }
+    }
 }
 
 void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {

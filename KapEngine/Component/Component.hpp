@@ -88,6 +88,7 @@ namespace KapEngine {
             virtual void onDestroy() override {}
             virtual void onDisable() override {}
             virtual void onEnable() override {}
+            virtual void onSceneUpdated() override {}
 
             /**
              * @fn std::size_t getLevel() const
@@ -194,7 +195,21 @@ namespace KapEngine {
              */
             void __awake();
 
+            /**
+             * @brief Get the Transform component
+             * 
+             * @return KapEngine::Transform& 
+             */
             Transform &getTransform();
+
+            /**
+             * @brief Get the Id of component
+             * 
+             * @return std::size_t 
+             */
+            std::size_t getId() const {
+                return _id;
+            }
 
         protected:
             /**

@@ -206,3 +206,16 @@ void KapEngine::GameObject::destroy() {
 void KapEngine::GameObject::__setPrefab(std::string const& name) {
     _prefabName = name;
 }
+
+void KapEngine::GameObject::__onSceneUpdated() {
+    for (std::size_t i = 0; i < _components.size(); i++) {
+        _components[i]->onSceneUpdated();
+    }
+    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+        _componentsRun[i]->onSceneUpdated();
+    }
+    auto children = getComponent<Transform>().getChildren();
+    for (std::size_t i = 0; i < children.size(); i++) {
+        children[i]->__onSceneUpdated();
+    }
+}

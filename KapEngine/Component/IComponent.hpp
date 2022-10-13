@@ -128,6 +128,12 @@ namespace KapEngine {
              */
             virtual void onEnable() = 0;
 
+            /**
+             * @brief call when scene is updated
+             * 
+             */
+            virtual void onSceneUpdated() = 0;
+
         protected:
         private:
     };
