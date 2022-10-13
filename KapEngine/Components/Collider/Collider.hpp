@@ -65,6 +65,8 @@ namespace KapEngine {
 
             bool isColliding(Tools::Rectangle const collisionBox);
             bool isSavedCollided(Collider &collider);
+
+            std::vector<Collider *>findAllColliders(GameObject &go);
     };
 
 }

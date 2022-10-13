@@ -127,41 +127,6 @@ namespace KapEngine {
 
             std::vector<std::shared_ptr<Component>> getAllComponents() const;
 
-            template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
-            std::vector<T *>getComponents() {
-                std::size_t hash = Type::getHashCode<T>();
-                std::vector<T &> result;
-                for (std::size_t i = 0; i < _components.size(); i++) {
-                    std::size_t componentHash = Type::getHashCode(*_components[i]);
-                    if (_components[i] && componentHash == hash)
-                        result.push_back(dynamic_cast<T *>(_components[i].get()));
-                }
-                for (std::size_t i = 0; i < _componentsRun.size(); i++) {
-                    std::size_t componentHash = Type::getHashCode(*_componentsRun[i]);
-                    if (_componentsRun[i] && componentHash == hash)
-                        result.push_back(dynamic_cast<T *>(_componentsRun[i].get()));
-                }
-                return result;
-            }
-
-            template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
-            std::vector<std::shared_ptr<T>>getComponentsShared() {
-                std::size_t hash = Type::getHashCode<T>();
-                std::vector<std::shared_ptr<T>> result;
-                for (std::size_t i = 0; i < _components.size(); i++) {
-                    std::size_t componentHash = Type::getHashCode(*_components[i]);
-                    if (_components[i] && componentHash == hash)
-                        result.push_back(dynamic_cast<std::shared_ptr<T>>(_components[i]));
-                }
-                for (std::size_t i = 0; i < _componentsRun.size(); i++) {
-                    std::size_t componentHash = Type::getHashCode(*_componentsRun[i]);
-                    if (_componentsRun[i] && componentHash == hash)
-                        result.push_back(dynamic_cast<std::shared_ptr<T>>(_componentsRun[i]));
-                }
-                return result;
-            }
-
-
             void destroy();
 
             void __setPrefab(std::string const& name);

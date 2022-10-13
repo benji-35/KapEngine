@@ -70,7 +70,7 @@ void Collider::calculateCollisions(std::shared_ptr<GameObject> object) {
     if (object->getId() == getGameObject().getId())
         return;
 
-    auto colliders = object->getComponents<Collider>();
+    auto colliders = findAllColliders(*object);
     for (std::size_t i = 0; i < colliders.size(); i++) {
         calculateCollisions(*colliders[i]);
     }
@@ -180,4 +180,16 @@ Tools::Rectangle Collider::getCollisionBox() const {
         rect.setSize(calculSizeCanvas(rect.getSize()));
     }
     return rect;
+}
+
+std::vector<Collider *> Collider::findAllColliders(GameObject &go) {
+    auto allComponents = go.getAllComponents();
+    std::vector<Collider *> colliders;
+
+    for (std::size_t i = 0; i < allComponents.size(); i++) {
+        if (allComponents[i]->getName() == "Collider") {
+            colliders.push_back(dynamic_cast<Collider *>(allComponents[i].get()));
+        }
+    }
+    return colliders;
 }
