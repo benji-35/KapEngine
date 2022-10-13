@@ -15,14 +15,12 @@ namespace KapEngine {
         public:
         template<typename T>
         inline static std::size_t getHashCode() {
-            std::size_t type = typeid(T).hash_code();
-            return type;
+            return std::hash<std::string>()(typeid(T).name());
         }
 
         template<typename T>
         inline static std::size_t getHashCode(T& obj) {
-            std::size_t type = typeid(obj).hash_code();
-            return type;
+            return std::hash<std::string>()(typeid(obj).name());
         }
     };
 }
