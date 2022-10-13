@@ -30,6 +30,8 @@ bool Collider::checkComponentValidity() {
 }
 
 void Collider::onUpdate() {
+    if (!_isTrigger || !_isMovable)
+        return;
     auto collision = getCollisionBox();
     auto gameObjects = getGameObject().getScene().getAllGameObjects();
     for (std::size_t i = 0; i < gameObjects.size(); i++) {
