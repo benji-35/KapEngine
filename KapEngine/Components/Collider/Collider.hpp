@@ -10,6 +10,7 @@
 
 #include "KapEngine.hpp"
 #include "KapEngineDebug.hpp"
+#include <vector>
 
 namespace KapEngine {
 
