@@ -72,7 +72,7 @@ void Collider::calculateCollisions(std::shared_ptr<GameObject> object) {
 
     auto colliders = object->getComponents<Collider>();
     for (std::size_t i = 0; i < colliders.size(); i++) {
-        calculateCollisions(colliders[i]);
+        calculateCollisions(*colliders[i]);
     }
 }
 
