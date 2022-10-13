@@ -30,7 +30,7 @@ namespace KapEngine {
 
             void setCollisionBox(Tools::Rectangle const& collisionBox);
 
-            void __addCalculatedCollider(Collider &_collider) {
+            void __addCalculatedCollider(Collider *_collider) {
                 _calculatedColliders.push_back(_collider);
             }
 
@@ -54,8 +54,8 @@ namespace KapEngine {
             bool _isMovable = false;
             Tools::Rectangle _collisionBox;
             Tools::Vector2 _offset;
-            std::vector<Collider &> _calculatedColliders;
-            std::vector<Collider &> _alreadyCollided;
+            std::vector<Collider *> _calculatedColliders;
+            std::vector<Collider *> _alreadyCollided;
 
             void calculateCollisions(std::shared_ptr<GameObject> object);
             void calculateCollisions(Collider & collider);

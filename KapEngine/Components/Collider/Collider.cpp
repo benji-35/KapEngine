@@ -79,14 +79,14 @@ void Collider::calculateCollisions(std::shared_ptr<GameObject> object) {
 void Collider::calculateCollisions(KapEngine::Collider &collider) {
     //check already calculated
     for (std::size_t i = 0; i < _calculatedColliders.size(); i++) {
-        if (_calculatedColliders[i].getGameObject().getId() == collider.getGameObject().getId()) {
-            if (_calculatedColliders[i].getId() == collider.getId()) {
+        if (_calculatedColliders[i]->getGameObject().getId() == collider.getGameObject().getId()) {
+            if (_calculatedColliders[i]->getId() == collider.getId()) {
                 return;
             }
         }
     }
-    _calculatedColliders.push_back(collider);
-    collider.__addCalculatedCollider(*this);
+    _calculatedColliders.push_back(&collider);
+    collider.__addCalculatedCollider(this);
     //check collision
     if (isColliding(collider.getCollisionBox())) {
         if (_isTrigger) {
@@ -131,8 +131,8 @@ void Collider::onSceneUpdated() {
 
 void Collider::checkNotCollided() {
     for (std::size_t i = 0; i < _alreadyCollided.size(); i++) {
-        if (!isSavedCollided(_alreadyCollided[i])) {
-            __callEndTrigger(_alreadyCollided[i]);
+        if (!isSavedCollided(*_alreadyCollided[i])) {
+            __callEndTrigger(*_alreadyCollided[i]);
         }
     }
 }
@@ -145,7 +145,7 @@ void Collider::__callEndTrigger(Collider &collided) {
         components[i]->onTriggerExit(goShared);
     }
     for (std::size_t i = 0; i < _alreadyCollided.size(); i++) {
-        if (_alreadyCollided[i].getId() == collided.getId()) {
+        if (_alreadyCollided[i]->getId() == collided.getId()) {
             _alreadyCollided.erase(_alreadyCollided.begin() + i);
             break;
         }
@@ -154,7 +154,7 @@ void Collider::__callEndTrigger(Collider &collided) {
 
 bool Collider::isSavedCollided(Collider &collider) {
     for (std::size_t i = 0; i < _alreadyCollided.size(); i++) {
-        if (_alreadyCollided[i].getId() == collider.getId()) {
+        if (_alreadyCollided[i]->getId() == collider.getId()) {
             return true;
         }
     }
