@@ -20,7 +20,6 @@ namespace KapEngine {
             ~Collider();
 
             void onUpdate() override;
-            void onDisplay() override;
             bool checkComponentValidity() override;
             void onSceneUpdated() override;
 
