@@ -22,7 +22,7 @@ void Collider::onUpdate() {
     if (!_isTrigger)
         return;
     
-    auto gameObjects = getGameObject().getScene().getAllGameObjects();
+    auto gameObjects = getGameObject().getScene().getGameObjectByTag("Collider");
 
     for (std::size_t i = 0; i < gameObjects.size(); i++) {
         if (gameObjects[i]->getId() != getGameObject().getId()) {
