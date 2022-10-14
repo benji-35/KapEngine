@@ -11,7 +11,7 @@
 #include "KapEngineDebug.hpp"
 #include "GraphicalLib.hpp"
 
-KapEngine::UI::Image::Image(std::shared_ptr<GameObject> &go) : Component(go, "Image") {}
+KapEngine::UI::Image::Image(std::shared_ptr<GameObject> &go) : Component(go, "Image", 0) {}
 
 KapEngine::UI::Image::~Image() {}
 

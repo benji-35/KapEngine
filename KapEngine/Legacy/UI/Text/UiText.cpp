@@ -10,7 +10,7 @@
 #include "UiCanvas.hpp"
 #include "KapEngineDebug.hpp"
 
-KapEngine::UI::Text::Text(std::shared_ptr<GameObject> &go, std::string const& textContent) : Component(go, "Text")
+KapEngine::UI::Text::Text(std::shared_ptr<GameObject> &go, std::string const& textContent) : Component(go, "Text", 0)
 {
     setText(textContent);
 }
