@@ -10,7 +10,7 @@
 
 using namespace KapEngine;
 
-Collider::Collider(std::shared_ptr<GameObject> go, bool isTrigger, bool isMovable, bool isCanvas) : Component(go, "Collider"),
+Collider::Collider(std::shared_ptr<GameObject> go, bool isTrigger, bool isMovable, bool isCanvas) : Component(go, "Collider", 0),
     _isTrigger(isTrigger), _isMovable(isMovable), _isInCanvas(isCanvas) {
 
 }
