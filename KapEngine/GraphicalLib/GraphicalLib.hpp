@@ -12,6 +12,7 @@
 #include "Input.hpp"
 #include "Vectors.hpp"
 #include "Entity.hpp"
+#include "Color.hpp"
 
 #include <functional>
 
@@ -29,6 +30,7 @@ namespace KapEngine {
     }
 
     namespace Tools {
+        class Color;
         class Vector2;
     }
 
@@ -94,6 +96,9 @@ namespace KapEngine {
                 virtual void restartMusic() {}
 
                 virtual void playSound(std::string const& soundPath) {}
+
+                virtual void drawRectangle(Tools::Vector2 const& position, Tools::Vector2 const& size, Tools::Color const& color) {}
+                virtual void drawRectangle(Tools::Rectangle rectangle, Tools::Color const& color, float rotation) {}
 
                 //graphical call
 
