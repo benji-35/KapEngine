@@ -172,7 +172,7 @@ namespace KapEngine {
                  * @param scene scene which is updating
                  * @param id id of thread
                  */
-                static void __threadSceneUpdate(Scene *scene, std::size_t id);
+                static void __threadSceneUpdate(Scene &scene, std::size_t id);
 
             protected:
             private:

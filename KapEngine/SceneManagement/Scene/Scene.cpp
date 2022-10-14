@@ -10,8 +10,6 @@
 #include "KapEngineDebug.hpp"
 #include "Factory.hpp"
 
-#include "Transform.hpp"
-
 #include <thread>
 
 KapEngine::SceneManagement::Scene::Scene(SceneManager &manager, std::string const& name) : manager(manager) {
@@ -265,10 +263,10 @@ std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::
 }
 
 void KapEngine::SceneManagement::Scene::__updateGameObjects() {
-    std::thread t1(&Scene::__threadSceneUpdate, this, 1);
-    std::thread t2(&Scene::__threadSceneUpdate, this, 2);
-    std::thread t3(&Scene::__threadSceneUpdate, this, 3);
-    std::thread t4(&Scene::__threadSceneUpdate, this, 4);
+    std::thread t1(&Scene::__threadSceneUpdate, *this, 1);
+    std::thread t2(&Scene::__threadSceneUpdate, *this, 2);
+    std::thread t3(&Scene::__threadSceneUpdate, *this, 3);
+    std::thread t4(&Scene::__threadSceneUpdate, *this, 4);
 
     __threadSceneUpdate(*this, 0);
 
@@ -283,8 +281,8 @@ void KapEngine::SceneManagement::Scene::__updateGameObjects() {
     }
 }
 
-void KapEngine::SceneManagement::Scene::__threadSceneUpdate(Scene *scene, std::size_t id) {
-    auto objs = scene->__getGameObjectsNoParent();
+void KapEngine::SceneManagement::Scene::__threadSceneUpdate(Scene &scene, std::size_t id) {
+    auto objs = scene.__getGameObjectsNoParent();
     for (std::size_t i = 0; i < objs.size(); i++) {
         objs[i]->__update(id, false);
     }
