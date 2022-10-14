@@ -66,6 +66,24 @@ namespace KapEngine {
                 throw Errors::GameObjectError("No component found");
             }
 
+            template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
+            std::vector<std::shared_ptr<T>> getComponents() {
+                std::vector<std::shared_ptr<T>> components;
+                std::size_t hash = Type::getHashCode<T>();
+                for (std::size_t i = 0; i < _components.size(); i++) {
+                    std::size_t componentHash = Type::getHashCode(*_components[i]);
+                    if (_components[i] && componentHash == hash)
+                        components.push_back(std::dynamic_pointer_cast<T>(_components[i]));
+                }
+                for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                    std::size_t componentHash = Type::getHashCode(*_componentsRun[i]);
+                    if (_componentsRun[i] && componentHash == hash)
+                        components.push_back(std::dynamic_pointer_cast<T>(_componentsRun[i]));
+                }
+                return components;
+            }
+
+
             bool hasComponent(std::string const& componentName) const;
 
             template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>

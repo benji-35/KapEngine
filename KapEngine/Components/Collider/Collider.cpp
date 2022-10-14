@@ -6,190 +6,196 @@
 */
 
 #include "Collider.hpp"
+#include "Transform.hpp"
 #include "KapEngineUi.hpp"
 
 using namespace KapEngine;
 
 Collider::Collider(std::shared_ptr<GameObject> go, bool isTrigger, bool isMovable, bool isCanvas) : Component(go, "Collider"),
-    _isTrigger(isTrigger), _isMovable(isMovable), _isInCanvas(isCanvas) {
+    _isTrigger(isTrigger), _isInCanvas(isCanvas) {
 
 }
 
 Collider::~Collider() {}
 
-bool Collider::checkComponentValidity() {
-    if (_isInCanvas) {
-        try {
-            auto &transform = getGameObject().getComponent<Transform>();
-            return transform.getParentContainsComponent("Canvas");
-        } catch (Errors::ComponentError &e) {
-            throw Errors::ComponentError("Collider GameObject does not have a Transform component");
-        }
-    }
-    return true;
-}
-
 void Collider::onUpdate() {
-    if (!_isTrigger || !_isMovable)
+    if (!_isTrigger)
         return;
-    auto collision = getCollisionBox();
+    
     auto gameObjects = getGameObject().getScene().getAllGameObjects();
+
     for (std::size_t i = 0; i < gameObjects.size(); i++) {
         if (gameObjects[i]->getId() != getGameObject().getId()) {
-            calculateCollisions(gameObjects[i]);
-        }
-    }
-    checkNotCollided();
-}
-
-KapEngine::Tools::Vector2 Collider::calculSizeCanvas(KapEngine::Tools::Vector2 const &size) const {
-
-    Tools::Vector2 currentSize = getGameObjectConst().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
-    Tools::Vector2 baseSize = getGameObjectConst().getEngine().getScreenSize();
-    Tools::Vector2 result = size;
-
-    try {
-        auto idParent = getGameObjectConst().getComponent<Transform>().getParentContainsComponent("Canvas");
-        auto parent = getGameObjectConst().getScene().getGameObjectConst(idParent);
-
-        auto &canvas = parent->getComponent<UI::Canvas>();
-        baseSize = canvas.getScreenSizeCompare();
-
-    } catch(...) {}
-
-    float xMultiplier = baseSize.getX() / currentSize.getX();
-    float yMultiplier = baseSize.getY() / currentSize.getY();
-
-    result.setX(result.getX() * xMultiplier);
-    result.setY(result.getY() / yMultiplier);
-
-    return result;
-}
-
-void Collider::calculateCollisions(std::shared_ptr<GameObject> object) {
-    if (object->getId() == getGameObject().getId())
-        return;
-
-    auto colliders = findAllColliders(*object);
-    for (std::size_t i = 0; i < colliders.size(); i++) {
-        calculateCollisions(*colliders[i]);
-    }
-}
-
-void Collider::calculateCollisions(KapEngine::Collider &collider) {
-    //check already calculated
-    for (std::size_t i = 0; i < _calculatedColliders.size(); i++) {
-        if (_calculatedColliders[i]->getGameObject().getId() == collider.getGameObject().getId()) {
-            if (_calculatedColliders[i]->getId() == collider.getId()) {
-                return;
-            }
-        }
-    }
-    _calculatedColliders.push_back(&collider);
-    collider.__addCalculatedCollider(this);
-    //check collision
-    if (isColliding(collider.getCollisionBox())) {
-        if (_isTrigger) {
-            __callTrigger(collider);
-        }
-        if (collider.isTrigger()) {
-            collider.__callTrigger(*this);
-        }
-    }
-}
-
-bool Collider::isColliding(KapEngine::Tools::Rectangle const rect) {
-    if (_collisionBox.getPos().getX() > rect.getPos().getX() + rect.getSize().getX())
-        return false;
-    if (rect.getPos().getX() > _collisionBox.getPos().getX() + _collisionBox.getSize().getX())
-        return false;
-    if (_collisionBox.getPos().getY() > rect.getPos().getY() + rect.getSize().getY())
-        return false;
-    if (rect.getPos().getY() > _collisionBox.getPos().getY() + _collisionBox.getSize().getY())
-        return false;
-    return true;
-}
-
-void Collider::__callTrigger(Collider &collided) {
-    auto components = getGameObject().getAllComponents();
-    auto goShared = collided.getGameObject().getScene().getGameObject(collided.getGameObject().getId());
-    auto alreadyTriggered = isSavedCollided(collided);
-
-    for (std::size_t i = 0; i < components.size(); i++) {
-        if (alreadyTriggered) {
-            components[i]->onTriggerStay(goShared);
-        } else {
-            components[i]->onTriggerEnter(goShared);
+            __checkCollision(gameObjects[i]);
         }
     }
 }
 
 void Collider::onSceneUpdated() {
-    checkNotCollided();
-    _calculatedColliders.clear();
+    //check all collided
+    for (std::size_t i = 0; i < _justCollidedObjects.size(); i++) {
+        if (__colliderAlreadyCollide(_justCollidedObjects[i])) {
+            if (_justCollidedObjects[i]->isTrigger()) {
+                _justCollidedObjects[i]->__callStay(getGameObject());
+            }
+            __callStay(_justCollidedObjects[i]->getGameObject());
+        } else {
+            if (_justCollidedObjects[i]->isTrigger()) {
+                _justCollidedObjects[i]->__callEnter(getGameObject());
+            }
+            __callEnter(_justCollidedObjects[i]->getGameObject());
+        }
+    }
+    //check not collided
+    std::vector<std::shared_ptr<Collider>> _newColliders;
+    for (std::size_t i = 0; i < _collidedObjects.size(); i++) {
+        if (!__currentlyCollided(_collidedObjects[i])) {
+            __callExit(_collidedObjects[i]->getGameObject());
+        } else {
+            _newColliders.push_back(_collidedObjects[i]);
+        }
+    }
+    _collidedObjects = _newColliders;
+    for (std::size_t i= 0; i <_justCollidedObjects.size(); i++) {
+        _collidedObjects.push_back(_justCollidedObjects[i]);
+    }
+    _justCollidedObjects.clear();
+    _notCollidedObjects.clear();
 }
 
-void Collider::checkNotCollided() {
-    for (std::size_t i = 0; i < _alreadyCollided.size(); i++) {
-        if (!isSavedCollided(*_alreadyCollided[i])) {
-            __callEndTrigger(*_alreadyCollided[i]);
+bool Collider::__checkCollision(Tools::Rectangle const& rect) {
+    auto ownRect = getCalculatedRectangle();
+
+    if (ownRect.getX() < rect.getX() + rect.getWidth() &&
+        ownRect.getX() + ownRect.getWidth() > rect.getX() &&
+        ownRect.getY() < rect.getY() + rect.getHeigth() &&
+        ownRect.getY() + ownRect.getHeigth() > rect.getY()) {
+        return true;
+    }
+
+    return false;
+}
+
+void Collider::__checkCollision(std::shared_ptr<GameObject> &go) {
+    auto collider = go->getComponents<Collider>();
+
+    for (std::size_t i = 0; i < collider.size(); i++) {
+        if (collider[i]->isTrigger() && !__alreayCalculated(collider[i])) {
+            auto rect = collider[i]->getCalculatedRectangle();
+            if (__checkCollision(rect)) {
+                _justCollidedObjects.push_back(collider[i]);
+            } else {
+                _notCollidedObjects.push_back(collider[i]);
+            }
         }
     }
 }
 
-void Collider::__callEndTrigger(Collider &collided) {
-    auto components = getGameObject().getAllComponents();
-    auto goShared = collided.getGameObject().getScene().getGameObject(collided.getId());
-
-    for (std::size_t i = 0; i < components.size(); i++) {
-        components[i]->onTriggerExit(goShared);
-    }
-    for (std::size_t i = 0; i < _alreadyCollided.size(); i++) {
-        if (_alreadyCollided[i]->getId() == collided.getId()) {
-            _alreadyCollided.erase(_alreadyCollided.begin() + i);
-            break;
-        }
-    }
-}
-
-bool Collider::isSavedCollided(Collider &collider) {
-    for (std::size_t i = 0; i < _alreadyCollided.size(); i++) {
-        if (_alreadyCollided[i]->getId() == collider.getId()) {
+bool Collider::__colliderAlreadyCollide(std::shared_ptr<Collider> &collider) {
+    for (std::size_t i = 0; i < _collidedObjects.size(); i++) {
+        if (_collidedObjects[i]->getId() == collider->getGameObject().getId() && collider->getGameObject().getId() != _collidedObjects[i]->getGameObject().getId()) {
             return true;
         }
     }
     return false;
 }
 
-Tools::Rectangle Collider::getCollisionBox() const {
-    Tools::Rectangle rect = _collisionBox;
+void Collider::__callEnter(GameObject &go) {
+    auto components = getGameObject().getAllComponents();
 
+    for (std::size_t i = 0; i < components.size(); i++) {
+        components[i]->onTriggerEnter(go.getScene().getGameObject(go.getId()));
+    }
+}
+
+void Collider::__callStay(GameObject &go) {
+    auto components = getGameObject().getAllComponents();
+
+    for (std::size_t i = 0; i < components.size(); i++) {
+        components[i]->onTriggerStay(go.getScene().getGameObject(go.getId()));
+    }
+}
+
+void Collider::__callExit(GameObject &go) {
+    auto components = getGameObject().getAllComponents();
+
+    for (std::size_t i = 0; i < components.size(); i++) {
+        components[i]->onTriggerExit(go.getScene().getGameObject(go.getId()));
+    }
+}
+
+bool Collider::__currentlyCollided(std::shared_ptr<Collider> &collider) {
+    for (std::size_t i = 0; i < _justCollidedObjects.size(); i++) {
+        if (_justCollidedObjects[i]->getId() == collider->getId() && collider->getGameObject().getId() == _collidedObjects[i]->getGameObject().getId()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+Tools::Rectangle Collider::getCalculatedRectangle() const {
+    Tools::Rectangle rect = _boxCollider;
     if (rect.getSize().getX() == 0 || rect.getSize().getY() == 0) {
-        auto &transform = getGameObjectConst().getComponent<Transform>();
-        Tools::Vector2 size;
         Tools::Vector2 pos;
-        size = transform.getWorldScale();
-        pos = transform.getWorldPosition();
-        rect.setSize(size);
+        pos = getGameObjectConst().getComponent<Transform>().getWorldPosition();
+        Tools::Vector2 size;
+        size = getGameObjectConst().getComponent<Transform>().getWorldScale();
+
         rect.setPos(pos);
+        rect.setSize(size);
     }
 
-    rect.setPos(rect.getPos() + _offset);
     if (_isInCanvas) {
-        rect.setPos(calculSizeCanvas(rect.getPos()));
-        rect.setSize(calculSizeCanvas(rect.getSize()));
+        rect.setPos(__recalculCanvas(rect.getPos()));
+        rect.setSize(__recalculCanvas(rect.getSize()));
     }
     return rect;
 }
 
-std::vector<Collider *> Collider::findAllColliders(GameObject &go) {
-    auto allComponents = go.getAllComponents();
-    std::vector<Collider *> colliders;
+Tools::Vector2 Collider::__recalculCanvas(Tools::Vector2 const& vector) const {
+    try {
+        Tools::Vector2 currentScreenSize = getGameObjectConst().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
+        auto parent = getGameObjectConst().getComponent<Transform>().getParentContainsComponent("Canvas");
+        auto canvas = getGameObjectConst().getScene().getGameObject(parent)->getComponent<UI::Canvas>();
+        Tools::Vector2 canvasSize = canvas.getScreenSizeCompare();
 
-    for (std::size_t i = 0; i < allComponents.size(); i++) {
-        if (allComponents[i]->getName() == "Collider") {
-            colliders.push_back((Collider *)allComponents[i].get());
+        float x = vector.getX() * (currentScreenSize.getX() / canvasSize.getX());
+        float y = vector.getY() * (currentScreenSize.getY() / canvasSize.getY());
+
+        return Tools::Vector2(x, y);
+
+    } catch (Errors::Error e) {
+        DEBUG_ERROR(e.what());
+        return vector;
+    }
+}
+
+bool Collider::checkComponentValidity() {
+    if (_isInCanvas) {
+        try {
+            if (getTransform().parentContainsComponent("Canvas")) {
+                return true;
+            } else {
+                if (getGameObject().hasComponent<UI::Canvas>())
+                    return true;
+                DEBUG_ERROR("Collider must be in a GameObject with a Canvas component (GameObject: " + getGameObject().getName() + ")");
+                return false;
+            }
+        } catch (Errors::Error e) {
+            DEBUG_ERROR(e.what());
+            return false;
         }
     }
-    return colliders;
+    return true;
+}
+
+bool Collider::__alreayCalculated(std::shared_ptr<Collider> &collider) {
+    auto colliders = collider->getCollidedObjects();
+
+    for (std::size_t i = 0; i < colliders.size(); i++) {
+        if (colliders[i]->getId() == getId() && colliders[i]->getGameObject().getId() == getGameObject().getId()) {
+            return true;
+        }
+    }
+    return false;
 }

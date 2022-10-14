@@ -23,49 +23,90 @@ namespace KapEngine {
             bool checkComponentValidity() override;
             void onSceneUpdated() override;
 
-            void setInCanvas(bool isInCanvas);
-            void setTrigger(bool isTrigger);
-            void setMovability(bool isMovable);
-
-            void setCollisionBox(Tools::Rectangle const& collisionBox);
-
-            void __addCalculatedCollider(Collider *_collider) {
-                _calculatedColliders.push_back(_collider);
+            /**
+             * @brief Set the Trigger
+             * 
+             * @param isTrigger 
+             */
+            void setTrigger(bool isTrigger) {
+                _isTrigger = isTrigger;
             }
 
-            Tools::Rectangle getCollisionBox() const;
+            /**
+             * @brief Set collider is in canvas
+             * 
+             * @param isInCanvas
+             */
+            void setInCanvas(bool isInCanvas) {
+                _isInCanvas = isInCanvas;
+            }
 
+            /**
+             * @brief get if collider is in canvas
+             */
+            bool isInCanvas() {
+                return _isInCanvas;
+            }
+
+            /**
+             * @brief get if collider is trigger
+             * 
+             * @return true 
+             * @return false 
+             */
             bool isTrigger() const {
                 return _isTrigger;
             }
 
-            void __callTrigger(Collider &collided);
-            void __callEndTrigger(Collider &collided);
+            /**
+             * @brief get calculated rectangle
+             * 
+             */
+            Tools::Rectangle getCalculatedRectangle() const;
 
-            void setOffset(Tools::Vector2 const& offset) {
-                _offset = offset;
+            /**
+             * @brief Get the Collided Objects object
+             * 
+             * @return std::vector<std::shared_ptr<Collider>> 
+             */
+            std::vector<std::shared_ptr<Collider>> getCollidedObjects() const {
+                std::vector<std::shared_ptr<Collider>> result;
+
+                for (std::size_t i = 0; i < _justCollidedObjects.size(); i++) {
+                    result.push_back(_justCollidedObjects[i]);
+                }
+                for (std::size_t i = 0; i < _notCollidedObjects.size(); i++) {
+                    result.push_back(_notCollidedObjects[i]);
+                }
+
+                return result;
             }
+
+            void __callEnter(GameObject &go);
+            void __callStay(GameObject &go);
+            void __callExit(GameObject &go);
 
         protected:
         private:
             bool _isTrigger = false;
             bool _isInCanvas = false;
-            bool _isMovable = false;
-            Tools::Rectangle _collisionBox;
-            Tools::Vector2 _offset;
-            std::vector<Collider *> _calculatedColliders;
-            std::vector<Collider *> _alreadyCollided;
 
-            void calculateCollisions(std::shared_ptr<GameObject> object);
-            void calculateCollisions(Collider & collider);
-            void checkNotCollided();
+            Tools::Rectangle _boxCollider;
 
-            Tools::Vector2 calculSizeCanvas(Tools::Vector2 const& size) const;
+            //object just collide with this object
+            std::vector<std::shared_ptr<Collider>> _justCollidedObjects;
+            //object not collided but calculated
+            std::vector<std::shared_ptr<Collider>> _notCollidedObjects;
+            //object already collide with this object
+            std::vector<std::shared_ptr<Collider>> _collidedObjects;
 
-            bool isColliding(Tools::Rectangle const collisionBox);
-            bool isSavedCollided(Collider &collider);
+            bool __checkCollision(Tools::Rectangle const& rect);
+            void __checkCollision(std::shared_ptr<GameObject> &go);
+            bool __colliderAlreadyCollide(std::shared_ptr<Collider> &collider);
+            bool __currentlyCollided(std::shared_ptr<Collider> &collider);
+            bool __alreayCalculated(std::shared_ptr<Collider> &collider);
 
-            std::vector<Collider *>findAllColliders(GameObject &go);
+            Tools::Vector2 __recalculCanvas(Tools::Vector2 const& vector) const;
     };
 
 }
