@@ -38,4 +38,4 @@ add_library(KapEngine STATIC ${SOURCES} ${HEADERS})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
 # Linker flags
-set_target_properties(KapEngine PROPERTIES LINK_FLAGS "-pthread")
+set_target_properties(KapEngine PROPERTIES LINK_FLAGS "-pthread -g")
