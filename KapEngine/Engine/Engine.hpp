@@ -241,22 +241,12 @@ namespace KapEngine {
                 return _icon;
             }
 
-            /**
-             * @brief Set the Thread Count for updating scene
-             * if thread count is 0, the scene will be update in the main thread
-             * @param count 
-             */
-            void setThreadCount(std::size_t count) {
-                _threadCount = count;
+            void setEngineThread(bool b) {
+                _threaded = b;
             }
 
-            /**
-             * @brief Get the Thread Count for updating scene
-             * 
-             * @return std::size_t 
-             */
-            std::size_t getThreadCount() const {
-                return _threadCount;
+            bool isEngineThreaded() const {
+                return _threaded;
             }
 
         protected:
@@ -264,7 +254,7 @@ namespace KapEngine {
             bool _run = false;
             bool _debug = false;
             bool _runFixed = false;
-            std::size_t _threadCount = 0;
+            bool _threaded = false;
 
             int _fpsLock = 60;
 

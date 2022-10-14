@@ -172,7 +172,7 @@ namespace KapEngine {
                  * @param scene 
                  * @param go
                  */
-                static void __threadSceneUpdate(Scene &scene, GameObject &go);
+                static void __threadSceneUpdate(Scene *scene, bool physics);
 
             protected:
             private:

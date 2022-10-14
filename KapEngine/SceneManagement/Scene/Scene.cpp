@@ -250,61 +250,36 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::findFi
     throw Errors::SceneError("No object has name: " + name);
 }
 
-void KapEngine::SceneManagement::Scene::__threadSceneUpdate(Scene &scene, GameObject &go) {
-    go.__update();
+void KapEngine::SceneManagement::Scene::__threadSceneUpdate(Scene *scene, bool physics) {
+    auto gos = scene->getAllGameObjects();
+
+    for (std::size_t i = 0; i < gos.size(); i++) {
+        gos[i]->__update(physics, false);
+    }
 }
 
 void KapEngine::SceneManagement::Scene::__checkThread() {
-    auto _objs = __getGameObjectsNoParent();
-    auto count = getEngine().getThreadCount();
-    auto size = _objs.size() + 1;
+    auto objs = getAllGameObjects();
+    if (getEngine().isEngineThreaded()) {
 
-    if (size < count)
-        count = size;
+        std::thread t1(__threadSceneUpdate, this, true);
+        std::thread t2(__threadSceneUpdate, this, false);
 
-    if (count == 0) {
-        __updateGameObjects();
-        return;
-    }
-
-    std::vector<ThreadScene> threads;
-    std::vector<std::shared_ptr<GameObject>> _toRunInMain;
-    //init threads
-    for (std::size_t i = 0; i < count - 1; i++) {
-        ThreadScene thread;
-        threads.push_back(thread);
-    }
-
-    //set threads
-    std::size_t index = 0;
-    for (std::size_t i = 0; i < size; i++) {
-        if (index == 0) {
-            _toRunInMain.push_back(_objs[i]);
-        } else {
-            threads[index].addGameObject(_objs[i]);
+        t1.join();
+        t2.join();
+        for (std::size_t i = 0; i < objs.size(); i++) {
+            objs[i]->__updateDisplay();
         }
-        index++;
-        if (index >= count)
-            index = 0;
-    }
-
-    //start threads
-    for (std::size_t i = 0; i < count; i++) {
-        threads[i].run();
-    }
-
-    //run main thread
-    for (std::size_t i = 0; i < _toRunInMain.size(); i++) {
-        _toRunInMain[i]->__update(false);
-    }
-
-    //wait threads
-    for (std::size_t i = 0; i < count; i++) {
-        threads[i].join();
-    }
-
-    for (std::size_t i = 0; i < _objs.size(); i++) {
-        _objs[i]->__updateDisplay();
+    } else {
+        for (std::size_t i = 0; i < objs.size(); i++) {
+            objs[i]->__update(false, false);
+        }
+        for (std::size_t i = 0; i < objs.size(); i++) {
+            objs[i]->__update(true, false);
+        }
+        for (std::size_t i = 0; i < objs.size(); i++) {
+            objs[i]->__updateDisplay();
+        }
     }
 }
 

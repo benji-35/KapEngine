@@ -211,12 +211,21 @@ namespace KapEngine {
                 return _id;
             }
 
+            void __setPhysics(bool b) {
+                _physics = b;
+            }
+
+            bool __isPhysics() const {
+                return _physics;
+            }
+
         protected:
             /**
              * @brief Component name
              */
             std::string _name;
         private:
+            bool _physics = false;
             int threadRunning = 2;
             std::size_t _id = 0;
             std::size_t _level = 0;

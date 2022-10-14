@@ -105,7 +105,7 @@ namespace KapEngine {
             KEngine &getEngine();
 
             //all functions call by engine
-            void __update(bool runDisplay = true);
+            void __update(bool physics = false, bool runDisplay = true);
             void __updateDisplay();
 
             void setActive(bool b);

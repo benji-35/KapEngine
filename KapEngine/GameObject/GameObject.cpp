@@ -24,7 +24,7 @@ KapEngine::GameObject::~GameObject() {
     }
 }
 
-void KapEngine::GameObject::__update(bool runDisplay) {
+void KapEngine::GameObject::__update(bool physics, bool runDisplay) {
     if (!_active || _destroyed)
         return;
     std::vector<std::shared_ptr<GameObject>> _children;
@@ -40,7 +40,11 @@ void KapEngine::GameObject::__update(bool runDisplay) {
             if (!tr.allParentIsActive())
                 return;
         } catch (...) {}
-        _components[i]->__update(runDisplay);
+        if (physics && _components[i]->__isPhysics()) {
+            _components[i]->__update(runDisplay);
+        } else if (!physics && !_components[i]->__isPhysics()) {
+            _components[i]->__update(runDisplay);
+        }
     }
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
         try {
@@ -48,12 +52,16 @@ void KapEngine::GameObject::__update(bool runDisplay) {
             if (!tr.allParentIsActive())
                 return;
         } catch (...) {}
-        _componentsRun[i]->__update(runDisplay);
+        if (physics && _componentsRun[i]->__isPhysics()) {
+            _componentsRun[i]->__update(runDisplay);
+        } else if (!physics && !_componentsRun[i]->__isPhysics()) {
+            _componentsRun[i]->__update(runDisplay);
+        }
     }
     if (_active == false || _destroyed)
         return;
     for (std::size_t i = 0; i < _children.size(); i++) {
-        _children[i]->__update(runDisplay);
+        _children[i]->__update(physics, runDisplay);
     }
 }
 
