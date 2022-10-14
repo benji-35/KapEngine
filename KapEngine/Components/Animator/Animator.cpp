@@ -7,7 +7,7 @@
 
 #include "Animator.hpp"
 
-KapEngine::Animator::Animator(std::shared_ptr<GameObject> go) : Component(go, "Animator", 0) {}
+KapEngine::Animator::Animator(std::shared_ptr<GameObject> go) : Component(go, "Animator", 1) {}
 
 KapEngine::Animator::~Animator() {
     _anims.clear();

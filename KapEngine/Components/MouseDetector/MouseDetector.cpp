@@ -9,7 +9,7 @@
 
 #include "KapEngineUi.hpp"
 
-KapEngine::MouseDetector::MouseDetector(std::shared_ptr<GameObject> go) : Component(go, "Mouse Detector", 0) {}
+KapEngine::MouseDetector::MouseDetector(std::shared_ptr<GameObject> go) : Component(go, "Mouse Detector", 1) {}
 
 KapEngine::MouseDetector::~MouseDetector() {}
 

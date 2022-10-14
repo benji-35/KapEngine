@@ -9,7 +9,7 @@
 #include "KapEngineDebug.hpp"
 #include "Vectors.hpp"
 
-KapEngine::Transform::Transform(std::shared_ptr<GameObject> go) : Component(go, "Transform", 0) {
+KapEngine::Transform::Transform(std::shared_ptr<GameObject> go) : Component(go, "Transform") {
     _startPos = Tools::Vector3(0.f, 0.f, 0.f);
     _startRot = Tools::Vector3(0.f, 0.f, 0.f);
     _startScale = Tools::Vector3(1.f, 1.f, 1.f);
