@@ -21,8 +21,8 @@ namespace KapEngine {
 namespace KapEngine {
     class ThreadScene {
         public:
-            ThreadScene();
-            ~ThreadScene();
+            ThreadScene() {}
+            ~ThreadScene() {}
 
             void join() {
                 _thread->join();
