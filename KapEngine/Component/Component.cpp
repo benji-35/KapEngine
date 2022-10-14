@@ -29,11 +29,7 @@ KapEngine::GameObject &KapEngine::Component::getGameObject() {
     }
 }
 
-void KapEngine::Component::__update(std::size_t threadId, bool runDisplay) {
-
-    if (threadRunning != threadId)
-        return;
-
+void KapEngine::Component::__update(bool runDisplay) {
     try {
         __awake();
         if (!__checkValidity())

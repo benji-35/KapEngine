@@ -87,7 +87,7 @@ namespace KapEngine {
             KEngine &getEngine();
 
             //all functions call by engine
-            void __update(std::size_t threadId = 0, bool runDisplay = true);
+            void __update(bool runDisplay = true);
             void __updateDisplay();
 
             void setActive(bool b);

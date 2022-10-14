@@ -24,7 +24,7 @@ KapEngine::GameObject::~GameObject() {
     }
 }
 
-void KapEngine::GameObject::__update(std::size_t threadId, bool runDisplay) {
+void KapEngine::GameObject::__update(bool runDisplay) {
     if (!_active || _destroyed)
         return;
     std::vector<std::shared_ptr<GameObject>> _children;
@@ -40,7 +40,7 @@ void KapEngine::GameObject::__update(std::size_t threadId, bool runDisplay) {
             if (!tr.allParentIsActive())
                 return;
         } catch (...) {}
-        _components[i]->__update(threadId, runDisplay);
+        _components[i]->__update(runDisplay);
     }
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
         try {
@@ -48,12 +48,12 @@ void KapEngine::GameObject::__update(std::size_t threadId, bool runDisplay) {
             if (!tr.allParentIsActive())
                 return;
         } catch (...) {}
-        _componentsRun[i]->__update(threadId, runDisplay);
+        _componentsRun[i]->__update(runDisplay);
     }
     if (_active == false || _destroyed)
         return;
     for (std::size_t i = 0; i < _children.size(); i++) {
-        _children[i]->__update(threadId, runDisplay);
+        _children[i]->__update(runDisplay);
     }
 }
 

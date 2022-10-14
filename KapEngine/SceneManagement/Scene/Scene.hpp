@@ -169,10 +169,10 @@ namespace KapEngine {
                 /**
                  * @brief update scene by thread
                  * 
-                 * @param scene scene which is updating
-                 * @param id id of thread
+                 * @param scene 
+                 * @param go
                  */
-                static void __threadSceneUpdate(Scene &scene, std::size_t id);
+                static void __threadSceneUpdate(Scene &scene, GameObject &go);
 
             protected:
             private:
@@ -184,10 +184,11 @@ namespace KapEngine {
                 std::vector<std::shared_ptr<GameObject>> _gameObjectsRun;
                 std::vector<std::size_t> _gameObjectsToDestroy;
 
+                void __checkDestroy();
+                void __checkThread();
+                std::size_t __nbGameObjectNoParent();
                 std::vector<std::shared_ptr<GameObject>> __getGameObjectsNoParent();
                 void __updateGameObjects();
-
-                void __checkDestroy();
         };
 
     }
