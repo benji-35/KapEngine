@@ -38,7 +38,7 @@ namespace KapEngine {
              * @warning Do not call this function
              * @brief function call by KapEngine to update your component
              */
-            void __update(bool runDisplay = true);
+            void __update(std::size_t threadId = 0, bool runDisplay = true);
 
             /**
              * @warning Do not call this function
