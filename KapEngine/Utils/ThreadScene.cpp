@@ -6,10 +6,15 @@
 */
 
 #include "ThreadScene.hpp"
+#include "KapEngineDebug.hpp"
 
 void KapEngine::ThreadScene::__threadRunning(ThreadScene *scene) {
     for (auto go : scene->_gos) {
-        go->__update(false);
+        if (go.use_count() == 0) {
+            DEBUG_ERROR("GameObject is not initialized");
+        } else {
+            go->__update(false);
+        }
     }
 }
 
