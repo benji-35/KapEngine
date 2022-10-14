@@ -34,7 +34,7 @@ KapEngine::Component &KapEngine::SceneManagement::Scene::getActiveCamera() const
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         if (_gameObjects[i]->isActive() && !_gameObjects[i]->isDestroyed()) {
             try {
-                Component &comp = _gameObjects[i]->getComponent("Camera");
+                Component &comp = _gameObjects[i]->getComponent<Camera>();
                 if (comp.isEnable()) {
                     return comp;
                 }
@@ -44,7 +44,7 @@ KapEngine::Component &KapEngine::SceneManagement::Scene::getActiveCamera() const
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
         if (_gameObjectsRun[i]->isActive() && !_gameObjectsRun[i]->isDestroyed()) {
             try {
-                Component &comp = _gameObjectsRun[i]->getComponent("Camera");
+                Component &comp = _gameObjectsRun[i]->getComponent<Camera>();
                 if (comp.isEnable()) {
                     return comp;
                 }

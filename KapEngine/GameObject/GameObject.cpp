@@ -105,7 +105,7 @@ KapEngine::Component &KapEngine::GameObject::getComponent(std::string const& nam
 
 KapEngine::Component &KapEngine::GameObject::getTransform() {
     try {
-        return getComponent("Transform");
+        return getComponent<Transform>();
     } catch(...) {
         throw Errors::GameObjectError("GameObject " + _name + " does not contain transform component");
     }

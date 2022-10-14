@@ -100,7 +100,7 @@ KapEngine::Tools::Vector3 KapEngine::Transform::getParentRot() const{
     if (_parentId == 0)
         return res;
     try {
-        Transform &t = (Transform &)getParent()->getComponent("Transform");
+        auto &t = getParent()->getComponent<Transform>();
         return t.getWorldRotation();
     } catch(...) {
         return res;
@@ -112,7 +112,7 @@ KapEngine::Tools::Vector3 KapEngine::Transform::getParentScale() const{
     if (_parentId == 0)
         return res;
     try {
-        Transform &t = (Transform &)getParent()->getComponent("Transform");
+        auto &t = getParent()->getComponent<Transform>();
         return t.getWorldScale();
     } catch(...) {
         return res;

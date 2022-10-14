@@ -58,7 +58,7 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
     canvas->addComponent(animator);
 
     try {
-        auto &canvasC = (UI::Canvas &)canvas->getComponent("Canvas");
+        auto &canvasC = canvas->getComponent<UI::Canvas>();
         canvasC.setResizeType(UI::Canvas::resizyngType::RESIZE_WITH_SCREEN);
     } catch(...) {
         DEBUG_ERROR("Splashscreen failed to acces canvas component");
@@ -79,7 +79,7 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
             tr.setScale(startScale);
             tr.setPosition(startPos);
 
-            UI::Image &imgC = (UI::Image &)img->getComponent("Image");
+            auto &imgC = img->getComponent<UI::Image>();
             imgC.setRectangle(_splahes[i]->rect);
         } catch(...) {}
         
@@ -93,7 +93,7 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
         animator->addAnim(anim, "animIn "+ std::to_string(i));
 
         try {
-            UI::Image &imgC = (UI::Image &)img->getComponent("Image");
+            auto &imgC = img->getComponent<UI::Image>();
             Tools::Color cCol = imgC.getColorSprite();
             cCol.setA(0.0f);
             imgC.setColor(cCol);
