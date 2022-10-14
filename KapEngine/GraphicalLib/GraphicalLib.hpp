@@ -13,6 +13,7 @@
 #include "Vectors.hpp"
 #include "Entity.hpp"
 #include "Colors.hpp"
+#include "Rectangle.hpp"
 
 #include <functional>
 
@@ -32,6 +33,7 @@ namespace KapEngine {
     namespace Tools {
         class Color;
         class Vector2;
+        class Rectangle;
     }
 
     namespace UI {
