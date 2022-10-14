@@ -188,7 +188,7 @@ std::vector<Collider *> Collider::findAllColliders(GameObject &go) {
 
     for (std::size_t i = 0; i < allComponents.size(); i++) {
         if (allComponents[i]->getName() == "Collider") {
-            colliders.push_back(dynamic_cast<Collider *>(allComponents[i].get()));
+            colliders.push_back((Collider *)allComponents[i].get());
         }
     }
     return colliders;

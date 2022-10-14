@@ -37,7 +37,7 @@ namespace KapEngine {
 
             static void __threadRunning(ThreadScene *scene) {
                 for (auto &go : scene->_gos) {
-                    go->__update();
+                    go->__update(false);
                 }
             }
 

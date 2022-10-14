@@ -24,7 +24,7 @@ KapEngine::GameObject::~GameObject() {
     }
 }
 
-void KapEngine::GameObject::__update() {
+void KapEngine::GameObject::__update(bool runDisplay) {
     if (!_active || _destroyed)
         return;
     std::vector<std::shared_ptr<GameObject>> _children;
@@ -40,7 +40,7 @@ void KapEngine::GameObject::__update() {
             if (!tr.allParentIsActive())
                 return;
         } catch (...) {}
-        _components[i]->__update();
+        _components[i]->__update(runDisplay);
     }
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
         try {
@@ -48,13 +48,47 @@ void KapEngine::GameObject::__update() {
             if (!tr.allParentIsActive())
                 return;
         } catch (...) {}
-        _componentsRun[i]->__update();
+        _componentsRun[i]->__update(runDisplay);
     }
     if (_active == false || _destroyed)
         return;
     for (std::size_t i = 0; i < _children.size(); i++) {
-        _children[i]->__update();
+        _children[i]->__update(runDisplay);
     }
+}
+
+void KapEngine::GameObject::__updateDisplay() {
+    if (!_active || _destroyed)
+        return;
+    std::vector<std::shared_ptr<GameObject>> _children;
+    try {
+        Transform &tr = (Transform &)getTransform();
+        if (!tr.allParentIsActive())
+            return;
+        _children = tr.getChildren();
+    } catch (...) {}
+    for (std::size_t i = 0; i < _components.size(); i++) {
+        try {
+            Transform &tr = (Transform &)getTransform();
+            if (!tr.allParentIsActive())
+                return;
+        } catch (...) {}
+        _components[i]->onDisplay();
+    }
+    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+        try {
+            Transform &tr = (Transform &)getTransform();
+            if (!tr.allParentIsActive())
+                return;
+        } catch (...) {}
+        _componentsRun[i]->onDisplay();
+    }
+    if (_active == false || _destroyed)
+        return;
+    for (std::size_t i = 0; i < _children.size(); i++) {
+        _children[i]->__updateDisplay();
+    }
+
 }
 
 KapEngine::Component &KapEngine::GameObject::getComponent(std::string const& name) {

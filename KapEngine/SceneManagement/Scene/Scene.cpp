@@ -295,12 +295,16 @@ void KapEngine::SceneManagement::Scene::__checkThread() {
 
     //run main thread
     for (std::size_t i = 0; i < _toRunInMain.size(); i++) {
-        _toRunInMain[i]->__update();
+        _toRunInMain[i]->__update(false);
     }
 
     //wait threads
     for (std::size_t i = 0; i < count; i++) {
         threads[i].join();
+    }
+
+    for (std::size_t i = 0; i < _objs.size(); i++) {
+        _objs[i]->__updateDisplay();
     }
 }
 
