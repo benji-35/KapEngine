@@ -126,6 +126,8 @@ namespace KapEngine {
                 
                 std::vector<std::shared_ptr<GameObject>> getGameObjects(std::string const& name);
 
+                std::vector<std::shared_ptr<GameObject>> getGameObjectByTag(std::string const& tag);
+
                 KEngine &getEngine();
 
                 /**

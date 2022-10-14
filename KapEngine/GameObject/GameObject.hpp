@@ -163,6 +163,14 @@ namespace KapEngine {
                 _name = name;
             }
 
+            void setTag(std::string const& tag) {
+                _tag = tag;
+            }
+
+            std::string getTag() const {
+                return _tag;
+            }
+
         protected:
         private:
             std::string _name;
@@ -175,6 +183,7 @@ namespace KapEngine {
             SceneManagement::Scene &_scene;
             std::size_t _idComp = 0;
             std::string _prefabName;
+            std::string _tag;
     };
 
 }
