@@ -270,7 +270,7 @@ void KapEngine::SceneManagement::Scene::__updateGameObjects() {
     std::thread t3(&Scene::__threadSceneUpdate, this, 3);
     std::thread t4(&Scene::__threadSceneUpdate, this, 4);
 
-    __threadSceneUpdate(this, 0);
+    __threadSceneUpdate(*this, 0);
 
     t1.join();
     t2.join();
