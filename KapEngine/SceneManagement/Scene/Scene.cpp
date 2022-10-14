@@ -80,7 +80,7 @@ void KapEngine::SceneManagement::Scene::__update() {
         }
         return;
     }
-
+    __checkThread();
 }
 
 void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {
