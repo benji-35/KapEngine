@@ -24,22 +24,12 @@ namespace KapEngine {
             ThreadScene() {}
             ~ThreadScene() {}
 
-            void join() {
-                _thread->join();
-            }
-            void run() {
-                _thread = std::make_shared<std::thread>(&ThreadScene::__threadRunning, this);
-            }
+            void join();
+            void run();
 
-            void addGameObject(std::shared_ptr<GameObject> go) {
-                _gos.push_back(go);
-            }
+            void addGameObject(std::shared_ptr<GameObject> go);
 
-            static void __threadRunning(ThreadScene *scene) {
-                for (auto &go : scene->_gos) {
-                    go->__update(false);
-                }
-            }
+            static void __threadRunning(ThreadScene *scene);
 
             std::vector<std::shared_ptr<GameObject>> getGameObjects() {
                 return _gos;
