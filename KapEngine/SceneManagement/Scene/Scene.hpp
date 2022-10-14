@@ -166,6 +166,14 @@ namespace KapEngine {
                  */
                 std::shared_ptr<GameObject> findFirstGameObject(std::string const& name);
 
+                /**
+                 * @brief update scene by thread
+                 * 
+                 * @param scene 
+                 * @param go
+                 */
+                static void __threadSceneUpdate(Scene &scene, GameObject &go);
+
             protected:
             private:
                 std::size_t _id = 0;
@@ -177,6 +185,10 @@ namespace KapEngine {
                 std::vector<std::size_t> _gameObjectsToDestroy;
 
                 void __checkDestroy();
+                void __checkThread();
+                std::size_t __nbGameObjectNoParent();
+                std::vector<std::shared_ptr<GameObject>> __getGameObjectsNoParent();
+                void __updateGameObjects();
         };
 
     }

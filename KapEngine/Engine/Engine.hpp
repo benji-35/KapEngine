@@ -241,11 +241,30 @@ namespace KapEngine {
                 return _icon;
             }
 
+            /**
+             * @brief Set the Thread Count for updating scene
+             * if thread count is 0, the scene will be update in the main thread
+             * @param count 
+             */
+            void setThreadCount(std::size_t count) {
+                _threadCount = count;
+            }
+
+            /**
+             * @brief Get the Thread Count for updating scene
+             * 
+             * @return std::size_t 
+             */
+            std::size_t getThreadCount() const {
+                return _threadCount;
+            }
+
         protected:
         private:
             bool _run = false;
             bool _debug = false;
             bool _runFixed = false;
+            std::size_t _threadCount = 0;
 
             int _fpsLock = 60;
 
