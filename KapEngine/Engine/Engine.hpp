@@ -249,6 +249,15 @@ namespace KapEngine {
                 return _threaded;
             }
 
+            /**
+             * @brief Set the Title of game windows
+             * 
+             * @param title 
+             */
+            void setTitle(std::string const& title) {
+                _gameName = title;
+            }
+
         protected:
         private:
             bool _run = false;
