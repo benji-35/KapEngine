@@ -254,23 +254,31 @@ void KapEngine::SceneManagement::Scene::__threadSceneUpdate(Scene *scene, bool p
     auto gos = scene->getAllGameObjects();
 
     for (std::size_t i = 0; i < gos.size(); i++) {
-        gos[i]->__update(physics, false);
+        try {
+            if (gos[i]->getComponent<Transform>().getParentId() == 0) {
+                gos[i]->__update(physics, false);
+            }
+        } catch(...) {
+            DEBUG_LOG("Error in thread update");
+        }
     }
 }
 
 void KapEngine::SceneManagement::Scene::__checkThread() {
     if (getEngine().isEngineThreaded()) {
-        auto objs = getAllGameObjects();
+        auto objs = __getGameObjectsNoParent();
 
         for (std::size_t i = 0; i < objs.size(); i++) {
             objs[i]->__onSceneGonnaUpdated();
         }
 
         std::thread t1(__threadSceneUpdate, this, true);
-        std::thread t2(__threadSceneUpdate, this, false);
+
+        for (std::size_t i = 0; i < objs.size(); i++) {
+            objs[i]->__update(false, false);
+        }
 
         t1.join();
-        t2.join();
         for (std::size_t i = 0; i < objs.size(); i++) {
             objs[i]->__onSceneUpdated();
             objs[i]->__updateDisplay();
@@ -294,52 +302,23 @@ std::size_t KapEngine::SceneManagement::Scene::__nbGameObjectNoParent() {
 }
 
 void KapEngine::SceneManagement::Scene::__updateGameObjects() {
-    //call before update
-    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-        if (_gameObjects[i]->getComponent<Transform>().getParentId() == 0) {
-            try {
-                _gameObjects[i]->__onSceneGonnaUpdated();
-            } catch(...) {}
-        }
-    }
-    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
-        if (_gameObjectsRun[i]->getComponent<Transform>().getParentId() == 0) {
-            try {
-                _gameObjectsRun[i]->__onSceneGonnaUpdated();
-            } catch(...) {}
-        }
+    auto objs = __getGameObjectsNoParent();
+
+    //before scene update
+    for (std::size_t i = 0; i < objs.size(); i++) {
+        objs[i]->__onSceneGonnaUpdated();
     }
 
-
-    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-        if (_gameObjects[i]->getComponent<Transform>().getParentId() == 0) {
-            try {
-                _gameObjects[i]->__update();
-            } catch(...) {}
-        }
-    }
-    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
-        if (_gameObjectsRun[i]->getComponent<Transform>().getParentId() == 0) {
-            try {
-                _gameObjectsRun[i]->__update();
-            } catch(...) {}
-        }
+    //updating scene
+    for (std::size_t i = 0; i < objs.size(); i++) {
+        objs[i]->__update(false, false);
+        objs[i]->__update(true, false);
     }
 
-    //call after update
-    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-        if (_gameObjects[i]->getComponent<Transform>().getParentId() == 0) {
-            try {
-                _gameObjects[i]->__onSceneUpdated();
-            } catch(...) {}
-        }
-    }
-    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
-        if (_gameObjectsRun[i]->getComponent<Transform>().getParentId() == 0) {
-            try {
-                _gameObjectsRun[i]->__onSceneUpdated();
-            } catch(...) {}
-        }
+    //after updating
+    for (std::size_t i = 0; i < objs.size(); i++) {
+        objs[i]->__onSceneUpdated();
+        objs[i]->__updateDisplay();
     }
 }
 
