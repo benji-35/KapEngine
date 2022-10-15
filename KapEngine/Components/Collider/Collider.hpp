@@ -16,11 +16,10 @@ namespace KapEngine {
 
     class Collider : public Component {
         public:
-            Collider(std::shared_ptr<GameObject> go, bool isTrigger = false, bool isMovable = false, bool isCanvas = false);
+            Collider(std::shared_ptr<GameObject> go, bool isTrigger = false);
             ~Collider();
 
             void onUpdate() override;
-            bool checkComponentValidity() override;
             void onSceneUpdated() override;
 
             /**
@@ -30,22 +29,6 @@ namespace KapEngine {
              */
             void setTrigger(bool isTrigger) {
                 _isTrigger = isTrigger;
-            }
-
-            /**
-             * @brief Set collider is in canvas
-             * 
-             * @param isInCanvas
-             */
-            void setInCanvas(bool isInCanvas) {
-                _isInCanvas = isInCanvas;
-            }
-
-            /**
-             * @brief get if collider is in canvas
-             */
-            bool isInCanvas() {
-                return _isInCanvas;
             }
 
             /**
@@ -89,7 +72,6 @@ namespace KapEngine {
         protected:
         private:
             bool _isTrigger = false;
-            bool _isInCanvas = false;
 
             Tools::Rectangle _boxCollider;
 
@@ -105,8 +87,6 @@ namespace KapEngine {
             bool __colliderAlreadyCollide(std::shared_ptr<Collider> &collider);
             bool __currentlyCollided(std::shared_ptr<Collider> &collider);
             bool __alreayCalculated(std::shared_ptr<Collider> &collider);
-
-            Tools::Vector2 __recalculCanvas(Tools::Vector2 const& vector) const;
     };
 
 }

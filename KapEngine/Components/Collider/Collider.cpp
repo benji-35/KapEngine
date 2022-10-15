@@ -11,8 +11,8 @@
 
 using namespace KapEngine;
 
-Collider::Collider(std::shared_ptr<GameObject> go, bool isTrigger, bool isMovable, bool isCanvas) : Component(go, "Collider"),
-    _isTrigger(isTrigger), _isInCanvas(isCanvas) {
+Collider::Collider(std::shared_ptr<GameObject> go, bool isTrigger) : Component(go, "Collider"),
+    _isTrigger(isTrigger) {
     __setPhysics(true);
 }
 
@@ -32,6 +32,8 @@ void Collider::onUpdate() {
 }
 
 void Collider::onSceneUpdated() {
+    if (!_isTrigger)
+        return;
     //check all collided
     for (std::size_t i = 0; i < _justCollidedObjects.size(); i++) {
         if (__colliderAlreadyCollide(_justCollidedObjects[i])) {
@@ -144,49 +146,7 @@ Tools::Rectangle Collider::getCalculatedRectangle() const {
         rect.setPos(pos);
         rect.setSize(size);
     }
-
-    if (_isInCanvas) {
-        rect.setPos(__recalculCanvas(rect.getPos()));
-        rect.setSize(__recalculCanvas(rect.getSize()));
-    }
     return rect;
-}
-
-Tools::Vector2 Collider::__recalculCanvas(Tools::Vector2 const& vector) const {
-    try {
-        Tools::Vector2 currentScreenSize = getGameObjectConst().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
-        auto parent = getGameObjectConst().getComponent<Transform>().getParentContainsComponent("Canvas");
-        auto canvas = getGameObjectConst().getScene().getGameObject(parent)->getComponent<UI::Canvas>();
-        Tools::Vector2 canvasSize = canvas.getScreenSizeCompare();
-
-        float x = vector.getX() * (currentScreenSize.getX() / canvasSize.getX());
-        float y = vector.getY() * (currentScreenSize.getY() / canvasSize.getY());
-
-        return Tools::Vector2(x, y);
-
-    } catch (Errors::Error e) {
-        DEBUG_ERROR(e.what());
-        return vector;
-    }
-}
-
-bool Collider::checkComponentValidity() {
-    if (_isInCanvas) {
-        try {
-            if (getTransform().parentContainsComponent("Canvas")) {
-                return true;
-            } else {
-                if (getGameObject().hasComponent<UI::Canvas>())
-                    return true;
-                DEBUG_ERROR("Collider must be in a GameObject with a Canvas component (GameObject: " + getGameObject().getName() + ")");
-                return false;
-            }
-        } catch (Errors::Error e) {
-            DEBUG_ERROR(e.what());
-            return false;
-        }
-    }
-    return true;
 }
 
 bool Collider::__alreayCalculated(std::shared_ptr<Collider> &collider) {
