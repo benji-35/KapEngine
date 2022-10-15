@@ -294,6 +294,23 @@ std::size_t KapEngine::SceneManagement::Scene::__nbGameObjectNoParent() {
 }
 
 void KapEngine::SceneManagement::Scene::__updateGameObjects() {
+    //call before update
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (_gameObjects[i]->getComponent<Transform>().getParentId() == 0) {
+            try {
+                _gameObjects[i]->__onSceneGonnaUpdated();
+            } catch(...) {}
+        }
+    }
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (_gameObjectsRun[i]->getComponent<Transform>().getParentId() == 0) {
+            try {
+                _gameObjectsRun[i]->__onSceneGonnaUpdated();
+            } catch(...) {}
+        }
+    }
+
+
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         if (_gameObjects[i]->getComponent<Transform>().getParentId() == 0) {
             try {
