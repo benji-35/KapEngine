@@ -38,8 +38,6 @@ namespace KapEngine {
             Tools::Vector3 getWorldRotation() const;
             Tools::Vector3 getWorldScale() const;
 
-            void moveTo(Tools::Vector3 dest, float time);
-
             void setParent(std::size_t id);
             void setParent(std::any val);
             bool allParentIsActive();
