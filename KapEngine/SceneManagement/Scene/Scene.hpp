@@ -190,7 +190,7 @@ namespace KapEngine {
                 void __checkThread();
                 std::size_t __nbGameObjectNoParent();
                 std::vector<std::shared_ptr<GameObject>> __getGameObjectsNoParent();
-                void __updateGameObjects();
+                void __updateGameObjects(std::vector<std::shared_ptr<GameObject>> objs);
         };
 
     }

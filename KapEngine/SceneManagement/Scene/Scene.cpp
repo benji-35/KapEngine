@@ -257,13 +257,13 @@ void KapEngine::SceneManagement::Scene::__threadSceneUpdate(std::vector<std::sha
 }
 
 void KapEngine::SceneManagement::Scene::__checkThread() {
+    auto objs = __getGameObjectsNoParent();
+
+    for (std::size_t i = 0; i < objs.size(); i++) {
+        objs[i]->__onSceneGonnaUpdated();
+    }
+
     if (getEngine().isEngineThreaded()) {
-        auto objs = __getGameObjectsNoParent();
-
-        for (std::size_t i = 0; i < objs.size(); i++) {
-            objs[i]->__onSceneGonnaUpdated();
-        }
-
         std::thread t1(__threadSceneUpdate, objs, true);
 
         for (std::size_t i = 0; i < objs.size(); i++) {
@@ -271,12 +271,13 @@ void KapEngine::SceneManagement::Scene::__checkThread() {
         }
 
         t1.join();
-        for (std::size_t i = 0; i < objs.size(); i++) {
-            objs[i]->__onSceneUpdated();
-            objs[i]->__updateDisplay();
-        }
     } else {
-        __updateGameObjects();
+        __updateGameObjects(objs);
+    }
+
+    for (std::size_t i = 0; i < objs.size(); i++) {
+        objs[i]->__onSceneUpdated();
+        objs[i]->__updateDisplay();
     }
 }
 
@@ -293,24 +294,11 @@ std::size_t KapEngine::SceneManagement::Scene::__nbGameObjectNoParent() {
     return result;
 }
 
-void KapEngine::SceneManagement::Scene::__updateGameObjects() {
-    auto objs = __getGameObjectsNoParent();
-
-    //before scene update
-    for (std::size_t i = 0; i < objs.size(); i++) {
-        objs[i]->__onSceneGonnaUpdated();
-    }
-
+void KapEngine::SceneManagement::Scene::__updateGameObjects(std::vector<std::shared_ptr<GameObject>> objs) {
     //updating scene
     for (std::size_t i = 0; i < objs.size(); i++) {
         objs[i]->__update(false, false);
         objs[i]->__update(true, false);
-    }
-
-    //after updating
-    for (std::size_t i = 0; i < objs.size(); i++) {
-        objs[i]->__onSceneUpdated();
-        objs[i]->__updateDisplay();
     }
 }
 
