@@ -41,7 +41,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedScale() {
     auto &transform = getGameObjectConst().getComponent<Transform>();
 
     Tools::Vector3 currScale = transform.getWorldScale();
-    Canvas::resizyngType resizeType = Canvas::resizyngType::RESIZE_WITH_SCREEN;
+    Canvas::ResizyngType resizeType = Canvas::ResizyngType::RESIZE_WITH_SCREEN;
     Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
     try {
@@ -54,7 +54,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedScale() {
         DEBUG_WARNING("Failed to get canvas intels for positions");
     }
 
-    if (resizeType == Canvas::resizyngType::RESIZE_WITH_SCREEN) {
+    if (resizeType == Canvas::ResizyngType::RESIZE_WITH_SCREEN) {
         Tools::Vector2 nPos;
         nPos.setX(screenSize.getX() * currScale.getX() / getCompare.getX());
         nPos.setY(screenSize.getY() * currScale.getY() / getCompare.getY());
@@ -67,7 +67,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedPos() {
     auto &transform = getGameObjectConst().getComponent<Transform>();
 
     Tools::Vector3 currPos = transform.getWorldPosition();
-    Canvas::resizyngType resizeType = Canvas::resizyngType::RESIZE_WITH_SCREEN;
+    Canvas::ResizyngType resizeType = Canvas::ResizyngType::RESIZE_WITH_SCREEN;
     Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
     try {
@@ -80,7 +80,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedPos() {
         DEBUG_WARNING("Failed to get canvas intels for positions");
     }
 
-    if (resizeType == Canvas::resizyngType::RESIZE_WITH_SCREEN) {
+    if (resizeType == Canvas::ResizyngType::RESIZE_WITH_SCREEN) {
         Tools::Vector2 nPos;
         nPos.setX(screenSize.getX() * currPos.getX() / getCompare.getX());
         nPos.setY(screenSize.getY() * currPos.getY() / getCompare.getY());

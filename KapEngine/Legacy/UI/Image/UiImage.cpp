@@ -23,7 +23,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
     auto &transform = getGameObjectConst().getComponent<Transform>();
 
     Tools::Vector3 currPos = transform.getWorldPosition();
-    Canvas::resizyngType resizeType = Canvas::resizyngType::RESIZE_WITH_SCREEN;
+    Canvas::ResizyngType resizeType = Canvas::ResizyngType::RESIZE_WITH_SCREEN;
     Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
     try {
@@ -36,7 +36,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
         DEBUG_WARNING("Failed to get canvas intels for positions");
     }
 
-    if (resizeType == Canvas::resizyngType::RESIZE_WITH_SCREEN) {
+    if (resizeType == Canvas::ResizyngType::RESIZE_WITH_SCREEN) {
         Tools::Vector2 nPos;
         nPos.setX(screenSize.getX() * currPos.getX() / getCompare.getX());
         nPos.setY(screenSize.getY() * currPos.getY() / getCompare.getY());
@@ -49,7 +49,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
     auto &transform = getGameObjectConst().getComponent<Transform>();
 
     Tools::Vector3 currSize = transform.getWorldScale();
-    Canvas::resizyngType resizeType = Canvas::resizyngType::RESIZE_WITH_SCREEN;
+    Canvas::ResizyngType resizeType = Canvas::ResizyngType::RESIZE_WITH_SCREEN;
     Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
 
@@ -65,7 +65,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
         DEBUG_WARNING("Failed to get canvas intels for scale");
     }
 
-    if (resizeType == Canvas::resizyngType::RESIZE_WITH_SCREEN) {
+    if (resizeType == Canvas::ResizyngType::RESIZE_WITH_SCREEN) {
 
         Tools::Vector2 nSize;
         nSize.setX(screenSize.getX() * currSize.getX() / getCompare.getX());
