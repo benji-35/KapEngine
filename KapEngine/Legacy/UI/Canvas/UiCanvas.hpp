@@ -20,7 +20,7 @@ namespace KapEngine {
 
         class Canvas : public Component {
             public:
-                enum resizyngType {
+                enum ResizyngType {
                     PIXEL_CONSTANT,
                     RESIZE_WITH_SCREEN
                 };
@@ -29,7 +29,7 @@ namespace KapEngine {
                 Canvas(std::shared_ptr<GameObject> &go);
                 ~Canvas();
 
-                void setResizeType(resizyngType r) {
+                void setResizeType(ResizyngType r) {
                     _resize = r;
                 }
 
@@ -37,7 +37,7 @@ namespace KapEngine {
                     _screenSizeCompare = screenSizeCompare;
                 }
 
-                resizyngType getResizeType() const {
+                ResizyngType getResizeType() const {
                     return _resize;
                 }
 
@@ -49,7 +49,7 @@ namespace KapEngine {
 
             protected:
             private:
-                resizyngType _resize = resizyngType::PIXEL_CONSTANT;
+                ResizyngType _resize = ResizyngType::PIXEL_CONSTANT;
                 Tools::Vector2 _screenSizeCompare;
         };
 
