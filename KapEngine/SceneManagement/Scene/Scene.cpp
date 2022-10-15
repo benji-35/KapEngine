@@ -250,17 +250,9 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::findFi
     throw Errors::SceneError("No object has name: " + name);
 }
 
-void KapEngine::SceneManagement::Scene::__threadSceneUpdate(Scene *scene, bool physics) {
-    auto gos = scene->getAllGameObjects();
-
+void KapEngine::SceneManagement::Scene::__threadSceneUpdate(std::vector<std::shared_ptr<GameObject>> gos, bool physics) {
     for (std::size_t i = 0; i < gos.size(); i++) {
-        try {
-            if (gos[i]->getComponent<Transform>().getParentId() == 0) {
-                gos[i]->__update(physics, false);
-            }
-        } catch(...) {
-            DEBUG_LOG("Error in thread update");
-        }
+        gos[i]->__update(physics);
     }
 }
 
@@ -272,7 +264,7 @@ void KapEngine::SceneManagement::Scene::__checkThread() {
             objs[i]->__onSceneGonnaUpdated();
         }
 
-        std::thread t1(__threadSceneUpdate, this, true);
+        std::thread t1(__threadSceneUpdate, objs, true);
 
         for (std::size_t i = 0; i < objs.size(); i++) {
             objs[i]->__update(false, false);
