@@ -140,6 +140,7 @@ namespace KapEngine {
             void __destroyIt();
             void __init();
             void __stoppingGame();
+            void __onSceneGonnaUpdated();
             void __onSceneUpdated();
 
             void dump(bool displayComponent = false, std::string prefix = "");

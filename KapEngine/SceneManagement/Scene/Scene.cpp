@@ -259,8 +259,12 @@ void KapEngine::SceneManagement::Scene::__threadSceneUpdate(Scene *scene, bool p
 }
 
 void KapEngine::SceneManagement::Scene::__checkThread() {
-    auto objs = getAllGameObjects();
     if (getEngine().isEngineThreaded()) {
+        auto objs = getAllGameObjects();
+
+        for (std::size_t i = 0; i < objs.size(); i++) {
+            objs[i]->__onSceneGonnaUpdated();
+        }
 
         std::thread t1(__threadSceneUpdate, this, true);
         std::thread t2(__threadSceneUpdate, this, false);
@@ -268,18 +272,11 @@ void KapEngine::SceneManagement::Scene::__checkThread() {
         t1.join();
         t2.join();
         for (std::size_t i = 0; i < objs.size(); i++) {
+            objs[i]->__onSceneUpdated();
             objs[i]->__updateDisplay();
         }
     } else {
-        for (std::size_t i = 0; i < objs.size(); i++) {
-            objs[i]->__update(false, false);
-        }
-        for (std::size_t i = 0; i < objs.size(); i++) {
-            objs[i]->__update(true, false);
-        }
-        for (std::size_t i = 0; i < objs.size(); i++) {
-            objs[i]->__updateDisplay();
-        }
+        __updateGameObjects();
     }
 }
 
