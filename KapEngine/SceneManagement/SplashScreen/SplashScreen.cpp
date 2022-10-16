@@ -59,7 +59,7 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
 
     try {
         auto &canvasC = canvas->getComponent<UI::Canvas>();
-        canvasC.setResizeType(UI::Canvas::resizyngType::RESIZE_WITH_SCREEN);
+        canvasC.setResizeType(UI::Canvas::ResizyngType::RESIZE_WITH_SCREEN);
     } catch(...) {
         DEBUG_ERROR("Splashscreen failed to acces canvas component");
     }
