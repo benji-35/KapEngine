@@ -21,7 +21,11 @@ namespace KapEngine {
 }
 
 namespace KapEngine {
-
+    /**
+     * @namespace KapEngine::SceneManagement
+     * This namespace regroup all things about scene management (Scenes, SceneManager, ...)
+     * @brief All things about scene management
+     */
     namespace SceneManagement {
 
         class SceneManager {

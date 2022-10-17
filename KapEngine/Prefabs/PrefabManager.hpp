@@ -25,6 +25,11 @@ namespace KapEngine {
 }
 
 namespace KapEngine {
+    /**
+     * @namespace KapEngine::Prefab
+     * This namespace regroup all things about prefabs
+     * @brief All things about prefabs
+     */
     namespace Prefabs {
         class PrefabManager {
             private:

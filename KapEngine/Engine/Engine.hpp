@@ -323,12 +323,21 @@ namespace KapEngine {
                 _gameName = title;
             }
 
+            void displayFPS(bool b) {
+                _displayFps = b;
+            }
+
+            bool isDisplayFPS() const {
+                return _displayFps;
+            }
+
         protected:
         private:
             bool _run = false;
             bool _debug = false;
             bool _runFixed = false;
             bool _threaded = false;
+            bool _displayFps = false;
 
             int _fpsLock = 60;
 

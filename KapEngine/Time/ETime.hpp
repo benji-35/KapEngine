@@ -11,6 +11,11 @@
 #include <cstdint>
 
 namespace KapEngine {
+    /**
+     * @namespace KapEngine::Time
+     * This namespace regroup all things about time
+     * @brief All things about time
+     */
     namespace Time {
 
         /**
