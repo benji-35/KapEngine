@@ -13,6 +13,11 @@
 
 namespace KapEngine {
 
+    /**
+     * @namespace KapEngine::Errors
+     * This namespace regroup all errors for KapEngine
+     * @brief All errors
+     */
     namespace Errors {
 
         class Error : public virtual std::exception {

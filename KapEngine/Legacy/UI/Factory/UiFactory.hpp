@@ -28,6 +28,11 @@ namespace KapEngine {
 
 namespace KapEngine {
 
+    /**
+     * @namespace KapEngine::UI
+     * This namespace regroup all UI things
+     * @brief All UI things
+     */
     namespace UI {
 
         class UiFactory {
