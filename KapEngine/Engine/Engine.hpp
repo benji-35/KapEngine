@@ -363,6 +363,8 @@ namespace KapEngine {
 
             //functions
             void __init();
+
+            bool __canRunUpdate();
     };
 
 }
