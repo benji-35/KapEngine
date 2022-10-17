@@ -19,15 +19,32 @@ namespace KapEngine {
 
 namespace KapEngine {
 
+    /**
+     * \addtogroup Components
+     * @{
+     * @class Camera
+     * @}
+     */
+
     class Camera : public Component {
         public:
             Camera(std::shared_ptr<GameObject> go);
             ~Camera();
 
+            /**
+             * @brief Set the Background Color of windows game
+             * 
+             * @param bgColor 
+             */
             void setBackgroundColor(Tools::Color const& bgColor) {
                 _bgColor = bgColor;
             }
 
+            /**
+             * @brief Get the Background Color
+             * 
+             * @return KapEngine::Tools::Color 
+             */
             Tools::Color getBackgroundColor() const {
                 return _bgColor;
             }

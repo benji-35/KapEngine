@@ -13,7 +13,7 @@
 namespace KapEngine {
     
     /**
-     * \addtogroup composants
+     * \addtogroup Components
      * @{
      * @class Animator
      * @}
@@ -60,7 +60,7 @@ namespace KapEngine {
             void onFixedUpdate() override;
 
             /**
-             * @fn void addAnim(Animation *anim, std::string name)
+             * @fn void addAnim(std::shared_ptr<Animation> anim, std::string name)
              * add animation in animator and set unused name
              * @brief add animation
              * @param anim animation
@@ -69,35 +69,35 @@ namespace KapEngine {
             void addAnim(std::shared_ptr<Animation> anim, std::string name);
             /**
              * @fn void addLink(std::string animName, std::string outAnim, std::string trigger = "")
-             * permet de lier la fin d'une animation avec une autre animation dans l'animator
-             * @brief ajouter un lien entre 2 animations
-             * @param animName nom de l'animation actuelle
-             * @param outAnim nom de l'animation suivante
-             * @param trigger nom du trigger pour passer à l'autre animation. Si trigger est vide dans ce cas là, l'animator attendra la fin de la première animation pour passer à la suivante
+             * allow you to link two animations
+             * @brief link two animations
+             * @param animName current animation name
+             * @param outAnim next animation name
+             * @param trigger trigger name two play next animation. If trigger name is empty, next animation gonna play at end of current animation
              */
             void addLink(std::string animName, std::string outAnim, std::string trigger = "");
             /**
              * @fn void addLink(std::string animName, std::string outAnim, std::vector<std::string> triggers)
-             * permet de lier la fin d'une animation avec une autre animation dans l'animator
-             * @brief ajouter un lien entre 2 animations
-             * @param animName nom de l'animation actuelle
-             * @param outAnim nom de l'animation suivante
-             * @param triggers nom des triggers pour passer à l'autre animation. Si la liste des triggers est vide dans ce cas là, l'animator attendra la fin de la première animation pour passer à la suivante
+             * allow you to link two animations
+             * @brief link two animations
+             * @param animName current animation name
+             * @param outAnim next animation name
+             * @param triggers triggers names two play next animation. if triggers are empty, next animation gonna play at end of current animation
              */
             void addLink(std::string animName, std::string outAnim, std::vector<std::string> triggers);
 
             /**
              * @fn void setTrigger(std::string name)
-             * @brief appel le trigger
+             * @brief call  a trigger
              * @param name nom du trigger
              */
             void setTrigger(std::string name);
 
             /**
-             * @fn NodeAnim *getAnimNode(std::string name)
-             * @brief prendre une node de l'animator contenant une animation
-             * @param name nom de l'animation
-             * @return NodeAnim* 
+             * @fn std::shared_ptr<NodeAnim> getAnimNode(std::string name)
+             * @brief get node animator that contains 1 animations
+             * @param name animation name
+             * @return std::shared_ptr<NodeAnim>
              */
             std::shared_ptr<NodeAnim> getAnimNode(std::string name);
 

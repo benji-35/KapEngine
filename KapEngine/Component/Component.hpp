@@ -213,10 +213,22 @@ namespace KapEngine {
                 return _id;
             }
 
+            /**
+             * @brief set if it is a physic component
+             * if component is a physic component then it will be updated in physic thread if engine is threaded
+             * 
+             * @param b 
+             */
             void __setPhysics(bool b) {
                 _physics = b;
             }
 
+            /**
+             * @brief check if component is a physic component
+             * 
+             * @return true 
+             * @return false 
+             */
             bool __isPhysics() const {
                 return _physics;
             }

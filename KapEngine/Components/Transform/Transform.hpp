@@ -18,6 +18,13 @@ namespace KapEngine {
 
 namespace KapEngine {
 
+     /**
+     * \addtogroup Components
+     * @{
+     * @class Transform
+     * @}
+     */
+
     class Transform : public Component {
         public:
             Transform(std::shared_ptr<GameObject> go);
@@ -26,22 +33,93 @@ namespace KapEngine {
             void onAwake() override;
             void onDisplay() override;
 
+            /**
+             * @brief Set the GameObject Position
+             * 
+             * @param pos (KapEngine::Tools::Vector3)
+             */
             void setPosition(Tools::Vector3 pos);
+            /**
+             * @brief Set the GameObject Rotation
+             * 
+             * @param rot (KapEngine::Tools::Vector3)
+             */
             void setRotation(Tools::Vector3 rot);
+            /**
+             * @brief Set the GameObject Scale
+             * 
+             * @param scale (KapEngine::Tools::Vector3)
+             */
             void setScale(Tools::Vector3 scale);
 
+            /**
+             * @brief Get the Local Position of GameObject
+             * 
+             * @returnn KapEngine::Tools::Vector3 
+             */
             Tools::Vector3 getLocalPosition() const;
+            /**
+             * @brief Get the Local Rotation of GameObject
+             * 
+             * @returnn KapEngine::Tools::Vector3 
+             */
             Tools::Vector3 getLocalRotation() const;
+            /**
+             * @brief Get the Local Scale of GameObject
+             * 
+             * @returnn KapEngine::Tools::Vector3 
+             */
             Tools::Vector3 getLocalScale() const;
 
+            /**
+             * @brief Get the World Position of GameObject
+             * 
+             * @return KapEngine::Tools::Vector3 
+             */
             Tools::Vector3 getWorldPosition() const;
+            /**
+             * @brief Get the World Rotation of GameObject
+             * 
+             * @return KapEngine::Tools::Vector3 
+             */
             Tools::Vector3 getWorldRotation() const;
+            /**
+             * @brief Get the World Scale of GameObject
+             * 
+             * @return KapEngine::Tools::Vector3 
+             */
             Tools::Vector3 getWorldScale() const;
 
+            /**
+             * @brief Set the Parent by it's id
+             * 
+             * @param id 
+             */
             void setParent(std::size_t id);
+            /**
+             * @brief Set the Parent by unknown type
+             * 
+             * @param val 
+             */
             void setParent(std::any val);
+            /**
+             * @brief return if all parents are active
+             * 
+             * @return true 
+             * @return false 
+             */
             bool allParentIsActive();
+            /**
+             * @brief Get the Parent GameObject Id
+             * 
+             * @return std::size_t 
+             */
             std::size_t getParentId() const;
+            /**
+             * @brief Get the Parent Entity
+             * 
+             * @return KapEngine::Entity 
+             */
             Entity getParentEntity() const;
 
             /**

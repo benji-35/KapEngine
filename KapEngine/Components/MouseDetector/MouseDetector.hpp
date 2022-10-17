@@ -12,6 +12,13 @@
 
 namespace KapEngine {
 
+    /**
+     * \addtogroup Components
+     * @{
+     * @class MouseDetector
+     * @}
+     */
+
     class MouseDetector : public Component {
         public:
             enum HoverType {
@@ -26,6 +33,11 @@ namespace KapEngine {
 
             void onUpdate() override;
 
+            /**
+             * @brief Define cursor area check
+             * 
+             * @param zone (KapEngine::Tools::Rectangle)
+             */
             void setCheckZone(Tools::Rectangle zone) {
                 _square = zone;
                 _setted = true;

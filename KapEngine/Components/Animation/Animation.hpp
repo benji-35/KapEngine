@@ -15,6 +15,13 @@
 
 namespace KapEngine {
 
+    /**
+     * \addtogroup Components
+     * @{
+     * @class Animation
+     * @}
+     */
+
     class Animation : public Component {
         public:
 
@@ -25,9 +32,9 @@ namespace KapEngine {
 
             /**
              * @fn bool isEnded()
-             * @brief animation terminée ?
-             * @retval true si l'animation est terminée
-             * @retval false si l'animation n'est pas terminée
+             * @brief is animation ended
+             * @retval true if animation ended
+             * @retval false if animation not ended
              */
             bool isEnded() {
                 return _end;
@@ -58,9 +65,20 @@ namespace KapEngine {
                 }
             }
 
+            /**
+             * @brief Set the animation duration
+             * 
+             * @param time (micro seconds)
+             */
             void setTiming(int64_t const& time) {
                 _timing = time;
             }
+
+            /**
+             * @brief Set the animation duration
+             * 
+             * @param time (KapEngine::Time::ETime)
+             */
             void setTiming(Time::ETime const& time) {
                 _timing = time;
             }

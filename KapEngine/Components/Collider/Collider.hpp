@@ -14,6 +14,13 @@
 
 namespace KapEngine {
 
+    /**
+     * \addtogroup Components
+     * @{
+     * @class Collider
+     * @}
+     */
+
     class Collider : public Component {
         public:
             Collider(std::shared_ptr<GameObject> go, bool isTrigger = false);
