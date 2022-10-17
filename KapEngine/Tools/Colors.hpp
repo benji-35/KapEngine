@@ -12,6 +12,11 @@
 
 namespace KapEngine {
 
+    /**
+     * @namespace KapEngine::Tools
+     * This namespace regroup all Tools things
+     * @brief All Tools things
+     */
     namespace Tools {
 
         class Color {
