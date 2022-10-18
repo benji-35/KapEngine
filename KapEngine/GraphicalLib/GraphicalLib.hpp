@@ -99,6 +99,9 @@ namespace KapEngine {
                 virtual void setMusicVolume(float volume) {}
 
                 virtual void playSound(std::string const& soundPath) {}
+                void setSoundVolume(float volume) {
+                    _soundVolume = volume;
+                }
 
                 virtual void drawRectangle(Tools::Vector2 const& position, Tools::Vector2 const& size, Tools::Color const& color) {}
                 virtual void drawRectangle(Tools::Rectangle rectangle, Tools::Color const& color, float rotation) {}
@@ -128,6 +131,8 @@ namespace KapEngine {
 
                 std::function<void(UI::Text &)> _drawText;
                 std::function<void(UI::Image &)> _drawImage;
+
+                float _soundVolume = 1.f;
 
         };
 
