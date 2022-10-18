@@ -1,5 +1,5 @@
 name: I have a question
-dscription: Ask you question, we will answer in documentation () and below your question
+description: Ask you question, we will answer in documentation () and below your question
 title: '[Question]: '
 labels:
   - enhancement
