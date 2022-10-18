@@ -1,10 +1,8 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: '[BUG]: '
+name: Report a bug
+description: Report a bug
+title: '[Bug]: '
 labels:
-    - bug
-
+  - bug
 body:
   - type: textarea
     id: what-happened
