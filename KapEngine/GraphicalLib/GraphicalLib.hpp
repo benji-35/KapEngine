@@ -96,6 +96,7 @@ namespace KapEngine {
                 virtual void pauseMusic() {}
                 virtual void resumMusic() {}
                 virtual void restartMusic() {}
+                virtual void setMusicVolume(float volume) {}
 
                 virtual void playSound(std::string const& soundPath) {}
 
