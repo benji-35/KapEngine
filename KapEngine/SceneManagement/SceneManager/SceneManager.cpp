@@ -50,11 +50,11 @@ void KapEngine::SceneManagement::SceneManager::addScene(std::string const& name)
     addScene(nScene);
 }
 
-void KapEngine::SceneManagement::SceneManager::__update(int threadId) {
+void KapEngine::SceneManagement::SceneManager::__update() {
     try {
         if (_indexScene == 0)
             loadScene(1);
-        getCurrentScene().__update(threadId);
+        getCurrentScene().__update();
     } catch(...) {
         DEBUG_ERROR("Cannot update scene");
     }
