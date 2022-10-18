@@ -323,12 +323,48 @@ namespace KapEngine {
                 _gameName = title;
             }
 
+            /**
+             * @brief set if you want to show fps in game
+             * @param b 
+             */
             void displayFPS(bool b) {
                 _displayFps = b;
             }
 
+            /**
+             * @brief return if fps is displayed
+             * 
+             * @return true 
+             * @return false 
+             */
             bool isDisplayFPS() const {
                 return _displayFps;
+            }
+
+            /**
+             * @warning this function is not for user. Do not use it
+             */
+            static void __threadRun(KEngine *engine, int threadId);
+
+            /**
+             * @warning this function is not for user. Do not use it
+             */
+            bool __canRunUpdate();
+
+            void __setCompUpdated(bool b) {
+                _updateComp = b;
+            }
+
+            bool __isCompUpdated() const {
+                return _updateComp;
+            }
+
+            void __setPhysicsUpdated(bool b) {
+                _updatePhys = b;
+            }
+
+            bool __isPhysicsUpdated() const {
+                return _updatePhys;
             }
 
         protected:
@@ -338,6 +374,9 @@ namespace KapEngine {
             bool _runFixed = false;
             bool _threaded = false;
             bool _displayFps = false;
+
+            bool _updateComp = false;
+            bool _updatePhys = false;
 
             int _fpsLock = 60;
 
@@ -373,7 +412,6 @@ namespace KapEngine {
             //functions
             void __init();
 
-            bool __canRunUpdate();
     };
 
 }

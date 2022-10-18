@@ -9,6 +9,8 @@
 #include "KapEngineDebug.hpp"
 #include "EventManager.hpp"
 
+#include <thread>
+
 KapEngine::KEngine::KEngine(bool debug, std::string const& gameName, std::string const& version, std::string const& company) {
     _debug = debug;
     _gameName = gameName;
@@ -34,8 +36,20 @@ void KapEngine::KEngine::run() {
     _internalClock.restart();
     if (getSceneManager()->getCurrentSceneId() == 0)
         getSceneManager()->loadScene(1);
+    // ============= NEW THREA VERSION =============
+    std::shared_ptr<std::thread> tPhysics; // thread for physics
+    std::shared_ptr<std::thread> tComponents; // thread for components
+
+    if (_threaded) {
+        tPhysics = std::make_shared<std::thread>(&KapEngine::KEngine::__threadRun, this, 1);
+        tComponents = std::make_shared<std::thread>(&KapEngine::KEngine::__threadRun, this, 2);
+
+        tPhysics->detach();
+        tComponents->detach();
+    }
+    // ============= MAIN LOOP =============
     while (_run) {
-        if (__canRunUpdate()) {
+        if (__canRunUpdate() && _threaded == false) {
             getCurrentGraphicalLib()->clear();
             getCurrentGraphicalLib()->getEvents();
             getEventManager().__update();
@@ -43,6 +57,13 @@ void KapEngine::KEngine::run() {
             getSceneManager()->__update();
 
             getCurrentGraphicalLib()->display();
+        } else if (_threaded) {
+            getCurrentGraphicalLib()->getEvents();
+            getEventManager().__update();
+            if (__isCompUpdated() && __isPhysicsUpdated()) {
+                getGraphicalLibManager()->getCurrentLib()->clear();
+                getCurrentGraphicalLib()->display();
+            }
         }
     }
 }
@@ -109,4 +130,21 @@ bool KapEngine::KEngine::__canRunUpdate() {
     if (_runFixed)
         return true;
     return runUpdate;
+}
+
+void KapEngine::KEngine::__threadRun(KEngine *engine, int threadId) {
+    while (engine != nullptr && engine->isRunning()) {
+        if (threadId == 0) {
+            engine->getCurrentGraphicalLib()->getEvents();
+            engine->getEventManager().__update();
+            if (engine->__isCompUpdated() && engine->__isPhysicsUpdated()) {
+                engine->getGraphicalLibManager()->getCurrentLib()->clear();
+                engine->getCurrentGraphicalLib()->display();
+            }
+        } else {
+            if (engine->__canRunUpdate()) {
+                engine->getSceneManager()->__update(threadId);
+            }
+        }
+    }
 }

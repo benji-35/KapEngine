@@ -70,7 +70,7 @@ KapEngine::KEngine &KapEngine::SceneManagement::Scene::getEngine() {
     return manager.getEngine();
 }
 
-void KapEngine::SceneManagement::Scene::__update() {
+void KapEngine::SceneManagement::Scene::__update(int threadId) {
     __checkDestroy();
     try {
         Component camera = getActiveCamera();
@@ -80,7 +80,7 @@ void KapEngine::SceneManagement::Scene::__update() {
         }
         return;
     }
-    __checkThread();
+    __checkThread(threadId);
 }
 
 void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {
@@ -250,34 +250,42 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::findFi
     throw Errors::SceneError("No object has name: " + name);
 }
 
-void KapEngine::SceneManagement::Scene::__threadSceneUpdate(std::vector<std::shared_ptr<GameObject>> gos, bool physics) {
-    for (std::size_t i = 0; i < gos.size(); i++) {
-        gos[i]->__update(physics);
-    }
-}
-
-void KapEngine::SceneManagement::Scene::__checkThread() {
+void KapEngine::SceneManagement::Scene::__checkThread(int threadId) {
     auto objs = __getGameObjectsNoParent();
 
-    for (std::size_t i = 0; i < objs.size(); i++) {
-        objs[i]->__onSceneGonnaUpdated();
-    }
+    /*
+     *  THEAD ID | WHAT 
+     *    -1     | ALL
+     *     0     | Display
+     *     1     | Update physics
+     *     2     | Update
+     */
 
-    if (getEngine().isEngineThreaded()) {
-        std::thread t1(__threadSceneUpdate, objs, true);
-
+    if (threadId == 1) {
+        if (getEngine().__isPhysicsUpdated())
+            return;
+        for (std::size_t i = 0; i < objs.size(); i++) {
+            objs[i]->__update(true, false);
+        }
+        getEngine().__setPhysicsUpdated(true);
+    } else if (threadId == 2) {
+        if (getEngine().__isCompUpdated())
+            return;
         for (std::size_t i = 0; i < objs.size(); i++) {
             objs[i]->__update(false, false);
         }
-
-        t1.join();
-    } else {
+        getEngine().__setCompUpdated(true);
+    } else if (threadId == -1) {
         __updateGameObjects(objs);
-    }
-
-    for (std::size_t i = 0; i < objs.size(); i++) {
-        objs[i]->__onSceneUpdated();
-        objs[i]->__updateDisplay();
+    } else {
+        if (!getEngine().__isCompUpdated() || !getEngine().__isPhysicsUpdated())
+            return;
+        for (std::size_t i = 0; i < objs.size(); i++) {
+            objs[i]->__onSceneUpdated();
+            objs[i]->__updateDisplay();
+        }
+        getEngine().__setPhysicsUpdated(false);
+        getEngine().__setCompUpdated(false);
     }
 }
 
