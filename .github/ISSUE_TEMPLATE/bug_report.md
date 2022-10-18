@@ -1,38 +1,53 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
+title: '[BUG]: '
+labels:
+    - bug
 
----
-
-**Describe the bug**
-A clear and concise description of what the bug is.
-
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
-
-**Expected behavior**
-A clear and concise description of what you expected to happen.
-
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Tell us what happened
+    validations:
+      required: true
+  - type: textarea
+    id: what-should-happened
+    attributes:
+      label: 'What should have happened?'
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: 'Operating System'
+      description: What is your Operating System? Windows, Linux, Mac, ...
+    validations:
+      required: true
+  - type: input
+    id: ram
+    attributes:
+      label: Ram
+      description: How much RAM do you have?
+    validations:
+      required: true
+  - type: input
+    id: gc
+    attributes:
+      label: Graphic Card
+      description: 'What graphic card do you have?'
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: LOG
+      description: If you have log, please send it to us!
+  - type: checkboxes
+    attributes:
+      label: I read the Code Of Conduct
+      options:
+        - label: I read the Code Of Conduct and I comply to it
+          required: true
