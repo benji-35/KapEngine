@@ -176,6 +176,15 @@ namespace KapEngine {
                  */
                 static void __threadSceneUpdate(std::vector<std::shared_ptr<GameObject>> gos, bool physics);
 
+                /**
+                 * @brief add temporary action when scene updated
+                 * 
+                 * @param action
+                 */
+                void registerTmpActionAfterUpdate(std::function<void(Scene &scene)> action) {
+                    _tmpActionsAfterUpdate.push_back(action);
+                }
+
             protected:
             private:
                 std::size_t _id = 0;
@@ -191,6 +200,7 @@ namespace KapEngine {
                 std::size_t __nbGameObjectNoParent();
                 std::vector<std::shared_ptr<GameObject>> __getGameObjectsNoParent();
                 void __updateGameObjects(std::vector<std::shared_ptr<GameObject>> objs);
+                std::vector<std::function<void(Scene &scene)>> _tmpActionsAfterUpdate;
         };
 
     }

@@ -279,6 +279,10 @@ void KapEngine::SceneManagement::Scene::__checkThread() {
         objs[i]->__onSceneUpdated();
         objs[i]->__updateDisplay();
     }
+    for (std::size_t i = 0; i < _tmpActionsAfterUpdate.size(); i++) {
+        _tmpActionsAfterUpdate[i](*this);
+    }
+    _tmpActionsAfterUpdate.clear();
 }
 
 std::size_t KapEngine::SceneManagement::Scene::__nbGameObjectNoParent() {
