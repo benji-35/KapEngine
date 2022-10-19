@@ -90,7 +90,7 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
 
         anim->setTiming(timeAnim);
 
-        animator->addAnim(anim, "animIn "+ std::to_string(i));
+        animator->addAnim(anim, "anim"+ std::to_string(i));
 
         try {
             auto &imgC = img->getComponent<UI::Image>();
@@ -119,7 +119,7 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
     //add animations links
     for (std::size_t i = 0; i < _splahes.size(); i++) {
         if (i != _splahes.size() - 1) {
-            animator->addLink("anim "+ std::to_string(i), "anim "+ std::to_string(i + 1));
+            animator->addLink("anim"+ std::to_string(i), "anim"+ std::to_string(i + 1));
         }
     }
 
