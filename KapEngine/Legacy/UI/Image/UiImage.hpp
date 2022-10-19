@@ -85,6 +85,8 @@ namespace KapEngine {
                 Tools::Vector2 _lastScale;
                 Tools::Vector2 _lastCompare;
                 Tools::Vector2 _lastPos;
+                Tools::Vector2 _lastScaleWant;
+                Tools::Vector2 _lastPosWant;
         };
 
     }

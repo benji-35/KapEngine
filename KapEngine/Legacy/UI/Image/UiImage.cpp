@@ -38,9 +38,11 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
     Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
 
-    if (_lastCompare == getCompare) {
+    if (_lastCompare == getCompare && _lastPosWant == Tools::Vector2(currPos.getX(), currPos.getY())) {
         return _lastPos;
     }
+
+    _lastPosWant = Tools::Vector2(currPos.getX(), currPos.getY());
 
     try {
         std::shared_ptr<GameObject> canvasObject = getGameObjectConst().getScene().getGameObject(transform.getParentContainsComponent("Canvas"));
@@ -71,9 +73,11 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
     Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
 
-    if (_lastCompare == getCompare) {
+    if (_lastCompare == getCompare && _lastScaleWant == Tools::Vector2(currScale.getX(), currScale.getY())) {
         return _lastScale;
     }
+
+    _lastScaleWant = Tools::Vector2(currScale.getX(), currScale.getY());
 
     try {
 
