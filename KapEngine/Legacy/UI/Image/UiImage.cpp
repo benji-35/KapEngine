@@ -73,11 +73,11 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
     Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
 
-    if (_lastCompare == getCompare && _lastScaleWant == Tools::Vector2(currScale.getX(), currScale.getY())) {
+    if (_lastCompare == getCompare && _lastScaleWant == Tools::Vector2(currSize.getX(), currSize.getY())) {
         return _lastScale;
     }
 
-    _lastScaleWant = Tools::Vector2(currScale.getX(), currScale.getY());
+    _lastScaleWant = Tools::Vector2(currSize.getX(), currSize.getY());
 
     try {
 
