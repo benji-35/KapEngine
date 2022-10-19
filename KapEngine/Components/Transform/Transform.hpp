@@ -176,6 +176,9 @@ namespace KapEngine {
              */
             bool hasChanged();
 
+            void __addChild(std::size_t id);
+            void __removeChild(std::size_t id);
+
         protected:
         //variables
         private:
@@ -198,6 +201,7 @@ namespace KapEngine {
             Tools::Vector3 getParentScale() const;
 
             std::size_t _parentId = 0;
+            std::vector<std::size_t> _children;
             bool _awkaeTr = false;
 
     };

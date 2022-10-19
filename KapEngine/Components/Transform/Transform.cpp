@@ -121,6 +121,24 @@ KapEngine::Tools::Vector3 KapEngine::Transform::getParentScale() const{
 
 void KapEngine::Transform::setParent(std::size_t id) {
     _parentId = id;
+    if (_parentId == 0) {
+        getGameObject().getScene().getGameObject(id)->getComponent<Transform>().__removeChild(getGameObject().getId());
+    } else {
+        getGameObject().getScene().getGameObject(id)->getComponent<Transform>().__addChild(getGameObject().getId());
+    }
+}
+
+void KapEngine::Transform::__addChild(std::size_t id) {
+    _children.push_back(id);
+}
+
+void KapEngine::Transform::__removeChild(std::size_t id) {
+    for (auto it = _children.begin(); it != _children.end(); it++) {
+        if (*it == id) {
+            _children.erase(it);
+            return;
+        }
+    }
 }
 
 void KapEngine::Transform::setParent(std::any val) {
@@ -167,8 +185,11 @@ std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::Transform::getChi
     std::vector<std::shared_ptr<GameObject>> result;
 
     for (std::size_t i = 0; i < gos.size(); i++) {
-        if (((Transform &)gos[i]->getTransform()).getParentId() == getGameObject().getId())
-            result.push_back(gos[i]);
+        for (std::size_t x = 0; x < _children.size(); x++) {
+            if (gos[i]->getId() == _children[x]) {
+                result.push_back(gos[i]);
+            }
+        }
     }
     return result;
 }
