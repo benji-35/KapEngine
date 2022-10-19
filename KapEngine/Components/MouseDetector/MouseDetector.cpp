@@ -69,18 +69,20 @@ void KapEngine::MouseDetector::__callMouses(HoverType const& _type) {
     auto _components = getGameObject().getAllComponents();
 
     for (std::size_t i = 0; i < _components.size(); i++) {
-        switch (_type) {
-            case HoverType::JUSTE_HOVER :
-                _components[i]->onMouseEnter();
-                break;
-            case HoverType::STAY_HOVER :
-                _components[i]->onMouseStay();
-                break;
-            case HoverType::LEAVE_HOVER :
-                _components[i]->onMouseExit();
-                break;
-            default:
-                break;
+        if (_components[i]->isEnable()) {
+            switch (_type) {
+                case HoverType::JUSTE_HOVER :
+                    _components[i]->onMouseEnter();
+                    break;
+                case HoverType::STAY_HOVER :
+                    _components[i]->onMouseStay();
+                    break;
+                case HoverType::LEAVE_HOVER :
+                    _components[i]->onMouseExit();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
