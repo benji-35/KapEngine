@@ -72,6 +72,7 @@ namespace KapEngine {
                     return _police;
                 }
 
+                void onAwake() override;
                 void onDisplay() override;
                 bool checkComponentValidity() override;
 
@@ -85,6 +86,9 @@ namespace KapEngine {
                 Tools::Color _color;
                 std::string _content = "";
                 std::string _pathFont = "";
+                Tools::Vector2 _lastScale;
+                Tools::Vector2 _lastCompare;
+                Tools::Vector2 _lastPos;
         };
 
     }

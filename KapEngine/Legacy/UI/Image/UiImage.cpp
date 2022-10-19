@@ -17,7 +17,13 @@ KapEngine::UI::Image::~Image() {}
 
 void KapEngine::UI::Image::onAwake() {
     _lastScale = getTransform().getWorldScale();
-    _lastCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
+    _lastPos = getTransform().getWorldPosition();
+    try {
+        std::shared_ptr<GameObject> canvasObject = getGameObjectConst().getScene().getGameObject(getTransform().getParentContainsComponent("Canvas"));
+
+        auto &canvas = canvasObject->getComponent<Canvas>();
+        _lastCompare = canvas.getScreenSizeCompare();
+    } catch(...) {}
 }
 
 void KapEngine::UI::Image::onDisplay() {
@@ -31,6 +37,11 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
     Canvas::ResizyngType resizeType = Canvas::ResizyngType::RESIZE_WITH_SCREEN;
     Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
+
+    if (_lastCompare == getCompare) {
+        return _lastPos;
+    }
+
     try {
         std::shared_ptr<GameObject> canvasObject = getGameObjectConst().getScene().getGameObject(transform.getParentContainsComponent("Canvas"));
 
@@ -45,8 +56,10 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
         Tools::Vector2 nPos;
         nPos.setX(screenSize.getX() * currPos.getX() / getCompare.getX());
         nPos.setY(screenSize.getY() * currPos.getY() / getCompare.getY());
+        _lastPos = nPos;
         return nPos;
     }
+    _lastPos = currPos;
     return Tools::Vector2(currPos.getX(), currPos.getY());
 }
 

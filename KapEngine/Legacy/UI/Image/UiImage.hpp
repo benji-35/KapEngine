@@ -84,6 +84,7 @@ namespace KapEngine {
                 Tools::Rectangle _rect;
                 Tools::Vector2 _lastScale;
                 Tools::Vector2 _lastCompare;
+                Tools::Vector2 _lastPos;
         };
 
     }
