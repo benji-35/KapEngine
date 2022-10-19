@@ -16,7 +16,7 @@ KapEngine::UI::Image::Image(std::shared_ptr<GameObject> &go) : Component(go, "Im
 KapEngine::UI::Image::~Image() {}
 
 void KapEngine::UI::Image::onAwake() {
-    _lastScale = getTransform()->getWorldScale();
+    _lastScale = getTransform().getWorldScale();
     _lastCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
 }
 
