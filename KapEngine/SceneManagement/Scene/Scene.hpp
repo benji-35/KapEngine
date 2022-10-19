@@ -11,6 +11,8 @@
 #include "Engine.hpp"
 #include "GameObject.hpp"
 
+#include <functional>
+
 namespace KapEngine {
     class KEngine;
     class GameObject;
