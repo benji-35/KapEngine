@@ -15,6 +15,11 @@ KapEngine::UI::Image::Image(std::shared_ptr<GameObject> &go) : Component(go, "Im
 
 KapEngine::UI::Image::~Image() {}
 
+void KapEngine::UI::Image::onAwake() {
+    _lastScale = getTransform()->getWorldScale();
+    _lastCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
+}
+
 void KapEngine::UI::Image::onDisplay() {
     getGameObject().getEngine().getCurrentGraphicalLib()->drawImage(*this);
 }
@@ -53,6 +58,10 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
     Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
 
+    if (_lastCompare == getCompare) {
+        return _lastScale;
+    }
+
     try {
 
         std::shared_ptr<GameObject> canvasObject = getGameObjectConst().getScene().getGameObject(transform.getParentContainsComponent("Canvas"));
@@ -65,14 +74,17 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
         DEBUG_WARNING("Failed to get canvas intels for scale");
     }
 
+    _lastCompare = getCompare;
     if (resizeType == Canvas::ResizyngType::RESIZE_WITH_SCREEN) {
 
         Tools::Vector2 nSize;
         nSize.setX(screenSize.getX() * currSize.getX() / getCompare.getX());
         nSize.setY(screenSize.getY() * currSize.getY() / getCompare.getY());
+        _lastScale = nSize;
         return nSize;
 
     }
+    _lastScale = currSize;
     return Tools::Vector2(currSize.getX(), currSize.getY());
 }
 

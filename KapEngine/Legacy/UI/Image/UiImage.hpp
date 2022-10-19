@@ -35,6 +35,7 @@ namespace KapEngine {
                 Image(std::shared_ptr<GameObject> &go);
                 ~Image();
 
+                void onAwake() override;
                 void onDisplay() override;
                 bool checkComponentValidity() override;
 
@@ -81,6 +82,8 @@ namespace KapEngine {
                 std::string _pathSprite = "";
                 Tools::Color _color;
                 Tools::Rectangle _rect;
+                Tools::Vector2 _lastScale;
+                Tools::Vector2 _lastCompare;
         };
 
     }
