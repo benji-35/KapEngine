@@ -38,7 +38,7 @@ void KapEngine::AnimationSplashScreen::onResetAnim() {
 void KapEngine::AnimationSplashScreen::__fadeIn(float val) {
     if (val >= 0.5f)
         return;
-    UI::Image &img = (UI::Image &)getGameObject().getComponent("Image");
+    auto &img = getGameObject().getComponent<UI::Image>();
     Tools::Color cColor = img.getColorSprite();
     cColor.setA((char)((val / 0.5f) * 255));
     img.setColor(cColor);
@@ -51,7 +51,7 @@ void KapEngine::AnimationSplashScreen::__fadeOut(float val) {
         getGameObject().getComponent<UI::Image>().setActive(false);
         return;
     }
-    UI::Image &img = (UI::Image &)getGameObject().getComponent("Image");
+    auto &img = getGameObject().getComponent<UI::Image>();
     Tools::Color cColor = img.getColorSprite();
     cColor.setA((char)((1.0f - (val / 0.5f)) * 255));
     img.setColor(cColor);

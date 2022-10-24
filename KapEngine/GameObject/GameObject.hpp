@@ -38,18 +38,56 @@ namespace KapEngine {
 
             //all function can be called by dev
 
-            //actions with components
+            /**
+             * @brief add new component to GameObject
+             * 
+             * @param comp 
+             */
             void addComponent(std::shared_ptr<Component> comp);
+            /**
+             * @brief remove component from its shared_ptr
+             * 
+             * @param comp 
+             */
             void removeComponent(std::shared_ptr<Component> comp);
+            /**
+             * @brief remove component from its id
+             * 
+             * @param id 
+             */
             void removeComponent(std::size_t id);
 
+            /**
+             * @brief Get the Component by its name
+             * 
+             * @param componentName 
+             * @return Component& 
+             * @deprecated
+             */
             Component &getComponent(std::string const& componentName);
 
+            /**
+             * @brief Get the Component by its type
+             * 
+             * @tparam T 
+             * @tparam typename 
+             * @tparam T>::value> 
+             * @param componentName 
+             * @return T& 
+             * @deprecated
+             */
             template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
             T &getComponent(std::string const& componentName) {
                 return dynamic_cast<T &>(getComponent(componentName));
             }
-
+            /**
+             * @brief Get the Component by its type
+             * 
+             * @tparam T 
+             * @tparam typename 
+             * @tparam T>::value>
+             * @return T& 
+             */
             template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
             T &getComponent() {
                 std::size_t hash = Type::getHashCode<T>();
@@ -65,9 +103,50 @@ namespace KapEngine {
                 }
                 throw Errors::GameObjectError("No component found");
             }
+            /**
+             * @brief Get the Components by there type
+             * 
+             * @tparam T 
+             * @tparam typename 
+             * @tparam T>::value>
+             * @return std::vector<std::shared_ptr<T>> 
+             */
+            template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
+            std::vector<std::shared_ptr<T>> getComponents() {
+                std::vector<std::shared_ptr<T>> components;
+                std::size_t hash = Type::getHashCode<T>();
+                for (std::size_t i = 0; i < _components.size(); i++) {
+                    std::size_t componentHash = Type::getHashCode(*_components[i]);
+                    if (_components[i] && componentHash == hash)
+                        components.push_back(std::dynamic_pointer_cast<T>(_components[i]));
+                }
+                for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                    std::size_t componentHash = Type::getHashCode(*_componentsRun[i]);
+                    if (_componentsRun[i] && componentHash == hash)
+                        components.push_back(std::dynamic_pointer_cast<T>(_componentsRun[i]));
+                }
+                return components;
+            }
 
+            /**
+             * @brief return if GameObject has component from its name
+             * 
+             * @param componentName 
+             * @return true 
+             * @return false 
+             * @deprecated
+             */
             bool hasComponent(std::string const& componentName) const;
 
+            /**
+             * @brief return if GameObject has component from its type
+             * 
+             * @tparam T 
+             * @tparam typename 
+             * @tparam T>::value> 
+             * @return true 
+             * @return false 
+             */
             template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
             bool hasComponent() const {
                 std::size_t hash = Type::getHashCode<T>();
@@ -84,52 +163,149 @@ namespace KapEngine {
                 return false;
             }
 
+            /**
+             * @brief Get the Engine
+             * 
+             * @return KapEngine::KEngine& 
+             */
             KEngine &getEngine();
 
-            //all functions call by engine
-            void __update();
+            /**
+             * @warning do not call this function
+             */
+            void __update(bool physics = false, bool runDisplay = true);
+            /**
+             * @warning do not call this function
+             */
+            void __updateDisplay();
 
+            /**
+             * @brief Set the Active status of GameObject
+             * 
+             * @param b 
+             */
             void setActive(bool b);
-
+            /**
+             * @brief return if GameObject is active
+             * 
+             * @return true 
+             * @return false 
+             */
             bool isActive() const {
                 return _active;
             }
+            /**
+             * @brief return if GameObject is destroyed
+             * 
+             * @return true 
+             * @return false 
+             */
             bool isDestroyed() const {
                 return _destroyed;
             }
 
+            /**
+             * @brief Get the Scene
+             * 
+             * @return SceneManagement::Scene &
+             */
             SceneManagement::Scene &getScene() {
                 return _scene;
             }
 
+            /**
+             * @brief Get the Scene
+             * 
+             * @return SceneManagement::Scene & const
+             */
             SceneManagement::Scene &getSceneConst() const {
                 return _scene;
             }
 
+            /**
+             * @brief Get the Transform
+             * @deprecated
+             * @return Component& 
+             */
             Component &getTransform();
 
+            /**
+             * @warning do not call this function
+             */
             void __engineStop();
 
+            /**
+             * @brief Get GameObject Name
+             * 
+             * @return std::string 
+             */
             std::string getName() const {
                 return _name;
             }
 
+            /**
+             * @brief Get the Entity of GameObject
+             * 
+             * @return KapEngine::Entity& 
+             */
             Entity &getEntity() const {
                 return (Entity &)*this;
             }
 
+            /**
+             * @warning do not call this function
+             */
             void __destroyIt();
+            /**
+             * @warning do not call this function
+             */
             void __init();
+            /**
+             * @warning do not call this function
+             */
             void __stoppingGame();
+            /**
+             * @warning do not call this function
+             */
+            void __onSceneGonnaUpdated();
+            /**
+             * @warning do not call this function
+             */
+            void __onSceneUpdated();
 
+            /**
+             * @brief display GameObject in log
+             * 
+             * @param displayComponent 
+             * @param prefix 
+             */
             void dump(bool displayComponent = false, std::string prefix = "");
 
+            /**
+             * @brief Get the All Components of GameObject
+             * 
+             * @return std::vector<std::shared_ptr<KapEngine::Component>> 
+             */
             std::vector<std::shared_ptr<Component>> getAllComponents() const;
 
+            /**
+             * @brief destroy the GameObject
+             * 
+             */
             void destroy();
 
+            /**
+             * @brief set prefab name
+             * @warning do not use this function
+             * @param name 
+             */
             void __setPrefab(std::string const& name);
 
+            /**
+             * @brief Get the Prefab Name
+             * 
+             * @return std::string 
+             */
             std::string getPrefabName() const {
                 return _prefabName;
             }
@@ -141,6 +317,24 @@ namespace KapEngine {
              */
             void setName(std::string const& name) {
                 _name = name;
+            }
+
+            /**
+             * @brief Set the GameObject Tag
+             * 
+             * @param tag 
+             */
+            void setTag(std::string const& tag) {
+                _tag = tag;
+            }
+
+            /**
+             * @brief Get the GameObject Tag
+             * 
+             * @return std::string 
+             */
+            std::string getTag() const {
+                return _tag;
             }
 
         protected:
@@ -155,6 +349,7 @@ namespace KapEngine {
             SceneManagement::Scene &_scene;
             std::size_t _idComp = 0;
             std::string _prefabName;
+            std::string _tag;
     };
 
 }

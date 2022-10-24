@@ -18,7 +18,7 @@ KapEngine::AnimationFadeOut::AnimationFadeOut(std::shared_ptr<GameObject> go) : 
 KapEngine::AnimationFadeOut::~AnimationFadeOut() {}
 
 void KapEngine::AnimationFadeOut::onPlay() {
-    UI::Image &img = (UI::Image &)getGameObject().getComponent("Image");
+    auto &img = getGameObject().getComponent<UI::Image>();
     Tools::Color cColor = img.getColorSprite();
 
     cColor.setA(255);
@@ -31,14 +31,14 @@ void KapEngine::AnimationFadeOut::onUpdateAnim() {
 
     val = 1.0f - val;
 
-    UI::Image &img = (UI::Image &)getGameObject().getComponent("Image");
+    auto &img = getGameObject().getComponent<UI::Image>();
     Tools::Color cColor = img.getColorSprite();
     cColor.setA((char)(val * 255));
     img.setColor(cColor);
 }
 
 void KapEngine::AnimationFadeOut::onResetAnim() {
-    UI::Image &img = (UI::Image &)getGameObject().getComponent("Image");
+    auto &img = getGameObject().getComponent<UI::Image>();
     Tools::Color cColor = img.getColorSprite();
 
     cColor.setA(255);

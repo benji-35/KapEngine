@@ -18,7 +18,7 @@ KapEngine::AnimationFadeIn::~AnimationFadeIn() {}
 void KapEngine::AnimationFadeIn::onPlay() {
     //lors du début de l'animation, initialiser les valeurs souhaitées
 
-    UI::Image &img = (UI::Image &)getGameObject().getComponent("Image");
+    auto &img = getGameObject().getComponent<UI::Image>();
     Tools::Color cColor = img.getColorSprite();
 
     cColor.setA(0);
@@ -31,14 +31,14 @@ void KapEngine::AnimationFadeIn::onUpdateAnim() {
 
     if (val >= 1.0f)
         return;
-    UI::Image &img = (UI::Image &)getGameObject().getComponent("Image");
+    auto &img = getGameObject().getComponent<UI::Image>();
     Tools::Color cColor = img.getColorSprite();
     cColor.setA((char)(val * 255));
     img.setColor(cColor);
 }
 
 void KapEngine::AnimationFadeIn::onResetAnim() {
-    UI::Image &img = (UI::Image &)getGameObject().getComponent("Image");
+    auto &img = getGameObject().getComponent<UI::Image>();
     Tools::Color cColor = img.getColorSprite();
 
     cColor.setA(0);

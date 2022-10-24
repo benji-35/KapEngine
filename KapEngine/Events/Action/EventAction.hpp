@@ -20,16 +20,29 @@ namespace KapEngine {
                 EventAction() {}
                 ~EventAction() {}
 
+                /**
+                 * @brief register an action to do (lambda)
+                 * 
+                 * @param func 
+                 */
                 void registerAction(std::function<void()> func) {
                     _funcs.push_back(func);
                 }
 
+                /**
+                 * @brief call all actions
+                 * 
+                 */
                 void invoke() {
                     for (std::size_t i = 0; i < _funcs.size(); i++) {
                         _funcs[i]();
                     }
                 }
 
+                /**
+                 * @brief clear all actions
+                 * 
+                 */
                 void clear() {
                     _funcs.clear();
                 }

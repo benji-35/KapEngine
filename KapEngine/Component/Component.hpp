@@ -38,7 +38,7 @@ namespace KapEngine {
              * @warning Do not call this function
              * @brief function call by KapEngine to update your component
              */
-            void __update();
+            void __update(bool runDisplay = true);
 
             /**
              * @warning Do not call this function
@@ -88,6 +88,9 @@ namespace KapEngine {
             virtual void onDestroy() override {}
             virtual void onDisable() override {}
             virtual void onEnable() override {}
+
+            virtual void onSceneUpdated() override {}
+            virtual void onSceneGonnaUpdated() override {}
 
             /**
              * @fn std::size_t getLevel() const
@@ -194,7 +197,41 @@ namespace KapEngine {
              */
             void __awake();
 
+            /**
+             * @brief Get the Transform component
+             * 
+             * @return KapEngine::Transform& 
+             */
             Transform &getTransform();
+
+            /**
+             * @brief Get the Id of component
+             * 
+             * @return std::size_t 
+             */
+            std::size_t getId() const {
+                return _id;
+            }
+
+            /**
+             * @brief set if it is a physic component
+             * if component is a physic component then it will be updated in physic thread if engine is threaded
+             * 
+             * @param b 
+             */
+            void __setPhysics(bool b) {
+                _physics = b;
+            }
+
+            /**
+             * @brief check if component is a physic component
+             * 
+             * @return true 
+             * @return false 
+             */
+            bool __isPhysics() const {
+                return _physics;
+            }
 
         protected:
             /**
@@ -202,6 +239,7 @@ namespace KapEngine {
              */
             std::string _name;
         private:
+            bool _physics = false;
             int threadRunning = 2;
             std::size_t _id = 0;
             std::size_t _level = 0;

@@ -35,19 +35,15 @@ void KapEngine::KEngine::run() {
     if (getSceneManager()->getCurrentSceneId() == 0)
         getSceneManager()->loadScene(1);
     while (_run) {
-        _elapsed = _internalClock.getElapseTime();
-        _runFixed = false;
-        if (_elapsed >= _fixedTime) {
-            _internalClock.restart();
-            _runFixed = true;
+        if (__canRunUpdate()) {
+            getCurrentGraphicalLib()->clear();
+            getCurrentGraphicalLib()->getEvents();
+            getEventManager().__update();
+
+            getSceneManager()->__update();
+
+            getCurrentGraphicalLib()->display();
         }
-        getCurrentGraphicalLib()->clear();
-        getCurrentGraphicalLib()->getEvents();
-        getEventManager().__update();
-
-        getSceneManager()->__update();
-
-        getCurrentGraphicalLib()->display();
     }
 }
 
@@ -81,14 +77,6 @@ void KapEngine::KEngine::__init() {
     DEBUG_LOG("[INIT] end init KapEngine");
 }
 
-/**
- * threadId : 0 = graphics
- * threadId : 1 = component
- * threadId : 2 = component
- * threadId : 3 = component
- * threadId : 4 = component
- */
-
 KapEngine::Events::EventManager &KapEngine::KEngine::getEventManager() {
     return *_eventManager;
 }
@@ -100,4 +88,25 @@ void KapEngine::KEngine::setScreenSize(float width, float heigth) {
 
 void KapEngine::KEngine::setScreenSize(Tools::Vector2 size) {
     screenSize = size;
+}
+
+bool KapEngine::KEngine::__canRunUpdate() {
+    _runFixed = false;
+    bool runUpdate = false;
+
+    Time::ETime etime = _internalClock.getElapseTime();
+    
+    //check if we can run update
+    if (etime.asSecond() - _elapsed.asSecond() >= (1 / getMaxFps())) {
+        runUpdate = true;
+    }
+    _elapsed = etime;
+    //check if we can run fixed update
+    if (_elapsed >= _fixedTime) {
+        _internalClock.restart();
+        _runFixed = true;
+    }
+    if (_runFixed)
+        return true;
+    return runUpdate;
 }

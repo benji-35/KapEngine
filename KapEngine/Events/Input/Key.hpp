@@ -560,6 +560,11 @@ namespace KapEngine {
                     }
                 }
 
+                /**
+                 * @brief Get displayable value of your key
+                 * 
+                 * @return std::string 
+                 */
                 std::string getTextValue() const {
                     switch (_last) {
                         case A:
@@ -689,6 +694,11 @@ namespace KapEngine {
                     }
                 }
 
+                /**
+                 * @brief get current value Key
+                 * 
+                 * @return KapEngine::Events::Key::EKey 
+                 */
                 EKey get() const {
                     return _last;
                 }

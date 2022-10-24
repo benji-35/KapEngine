@@ -1,4 +1,5 @@
-#pragma once
+#ifndef KAPENGINE_PLATFORM_HPP
+#define KAPENGINE_PLATFORM_HPP
 
 // Platform definitions
 #if defined(_WIN32) || defined(_WIN64)
@@ -27,4 +28,23 @@ typedef unsigned char byte;
 
 #ifndef ushort
 typedef unsigned short ushort;
+#endif
+
+//define KapEngine version
+/**
+ * @brief KapEngine major version
+ * @return int value
+*/
+#define KAPENGINE_VERSION_MAJOR 1
+/**
+ * @brief KapEngine minor version
+ * @return int value
+*/
+#define KAPENGINE_VERSION_MINOR 2
+/**
+ * @brief KapEngine version
+ * @return string value
+ */
+#define KAPENGINE_VERSION "1.2.12"
+
 #endif

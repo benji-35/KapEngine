@@ -11,6 +11,8 @@
 #include "Engine.hpp"
 #include "GameObject.hpp"
 
+#include <functional>
+
 namespace KapEngine {
     class KEngine;
     class GameObject;
@@ -126,6 +128,8 @@ namespace KapEngine {
                 
                 std::vector<std::shared_ptr<GameObject>> getGameObjects(std::string const& name);
 
+                std::vector<std::shared_ptr<GameObject>> getGameObjectByTag(std::string const& tag);
+
                 KEngine &getEngine();
 
                 /**
@@ -166,6 +170,23 @@ namespace KapEngine {
                  */
                 std::shared_ptr<GameObject> findFirstGameObject(std::string const& name);
 
+                /**
+                 * @brief update scene by thread
+                 * 
+                 * @param scene 
+                 * @param go
+                 */
+                static void __threadSceneUpdate(std::vector<std::shared_ptr<GameObject>> gos, bool physics);
+
+                /**
+                 * @brief add temporary action when scene updated
+                 * 
+                 * @param action
+                 */
+                void registerTmpActionAfterUpdate(std::function<void(Scene &scene)> action) {
+                    _tmpActionsAfterUpdate.push_back(action);
+                }
+
             protected:
             private:
                 std::size_t _id = 0;
@@ -177,6 +198,11 @@ namespace KapEngine {
                 std::vector<std::size_t> _gameObjectsToDestroy;
 
                 void __checkDestroy();
+                void __checkThread();
+                std::size_t __nbGameObjectNoParent();
+                std::vector<std::shared_ptr<GameObject>> __getGameObjectsNoParent();
+                void __updateGameObjects(std::vector<std::shared_ptr<GameObject>> objs);
+                std::vector<std::function<void(Scene &scene)>> _tmpActionsAfterUpdate;
         };
 
     }

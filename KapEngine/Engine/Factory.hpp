@@ -49,7 +49,7 @@ namespace KapEngine {
                 std::shared_ptr<GameObject> camera = createEmptyGameObject(scene, name);
 
                 try {
-                    Transform &transform = (Transform &)camera->getComponent("Transform");
+                    auto &transform = camera->getComponent<Transform>();
                     transform.setPosition(pos);
                     transform.setRotation(rot);
                 } catch(...) {}

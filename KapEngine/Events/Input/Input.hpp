@@ -32,14 +32,14 @@ namespace KapEngine {
     {
         /**
          * @class Input
-         * Input permet de connaître les actions des touches pendant le run du jeu
-         * @brief Ations des touches
+         * Input is made to know action of input while game is running
+         * @brief Input actions
          */
         class Input {
             public:
 
                 /**
-                 * @brief donne le mode de detection dun axe
+                 * @brief axis mode detection
                  * 
                  */
                 enum AxisDetectMode {
@@ -51,16 +51,16 @@ namespace KapEngine {
 
                 /**
                  * @struct Axis
-                 * un Axe permet d'avoir un combiné de touches assignées pour une même action résultant une valeur comprise entre -1 et 1
+                 * Axis allow you to have several inputs for a specific action like vertical move with W ans S.
                  * @brief 
-                 * @param name nom de l'axe
-                 * @param positiveButton input permettant d'obtenir la valeur 1
-                 * @param altPositiveButton input alternatif permettant d'obtenir la valeur 1
-                 * @param negativeButton input permettant d'obtenir la valeur -1
-                 * @param altNegativeButton input alternatif permettant d'obtenir la valeur -1
-                 * @param joystickId index du joystick d'un gamepad (si celui ci reste sur -1, aucun joystick ne sera assigné)
-                 * @param gamepadId index du gamepad. Si un joystick est définit mais que le gamepad reste à -1, alors l'axe vérifiera tous les gamepads (les 2 gamepads)
-                 * @param invert permet d'inverser le résultat (-1 -> 1, 1 -> -1)
+                 * @param name axis name
+                 * @param positiveButton input giving value 1
+                 * @param altPositiveButton alternative input giving value 1
+                 * @param negativeButton input giving value -1
+                 * @param altNegativeButton alternative input giving value -1
+                 * @param joystickId joystick index of gamepad (if joystick set to -1 then no joystick is assigned)
+                 * @param gamepadId gamepad index. If 1 joystoick is defined but gamepad is set to -1, then all gamepad gonna be checked (2 gamepads)
+                 * @param invert invert result
                  */
                 struct Axis {
                     std::string name;
@@ -94,81 +94,81 @@ namespace KapEngine {
 
                 /**
                  * @fn void __update()
-                 * @brief mettre à jour les touches
-                 * @warning ne pas utiliser. Seul l'engine doit l'utiliser
+                 * @brief update inputs
+                 * @warning Do not call this function
                  */
                 void __update();
 
                 /**
                  * @fn bool getKey(Key::EKey key)
-                 * savoir si une action a été faite sur la touche demandée
-                 * @brief action sur une touche
-                 * @param key Key::Ekey (enum) touche
-                 * @retval true si une action a été faite sur la touche
-                 * @retval false si aucune action n'a été faite sur la touche
+                 * Knows if an action occured on a specifics input
+                 * @brief input action
+                 * @param key KapEngine::Events::Key::Ekey (enum) key
+                 * @retval true if an action occured
+                 * @retval false if no action occured
                  */
                 bool getKey(Key::EKey key);
                 /**
                  * @fn bool getKeyDown(Key::EKey key)
-                 * savoir si la touche a été appuyée
-                 * @brief appuie sur la touche
-                 * @param key Key::Ekey (enum) touche
-                 * @retval true si la touche a été appuyée
-                 * @retval false si la touche n'a pas été appuyée
+                 * knows if key is just pressed
+                 * @brief key pressed
+                 * @param key KapEngine::Events::Key::Ekey (enum) key
+                 * @retval true if action occured
+                 * @retval false if no action occured
                  */
                 bool getKeyDown(Key::EKey key);
                 /**
                  * @fn bool getKeyUp(Key::EKey key)
-                 * savoir si la touche a été relachée
-                 * @brief relachement de la touche
-                 * @param key Key::Ekey (enum) touche
-                 * @retval true si la touche a été relachée
-                 * @retval false si la touche n'a pas été relachée
+                 * knows if key is just released
+                 * @brief key released
+                 * @param key KapEngine::Events::Key::Ekey (enum) key
+                 * @retval true if an action occured
+                 * @retval false if no action occured
                  */
                 bool getKeyUp(Key::EKey key);
 
                 /**
                  * @fn bool getKey(Key key)
-                 * savoir si une action a été faite sur la touche demandée
-                 * @brief action sur une touche
-                 * @param key Key (calss) touche
-                 * @retval true si une action a été faite sur la touche
-                 * @retval false si aucune action n'a été faite sur la touche
+                 * Knows if an action occured on a specifics input
+                 * @brief input action
+                 * @param key KapEngine::Events::Key
+                 * @retval true if an action occured
+                 * @retval false if no action occured
                  */
                 bool getKey(Key key);
                 /**
                  * @fn bool getKeyDown(Key key)
-                 * savoir si la touche a été appuyée
-                 * @brief appuie sur la touche
-                 * @param key Key (class) touche
-                 * @retval true si la touche a été appuyée
-                 * @retval false si la touche n'a pas été appuyée
+                 * knows if key is just pressed
+                 * @brief key pressed
+                 * @param key KapEngine::Events::Key key
+                 * @retval true if action occured
+                 * @retval false if no action occured
                  */
                 bool getKeyDown(Key key);
                 /**
                  * @fn bool getKeyUp(Key key)
-                 * savoir si la touche a été relachée
-                 * @brief relachement de la touche
-                 * @param key Key (class) touche
-                 * @retval true si la touche a été relachée
-                 * @retval false si la touche n'a pas été relachée
+                 * knows if key is just released
+                 * @brief key released
+                 * @param key KapEngine::Events::Key
+                 * @retval true if an action occured
+                 * @retval false if no action occured
                  */
                 bool getKeyUp(Key key);
                 /**
                  * @fn float getAxis(std::string name)
-                 * cette fonction permet d'avoir un système plus avancé de touche permettant d'avoir une valeur (float entre -1 et 1) selon les touches appuyées
-                 * @brief avoir la valeur de l'axe
+                 * get axis value. If axis not found then value is 0
+                 * @brief get axis value
                  * 
-                 * @param name nom de l'axe souhaité
-                 * @return float (entre 1 et -1)
+                 * @param name axis name
+                 * @return float (betwenn 1 and -1)
                  */
                 float getAxis(std::string name);
 
                 /**
                  * @fn void addAxis(std::string name)
-                 * ajoute un nouvel axe vide
-                 * @brief ajouter un nouvel axe
-                 * @param name name de l'axe
+                 * add empty axis
+                 * @brief add new axis
+                 * @param name axis name
                  */
                 void addAxis(std::string name) {
                     _axises.push_back(Axis(name));
@@ -176,14 +176,20 @@ namespace KapEngine {
 
                 /**
                  * @fn void addAxis(Axis const& axis)
-                 * ajoute un nouvel axe que vous aurez défini
-                 * @brief ajouter un nouvel axe
-                 * @param axis axe prédéfini
+                 * add axis you defined
+                 * @brief add new axis
+                 * @param axis axis
                  */
                 void addAxis(Axis const& axis) {
                     _axises.push_back(axis);
                 }
 
+                /**
+                 * @brief Get the Axis
+                 * 
+                 * @param name axis name
+                 * @return KapEngine::Events::Input::Axis Axis& 
+                 */
                 Axis &getAxisSettings(std::string const& name) {
                     for (std::size_t i = 0; i < _axises.size(); i++) {
                         if (_axises[i].name == name)

@@ -206,39 +206,129 @@ namespace KapEngine {
                 deltaTime = dTime;
             }
 
+            /**
+             * @brief Get the Graphical Lib Manager
+             * 
+             * @return std::shared_ptr<KapEngine::Graphical::GraphicalLibManager> 
+             */
             std::shared_ptr<Graphical::GraphicalLibManager> getGraphicalLibManager() const {
                 return _libManager;
             }
 
+            /**
+             * @brief Set the Screen Size at the game beginning
+             * 
+             * @param width 
+             * @param heigth 
+             */
             void setScreenSize(float width, float heigth);
+
+            /**
+             * @brief Set the Screen Size at the game beginning
+             * 
+             * @param size (KapEngine::Tools::Vector2)
+             */
             void setScreenSize(Tools::Vector2 size);
 
+            /**
+             * @brief Get the Screen Size at the game beginning
+             * 
+             * @return Tools::Vector2 
+             */
             Tools::Vector2 getScreenSize() const {
                 return screenSize;
             }
 
+            /**
+             * @brief Get the Max Fps of game
+             * 
+             * @return float 
+             */
             float getMaxFps() const {
                 return _fpsLock;
             }
 
+            /**
+             * @brief return if onFixedUpdate can be call
+             * 
+             * @return true 
+             * @return false 
+             */
             bool __canRunFixed() const {
                 return _runFixed;
             }
 
+            /**
+             * @brief Get the Splash Screen manager
+             * 
+             * @return std::shared_ptr<KapEngine::SceneManagement::SplashScreen> 
+             */
             std::shared_ptr<SceneManagement::SplashScreen> getSplashScreen() const {
                 return _splashsScreen;
             }
 
+            /**
+             * @brief Set the Fixed Time of engine
+             * fixed time is used to call onFixedUpdate() function of component -> this your internal clock
+             * 
+             * @param time 
+             */
             void setFixedTime(Time::ETime time) {
                 _fixedTime = time;
             }
 
+            /**
+             * @brief Set the Icon path of your Game
+             * 
+             * @param iconPath 
+             */
             void setIconGame(std::string const& iconPath) {
                 _icon = iconPath;
             }
 
+            /**
+             * @brief Get the Icon Path of your game
+             * 
+             * @return std::string 
+             */
             std::string getIconPath() const {
                 return _icon;
+            }
+
+            /**
+             * @brief Set if engine have to use threads
+             * 
+             * @param b 
+             */
+            void setEngineThread(bool b) {
+                _threaded = b;
+            }
+
+            /**
+             * @brief return if engine is threaded
+             * 
+             * @return true 
+             * @return false 
+             */
+            bool isEngineThreaded() const {
+                return _threaded;
+            }
+
+            /**
+             * @brief Set the Title of game windows
+             * 
+             * @param title 
+             */
+            void setTitle(std::string const& title) {
+                _gameName = title;
+            }
+
+            void displayFPS(bool b) {
+                _displayFps = b;
+            }
+
+            bool isDisplayFPS() const {
+                return _displayFps;
             }
 
         protected:
@@ -246,6 +336,8 @@ namespace KapEngine {
             bool _run = false;
             bool _debug = false;
             bool _runFixed = false;
+            bool _threaded = false;
+            bool _displayFps = false;
 
             int _fpsLock = 60;
 
@@ -280,6 +372,8 @@ namespace KapEngine {
 
             //functions
             void __init();
+
+            bool __canRunUpdate();
     };
 
 }

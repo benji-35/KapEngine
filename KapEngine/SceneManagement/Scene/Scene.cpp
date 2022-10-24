@@ -10,6 +10,10 @@
 #include "KapEngineDebug.hpp"
 #include "Factory.hpp"
 
+#include "ThreadScene.hpp"
+
+#include <thread>
+
 KapEngine::SceneManagement::Scene::Scene(SceneManager &manager, std::string const& name) : manager(manager) {
     DEBUG_LOG("Start init scene");
     _name = name;
@@ -30,7 +34,7 @@ KapEngine::Component &KapEngine::SceneManagement::Scene::getActiveCamera() const
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         if (_gameObjects[i]->isActive() && !_gameObjects[i]->isDestroyed()) {
             try {
-                Component &comp = _gameObjects[i]->getComponent("Camera");
+                Component &comp = _gameObjects[i]->getComponent<Camera>();
                 if (comp.isEnable()) {
                     return comp;
                 }
@@ -40,7 +44,7 @@ KapEngine::Component &KapEngine::SceneManagement::Scene::getActiveCamera() const
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
         if (_gameObjectsRun[i]->isActive() && !_gameObjectsRun[i]->isDestroyed()) {
             try {
-                Component &comp = _gameObjectsRun[i]->getComponent("Camera");
+                Component &comp = _gameObjectsRun[i]->getComponent<Camera>();
                 if (comp.isEnable()) {
                     return comp;
                 }
@@ -76,20 +80,7 @@ void KapEngine::SceneManagement::Scene::__update() {
         }
         return;
     }
-    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-        if (_gameObjects[i]->getComponent<Transform>().getParentId() == 0) {
-            try {
-                _gameObjects[i]->__update();
-            } catch(...) {}
-        }
-    }
-    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
-        if (_gameObjectsRun[i]->getComponent<Transform>().getParentId() == 0) {
-            try {
-                _gameObjectsRun[i]->__update();
-            } catch(...) {}
-        }
-    }
+    __checkThread();
 }
 
 void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {
@@ -257,4 +248,91 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::findFi
             return _gameObjectsRun[i];
     }
     throw Errors::SceneError("No object has name: " + name);
+}
+
+void KapEngine::SceneManagement::Scene::__threadSceneUpdate(std::vector<std::shared_ptr<GameObject>> gos, bool physics) {
+    for (std::size_t i = 0; i < gos.size(); i++) {
+        gos[i]->__update(physics);
+    }
+}
+
+void KapEngine::SceneManagement::Scene::__checkThread() {
+    auto objs = __getGameObjectsNoParent();
+
+    for (std::size_t i = 0; i < objs.size(); i++) {
+        objs[i]->__onSceneGonnaUpdated();
+    }
+
+    if (getEngine().isEngineThreaded()) {
+        std::thread t1(__threadSceneUpdate, objs, true);
+
+        for (std::size_t i = 0; i < objs.size(); i++) {
+            objs[i]->__update(false, false);
+        }
+
+        t1.join();
+    } else {
+        __updateGameObjects(objs);
+    }
+
+    for (std::size_t i = 0; i < objs.size(); i++) {
+        objs[i]->__onSceneUpdated();
+        objs[i]->__updateDisplay();
+    }
+    for (std::size_t i = 0; i < _tmpActionsAfterUpdate.size(); i++) {
+        _tmpActionsAfterUpdate[i](*this);
+    }
+    _tmpActionsAfterUpdate.clear();
+}
+
+std::size_t KapEngine::SceneManagement::Scene::__nbGameObjectNoParent() {
+    std::size_t result = 0;
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (_gameObjects[i]->getComponent<Transform>().getParentId() == 0)
+            result++;
+    }
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (_gameObjectsRun[i]->getComponent<Transform>().getParentId() == 0)
+            result++;
+    }
+    return result;
+}
+
+void KapEngine::SceneManagement::Scene::__updateGameObjects(std::vector<std::shared_ptr<GameObject>> objs) {
+    //updating scene
+    for (std::size_t i = 0; i < objs.size(); i++) {
+        objs[i]->__update(false, false);
+        objs[i]->__update(true, false);
+    }
+}
+
+std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::Scene::__getGameObjectsNoParent() {
+    std::vector<std::shared_ptr<GameObject>> result;
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (_gameObjects[i]->getComponent<Transform>().getParentId() == 0)
+            result.push_back(_gameObjects[i]);
+    }
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (_gameObjectsRun[i]->getComponent<Transform>().getParentId() == 0)
+            result.push_back(_gameObjectsRun[i]);
+    }
+    return result;
+}
+
+std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::Scene::getGameObjectByTag(std::string const& tag) {
+
+    std::vector<std::shared_ptr<GameObject>> result;
+
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (_gameObjects[i]->getTag() == tag)
+            result.push_back(_gameObjects[i]);
+    }
+
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (_gameObjectsRun[i]->getTag() == tag)
+            result.push_back(_gameObjectsRun[i]);
+    }
+
+    return result;
+
 }

@@ -20,6 +20,12 @@ namespace KapEngine {
 }
 
 namespace KapEngine {
+
+    /**
+     * @namespace KapEngine::Graphical
+     * This namespace regroup all graphical things
+     * @brief All graphical things
+     */
     namespace Graphical {
 
         class GraphicalLibManager {

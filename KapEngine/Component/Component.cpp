@@ -29,7 +29,7 @@ KapEngine::GameObject &KapEngine::Component::getGameObject() {
     }
 }
 
-void KapEngine::Component::__update() {
+void KapEngine::Component::__update(bool runDisplay) {
     try {
         __awake();
         if (!__checkValidity())
@@ -43,7 +43,8 @@ void KapEngine::Component::__update() {
         __fixedUpdate();
         if (!__checkValidity())
             return;
-        onDisplay();
+        if (runDisplay)
+            onDisplay();
     } catch(...) {
         return;
     }

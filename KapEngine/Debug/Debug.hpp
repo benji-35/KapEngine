@@ -20,9 +20,7 @@ namespace KapEngine {
         public:
 
             /**
-            * @fn log(std::string _msg)
-            * afficher dans la console (horrodaté) un message sous le format log
-            * @brief afficher un log
+            * @brief display a simple message
             */
             static void log(std::string _msg, std::string prefix = "") {
                 std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << " log: " << colorNone() << _msg << colorNone() << std::endl;
@@ -41,9 +39,7 @@ namespace KapEngine {
             }
 
             /**
-            * @fn warning(std::string _msg)
-            * afficher dans la console (horrodaté) un message sous le format warning
-            * @brief afficher un warning
+            * @brief display a warning message
             */
             static void warning(std::string _msg, std::string prefix = "") {
                 std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << colorYellow() << " warning: " << colorNone() << _msg << colorNone() << std::endl;
@@ -61,9 +57,7 @@ namespace KapEngine {
                 warning(std::string(_msg), "[" + colorYellow() + std::string(fileName) + colorNone() + " " + colorBlue() + "l. " + std::to_string(line) + colorNone() + "]");
             }
             /**
-            * @fn error(std::string _msg)
-            * afficher dans la console (horrodaté) un message sous le format error
-            * @brief afficher une erreur
+            * @brief display an error message
             */
             static void error(std::string _msg, std::string prefix = "") {
                 std::cout << "[" << __getCDate() << "] " << prefix << colorRed() << " error: " << colorNone() << _msg << colorNone() << std::endl;
