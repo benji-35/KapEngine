@@ -12,10 +12,7 @@ Build/
 # OSX
 .DS_Store
 
-**doxygen**
-**Doxyfile**
 **buildTest.**
-**DocDoxy**
 **cmake-build**
 
 **buildTest.**
