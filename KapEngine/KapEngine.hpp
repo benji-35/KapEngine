@@ -110,4 +110,16 @@ namespace KapEngine {
     #include "Tools/Vectors.hpp"
 #endif
 
+#ifndef DICTIONARY_HPP_
+    #include "Utils/Dictionary.hpp"
+#endif
+
+#ifndef KAPENGINE_PLATFORM_HPP
+    #include "Utils/Platform.hpp"
+#endif
+
+#ifndef TYPE_HPP_
+    #include "Utils/Type.hpp"
+#endif
+
 #endif /* !INCLUDES_KAPENGINE_HPP_ */
