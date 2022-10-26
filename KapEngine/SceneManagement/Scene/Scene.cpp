@@ -352,3 +352,27 @@ std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::
     return result;
 
 }
+
+bool KapEngine::SceneManagement::Scene::isGameObjectExists(std::size_t const& index) {
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (_gameObjects[i]->getId() == index)
+            return true;
+    }
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (_gameObjectsRun[i]->getId() == index)
+            return true;
+    }
+    return false;
+}
+
+bool KapEngine::SceneManagement::Scene::isGameObjectExists(Entity const& en) {
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        if (_gameObjects[i]->getId() == en.getId())
+            return true;
+    }
+    for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+        if (_gameObjectsRun[i]->getId() == en.getId())
+            return true;
+    }
+    return false;
+}
