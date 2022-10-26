@@ -34,7 +34,11 @@ void KapEngine::UI::Text::onAwake()
 }
 
 void KapEngine::UI::Text::onDisplay() {
-    getGameObject().getEngine().getCurrentGraphicalLib()->drawText(*this);
+    try {
+        getGameObject().getEngine().getCurrentGraphicalLib()->drawText(*this);
+    } catch(...) {
+        DEBUG_ERROR("Failed to draw text");
+    }
 }
 
 bool KapEngine::UI::Text::checkComponentValidity() {

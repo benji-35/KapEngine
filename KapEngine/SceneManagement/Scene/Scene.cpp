@@ -281,14 +281,18 @@ void KapEngine::SceneManagement::Scene::__checkThread() {
         __updateGameObjects(objs);
     }
 
-    try {
-        for (std::size_t i = 0; i < objs.size(); i++) {
-            indexFailed = i;
-            objs[i]->__onSceneUpdated();
+    for (std::size_t i = 0; i < objs.size(); i++) {
+        indexFailed = i;
+        try {
             objs[i]->__updateDisplay();
+        } catch(std::exception &e) {
+            DEBUG_ERROR("Error in __updateDisplay for object " + objs[indexFailed]->getName() + " [" + std::to_string(objs[indexFailed]->getId()) + "]: " + e.what());
         }
-    } catch(...) {
-        DEBUG_ERROR("Error in __onSceneUpdated + updateDisplay for object " + objs[indexFailed]->getName());
+        try {
+            objs[i]->__onSceneUpdated();
+        } catch(std::exception& e) {
+            DEBUG_ERROR("Error in __onSceneUpdated for object " + objs[indexFailed]->getName() + " [" + std::to_string(objs[indexFailed]->getId()) + "]: " + e.what());
+        }
     }
     try {
         for (std::size_t i = 0; i < _tmpActionsAfterUpdate.size(); i++) {

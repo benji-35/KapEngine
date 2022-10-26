@@ -27,7 +27,11 @@ void KapEngine::UI::Image::onAwake() {
 }
 
 void KapEngine::UI::Image::onDisplay() {
-    getGameObject().getEngine().getCurrentGraphicalLib()->drawImage(*this);
+    try {
+        getGameObject().getEngine().getCurrentGraphicalLib()->drawImage(*this);
+    } catch(...) {
+        DEBUG_ERROR("Failed to draw image");
+    }
 }
 
 KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
