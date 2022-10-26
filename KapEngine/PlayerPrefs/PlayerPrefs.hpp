@@ -141,6 +141,16 @@ namespace KapEngine {
                 return false;
             }
 
+            static bool hasKey(std::string const& name) {
+                std::vector<PlayerPrefIntel> intels = readPlayerPref();
+
+                for (std::size_t i = 0; i < intels.size(); i++) {
+                    if (name == intels.at(i).key)
+                        return true;
+                }
+                return false;
+            }
+
         protected:
         private:
 
