@@ -186,7 +186,6 @@ void KapEngine::GameObject::__destroyIt() {
     }
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
         _componentsRun[i]->onDestroy();
-        _componentsRun[i].reset();
     }
     _componentsRun.clear();
 }
