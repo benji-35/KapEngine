@@ -34,6 +34,7 @@ void Collider::onUpdate() {
 void Collider::onSceneUpdated() {
     if (!_isTrigger)
         return;
+    __checkCollidersExists();
     //check all collided
     for (std::size_t i = 0; i < _justCollidedObjects.size(); i++) {
         if (__colliderAlreadyCollide(_justCollidedObjects[i])) {
@@ -158,4 +159,20 @@ bool Collider::__alreayCalculated(std::shared_ptr<Collider> &collider) {
         }
     }
     return false;
+}
+
+void Collider::__checkCollidersExists() {
+    auto &scene = getGameObject().getScene();
+    for (std::size_t i = 0; i < _collidedObjects.size(); i++) {
+        if (!scene.isGameObjectExists(_collidedObjects[i]->getGameObject().getId())) {
+            _collidedObjects.erase(_collidedObjects.begin() + i);
+            i--;
+        }
+    }
+    for (std::size_t i = 0; i < _justCollidedObjects.size(); i++) {
+        if (!scene.isGameObjectExists(_justCollidedObjects[i]->getGameObject().getId())) {
+            _justCollidedObjects.erase(_justCollidedObjects.begin() + i);
+            i--;
+        }
+    }
 }

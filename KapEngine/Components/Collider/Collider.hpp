@@ -94,6 +94,7 @@ namespace KapEngine {
             bool __colliderAlreadyCollide(std::shared_ptr<Collider> &collider);
             bool __currentlyCollided(std::shared_ptr<Collider> &collider);
             bool __alreayCalculated(std::shared_ptr<Collider> &collider);
+            void __checkCollidersExists();
     };
 
 }
