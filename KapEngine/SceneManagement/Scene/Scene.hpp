@@ -132,7 +132,21 @@ namespace KapEngine {
 
                 KEngine &getEngine();
 
+                /**
+                 * @brief return if GameObject exists
+                 * 
+                 * @param index 
+                 * @return true 
+                 * @return false 
+                 */
                 bool isGameObjectExists(std::size_t const& index);
+                /**
+                 * @brief return if GameObject exists
+                 * 
+                 * @param index 
+                 * @return true 
+                 * @return false 
+                 */
                 bool isGameObjectExists(Entity const& en);
 
                 /**
