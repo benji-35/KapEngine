@@ -80,7 +80,13 @@ KapEngine::Events::Mouse KapEngine::Component::getMouse() {
 }
 
 KapEngine::GameObject &KapEngine::Component::getGameObjectConst() const {
-    return *_go->getSceneConst().getGameObjectConst(_go->getId());
+    try {
+        if (_go.use_count() <= 1)
+            throw Errors::SceneError("GameObject does not exist in scene");
+        return *_go;
+    } catch (Errors::SceneError e) {
+        throw Errors::ComponentError(std::string(e.what()));
+    }
 }
 
 bool KapEngine::Component::__checkValidity() {
