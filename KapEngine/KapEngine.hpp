@@ -122,4 +122,8 @@ namespace KapEngine {
     #include "Utils/Type.hpp"
 #endif
 
+#ifndef KAPENGINEVERSION_HPP_
+    #include "KapEngineVersion.hpp"
+#endif
+
 #endif /* !INCLUDES_KAPENGINE_HPP_ */
