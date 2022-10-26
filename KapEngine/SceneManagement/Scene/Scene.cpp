@@ -258,9 +258,15 @@ void KapEngine::SceneManagement::Scene::__threadSceneUpdate(std::vector<std::sha
 
 void KapEngine::SceneManagement::Scene::__checkThread() {
     auto objs = __getGameObjectsNoParent();
+    std::size_t indexFailed = 0;
 
-    for (std::size_t i = 0; i < objs.size(); i++) {
-        objs[i]->__onSceneGonnaUpdated();
+    try {
+        for (std::size_t i = 0; i < objs.size(); i++) {
+            indexFailed = i;
+            objs[i]->__onSceneGonnaUpdated();
+        }
+    } catch (...) {
+        DEBUG_ERROR("Error in __onSceneGonnaUpdated for object " + objs[indexFailed]->getName());
     }
 
     if (getEngine().isEngineThreaded()) {
@@ -275,12 +281,22 @@ void KapEngine::SceneManagement::Scene::__checkThread() {
         __updateGameObjects(objs);
     }
 
-    for (std::size_t i = 0; i < objs.size(); i++) {
-        objs[i]->__onSceneUpdated();
-        objs[i]->__updateDisplay();
+    try {
+        for (std::size_t i = 0; i < objs.size(); i++) {
+            indexFailed = i;
+            objs[i]->__onSceneUpdated();
+            objs[i]->__updateDisplay();
+        }
+    } catch(...) {
+        DEBUG_ERROR("Error in __onSceneUpdated + updateDisplay for object " + objs[indexFailed]->getName());
     }
-    for (std::size_t i = 0; i < _tmpActionsAfterUpdate.size(); i++) {
-        _tmpActionsAfterUpdate[i](*this);
+    try {
+        for (std::size_t i = 0; i < _tmpActionsAfterUpdate.size(); i++) {
+            indexFailed = i;
+            _tmpActionsAfterUpdate[i](*this);
+        }
+    } catch(...) {
+        DEBUG_ERROR("Error in scene update action " + std::to_string(indexFailed));
     }
     _tmpActionsAfterUpdate.clear();
 }

@@ -56,7 +56,7 @@ void KapEngine::SceneManagement::SceneManager::__update() {
             loadScene(1);
         getCurrentScene().__update();
     } catch(...) {
-        DEBUG_ERROR("Cannot update scene");
+        DEBUG_ERROR("Cannot update scene " + getCurrentScene().getName());
     }
 }
 
