@@ -309,11 +309,11 @@ void KapEngine::SceneManagement::Scene::__updateGameObjects(std::vector<std::sha
 std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::Scene::__getGameObjectsNoParent() {
     std::vector<std::shared_ptr<GameObject>> result;
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-        if (_gameObjects[i]->getComponent<Transform>().getParentId() == 0)
+        if (_gameObjects[i]->getComponent<Transform>().getParentId() == 0 && _gameObjects[i].use_count() != 0 && _gameObjects[i]->isActive())
             result.push_back(_gameObjects[i]);
     }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
-        if (_gameObjectsRun[i]->getComponent<Transform>().getParentId() == 0)
+        if (_gameObjectsRun[i]->getComponent<Transform>().getParentId() == 0 && _gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->isActive())
             result.push_back(_gameObjectsRun[i]);
     }
     return result;
