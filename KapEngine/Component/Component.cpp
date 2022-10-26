@@ -23,7 +23,9 @@ KapEngine::Component::~Component() {
 
 KapEngine::GameObject &KapEngine::Component::getGameObject() {
     try {
-        return *_go->getScene().getGameObject(_go->getId());
+        if (_go.use_count() <= 1)
+            throw Errors::SceneError("GameObject does not exist in scene");
+        return *_go;
     } catch (Errors::SceneError e) {
         throw Errors::ComponentError(std::string(e.what()));
     }
