@@ -50,11 +50,16 @@ namespace KapEngine {
 
             //create image
             static std::shared_ptr<GameObject> createImage(SceneManagement::Scene &scene, std::string const& name = "Image", std::string const& pathImage = "") {
+                return createImage(scene, name, pathImage, {0, 0, 0, 0});
+            }
+
+            static std::shared_ptr<GameObject> createImage(SceneManagement::Scene &scene, std::string const& name = "Image", std::string const& pathImage, Tools::Rectangle const& rect) {
                 auto result = Factory::createEmptyGameObject(scene, name);
                 std::shared_ptr<Image> imgComponent = std::make_shared<Image>(result);
                 result->addComponent(imgComponent);
 
                 imgComponent->setPathSprite(pathImage);
+                imgComponent->setRectangle(rect);
 
                 return result;
             }
