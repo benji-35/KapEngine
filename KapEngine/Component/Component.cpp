@@ -96,6 +96,8 @@ bool KapEngine::Component::__checkValidity() {
         DEBUG_WARNING("Component " + getName() + " is disable or destroy");
         return false;
     }
+    if (getGameObject().getScene().__isChangingScene())
+        return false;
     if (!getTransform().allParentsActive())
         return false;
     if (!checkComponentValidity()) {

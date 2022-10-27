@@ -204,6 +204,10 @@ namespace KapEngine {
                     _tmpActionsAfterUpdate.push_back(action);
                 }
 
+                bool __isChangingScene() const {
+                    return _changingScene;
+                }
+
             protected:
             private:
                 std::size_t _id = 0;
@@ -213,6 +217,7 @@ namespace KapEngine {
                 std::vector<std::shared_ptr<GameObject>> _gameObjects;
                 std::vector<std::shared_ptr<GameObject>> _gameObjectsRun;
                 std::vector<std::size_t> _gameObjectsToDestroy;
+                bool _changingScene = false;
 
                 void __checkDestroy();
                 void __checkThread();

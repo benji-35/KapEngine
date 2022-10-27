@@ -101,6 +101,7 @@ void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject
 }
 
 void KapEngine::SceneManagement::Scene::__changingScene() {
+    _changingScene = true;
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
         _gameObjectsRun[i].reset();
     }
@@ -184,6 +185,7 @@ void KapEngine::SceneManagement::Scene::__checkDestroy() {
 }
 
 void KapEngine::SceneManagement::Scene::__init() {
+    _changingScene = false;
     _gameObjectsRun.clear();
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         _gameObjects[i]->__init();
@@ -252,6 +254,8 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::findFi
 
 void KapEngine::SceneManagement::Scene::__threadSceneUpdate(std::vector<std::shared_ptr<GameObject>> gos, bool physics) {
     for (std::size_t i = 0; i < gos.size(); i++) {
+        if (gos[i]->getScene().__isChangingScene())
+            return;
         gos[i]->__update(physics);
     }
 }
