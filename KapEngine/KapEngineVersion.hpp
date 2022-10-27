@@ -18,12 +18,12 @@
  * @brief KapEngine minor version
  * @return int value
 */
-#define KAPENGINE_VERSION_MINOR 213
+#define KAPENGINE_VERSION_MINOR 214
 /**
  * @brief KapEngine version
  * @return string value
  */
-#define KAPENGINE_VERSION "1.2.13"
+#define KAPENGINE_VERSION "1.2.14"
 
 
 #define IS_KAPENGINE_VERSION(x, y) (KAPENGINE_VERSION_MAJOR != x)? false : (KAPENGINE_VERSION_MINOR != y)? false : true
