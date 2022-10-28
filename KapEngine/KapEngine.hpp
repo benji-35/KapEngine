@@ -8,6 +8,10 @@
 #ifndef INCLUDES_KAPENGINE_HPP_
 #define INCLUDES_KAPENGINE_HPP_
 
+#ifndef KAPENGINESETTINGS_HPP_
+    #include "KapEngineSettings.hpp"
+#endif
+
 namespace KapEngine {
     class KEngine;
 
@@ -120,10 +124,6 @@ namespace KapEngine {
 
 #ifndef TYPE_HPP_
     #include "Utils/Type.hpp"
-#endif
-
-#ifndef KAPENGINEVERSION_HPP_
-    #include "KapEngineVersion.hpp"
 #endif
 
 #endif /* !INCLUDES_KAPENGINE_HPP_ */
