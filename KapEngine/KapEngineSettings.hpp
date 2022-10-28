@@ -47,7 +47,7 @@
 #ifndef KAPENGINE_PREFIX_ASSETS_PATH
     #if ON_WINDOWS
         #if WINDOWS_ASSET_PATH_CHANGED
-            #define KAPENGINE_PREFIX_ASSETS_PATH "../../"
+            #define KAPENGINE_PREFIX_ASSETS_PATH "../../../"
         #else
             #define KAPENGINE_PREFIX_ASSETS_PATH ""
         #endif
