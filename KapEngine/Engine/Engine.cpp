@@ -8,6 +8,7 @@
 #include "Engine.hpp"
 #include "KapEngineDebug.hpp"
 #include "EventManager.hpp"
+#include "KapEngineSettings.hpp"
 
 KapEngine::KEngine::KEngine(bool debug, std::string const& gameName, std::string const& version, std::string const& company) {
     _debug = debug;
@@ -29,6 +30,9 @@ KapEngine::KEngine::~KEngine() {
 
 void KapEngine::KEngine::run() {
     DEBUG_WARNING("[ RUNNING ] running game");
+    #if KAPENGINE_THREAD_ACTIVE
+        DEBUG_ERROR("THREAD ARE ACTIVETED !");
+    #endif
     _splashsScreen->__init();
     _run = true;
     _internalClock.restart();
