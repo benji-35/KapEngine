@@ -25,10 +25,10 @@ endif(${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR} AND NOT W
 project(KapEngine LANGUAGES CXX)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-option(KAPENGINE_THREAD "Build the engine with thread" FALSE)
-option(KAPENGINE_BETA "Build the engine with beta additionals" FALSE)
-option(KAPENGINE_DEBUG "Build the engine in debug mode" FALSE)
-option(KAPENGINE_EDITOR "Build the engine in editor mode (only editor should use this option)" FALSE)
+option(KAPENGINE_THREAD "Build the engine with thread" OFF)
+option(KAPENGINE_BETA "Build the engine with beta additionals" OFF)
+option(KAPENGINE_DEBUG "Build the engine in debug mode" OFF)
+option(KAPENGINE_EDITOR "Build the engine in editor mode (only editor should use this option)" OFF)
 
 set(CMAKE_CXX_STANDARD 17)
 
