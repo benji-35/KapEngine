@@ -24,6 +24,11 @@ endif(${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR} AND NOT W
 
 project(KapEngine LANGUAGES CXX)
 
+option(KAPENGINE_THREAD "Build the engine with thread" OFF)
+option(KAPENGINE_BETA "Build the engine with beta additionals" OFF)
+option(KAPENGINE_DEBUG "Build the engine in debug mode" OFF)
+option(KAPENGINE_EDITOR "Build the engine in editor mode (only editor should use this option)" OFF)
+
 set(CMAKE_CXX_STANDARD 17)
 
 # KapEngine includes
@@ -39,3 +44,19 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -g")
 
 # Linker flags
 set_target_properties(KapEngine PROPERTIES LINK_FLAGS "-pthread")
+
+if(${KAPENGINE_THREAD})
+	set_target_properties(KapEngine PROPERTIES LINK_FLAGS "-D KAPENGINE_THREAD_ACTIVE")
+endif()
+
+if(${KAPENGINE_BETA})
+	set_target_properties(KapEngine PROPERTIES LINK_FLAGS "-D KAPENGINE_BETA_ACTIVE")
+endif()
+
+if(${KAPENGINE_DEBUG})
+	set_target_properties(KapEngine PROPERTIES LINK_FLAGS "-D KAPENGINE_DEBUG_ACTIVE")
+endif()
+
+if(${KAPENGINE_EDITOR})
+	set_target_properties(KapEngine PROPERTIES LINK_FLAGS "-D KAPENGINE_EDITOR_ACTIVE")
+endif()
