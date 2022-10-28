@@ -28,4 +28,40 @@
     #define KAPENGINE_EDITOR_ACTIVE false
 #endif
 
+#ifndef WINDOWS_ASSET_PATH_CHANGED
+    #define WINDOWS_ASSET_PATH_CHANGED true
+#endif
+
+#ifndef LINUX_ASSET_PATH_CHANGED
+    #define LINUX_ASSET_PATH_CHANGED true
+#endif
+
+#ifndef MACOS_ASSET_PATH_CHANGED
+    #define MACOS_ASSET_PATH_CHANGED true
+#endif
+
+#ifndef PREFIX_ASSETS_PATH
+    #if ON_WINDOWS
+        #if WINDOWS_ASSET_PATH_CHANGED
+            #define PREFIX_ASSETS_PATH "../../"
+        #else
+            #define PREFIX_ASSETS_PATH ""
+        #endif
+    #elif ON_LINUX
+        #if LINUX_ASSET_PATH_CHANGED
+            #define PREFIX_ASSETS_PATH "../"
+        #else
+            #define PREFIX_ASSETS_PATH ""
+        #endif
+    #elif ON_MACOS
+        #if MACOS_ASSET_PATH_CHANGED
+            #define PREFIX_ASSETS_PATH "../"
+        #else
+            #define PREFIX_ASSETS_PATH ""
+        #endif
+    #else
+        #define PREFIX_ASSETS_PATH ""
+    #endif
+#endif
+
 #endif /* !KAPENGINESETTINGS_HPP_ */
