@@ -33,6 +33,15 @@ void KapEngine::KEngine::run() {
     #if KAPENGINE_THREAD_ACTIVE
         DEBUG_ERROR("THREAD ARE ACTIVETED !");
     #endif
+    #if KAPENGINE_EDITOR_ACTIVE
+        DEBUG_ERROR("EDITOR IS ACTIVETED !");
+    #endif
+    #if KAPENGINE_BETA_ACTIVE
+        DEBUG_ERROR("BETA IS ACTIVETED !");
+    #endif
+    #if KAPENGINE_DEBUG_ACTIVE
+        DEBUG_ERROR("DEBUG IS ACTIVETED !");
+    #endif
     _splashsScreen->__init();
     _run = true;
     _internalClock.restart();
