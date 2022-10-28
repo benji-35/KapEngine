@@ -11,6 +11,8 @@
 #include "Engine.hpp"
 #include "GameObject.hpp"
 
+#include "KapEngineSettings.hpp"
+
 #include <functional>
 
 namespace KapEngine {
@@ -187,6 +189,7 @@ namespace KapEngine {
                  */
                 std::shared_ptr<GameObject> findFirstGameObject(std::string const& name);
 
+                #if KAPENGINE_THREAD_ACTIVE
                 /**
                  * @brief update scene by thread
                  * 
@@ -194,7 +197,7 @@ namespace KapEngine {
                  * @param go
                  */
                 static void __threadSceneUpdate(std::vector<std::shared_ptr<GameObject>> gos, bool physics);
-
+                #endif
                 /**
                  * @brief add temporary action when scene updated
                  * 
@@ -220,7 +223,9 @@ namespace KapEngine {
                 bool _changingScene = false;
 
                 void __checkDestroy();
+                #if KAPENGINE_THREAD_ACTIVE
                 void __checkThread();
+                #endif
                 std::size_t __nbGameObjectNoParent();
                 std::vector<std::shared_ptr<GameObject>> __getGameObjectsNoParent();
                 void __updateGameObjects(std::vector<std::shared_ptr<GameObject>> objs);
