@@ -15,10 +15,15 @@
 #include <thread>
 
 KapEngine::SceneManagement::Scene::Scene(SceneManager &manager, std::string const& name) : manager(manager) {
-    DEBUG_LOG("Start init scene");
+    #if KAPENGINE_DEBUG_ACTIVE
+        DEBUG_LOG("Start init scene");
+    #endif
     _name = name;
     __finit();
-    DEBUG_LOG("Stop init scene");
+    
+    #if KAPENGINE_DEBUG_ACTIVE
+        DEBUG_LOG("Stop init scene");
+    #endif
 }
 
 KapEngine::SceneManagement::Scene::~Scene() {
@@ -75,9 +80,9 @@ void KapEngine::SceneManagement::Scene::__update() {
     try {
         Component camera = getActiveCamera();
     } catch(...) {
-        if (getEngine().debugMode()) {
+        #if KAPENGINE_DEBUG_ACTIVE
             DEBUG_ERROR("No camera found in scene");
-        }
+        #endif
         return;
     }
     #if KAPENGINE_THREAD_ACTIVE
@@ -103,12 +108,17 @@ void KapEngine::SceneManagement::Scene::__update() {
             try {
                 objs[i]->__updateDisplay();
             } catch(std::exception &e) {
-                DEBUG_ERROR("Error in __updateDisplay for object " + objs[indexFailed]->getName() + " [" + std::to_string(objs[indexFailed]->getId()) + "]: " + e.what());
+                #if KAPENGINE_DEBUG_ACTIVE
+                    DEBUG_ERROR("Error in __updateDisplay for object " + objs[indexFailed]->getName() + " [" + std::to_string(objs[indexFailed]->getId()) + "]: " + e.what());
+                #endif
             }
             try {
                 objs[i]->__onSceneUpdated();
             } catch(std::exception& e) {
-                DEBUG_ERROR("Error in __onSceneUpdated for object " + objs[indexFailed]->getName() + " [" + std::to_string(objs[indexFailed]->getId()) + "]: " + e.what());
+                
+                #if KAPENGINE_DEBUG_ACTIVE
+                    DEBUG_ERROR("Error in __onSceneUpdated for object " + objs[indexFailed]->getName() + " [" + std::to_string(objs[indexFailed]->getId()) + "]: " + e.what());
+                #endif
             }
         }
         try {
@@ -117,7 +127,9 @@ void KapEngine::SceneManagement::Scene::__update() {
                 _tmpActionsAfterUpdate[i](*this);
             }
         } catch(...) {
-            DEBUG_ERROR("Error in scene update action " + std::to_string(indexFailed));
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_ERROR("Error in scene update action " + std::to_string(indexFailed));
+            #endif
         }
         _tmpActionsAfterUpdate.clear();
     #endif
@@ -125,14 +137,16 @@ void KapEngine::SceneManagement::Scene::__update() {
 
 void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {
     if (go->getId() != 0) {
-        DEBUG_WARNING("Object " + go->getName() + " already added in scene: " + go->getScene().getName());
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_WARNING("Object " + go->getName() + " already added in scene: " + go->getScene().getName());
+        #endif
         return;
     }
     _idObjectMax++;
     go->__setId(_idObjectMax);
-    if (getEngine().debugMode()) {
+    #if KAPENGINE_DEBUG_ACTIVE
         DEBUG_LOG("Add object " + go->getName() + " in scene " + getName());
-    }
+    #endif
     if (!getEngine().isRunning() || manager.getCurrentSceneId() != getId()) {
         _gameObjects.push_back(go);
     } else {
@@ -240,7 +254,9 @@ void KapEngine::SceneManagement::Scene::__finit() {
 }
 
 void KapEngine::SceneManagement::Scene::dump(bool b) {
-    DEBUG_LOG("Scene: " + getName());
+    #if KAPENGINE_DEBUG_ACTIVE
+        DEBUG_LOG("Scene: " + getName());
+    #endif
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         if (_gameObjects[i]->getComponent<Transform>().getParentId() == 0) {
             _gameObjects[i]->dump(b, "");
@@ -313,7 +329,9 @@ void KapEngine::SceneManagement::Scene::__checkThread() {
             objs[i]->__onSceneGonnaUpdated();
         }
     } catch (...) {
-        DEBUG_ERROR("Error in __onSceneGonnaUpdated for object " + objs[indexFailed]->getName());
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("Error in __onSceneGonnaUpdated for object " + objs[indexFailed]->getName());
+        #endif
     }
 
     std::thread t1(__threadSceneUpdate, objs, true);
@@ -329,12 +347,16 @@ void KapEngine::SceneManagement::Scene::__checkThread() {
         try {
             objs[i]->__updateDisplay();
         } catch(std::exception &e) {
-            DEBUG_ERROR("Error in __updateDisplay for object " + objs[indexFailed]->getName() + " [" + std::to_string(objs[indexFailed]->getId()) + "]: " + e.what());
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_ERROR("Error in __updateDisplay for object " + objs[indexFailed]->getName() + " [" + std::to_string(objs[indexFailed]->getId()) + "]: " + e.what());
+            #endif
         }
         try {
             objs[i]->__onSceneUpdated();
         } catch(std::exception& e) {
-            DEBUG_ERROR("Error in __onSceneUpdated for object " + objs[indexFailed]->getName() + " [" + std::to_string(objs[indexFailed]->getId()) + "]: " + e.what());
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_ERROR("Error in __onSceneUpdated for object " + objs[indexFailed]->getName() + " [" + std::to_string(objs[indexFailed]->getId()) + "]: " + e.what());
+            #endif
         }
     }
     try {
@@ -343,7 +365,9 @@ void KapEngine::SceneManagement::Scene::__checkThread() {
             _tmpActionsAfterUpdate[i](*this);
         }
     } catch(...) {
-        DEBUG_ERROR("Error in scene update action " + std::to_string(indexFailed));
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("Error in scene update action " + std::to_string(indexFailed));
+        #endif
     }
     _tmpActionsAfterUpdate.clear();
 }

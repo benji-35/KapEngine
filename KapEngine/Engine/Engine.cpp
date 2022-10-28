@@ -29,18 +29,8 @@ KapEngine::KEngine::~KEngine() {
 }
 
 void KapEngine::KEngine::run() {
-    DEBUG_WARNING("[ RUNNING ] running game");
-    #if KAPENGINE_THREAD_ACTIVE
-        DEBUG_ERROR("THREAD ARE ACTIVETED !");
-    #endif
-    #if KAPENGINE_EDITOR_ACTIVE
-        DEBUG_ERROR("EDITOR IS ACTIVETED !");
-    #endif
-    #if KAPENGINE_BETA_ACTIVE
-        DEBUG_ERROR("BETA IS ACTIVETED !");
-    #endif
     #if KAPENGINE_DEBUG_ACTIVE
-        DEBUG_ERROR("DEBUG IS ACTIVETED !");
+        DEBUG_WARNING("[ RUNNING ] running game");
     #endif
     _splashsScreen->__init();
     _run = true;
@@ -81,13 +71,17 @@ std::size_t KapEngine::KEngine::getCurrentGraphicalLibIndex() const {
 }
 
 void KapEngine::KEngine::__init() {
-    DEBUG_LOG("[INIT] KapEngine");
+    #if KAPENGINE_DEBUG_ACTIVE
+        DEBUG_LOG("[INIT] KapEngine");
+    #endif
     _sceneManager = std::make_shared<SceneManagement::SceneManager>(*this);
     _prefabManager = std::make_shared<Prefabs::PrefabManager>(*this);
     _libManager = std::make_shared<Graphical::GraphicalLibManager>(*this);
     _eventManager = std::make_shared<Events::EventManager>(*this);
     _splashsScreen = std::make_shared<SceneManagement::SplashScreen>(*this);
-    DEBUG_LOG("[INIT] end init KapEngine");
+    #if KAPENGINE_DEBUG_ACTIVE
+        DEBUG_LOG("[INIT] end init KapEngine");
+    #endif
 }
 
 KapEngine::Events::EventManager &KapEngine::KEngine::getEventManager() {

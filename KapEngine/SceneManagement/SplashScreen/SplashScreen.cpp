@@ -61,7 +61,9 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
         auto &canvasC = canvas->getComponent<UI::Canvas>();
         canvasC.setResizeType(UI::Canvas::ResizyngType::RESIZE_WITH_SCREEN);
     } catch(...) {
-        DEBUG_ERROR("Splashscreen failed to acces canvas component");
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("Splashscreen failed to acces canvas component");
+        #endif
     }
 
     //init all GameObjects in splashScreen scene
@@ -69,7 +71,9 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
         std::string objName = "Image(" + std::to_string(i) + ")";
         std::shared_ptr<GameObject> img = UI::UiFactory::createImage(*sceneSplash, objName, _splahes[i]->pathImage);
 
-        DEBUG_LOG("Create splash screen " + objName);
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_LOG("Create splash screen " + objName);
+        #endif
 
         Tools::Vector3 startPos(_splahes[i]->pos.getX(), _splahes[i]->pos.getY(), 0);
         Tools::Vector3 startScale(_splahes[i]->size.getX(), _splahes[i]->size.getY(), 0);
@@ -127,9 +131,13 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
     try {
         Camera &cam = (Camera&)sceneSplash->getActiveCamera();
         cam.setBackgroundColor(Tools::Color::black());
-        DEBUG_LOG("[Splash Screen]Active camera on object " + std::to_string(cam.getGameObject().getId()));
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_LOG("[Splash Screen]Active camera on object " + std::to_string(cam.getGameObject().getId()));
+        #endif
     } catch(...) {
-        DEBUG_ERROR("Camera not found for splashscreen creation");
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("Camera not found for splashscreen creation");
+        #endif
     }
     //set splash screen scene as first scene
     _engine.getSceneManager()->loadScene(sceneSplash->getId());

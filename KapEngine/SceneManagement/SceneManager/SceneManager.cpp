@@ -11,11 +11,14 @@
 #include "Camera.hpp"
 
 KapEngine::SceneManagement::SceneManager::SceneManager(KEngine &engine) : _engine(engine) {
-    if (_engine.debugMode())
+    
+    #if KAPENGINE_DEBUG_ACTIVE
         DEBUG_LOG("Create Default Scene");
+    #endif
     createScene("Default Scene");
-    if (_engine.debugMode())
+    #if KAPENGINE_DEBUG_ACTIVE
         DEBUG_LOG("End init sceneManager");
+    #endif
 }
 
 KapEngine::SceneManagement::SceneManager::~SceneManager() {
@@ -32,7 +35,9 @@ void KapEngine::SceneManagement::SceneManager::addScene(std::shared_ptr<Scene> s
 
     for (std::size_t i = 0; i < _scenes.size(); i++) {
         if (_scenes[i].use_count() != 0 && _scenes[i]->getName() == scene->getName()) {
-            DEBUG_ERROR("Scene called \"" + scene->getName() + "\" already exists");
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_ERROR("Scene called \"" + scene->getName() + "\" already exists");
+            #endif
             return;
         }
     }
@@ -40,8 +45,9 @@ void KapEngine::SceneManagement::SceneManager::addScene(std::shared_ptr<Scene> s
     _maxIndex++;
     scene->setId(_maxIndex);
     _scenes.push_back(scene);
-    if (_engine.debugMode())
+    #if KAPENGINE_DEBUG_ACTIVE
         DEBUG_LOG("Scene " + scene->getName() + " added to scene manager");
+    #endif
 }
 
 void KapEngine::SceneManagement::SceneManager::addScene(std::string const& name) {
@@ -56,15 +62,17 @@ void KapEngine::SceneManagement::SceneManager::__update() {
             loadScene(1);
         getCurrentScene().__update();
     } catch(...) {
-        DEBUG_ERROR("Cannot update scene " + getCurrentScene().getName());
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("Cannot update scene " + getCurrentScene().getName());
+        #endif
     }
 }
 
 void KapEngine::SceneManagement::SceneManager::removeScene(std::size_t index) {
     if (!sceneExists(index)) {
-        if (getEngine().debugMode()) {
+        #if KAPENGINE_DEBUG_ACTIVE
             DEBUG_ERROR("Cannot destroy scene id: " + std::to_string(index) + " because it does not exists.");
-        }
+        #endif
         return;
     }
     _scenes.erase(_scenes.begin() + getSceneIndexInList(index));
@@ -72,9 +80,9 @@ void KapEngine::SceneManagement::SceneManager::removeScene(std::size_t index) {
 
 void KapEngine::SceneManagement::SceneManager::removeScene(std::string const& sceneName) {
     if (!sceneExists(sceneName)) {
-        if (getEngine().debugMode()) {
+        #if KAPENGINE_DEBUG_ACTIVE
             DEBUG_ERROR("Cannot destroy scene \"" + sceneName + "\" because it does not exists.");
-        }
+        #endif
         return;
     }
     _scenes.erase(_scenes.begin() + getSceneIndexInList(sceneName));
@@ -122,9 +130,9 @@ std::size_t KapEngine::SceneManagement::SceneManager::getSceneIndexInList(std::s
 
 void KapEngine::SceneManagement::SceneManager::loadScene(std::string const& sceneName) {
     if (!sceneExists(sceneName)) {
-        if (getEngine().debugMode()) {
+        #if KAPENGINE_DEBUG_ACTIVE
             DEBUG_ERROR("Cannot load scene \"" + sceneName + "\" because it does not exists");
-        }
+        #endif
         return;
     }
     loadScene(getSceneIndex(sceneName));
@@ -132,9 +140,9 @@ void KapEngine::SceneManagement::SceneManager::loadScene(std::string const& scen
 
 void KapEngine::SceneManagement::SceneManager::loadScene(std::size_t index) {
     if (!sceneExists(index)) {
-        if (getEngine().debugMode()) {
+        #if KAPENGINE_DEBUG_ACTIVE
             DEBUG_ERROR("Cannot load scene id: " + std::to_string(index) + " because it does not exists");
-        }
+        #endif
         return;
     }
     try {
@@ -142,10 +150,10 @@ void KapEngine::SceneManagement::SceneManager::loadScene(std::size_t index) {
     } catch(...) {}
     _indexScene = index;
     getCurrentScene().__init();
-    if (_engine.debugMode()) {
+    #if KAPENGINE_DEBUG_ACTIVE
         getCurrentScene().dump(true);
         DEBUG_WARNING("Changing scene to scene " + getSceneName(index));
-    }
+    #endif
 }
 
 std::string KapEngine::SceneManagement::SceneManager::getSceneName(std::size_t index) {

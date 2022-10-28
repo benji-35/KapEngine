@@ -10,6 +10,7 @@
 #include "Transform.hpp"
 
 #include "KapEngineDebug.hpp"
+#include "KapEngineSettings.hpp"
 
 KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string const& name, int threadId) {
     _go = go;
@@ -93,7 +94,9 @@ bool KapEngine::Component::__checkValidity() {
     if (!_enable)
         return false;
     if (!getGameObject().isActive() || getGameObject().isDestroyed()) {
-        DEBUG_WARNING("Component " + getName() + " is disable or destroy");
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_WARNING("Component " + getName() + " is disable or destroy");
+        #endif
         return false;
     }
     if (getGameObject().getScene().__isChangingScene())
@@ -101,7 +104,9 @@ bool KapEngine::Component::__checkValidity() {
     if (!getTransform().allParentsActive())
         return false;
     if (!checkComponentValidity()) {
-        DEBUG_WARNING("Component " + getName() + " is disable by the creator");
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_WARNING("Component " + getName() + " is disable by the creator");
+        #endif
         return false;
     }
     for (std::size_t i = 0; i < _componentsNeeded.size(); i++) {

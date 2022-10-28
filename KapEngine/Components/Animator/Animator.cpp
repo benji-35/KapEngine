@@ -63,8 +63,9 @@ void KapEngine::Animator::setTrigger(std::string name) {
             }
         }
     }
-    if (getGameObject().getEngine().debugMode())
+    #if KAPENGINE_DEBUG_ACTIVE
         DEBUG_ERROR("[Animator]: trigger " + name + " does not exists");
+    #endif
 }
 
 std::shared_ptr<KapEngine::Animator::NodeAnim> KapEngine::Animator::getAnimNode(std::string name) {
@@ -95,15 +96,21 @@ void KapEngine::Animator::addLink(std::string animName, std::string outAnim, std
     bool isMainExit = false;
 
     if (node.use_count() == 0) {
-        DEBUG_ERROR("[Animator] addLink no animation found with name " + animName);
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("[Animator] addLink no animation found with name " + animName);
+        #endif
         return;
     }
     if (out.use_count() == 0) {
-        DEBUG_ERROR("[Animator] addLink no animation found with name " + outAnim);
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("[Animator] addLink no animation found with name " + outAnim);
+        #endif
         return;
     }
     if (triggers.size() == 0 && node->hasMainExit()) {
-        DEBUG_ERROR("[Animator] addLink animation " + animName + " already had a main exit");
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("[Animator] addLink animation " + animName + " already had a main exit");
+        #endif
         return;
     }
 

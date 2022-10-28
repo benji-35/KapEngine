@@ -34,7 +34,9 @@ void KapEngine::GameObject::__update(bool physics, bool runDisplay) {
             return;
         _children = tr.getChildren();
     } catch (...) {
-        DEBUG_ERROR("GameObject has no Transform component for GameObject" + _name);
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("GameObject has no Transform component for GameObject" + _name);
+        #endif
     }
     try {
         for (std::size_t i = 0; i < _components.size(); i++) {
@@ -50,7 +52,9 @@ void KapEngine::GameObject::__update(bool physics, bool runDisplay) {
             }
         }
     } catch (...) {
-        DEBUG_ERROR("Failed to update components for GameObject" + _name);
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("Failed to update components for GameObject" + _name);
+        #endif
     }
     try {
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
@@ -66,7 +70,9 @@ void KapEngine::GameObject::__update(bool physics, bool runDisplay) {
         }
     }
     } catch(...) {
-        DEBUG_ERROR("Failed to update components run for GameObject" + _name);
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("Failed to update components run for GameObject" + _name);
+        #endif
     }
     if (_active == false || _destroyed)
         return;
@@ -75,7 +81,9 @@ void KapEngine::GameObject::__update(bool physics, bool runDisplay) {
             _children[i]->__update(physics, runDisplay);
         }
     } catch(...) {
-        DEBUG_ERROR("Failed to update children for GameObject" + _name);
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("Failed to update children for GameObject" + _name);
+        #endif
     }
 }
 
@@ -99,7 +107,9 @@ void KapEngine::GameObject::__updateDisplay() {
             _components[i]->onDisplay();
         }
     } catch(...) {
-        DEBUG_ERROR("Failed to update display components for GameObject" + _name);
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("Failed to update display components for GameObject" + _name);
+        #endif
     }
     try {
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
@@ -111,7 +121,9 @@ void KapEngine::GameObject::__updateDisplay() {
         _componentsRun[i]->onDisplay();
     }
     } catch(...) {
-        DEBUG_ERROR("Failed to update display components run for GameObject" + _name);
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("Failed to update display components run for GameObject" + _name);
+        #endif
     }
     if (_active == false || _destroyed)
         return;
@@ -120,7 +132,9 @@ void KapEngine::GameObject::__updateDisplay() {
         _children[i]->__updateDisplay();
     }
     } catch(...) {
-        DEBUG_ERROR("Failed to update display children for GameObject" + _name);
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("Failed to update display children for GameObject" + _name);
+        #endif
     }
 }
 
@@ -238,13 +252,19 @@ void KapEngine::GameObject::dump(bool displayComponent, std::string prefix) {
         color = Debug::colorCyan();
     }
 
-    DEBUG_LOG(color + prefix + "-GameObject: " + getName() + Debug::colorNone());
+    #if KAPENGINE_DEBUG_ACTIVE
+        DEBUG_LOG(color + prefix + "-GameObject: " + getName() + Debug::colorNone());
+    #endif
     if (displayComponent) {
         for (std::size_t i = 0; i < _components.size(); i++) {
-            DEBUG_LOG(color + prefix + ": " + _components[i]->getName() + Debug::colorNone());
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_LOG(color + prefix + ": " + _components[i]->getName() + Debug::colorNone());
+            #endif
         }
         for (std::size_t i = 0; i < _componentsRun.size(); i++) {
-            DEBUG_LOG(color + prefix + ": " + _componentsRun[i]->getName() + Debug::colorNone());
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_LOG(color + prefix + ": " + _componentsRun[i]->getName() + Debug::colorNone());
+            #endif
         }
     }
     auto children = getComponent<Transform>().getChildren();

@@ -7,6 +7,7 @@
 
 #include "Transform.hpp"
 #include "KapEngineDebug.hpp"
+#include "KapEngineSettings.hpp"
 #include "Vectors.hpp"
 
 KapEngine::Transform::Transform(std::shared_ptr<GameObject> go) : Component(go, "Transform") {
@@ -253,7 +254,10 @@ std::size_t KapEngine::Transform::getParentContainsComponent(std::string const& 
         }
         return val;
     } catch(...) {
-        DEBUG_ERROR("Failled to get Transform of parent");
+
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("Failled to get Transform of parent");
+        #endif
         return 0;
     }
 }

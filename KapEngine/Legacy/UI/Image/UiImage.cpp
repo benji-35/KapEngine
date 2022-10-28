@@ -30,7 +30,9 @@ void KapEngine::UI::Image::onDisplay() {
     try {
         getGameObject().getEngine().getCurrentGraphicalLib()->drawImage(*this);
     } catch(...) {
-        DEBUG_ERROR("Failed to draw image");
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("Failed to draw image");
+        #endif
     }
 }
 
@@ -55,7 +57,9 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
         resizeType = canvas.getResizeType();
         getCompare = canvas.getScreenSizeCompare();
     } catch(...) {
-        DEBUG_WARNING("Failed to get canvas intels for positions");
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_WARNING("Failed to get canvas intels for positions");
+        #endif
     }
 
     if (resizeType == Canvas::ResizyngType::RESIZE_WITH_SCREEN) {
@@ -92,7 +96,9 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
         getCompare = canvas.getScreenSizeCompare();
 
     } catch(...) {
-        DEBUG_WARNING("Failed to get canvas intels for scale");
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_WARNING("Failed to get canvas intels for scale");
+        #endif
     }
 
     _lastCompare = getCompare;
@@ -117,7 +123,9 @@ bool KapEngine::UI::Image::checkComponentValidity() {
         if (res == false) {
             if (getGameObject().hasComponent<Canvas>())
                 return true;
-            DEBUG_WARNING("Cannot use Image because no canvas found!");
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_WARNING("Cannot use Image because no canvas found!");
+            #endif
         }
         
         return res;

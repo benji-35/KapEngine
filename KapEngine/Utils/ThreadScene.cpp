@@ -11,7 +11,9 @@
 void KapEngine::ThreadScene::__threadRunning(ThreadScene *scene) {
     for (auto go : scene->_gos) {
         if (go.use_count() == 0) {
-            DEBUG_ERROR("GameObject is not initialized");
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_ERROR("GameObject is not initialized");
+            #endif
         } else {
             go->__update(false);
         }

@@ -33,7 +33,9 @@ void KapEngine::MouseDetector::onUpdate() {
             _square = rect;
 
         } catch(...) {
-            DEBUG_ERROR("[MOUSE DETECTOR] failed to get transform");
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_ERROR("[MOUSE DETECTOR] failed to get transform");
+            #endif
         }
 
     }
@@ -142,7 +144,9 @@ KapEngine::Tools::Vector2 KapEngine::MouseDetector::crossProductScreen(Tools::Ve
         auto &canvas = getGameObject().getScene().getGameObject(canvasId)->getComponent<UI::Canvas>();
         baseScreenSize = canvas.getScreenSizeCompare();
     } catch(...) { 
-        DEBUG_ERROR("Failed to get canvas parent");
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("Failed to get canvas parent");
+        #endif
     }
     Tools::Vector2 currentScreenSize = getGameObject().getScene().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
 

@@ -95,10 +95,10 @@ void KapEngine::Graphical::GraphicalLibManager::changeLib(std::size_t const& lib
         lLib->clearCache();
         lLib->stopDisplay();
     }
-
-    if (getEngine().debugMode()) {
+    
+    #if KAPENGINE_DEBUG_ACTIVE
         DEBUG_WARNING("[Graphic Manager] : changing to lib " + std::to_string(libId));
-    }
+    #endif
 
     std::shared_ptr<GraphicalLib> nLib = getLib(libId);
     nLib->startDisplay();

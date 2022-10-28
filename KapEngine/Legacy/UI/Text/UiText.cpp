@@ -37,7 +37,9 @@ void KapEngine::UI::Text::onDisplay() {
     try {
         getGameObject().getEngine().getCurrentGraphicalLib()->drawText(*this);
     } catch(...) {
-        DEBUG_ERROR("Failed to draw text");
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_ERROR("Failed to draw text");
+        #endif
     }
 }
 
@@ -76,7 +78,9 @@ KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedScale() {
         resizeType = canvas.getResizeType();
         getCompare = canvas.getScreenSizeCompare();
     } catch(...) {
-        DEBUG_WARNING("Failed to get canvas intels for positions");
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_WARNING("Failed to get canvas intels for positions");
+        #endif
     }
 
     _lastCompare = getCompare;
@@ -112,7 +116,9 @@ KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedPos() {
         resizeType = canvas.getResizeType();
         getCompare = canvas.getScreenSizeCompare();
     } catch(...) {
-        DEBUG_WARNING("Failed to get canvas intels for positions");
+        #if KAPENGINE_DEBUG_ACTIVE
+            DEBUG_WARNING("Failed to get canvas intels for positions");
+        #endif
     }
 
     if (resizeType == Canvas::ResizyngType::RESIZE_WITH_SCREEN) {
