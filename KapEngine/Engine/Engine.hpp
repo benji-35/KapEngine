@@ -301,7 +301,20 @@ namespace KapEngine {
              * @param b 
              */
             void setEngineThread(bool b) {
-                _threaded = b;
+                #ifndef KAPENGINE_THREAD_ACTIVE
+                    if (b) {
+                        #define KAPENGINE_THREAD_ACTIVE true
+                    } else {
+                        #define KAPENGINE_THREAD_ACTIVE false
+                    }
+                #else
+                    #undef KAPENGINE_THREAD_ACTIVE
+                    if (b) {
+                        #define KAPENGINE_THREAD_ACTIVE true
+                    } else {
+                        #define KAPENGINE_THREAD_ACTIVE false
+                    }
+                #endif
             }
 
             /**
