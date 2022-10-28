@@ -41,7 +41,23 @@ file(GLOB_RECURSE SOURCES ${KapEngine_SOURCE_DIR}/KapEngine/*.cpp)
 add_library(KapEngine STATIC ${SOURCES} ${HEADERS})
 
 # C++ Flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -g -DKAPENGINE_THREAD_ACTIVE=${KAPENGINE_THREAD} -DKAPENGINE_BETA_ACTIVE=${KAPENGINE_BETA} -DKAPENGINE_DEBUG_ACTIVE=${KAPENGINE_DEBUG} -DKAPENGINE_EDITOR_ACTIVE=${KAPENGINE_EDITOR}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -g")
 
 # Linker flags
 set_target_properties(KapEngine PROPERTIES LINK_FLAGS "-pthread")
+
+if (${KAPENGINE_THREAD})
+	add_compile_options(-DKAPENGINE_THREAD_ACTIVE=true)
+endif()
+
+if (${KAPENGINE_BETA})
+	add_compile_options(-DKAPENGINE_BETA_ACTIVE=true)
+endif()
+
+if (${KAPENGINE_DEBUG})
+	add_compile_options(-DKAPENGINE_DEBUG_ACTIVE=true)
+endif()
+
+if (${KAPENGINE_EDITOR})
+	add_compile_options(-DKAPENGINE_EDITOR_ACTIVE=true)
+endif()
