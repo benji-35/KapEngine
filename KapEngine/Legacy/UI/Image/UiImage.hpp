@@ -15,6 +15,8 @@
 #include "Component.hpp"
 #include <filesystem>
 
+#include "KapEngineSettings.hpp"
+
 
 namespace KapEngine {
 
@@ -46,7 +48,7 @@ namespace KapEngine {
                 }
 
                 std::string getPathSprite() const {
-                    return _pathSprite;
+                    return PREFIX_ASSETS_PATH + _pathSprite;
                 }
 
                 Tools::Color getColorSprite() const {
