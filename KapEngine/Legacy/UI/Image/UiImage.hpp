@@ -48,7 +48,7 @@ namespace KapEngine {
                 }
 
                 std::string getPathSprite() const {
-                    return PREFIX_ASSETS_PATH + _pathSprite;
+                    return KAPENGINE_PREFIX_ASSETS_PATH + _pathSprite;
                 }
 
                 Tools::Color getColorSprite() const {
