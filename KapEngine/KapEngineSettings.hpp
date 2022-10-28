@@ -12,6 +12,10 @@
     #include "KapEngineVersion.hpp"
 #endif
 
+#ifndef KAPENGINE_PLATFORM_HPP
+    #include "Utils/Platform.hpp"
+#endif
+
 #ifndef KAPENGINE_BETA_ACTIVE
     #define KAPENGINE_BETA_ACTIVE false
 #endif
@@ -33,11 +37,11 @@
 #endif
 
 #ifndef LINUX_ASSET_PATH_CHANGED
-    #define LINUX_ASSET_PATH_CHANGED true
+    #define LINUX_ASSET_PATH_CHANGED false
 #endif
 
 #ifndef MACOS_ASSET_PATH_CHANGED
-    #define MACOS_ASSET_PATH_CHANGED true
+    #define MACOS_ASSET_PATH_CHANGED false
 #endif
 
 #ifndef KAPENGINE_PREFIX_ASSETS_PATH
