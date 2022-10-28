@@ -24,4 +24,8 @@
     #include "KapEngineVersion.hpp"
 #endif
 
+#ifndef KAPENGINE_EDITOR_ACTIVE
+    #define KAPENGINE_EDITOR_ACTIVE false
+#endif
+
 #endif /* !KAPENGINESETTINGS_HPP_ */
