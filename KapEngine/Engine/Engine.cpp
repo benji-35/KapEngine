@@ -48,23 +48,9 @@ void KapEngine::KEngine::run() {
     #if KAPENGINE_BETA_ACTIVE
         DEBUG_WARNING("[ RUNNING ] running game beta version");
         #if KAPENGINE_THREAD_ACTIVE
+            DEBUG_ERROR("[ RUNNING ] running game beta version with thread -> this version is not available");
         #else
-            _splashsScreen->__init();
-            _run = true;
-            _internalClock.restart();
-            if (getSceneManager()->getCurrentSceneId() == 0)
-                getSceneManager()->loadScene(1);
-            while (_run) {
-                if (__canRunUpdate()) {
-                    getCurrentGraphicalLib()->clear();
-                    getCurrentGraphicalLib()->getEvents();
-                    getEventManager().__update();
-
-                    getSceneManager()->__update();
-
-                    getCurrentGraphicalLib()->display();
-                }
-            }
+            DEBUG_ERROR("[ RUNNING ] running game beta version without thread -> this version is not available");
         #endif
     #else
         _splashsScreen->__init();
