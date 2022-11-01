@@ -42,6 +42,12 @@ namespace KapEngine {
         class Color;
         class Rectangle;
     }
+
+    namespace SceneManagement {
+        class SceneManager;
+        class Scene;
+        class SplashScreen;
+    }
 }
 
 //include basics includes
@@ -124,6 +130,18 @@ namespace KapEngine {
 
 #ifndef TYPE_HPP_
     #include "Utils/Type.hpp"
+#endif
+
+#ifndef SCENE_HPP_
+    #include "SceneManagement/Scene/Scene.hpp"
+#endif
+
+#ifndef SCENEMANAGER_HPP_
+    #include "SceneManagement/SceneManager/SceneManager.hpp"
+#endif
+
+#ifndef SPLASHSCREEN_HPP_
+    #include "SceneManagement/SplashScreen/SplashScreen.hpp"
 #endif
 
 #endif /* !INCLUDES_KAPENGINE_HPP_ */

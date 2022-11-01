@@ -5,10 +5,7 @@
 ** Engine
 */
 
-#include "Engine.hpp"
-#include "KapEngineDebug.hpp"
-#include "EventManager.hpp"
-#include "KapEngineSettings.hpp"
+#include "KapEngine.hpp"
 
 #if !KAPENGINE_BETA_ACTIVE
     KapEngine::KEngine::KEngine(bool debug, std::string const& gameName, std::string const& version, std::string const& company) {

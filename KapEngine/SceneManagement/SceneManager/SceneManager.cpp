@@ -5,10 +5,7 @@
 ** SceneManager
 */
 
-#include "SceneManager.hpp"
-#include "KapEngineDebug.hpp"
-#include "Factory.hpp"
-#include "Camera.hpp"
+#include "KapEngine.hpp"
 
 KapEngine::SceneManagement::SceneManager::SceneManager(KEngine &engine) : _engine(engine) {
     

@@ -5,13 +5,9 @@
 ** SplashScreen
 */
 
-#include "SplashScreen.hpp"
-#include "Factory.hpp"
-#include "UiFactory.hpp"
+#include "KapEngine.hpp"
+#include "KapEngineUi.hpp"
 
-#include "Animator.hpp"
-#include "AnimationFadeIn.hpp"
-#include "AnimationFadeOut.hpp"
 #include "AnimationSplashScreen.hpp"
 
 KapEngine::SceneManagement::SplashScreen::SplashScreen(KEngine &engine) : _engine(engine) {}

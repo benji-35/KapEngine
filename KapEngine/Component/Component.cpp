@@ -5,12 +5,14 @@
 ** Component
 */
 
-#include "Component.hpp"
-#include "Errors.hpp"
-#include "Transform.hpp"
+// #include "Component.hpp"
+// #include "Errors.hpp"
+// #include "Transform.hpp"
 
-#include "KapEngineDebug.hpp"
-#include "KapEngineSettings.hpp"
+// #include "KapEngineDebug.hpp"
+// #include "KapEngineSettings.hpp"
+
+#include "KapEngine.hpp"
 
 KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string const& name, int threadId) {
     _go = go;

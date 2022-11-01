@@ -5,10 +5,12 @@
 ** GameObject
 */
 
-#include "GameObject.hpp"
-#include "Errors.hpp"
-#include "KapEngineDebug.hpp"
-#include "Transform.hpp"
+// #include "GameObject.hpp"
+// #include "Errors.hpp"
+// #include "KapEngineDebug.hpp"
+// #include "Transform.hpp"
+
+#include "KapEngine.hpp"
 
 KapEngine::GameObject::GameObject(SceneManagement::Scene &scene, std::string const& name) : _scene(scene) {
     _name = name;

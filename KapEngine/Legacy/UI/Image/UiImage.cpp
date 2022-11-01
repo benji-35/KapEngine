@@ -5,11 +5,9 @@
 ** Image
 */
 
-#include "Transform.hpp"
-#include "UiImage.hpp"
-#include "UiCanvas.hpp"
-#include "KapEngineDebug.hpp"
-#include "GraphicalLib.hpp"
+#include "KapEngine.hpp"
+#include "KapEngineUi.hpp"
+#include "KapEngineGraphical.hpp"
 
 KapEngine::UI::Image::Image(std::shared_ptr<GameObject> &go) : Component(go, "Image") {}
 
