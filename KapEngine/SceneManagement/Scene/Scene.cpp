@@ -156,6 +156,9 @@ void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject
 
 void KapEngine::SceneManagement::Scene::__changingScene() {
     _changingScene = true;
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        _gameObjects[i]->__onSceneChanged();
+    }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
         _gameObjectsRun[i].reset();
     }

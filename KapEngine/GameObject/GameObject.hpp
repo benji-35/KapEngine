@@ -341,7 +341,7 @@ namespace KapEngine {
              * @brief call when scene changed to another scene
              * @warning do not call this function
              */
-            void __onScsneChanged();
+            void __onSceneChanged();
 
         protected:
         private:
