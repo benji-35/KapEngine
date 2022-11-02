@@ -2,6 +2,7 @@
 #define RTYPE_STACKELEMENT_HPP
 
 #include <string>
+#include <sstream>
 
 namespace KapEngine {
 
@@ -21,9 +22,22 @@ namespace KapEngine {
             StackElement(std::string &);
             ~StackElement();
 
-            int hashCode();
+            size_t hashCode() const;
+
+            [[nodiscard]] std::string getMethod() const {
+                return method;
+            }
+
+            [[nodiscard]] std::string getClass() const {
+                return clazz;
+            }
+
+            [[nodiscard]] std::string toString() const {
+                return raw;
+            }
 
         };
+
     }
 }
 

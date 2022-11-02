@@ -36,13 +36,13 @@ namespace KapEngine::Profiler {
 using namespace KapEngine::Profiler;
 
 static void profiler_func(const char *_caller, int state) {
-    /*std::string caller = std::string(_caller);
+    std::string caller = std::string(_caller);
     std::chrono::time_point time = std::chrono::high_resolution_clock::now();
 
     if (KapProfiler::getInstance() == nullptr) {
         return;
     }
-    KapProfiler::getInstance()->_insertCaller(_caller, state, time.time_since_epoch().count());*/
+    KapProfiler::getInstance()->_insertCaller(_caller, state, time.time_since_epoch().count());
 }
 
 #define PROFILER_FUNC_START() profiler_func(__PRETTY_FUNCTION__, 0);
