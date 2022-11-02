@@ -335,7 +335,9 @@ namespace KapEngine {
 
             #else
                 #if KAPENGINE_THREAD_ACTIVE
-                    static std::mutex engineMutex;
+                    std::mutex &getMutex() {
+                        return _mutex;
+                    }
                 #endif
             #endif
 
@@ -345,11 +347,31 @@ namespace KapEngine {
              * @param title 
              */
             void setTitle(std::string const& title) {
+                #if KAPENGINE_BETA_ACTIVE
+                    #if KAPENGINE_THREAD_ACTIVE
+                        _mutex.lock();
+                    #endif
+                #endif
                 _gameName = title;
+                #if KAPENGINE_BETA_ACTIVE
+                    #if KAPENGINE_THREAD_ACTIVE
+                        _mutex.unlock();
+                    #endif
+                #endif
             }
 
             void displayFPS(bool b) {
+                #if KAPENGINE_BETA_ACTIVE
+                    #if KAPENGINE_THREAD_ACTIVE
+                        _mutex.lock();
+                    #endif
+                #endif
                 _displayFps = b;
+                #if KAPENGINE_BETA_ACTIVE
+                    #if KAPENGINE_THREAD_ACTIVE
+                        _mutex.unlock();
+                    #endif
+                #endif
             }
 
             bool isDisplayFPS() const {
@@ -362,6 +384,8 @@ namespace KapEngine {
             #if !KAPENGINE_BETA_ACTIVE
                 bool _debug = false;
                 bool _threaded = false;
+            #else
+                std::mutex engineMutex;
             #endif
             bool _runFixed = false;
             bool _displayFps = false;
