@@ -337,6 +337,12 @@ namespace KapEngine {
                 return _tag;
             }
 
+            /**
+             * @brief call when scene changed to another scene
+             * @warning do not call this function
+             */
+            void __onScsneChanged();
+
         protected:
         private:
             std::string _name;
