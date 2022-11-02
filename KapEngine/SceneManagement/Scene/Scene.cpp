@@ -244,7 +244,9 @@ void KapEngine::SceneManagement::Scene::__init() {
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         _gameObjects[i]->__init();
     }
-    dump(true);
+    #if KAPENGINE_DEBUG_ACTIVE
+        dump(true);
+    #endif
 }
 
 void KapEngine::SceneManagement::Scene::__finit() {
