@@ -294,6 +294,10 @@ namespace KapEngine {
                 _fixedTime = time;
             }
 
+            Time::ETime getFixedTime() const {
+                return _fixedTime;
+            }
+
             /**
              * @brief Set the Icon path of your Game
              * 
