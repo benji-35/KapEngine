@@ -45,34 +45,57 @@ namespace KapEngine {
                 void destroyGameObject(std::size_t id);
 
                 bool setId(std::size_t id) {
-                    if (_id != 0)
+                    PROFILER_FUNC_START();
+                    if (_id != 0) {
+                        PROFILER_FUNC_END();
                         return false;
+                    }
                     _id = id;
+                    PROFILER_FUNC_END();
                     return true;
                 }
+
                 std::size_t getId() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _id;
                 }
 
                 std::string getName() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _name;
                 }
 
                 bool operator==(Scene const& scene) {
-                    if (_id == scene.getId())
+                    PROFILER_FUNC_START();
+                    if (_id == scene.getId()) {
+                        PROFILER_FUNC_END();
                         return true;
+                    }
+                    PROFILER_FUNC_END();
                     return false;
                 }
+
                 bool operator==(std::shared_ptr<Scene> scene) {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return *this == *scene;
                 }
 
                 bool operator!=(Scene const& scene) {
-                    if (_id != scene.getId())
+                    PROFILER_FUNC_START();
+                    if (_id != scene.getId()) {
+                        PROFILER_FUNC_END();
                         return true;
+                    }
+                    PROFILER_FUNC_END();
                     return false;
                 }
+
                 bool operator!=(std::shared_ptr<Scene> scene) {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return *this != *scene;
                 }
 
@@ -93,9 +116,13 @@ namespace KapEngine {
                  * @deprecated please use getGameObject
                  */
                 std::shared_ptr<GameObject> &getObject(std::size_t id) {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return getGameObject(id);
                 }
+
                 std::shared_ptr<GameObject> getGameObjectConst(std::size_t id) const;
+
                 /**
                  * @brief Get the Object Const object
                  * 
@@ -104,9 +131,13 @@ namespace KapEngine {
                  * @deprecated 
                  */
                 std::shared_ptr<GameObject> getObjectConst(std::size_t id) const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return getGameObjectConst(id);
                 }
+
                 std::vector<std::shared_ptr<GameObject>> getAllGameObjects();
+
                 /**
                  * @brief Get the All Objects object
                  * 
@@ -114,9 +145,13 @@ namespace KapEngine {
                  * @deprecated
                  */
                 std::vector<std::shared_ptr<GameObject>> getAllObjects() {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return getAllGameObjects();
                 }
+
                 std::shared_ptr<GameObject> &getGameObject(Entity const& en);
+
                 /**
                  * @brief Get the Object object
                  * 
@@ -125,6 +160,8 @@ namespace KapEngine {
                  * @deprecated 
                  */
                 std::shared_ptr<GameObject> &getObject(Entity const& en) {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return getGameObject(en);
                 }
                 
@@ -142,6 +179,7 @@ namespace KapEngine {
                  * @return false 
                  */
                 bool isGameObjectExists(std::size_t const& index);
+
                 /**
                  * @brief return if GameObject exists
                  * 
@@ -204,10 +242,14 @@ namespace KapEngine {
                  * @param action
                  */
                 void registerTmpActionAfterUpdate(std::function<void(Scene &scene)> action) {
+                    PROFILER_FUNC_START();
                     _tmpActionsAfterUpdate.push_back(action);
+                    PROFILER_FUNC_END();
                 }
 
                 bool __isChangingScene() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _changingScene;
                 }
 

@@ -45,6 +45,8 @@ namespace KapEngine {
                 void __update();
 
                 KEngine &getEngine() {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _engine;
                 }
 
@@ -60,12 +62,16 @@ namespace KapEngine {
                 std::size_t getSceneIndexInList(std::string const& sceneName);
 
                 std::size_t getCurrentSceneId() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _indexScene;
                 }
 
                 std::shared_ptr<Scene> createScene(std::string const& name);
 
                 std::vector<std::shared_ptr<Scene>> &getAllScenes() {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _scenes;
                 }
 
