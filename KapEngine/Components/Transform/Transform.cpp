@@ -8,140 +8,191 @@
 #include "KapEngine.hpp"
 
 KapEngine::Transform::Transform(std::shared_ptr<GameObject> go) : Component(go, "Transform") {
+    PROFILER_FUNC_START();
     _startPos = Tools::Vector3(0.f, 0.f, 0.f);
     _startRot = Tools::Vector3(0.f, 0.f, 0.f);
     _startScale = Tools::Vector3(1.f, 1.f, 1.f);
+    PROFILER_FUNC_END();
 }
 
-KapEngine::Transform::~Transform() {}
+KapEngine::Transform::~Transform() {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
+}
 
 void KapEngine::Transform::onAwake() {
+    PROFILER_FUNC_START();
     _pos = _startPos;
     _rot = _startRot;
     _scale = _startScale;
     _awkaeTr = true;
+    PROFILER_FUNC_END();
 }
 void KapEngine::Transform::onDisplay() {
+    PROFILER_FUNC_START();
     _updatePos = _pos;
     _updateScale = _scale;
     _updateRot = _rot;
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::Transform::setPosition(Tools::Vector3 pos) {
+    PROFILER_FUNC_START();
     if (_awkaeTr) {
         _pos = pos;
     } else {
         _startPos = pos;
     }
+    PROFILER_FUNC_END();
 }
 void KapEngine::Transform::setRotation(Tools::Vector3 rot) {
+    PROFILER_FUNC_START();
     if (_awkaeTr) {
         _rot = rot;
     } else {
         _startRot = rot;
     }
+    PROFILER_FUNC_END();
 }
 void KapEngine::Transform::setScale(Tools::Vector3 scale) {
+    PROFILER_FUNC_START();
     if (_awkaeTr) {
         _scale = scale;
     } else {
         _startScale = scale;
     }
+    PROFILER_FUNC_END();
 }
 
 KapEngine::Tools::Vector3 KapEngine::Transform::getLocalPosition() const {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
     return _pos;
 }
 
 KapEngine::Tools::Vector3 KapEngine::Transform::getLocalRotation() const {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
     return _rot;
 }
 
 KapEngine::Tools::Vector3 KapEngine::Transform::getLocalScale() const {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
     return _scale;
 }
 
 KapEngine::Tools::Vector3 KapEngine::Transform::getWorldPosition() const {
+    PROFILER_FUNC_START();
     Tools::Vector3 res(_pos);
     res += getParentPos();
+    PROFILER_FUNC_END();
     return res;
 }
 
 KapEngine::Tools::Vector3 KapEngine::Transform::getWorldRotation() const {
+    PROFILER_FUNC_START();
     Tools::Vector3 res(_rot);
     res += getParentRot();
+    PROFILER_FUNC_END();
     return res;
 }
 
 KapEngine::Tools::Vector3 KapEngine::Transform::getWorldScale() const {
+    PROFILER_FUNC_START();
     Tools::Vector3 res(_scale);
     res *= getParentScale();
+    PROFILER_FUNC_END();
     return res;
 }
 
 KapEngine::Tools::Vector3 KapEngine::Transform::getParentPos() const{
+    PROFILER_FUNC_START();
     Tools::Vector3 res = Tools::Vector3::zero();
 
-    if (_parentId == 0)
+    if (_parentId == 0) {
+        PROFILER_FUNC_END();
         return res;
+    }
     try {
         Transform &t = (Transform &)getParent()->getTransform();
+        PROFILER_FUNC_END();
         return t.getWorldPosition();
     } catch(...) {
+        PROFILER_FUNC_END();
         return res;
     }
 }
 
-KapEngine::Tools::Vector3 KapEngine::Transform::getParentRot() const{
+KapEngine::Tools::Vector3 KapEngine::Transform::getParentRot() const {
+    PROFILER_FUNC_START();
     Tools::Vector3 res = Tools::Vector3::zero();
 
-    if (_parentId == 0)
+    if (_parentId == 0) {
+        PROFILER_FUNC_END();
         return res;
+    }
     try {
         auto &t = getParent()->getComponent<Transform>();
+        PROFILER_FUNC_END();
         return t.getWorldRotation();
     } catch(...) {
+        PROFILER_FUNC_END();
         return res;
     }
 }
 
-KapEngine::Tools::Vector3 KapEngine::Transform::getParentScale() const{
+KapEngine::Tools::Vector3 KapEngine::Transform::getParentScale() const {
+    PROFILER_FUNC_START();
     Tools::Vector3 res = Tools::Vector3::one();
-    if (_parentId == 0)
+    if (_parentId == 0) {
+        PROFILER_FUNC_END();
         return res;
+    }
     try {
         auto &t = getParent()->getComponent<Transform>();
+        PROFILER_FUNC_END();
         return t.getWorldScale();
     } catch(...) {
+        PROFILER_FUNC_END();
         return res;
     }
 }
 
 void KapEngine::Transform::setParent(std::size_t id) {
+    PROFILER_FUNC_START();
     _parentId = id;
     if (_parentId == 0) {
         getGameObject().getScene().getGameObject(id)->getComponent<Transform>().__removeChild(getGameObject().getId());
     } else {
         getGameObject().getScene().getGameObject(id)->getComponent<Transform>().__addChild(getGameObject().getId());
     }
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::Transform::__addChild(std::size_t id) {
+    PROFILER_FUNC_START();
     _children.push_back(id);
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::Transform::__removeChild(std::size_t id) {
+    PROFILER_FUNC_START();
     for (auto it = _children.begin(); it != _children.end(); it++) {
         if (*it == id) {
             _children.erase(it);
+            PROFILER_FUNC_END();
             return;
         }
     }
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::Transform::setParent(std::any val) {
+    PROFILER_FUNC_START();
     if (!val.has_value()) {
         _parentId = 0;
+        PROFILER_FUNC_END();
         return;
     }
     const std::type_info &inf = val.type();
@@ -163,22 +214,30 @@ void KapEngine::Transform::setParent(std::any val) {
         if (go.use_count() != 0)
             setParent(go->getId());
     } catch(...) {
+        PROFILER_FUNC_END();
         throw Errors::ComponentError("[TRANSFORM] error while try to set parent");
     }
+    PROFILER_FUNC_END();
 }
 
 bool KapEngine::Transform::allParentIsActive() {
-    if (_parentId == 0)
+    PROFILER_FUNC_START();
+    if (_parentId == 0) {
+        PROFILER_FUNC_END();
         return getGameObject().isActive();
+    }
     try {
-        Transform &tr = (Transform &)getGameObject().getScene().getGameObject(_parentId)->getTransform();
+        Transform &tr = (Transform &) getGameObject().getScene().getGameObject(_parentId)->getTransform();
+        PROFILER_FUNC_END();
         return tr.allParentIsActive();
     } catch(...) {
+        PROFILER_FUNC_END();
         return false;
     }
 }
 
 std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::Transform::getChildren() {
+    PROFILER_FUNC_START();
     std::vector<std::shared_ptr<GameObject>> gos = getGameObject().getScene().getAllGameObjects();
     std::vector<std::shared_ptr<GameObject>> result;
 
@@ -189,95 +248,136 @@ std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::Transform::getChi
             }
         }
     }
+    PROFILER_FUNC_END();
     return result;
 }
 
 std::size_t KapEngine::Transform::getParentId() const {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
     return _parentId;
 }
 
 std::shared_ptr<KapEngine::GameObject> KapEngine::Transform::getParent() const {
+    PROFILER_FUNC_START();
     std::shared_ptr<GameObject> result;
     if (_parentId != 0) {
         try {
             result = getGameObjectConst().getScene().getGameObject(_parentId);
         } catch(...) {}
     }
+    PROFILER_FUNC_END();
     return result;
 }
 
 bool KapEngine::Transform::parentContainsComponent(std::string const& componentName, bool recurcively) {
+    PROFILER_FUNC_START();
     if (_parentId == 0) {
+        PROFILER_FUNC_END();
         return false;
     }
     std::shared_ptr<GameObject> parent = getParent();
-    if (parent.use_count() == 0)
+    if (parent.use_count() == 0) {
+        PROFILER_FUNC_END();
         return false;
+    }
 
-    if (parent->hasComponent(componentName))
+    if (parent->hasComponent(componentName)) {
+        PROFILER_FUNC_END();
         return true;
+    }
     if (recurcively) {
         Transform &tr = (Transform &)parent->getTransform();
+        PROFILER_FUNC_END();
         return tr.parentContainsComponent(componentName, recurcively);
     }
+    PROFILER_FUNC_END();
     return false;
 }
 
 bool KapEngine::Transform::parentContainsComponents(std::vector<std::string> componentsName, bool recurcively) {
+    PROFILER_FUNC_START();
     for (std::size_t i = 0; i < componentsName.size(); i++) {
-        if (!parentContainsComponent(componentsName[i], recurcively))
+        if (!parentContainsComponent(componentsName[i], recurcively)) {
+            PROFILER_FUNC_END();
             return false;
+        }
     }
+    PROFILER_FUNC_END();
     return true;
 }
 
 std::size_t KapEngine::Transform::getParentContainsComponent(std::string const& componentName) {
+    PROFILER_FUNC_START();
     if (_parentId == 0) {
-        if (getGameObject().hasComponent(componentName))
+        if (getGameObject().hasComponent(componentName)) {
+            PROFILER_FUNC_END();
             return getGameObject().getId();
+        }
+        PROFILER_FUNC_END();
         return 0;
     }
     std::shared_ptr<GameObject> parent = getParent();
-    if (parent.use_count() == 0)
+    if (parent.use_count() == 0) {
+        PROFILER_FUNC_END();
         return 0;
-    if (parent->hasComponent(componentName))
+    }
+    if (parent->hasComponent(componentName)) {
+        PROFILER_FUNC_END();
         return parent->getId();
+    }
     try {
         Transform &tr = (Transform &)parent->getTransform();
         auto val = tr.getParentContainsComponent(componentName);
         if (val == 0) {
-            if (getGameObject().hasComponent(componentName))
+            if (getGameObject().hasComponent(componentName)) {
                 val = getGameObject().getId();
+            }
         }
+        PROFILER_FUNC_END();
         return val;
     } catch(...) {
 
         #if KAPENGINE_DEBUG_ACTIVE
             DEBUG_ERROR("Failled to get Transform of parent");
         #endif
+        PROFILER_FUNC_END();
         return 0;
     }
 }
 
 bool KapEngine::Transform::allParentsActive() const {
-    if (_parentId == 0 || getGameObjectConst().isActive() == false)
+    PROFILER_FUNC_START();
+    if (_parentId == 0 || getGameObjectConst().isActive() == false) {
+        PROFILER_FUNC_END();
         return getGameObjectConst().isActive();
+    }
     try {
         auto parent = getParent();
 
         auto &tr = parent->getComponent<Transform>();
+        PROFILER_FUNC_END();
         return tr.allParentsActive();
     } catch(...) {
+        PROFILER_FUNC_END();
         return false;
     }
 }
 
 bool KapEngine::Transform::hasChanged() {
-    if (_updatePos != _pos)
+    PROFILER_FUNC_START();
+    if (_updatePos != _pos) {
+        PROFILER_FUNC_END();
         return true;
-    if (_updateRot != _rot)
+    }
+    if (_updateRot != _rot) {
+        PROFILER_FUNC_END();
         return true;
-    if (_updateScale != _scale)
+    }
+    if (_updateScale != _scale) {
+        PROFILER_FUNC_END();
         return true;
+    }
+    PROFILER_FUNC_END();
     return false;
 }

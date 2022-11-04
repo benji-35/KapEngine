@@ -35,7 +35,9 @@ namespace KapEngine {
              * @param isTrigger 
              */
             void setTrigger(bool isTrigger) {
+                PROFILER_FUNC_START();
                 _isTrigger = isTrigger;
+                PROFILER_FUNC_END();
             }
 
             /**
@@ -45,6 +47,8 @@ namespace KapEngine {
              * @return false 
              */
             bool isTrigger() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _isTrigger;
             }
 
@@ -60,6 +64,7 @@ namespace KapEngine {
              * @return std::vector<std::shared_ptr<Collider>> 
              */
             std::vector<std::shared_ptr<Collider>> getCollidedObjects() const {
+                PROFILER_FUNC_START();
                 std::vector<std::shared_ptr<Collider>> result;
 
                 for (std::size_t i = 0; i < _justCollidedObjects.size(); i++) {
@@ -69,6 +74,7 @@ namespace KapEngine {
                     result.push_back(_notCollidedObjects[i]);
                 }
 
+                PROFILER_FUNC_END();
                 return result;
             }
 

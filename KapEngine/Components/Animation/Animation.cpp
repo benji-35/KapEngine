@@ -12,12 +12,16 @@ KapEngine::Animation::Animation(std::shared_ptr<GameObject> go) : Component(go, 
 KapEngine::Animation::~Animation() {}
 
 void KapEngine::Animation::onFixedUpdate() {
+    PROFILER_FUNC_START();
     if (!_startAnim) {
-        if (_reseted)
+        if (_reseted) {
+            PROFILER_FUNC_END();
             return;
+        }
         _reseted = true;
         _currTime = 0;
         onResetAnim();
+        PROFILER_FUNC_END();
         return;
     }
     _reseted = false;
@@ -31,11 +35,15 @@ void KapEngine::Animation::onFixedUpdate() {
         _currTime = 0;
         _onRestart.invoke();
     }
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::Animation::onResetAnim() {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::Animation::onUpdateAnim() {
-
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
 }

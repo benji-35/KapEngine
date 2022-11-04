@@ -9,6 +9,7 @@
 
 #if !KAPENGINE_BETA_ACTIVE
     KapEngine::KEngine::KEngine(bool debug, std::string const& gameName, std::string const& version, std::string const& company) {
+        PROFILER_FUNC_START();
         _debug = debug;
         _gameName = gameName;
         _gameVersion = version;
@@ -18,9 +19,11 @@
         Time::ETime _baseTime;
         _baseTime.setMilliseconds(25);
         setFixedTime(_baseTime);
+        PROFILER_FUNC_END();
     }
 #else
     KapEngine::KEngine::KEngine(std::string const& gameName, std::string const& version, std::string const& company) {
+        PROFILER_FUNC_START();
         _gameName = gameName;
         _gameVersion = version;
         _gameCompany = company;
@@ -29,16 +32,20 @@
         Time::ETime _baseTime;
         _baseTime.setMilliseconds(25);
         setFixedTime(_baseTime);
+        PROFILER_FUNC_END();
     }
 #endif
 
 KapEngine::KEngine::~KEngine() {
+    PROFILER_FUNC_START();
     _sceneManager.reset();
     _prefabManager.reset();
     _libManager.reset();
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::KEngine::run() {
+    PROFILER_FUNC_START();
     #if KAPENGINE_DEBUG_ACTIVE
         DEBUG_WARNING("[ RUNNING ] running game");
     #endif
@@ -85,41 +92,55 @@ void KapEngine::KEngine::run() {
             }
         }
     #endif
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::KEngine::stop() {
+    PROFILER_FUNC_START();
     #if KAPENGINE_BETA_ACTIVE
         #if KAPENGINE_THREAD_ACTIVE
             _mutex.lock();
         #endif
     #endif
-    if (!_run)
+    if (!_run) {
+        PROFILER_FUNC_END();
         return;
+    }
     _run = false;
     #if KAPENGINE_BETA_ACTIVE
         #if KAPENGINE_THREAD_ACTIVE
             _mutex.unlock();
         #endif
     #endif
+    PROFILER_FUNC_END();
 }
 
 std::shared_ptr<KapEngine::Graphical::GraphicalLib> KapEngine::KEngine::getCurrentGraphicalLib() {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
     return _libManager->getLib(_libManager->getCurrLib());
 }
 
 bool KapEngine::KEngine::isGraphicalLibExists(std::size_t const& index) const {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
     return _libManager->isLibExists(index);
 }
 
 bool KapEngine::KEngine::isGraphicalLibExists(std::string const& name) const {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
     return _libManager->isLibExists(name);
 }
 
 std::size_t KapEngine::KEngine::getCurrentGraphicalLibIndex() const {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
     return _libManager->getCurrLib();
 }
 
 void KapEngine::KEngine::__init() {
+    PROFILER_FUNC_START();
     #if KAPENGINE_DEBUG_ACTIVE
         DEBUG_LOG("[INIT] KapEngine");
     #endif
@@ -131,22 +152,30 @@ void KapEngine::KEngine::__init() {
     #if KAPENGINE_DEBUG_ACTIVE
         DEBUG_LOG("[INIT] end init KapEngine");
     #endif
+    PROFILER_FUNC_END();
 }
 
 KapEngine::Events::EventManager &KapEngine::KEngine::getEventManager() {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
     return *_eventManager;
 }
 
 void KapEngine::KEngine::setScreenSize(float width, float heigth) {
+    PROFILER_FUNC_START();
     screenSize.setX(width);
     screenSize.setY(heigth);
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::KEngine::setScreenSize(Tools::Vector2 size) {
+    PROFILER_FUNC_START();
     screenSize = size;
+    PROFILER_FUNC_END();
 }
 
 bool KapEngine::KEngine::__canRunUpdate() {
+    PROFILER_FUNC_START();
     _runFixed = false;
     bool runUpdate = false;
 
@@ -162,7 +191,10 @@ bool KapEngine::KEngine::__canRunUpdate() {
         _internalClock.restart();
         _runFixed = true;
     }
-    if (_runFixed)
+    if (_runFixed) {
+        PROFILER_FUNC_END();
         return true;
+    }
+    PROFILER_FUNC_END();
     return runUpdate;
 }

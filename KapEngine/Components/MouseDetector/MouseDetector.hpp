@@ -39,8 +39,10 @@ namespace KapEngine {
              * @param zone (KapEngine::Tools::Rectangle)
              */
             void setCheckZone(Tools::Rectangle zone) {
+                PROFILER_FUNC_START();
                 _square = zone;
                 _setted = true;
+                PROFILER_FUNC_END();
             }
 
             /**
@@ -49,7 +51,9 @@ namespace KapEngine {
              * @param b 
              */
             void detectMouseInCanvas(bool b) {
+                PROFILER_FUNC_START();
                 _inCanvas = b;
+                PROFILER_FUNC_END();
             }
 
         private:

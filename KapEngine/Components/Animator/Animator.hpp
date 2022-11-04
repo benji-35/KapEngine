@@ -37,16 +37,22 @@ namespace KapEngine {
                 bool _goAfter;
 
                 NodeAnim(std::shared_ptr<Animation> anim, std::string name) {
+                    PROFILER_FUNC_START();
                     _anim = anim;
                     _name = name;
                     _goAfter = true;
+                    PROFILER_FUNC_END();
                 }
             
                 bool hasMainExit() {
+                    PROFILER_FUNC_START();
                     for (std::size_t i = 0; i < links.size(); i++) {
-                        if (links.at(i).get()->mainExit)
+                        if (links.at(i).get()->mainExit) {
+                            PROFILER_FUNC_END();
                             return true;
+                        }
                     }
+                    PROFILER_FUNC_END();
                     return false;
                 }
             };
