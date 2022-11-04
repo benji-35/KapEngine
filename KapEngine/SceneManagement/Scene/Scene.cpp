@@ -176,6 +176,9 @@ void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject
 void KapEngine::SceneManagement::Scene::__changingScene() {
     PROFILER_FUNC_START();
     _changingScene = true;
+    for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+        _gameObjects[i]->__onSceneChanged();
+    }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
         _gameObjectsRun[i].reset();
     }
@@ -280,7 +283,9 @@ void KapEngine::SceneManagement::Scene::__init() {
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         _gameObjects[i]->__init();
     }
-    dump(true);
+    #if KAPENGINE_DEBUG_ACTIVE
+        dump(true);
+    #endif
     PROFILER_FUNC_END();
 }
 

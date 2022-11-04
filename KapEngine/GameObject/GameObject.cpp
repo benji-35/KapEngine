@@ -5,10 +5,12 @@
 ** GameObject
 */
 
-#include "GameObject.hpp"
-#include "Errors.hpp"
-#include "KapEngineDebug.hpp"
-#include "Transform.hpp"
+// #include "GameObject.hpp"
+// #include "Errors.hpp"
+// #include "KapEngineDebug.hpp"
+// #include "Transform.hpp"
+
+#include "KapEngine.hpp"
 
 KapEngine::GameObject::GameObject(SceneManagement::Scene &scene, std::string const& name) : _scene(scene) {
     _name = name;
@@ -306,7 +308,6 @@ void KapEngine::GameObject::__onSceneUpdated() {
     }
 }
 
-
 void KapEngine::GameObject::__onSceneGonnaUpdated() {
     for (std::size_t i = 0; i < _components.size(); i++) {
         _components[i]->onSceneGonnaUpdated();
@@ -317,5 +318,11 @@ void KapEngine::GameObject::__onSceneGonnaUpdated() {
     auto children = getComponent<Transform>().getChildren();
     for (std::size_t i = 0; i < children.size(); i++) {
         children[i]->__onSceneGonnaUpdated();
+    }
+}
+
+void KapEngine::GameObject::__onSceneChanged() {
+    for (std::size_t i = 0; i < _components.size(); i++) {
+        _components[i]->__sceneChanged();
     }
 }

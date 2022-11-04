@@ -15,7 +15,12 @@
 #include "SplashScreen.hpp"
 #include "EClock.hpp"
 
-#include <mutex>
+#include "KapEngineSettings.hpp"
+
+#if KAPENGINE_THREAD_ACTIVE
+    #include <thread>
+    #include <mutex>
+#endif
 
 namespace KapEngine {
     namespace SceneManagement {
@@ -54,14 +59,24 @@ namespace KapEngine {
      */
     class KEngine {
         public:
-            /**
-             * @brief Construct a new KapEngine Engine
-             * @param debug enable/disable debug mode
-             * @param gameName name of your game
-             * @param version version of your game
-             * @param company company name that developpe the game
-             */
-            KEngine(bool debug = false, std::string const& gameName = "Game", std::string const& version = "1.0.0", std::string const& company = "Default Company");
+            #if !KAPENGINE_BETA_ACTIVE
+                /**
+                 * @brief Construct a new KapEngine Engine
+                 * @param debug enable/disable debug mode
+                 * @param gameName name of your game
+                 * @param version version of your game
+                 * @param company company name that developpe the game
+                 */
+                KEngine(bool debug = false, std::string const& gameName = "Game", std::string const& version = "1.0.0", std::string const& company = "Default Company");
+            #else
+                /**
+                 * @brief Construct a new KapEngine Engine
+                 * @param gameName name of your game
+                 * @param version version of your game
+                 * @param company company name that developpe the game
+                 */
+                KEngine(std::string const& gameName = "Game", std::string const& version = "1.0.0", std::string const& company = "Default Company");
+            #endif
             ~KEngine();
 
             /**
@@ -88,22 +103,24 @@ namespace KapEngine {
             bool isRunning() const {
                 return _run;
             }
-            /**
-             * @brief check debug mode
-             *
-             * @retval true if debug mode is enable
-             * @retval false if debug mode is disable
-             */
-            bool debugMode() const {
-                return _debug;
-            }
-            /**
-             * @brief Set the debug mode
-             * @param b
-             */
-            void setDebugMod(bool b) {
-                _debug = b;
-            }
+            #if !KAPENGINE_BETA_ACTIVE
+                /**
+                 * @brief check debug mode
+                 *
+                 * @retval true if debug mode is enable
+                 * @retval false if debug mode is disable
+                 */
+                bool debugMode() const {
+                    return _debug;
+                }
+                /**
+                 * @brief Set the debug mode
+                 * @param b
+                 */
+                void setDebugMod(bool b) {
+                    _debug = b;
+                }
+            #endif
 
             /**
              * @brief Get the Current Graphical Lib
@@ -277,6 +294,10 @@ namespace KapEngine {
                 _fixedTime = time;
             }
 
+            Time::ETime getFixedTime() const {
+                return _fixedTime;
+            }
+
             /**
              * @brief Set the Icon path of your Game
              * 
@@ -295,24 +316,34 @@ namespace KapEngine {
                 return _icon;
             }
 
-            /**
-             * @brief Set if engine have to use threads
-             * 
-             * @param b 
-             */
-            void setEngineThread(bool b) {
-                _threaded = b;
-            }
+            #if !KAPENGINE_BETA_ACTIVE
 
-            /**
-             * @brief return if engine is threaded
-             * 
-             * @return true 
-             * @return false 
-             */
-            bool isEngineThreaded() const {
-                return _threaded;
-            }
+                /**
+                 * @brief Set if engine have to use threads
+                 * 
+                 * @param b 
+                 */
+                void setEngineThread(bool b) {
+                    _threaded = b;
+                }
+
+                /**
+                 * @brief return if engine is threaded
+                 * 
+                 * @return true 
+                 * @return false 
+                 */
+                bool isEngineThreaded() const {
+                    return _threaded;
+                }
+
+            #else
+                #if KAPENGINE_THREAD_ACTIVE
+                    std::mutex &getMutex() {
+                        return _mutex;
+                    }
+                #endif
+            #endif
 
             /**
              * @brief Set the Title of game windows
@@ -320,11 +351,31 @@ namespace KapEngine {
              * @param title 
              */
             void setTitle(std::string const& title) {
+                #if KAPENGINE_BETA_ACTIVE
+                    #if KAPENGINE_THREAD_ACTIVE
+                        _mutex.lock();
+                    #endif
+                #endif
                 _gameName = title;
+                #if KAPENGINE_BETA_ACTIVE
+                    #if KAPENGINE_THREAD_ACTIVE
+                        _mutex.unlock();
+                    #endif
+                #endif
             }
 
             void displayFPS(bool b) {
+                #if KAPENGINE_BETA_ACTIVE
+                    #if KAPENGINE_THREAD_ACTIVE
+                        _mutex.lock();
+                    #endif
+                #endif
                 _displayFps = b;
+                #if KAPENGINE_BETA_ACTIVE
+                    #if KAPENGINE_THREAD_ACTIVE
+                        _mutex.unlock();
+                    #endif
+                #endif
             }
 
             bool isDisplayFPS() const {
@@ -334,9 +385,13 @@ namespace KapEngine {
         protected:
         private:
             bool _run = false;
-            bool _debug = false;
+            #if !KAPENGINE_BETA_ACTIVE
+                bool _debug = false;
+                bool _threaded = false;
+            #else
+                std::mutex engineMutex;
+            #endif
             bool _runFixed = false;
-            bool _threaded = false;
             bool _displayFps = false;
 
             int _fpsLock = 60;

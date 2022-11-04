@@ -5,22 +5,32 @@
 ** Engine
 */
 
-#include "Engine.hpp"
-#include "KapEngineDebug.hpp"
-#include "EventManager.hpp"
-#include "KapEngineSettings.hpp"
+#include "KapEngine.hpp"
 
-KapEngine::KEngine::KEngine(bool debug, std::string const& gameName, std::string const& version, std::string const& company) {
-    _debug = debug;
-    _gameName = gameName;
-    _gameVersion = version;
-    _gameCompany = company;
+#if !KAPENGINE_BETA_ACTIVE
+    KapEngine::KEngine::KEngine(bool debug, std::string const& gameName, std::string const& version, std::string const& company) {
+        _debug = debug;
+        _gameName = gameName;
+        _gameVersion = version;
+        _gameCompany = company;
 
-    __init();
-    Time::ETime _baseTime;
-    _baseTime.setMilliseconds(25);
-    setFixedTime(_baseTime);
-}
+        __init();
+        Time::ETime _baseTime;
+        _baseTime.setMilliseconds(25);
+        setFixedTime(_baseTime);
+    }
+#else
+    KapEngine::KEngine::KEngine(std::string const& gameName, std::string const& version, std::string const& company) {
+        _gameName = gameName;
+        _gameVersion = version;
+        _gameCompany = company;
+
+        __init();
+        Time::ETime _baseTime;
+        _baseTime.setMilliseconds(25);
+        setFixedTime(_baseTime);
+    }
+#endif
 
 KapEngine::KEngine::~KEngine() {
     _sceneManager.reset();
@@ -32,26 +42,65 @@ void KapEngine::KEngine::run() {
     #if KAPENGINE_DEBUG_ACTIVE
         DEBUG_WARNING("[ RUNNING ] running game");
     #endif
-    _splashsScreen->__init();
-    _run = true;
-    _internalClock.restart();
-    if (getSceneManager()->getCurrentSceneId() == 0)
-        getSceneManager()->loadScene(1);
-    while (_run) {
-        if (__canRunUpdate()) {
-            getCurrentGraphicalLib()->clear();
-            getCurrentGraphicalLib()->getEvents();
-            getEventManager().__update();
+    #if KAPENGINE_BETA_ACTIVE
+        DEBUG_WARNING("[ RUNNING ] running game beta version");
+        #if KAPENGINE_THREAD_ACTIVE
+            DEBUG_ERROR("[ RUNNING ] running game beta version with thread -> this version is not available");
+            //start update for physics
+            //start update for components
+            //start update for graphics
+        #else
+            _splashsScreen->__init();
+            _run = true;
+            _internalClock.restart();
+            if (getSceneManager()->getCurrentSceneId() == 0)
+                getSceneManager()->loadScene(1);
+            while (_run) {
+                if (__canRunUpdate()) {
+                    getCurrentGraphicalLib()->clear();
+                    getCurrentGraphicalLib()->getEvents();
+                    getEventManager().__update();
 
-            getSceneManager()->__update();
+                    getSceneManager()->__update();
 
-            getCurrentGraphicalLib()->display();
+                    getCurrentGraphicalLib()->display();
+                }
+            }
+        #endif
+    #else
+        _splashsScreen->__init();
+        _run = true;
+        _internalClock.restart();
+        if (getSceneManager()->getCurrentSceneId() == 0)
+            getSceneManager()->loadScene(1);
+        while (_run) {
+            if (__canRunUpdate()) {
+                getCurrentGraphicalLib()->clear();
+                getCurrentGraphicalLib()->getEvents();
+                getEventManager().__update();
+
+                getSceneManager()->__update();
+
+                getCurrentGraphicalLib()->display();
+            }
         }
-    }
+    #endif
 }
 
 void KapEngine::KEngine::stop() {
+    #if KAPENGINE_BETA_ACTIVE
+        #if KAPENGINE_THREAD_ACTIVE
+            _mutex.lock();
+        #endif
+    #endif
+    if (!_run)
+        return;
     _run = false;
+    #if KAPENGINE_BETA_ACTIVE
+        #if KAPENGINE_THREAD_ACTIVE
+            _mutex.unlock();
+        #endif
+    #endif
 }
 
 std::shared_ptr<KapEngine::Graphical::GraphicalLib> KapEngine::KEngine::getCurrentGraphicalLib() {

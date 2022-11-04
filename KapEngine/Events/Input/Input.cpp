@@ -5,8 +5,8 @@
 ** Input
 */
 
-#include "Input.hpp"
-#include "KapEngineDebug.hpp"
+#include "KapEngine.hpp"
+#include "KapEngineEvents.hpp"
 
 KapEngine::Events::Input::Input(EventManager &manager) : _manager(manager) {}
 

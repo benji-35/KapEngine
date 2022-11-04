@@ -233,6 +233,11 @@ namespace KapEngine {
                 return _physics;
             }
 
+            void __sceneChanged() {
+                _awakeDone = false;
+                _startDone = false;
+            }
+
         protected:
             /**
              * @brief Component name

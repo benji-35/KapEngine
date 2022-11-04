@@ -11,9 +11,14 @@
 #include <string>
 #include <ctime>
 #include <iostream>
-#include <mutex>
 
-#include "Utils/Platform.hpp"
+#if KAPENGINE_THREAD_ACTIVE
+    #if KAPENGINE_BETA_ACTIVE
+        #include <mutex>
+    #endif
+#endif
+
+#include "KapEngineSettings.hpp"
 
 namespace KapEngine {
     class Debug {
@@ -23,7 +28,16 @@ namespace KapEngine {
             * @brief display a simple message
             */
             static void log(std::string _msg, std::string prefix = "") {
-                std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << " log: " << colorNone() << _msg << colorNone() << std::endl;
+                #if KAPENGINE_THREAD_ACTIVE
+                    #if KAPENGINE_BETA_ACTIVE
+                        if (!logMutex.try_lock())
+                            return;
+                        std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << " log: " << colorNone() << _msg << colorNone() << std::endl;
+                        logMutex.unlock();
+                    #endif
+                #else
+                    std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << " log: " << colorNone() << _msg << colorNone() << std::endl;
+                #endif
             }
 
             static void log(char const* _msg, std::string prefix = "") {
@@ -42,7 +56,15 @@ namespace KapEngine {
             * @brief display a warning message
             */
             static void warning(std::string _msg, std::string prefix = "") {
-                std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << colorYellow() << " warning: " << colorNone() << _msg << colorNone() << std::endl;
+                #if KAPENGINE_THREAD_ACTIVE
+                    #if KAPENGINE_BETA_ACTIVE
+                        logMutex.lock();
+                        std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << colorYellow() << " warning: " << colorNone() << _msg << colorNone() << std::endl;
+                        logMutex.unlock();
+                    #endif
+                #else
+                    std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << colorYellow() << " warning: " << colorNone() << _msg << colorNone() << std::endl;
+                #endif
             }
 
             static void warning(char const* _msg, std::string prefix = "") {
@@ -60,7 +82,15 @@ namespace KapEngine {
             * @brief display an error message
             */
             static void error(std::string _msg, std::string prefix = "") {
-                std::cout << "[" << __getCDate() << "] " << prefix << colorRed() << " error: " << colorNone() << _msg << colorNone() << std::endl;
+                #if KAPENGINE_THREAD_ACTIVE
+                    #if KAPENGINE_BETA_ACTIVE
+                        logMutex.lock();
+                        std::cout << "[" << __getCDate() << "] " << prefix << colorRed() << " error: " << colorNone() << _msg << colorNone() << std::endl;
+                        logMutex.unlock();
+                    #endif
+                #else
+                    std::cout << "[" << __getCDate() << "] " << prefix << colorRed() << " error: " << colorNone() << _msg << colorNone() << std::endl;
+                #endif
             }
 
             static void error(char const* _msg, std::string prefix = "") {
@@ -226,6 +256,12 @@ namespace KapEngine {
                     return "\e[1m";
                 #endif
             }
+        
+            #if KAPENGINE_THREAD_ACTIVE
+                #if KAPENGINE_BETA_ACTIVE
+                    static std::mutex logMutex;
+                #endif
+            #endif
         protected:
         private:
             static std::string __getCDate() {

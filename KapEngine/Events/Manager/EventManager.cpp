@@ -5,8 +5,8 @@
 ** EventManager
 */
 
-#include "EventManager.hpp"
-#include "KapEngineDebug.hpp"
+#include "KapEngine.hpp"
+#include "KapEngineEvents.hpp"
 
 KapEngine::Events::EventManager::EventManager(KEngine &engine) : _engine(engine)
 {

@@ -5,10 +5,7 @@
 ** Transform
 */
 
-#include "Transform.hpp"
-#include "KapEngineDebug.hpp"
-#include "KapEngineSettings.hpp"
-#include "Vectors.hpp"
+#include "KapEngine.hpp"
 
 KapEngine::Transform::Transform(std::shared_ptr<GameObject> go) : Component(go, "Transform") {
     _startPos = Tools::Vector3(0.f, 0.f, 0.f);

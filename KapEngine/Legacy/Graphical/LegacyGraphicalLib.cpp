@@ -6,7 +6,7 @@
 */
 
 #include "LegacyGraphicalLib.hpp"
-#include "KapEngineDebug.hpp"
+#include "KapEngine.hpp"
 #include <iostream>
 
 KapEngine::Graphical::LegacyGraphicalLib::LegacyGraphicalLib(GraphicalLibManager &manager) : GraphicalLib("Legacy", manager) {

@@ -5,7 +5,8 @@
 ** Mouse
 */
 
-#include "Mouse.hpp"
+#include "KapEngine.hpp"
+#include "KapEngineEvents.hpp"
 
 KapEngine::Events::Mouse::Mouse(EventManager &manager) : manager(manager)
 {

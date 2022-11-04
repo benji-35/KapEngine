@@ -5,8 +5,8 @@
 ** GraphicalLibManager
 */
 
-#include "GraphicalLibManager.hpp"
-#include "KapEngineDebug.hpp"
+#include "KapEngine.hpp"
+#include "KapEngineGraphical.hpp"
 #include "LegacyGraphicalLib.hpp"
 
 KapEngine::Graphical::GraphicalLibManager::GraphicalLibManager(KEngine &engine) : _engine(engine) {

@@ -5,10 +5,8 @@
 ** Text
 */
 
-#include "UiText.hpp"
-#include "Transform.hpp"
-#include "UiCanvas.hpp"
-#include "KapEngineDebug.hpp"
+#include "KapEngine.hpp"
+#include "KapEngineUi.hpp"
 
 KapEngine::UI::Text::Text(std::shared_ptr<GameObject> &go, std::string const& textContent) : Component(go, "Text")
 {
