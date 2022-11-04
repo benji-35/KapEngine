@@ -7,7 +7,6 @@
 #include <thread>
 #include <mutex>
 #include <condition_variable>
-#include "KapEngineDebug.hpp"
 #include "FixedQueue.hpp"
 #include "StackElement.hpp"
 
@@ -58,11 +57,11 @@ namespace KapEngine {
                     //needCallerInsertion.wait(lock, [this]{ return !callersToInsert.empty(); });
                     long long now = std::chrono::high_resolution_clock::now().time_since_epoch().count();
                     if (now - _lastDebug > 1000000000) {
-                        KapEngine::Debug::log("---------------------------------");
+                        //KapEngine::Debug::log("---------------------------------");
                         std::ostringstream s2;
                         s2 << std::this_thread::get_id();
                         std::string idstr = s2.str();
-                        KapEngine::Debug::log("Thread #" + s2.str());
+                        //KapEngine::Debug::log("Thread #" + s2.str());
 
                         long long totTimeAllCalls = 0;
                         for (auto &_callTime : _callTime) {
@@ -78,13 +77,13 @@ namespace KapEngine {
                             float mean = (long) (totTime / std::max(_callCount.second, onel));
                             double timePercentage = ((double) totTime / (double) std::max(totTimeAllCalls, onel)) * 100.0;
 
-                            KapEngine::Debug::log(elem.getClass() + " " + elem.getMethod() + " Count[" + std::to_string(_callCount.second)
+                            /*KapEngine::Debug::log(elem.getClass() + " " + elem.getMethod() + " Count[" + std::to_string(_callCount.second)
                                 + "] Call/s[" + std::to_string(callSec) + "] "
                                 + "Mean[" + std::to_string(mean) + " ms] "
                                 + "Total[" + std::to_string(totTime) + " ms] "
-                                + std::to_string(timePercentage) + " % [" + std::to_string(totTimeAllCalls) + "]");
+                                + std::to_string(timePercentage) + " % [" + std::to_string(totTimeAllCalls) + "]");*/
                         }
-                        KapEngine::Debug::log("---------------------------------");
+                        //KapEngine::Debug::log("---------------------------------");
                         _lastDebug = now;
                     }
                 }

@@ -19,6 +19,7 @@
 #endif
 
 #include "KapEngineSettings.hpp"
+#include "Profiler/KapProfiler.hpp"
 
 namespace KapEngine {
     class Debug {
@@ -28,6 +29,7 @@ namespace KapEngine {
             * @brief display a simple message
             */
             static void log(std::string _msg, std::string prefix = "") {
+                PROFILER_FUNC_START();
                 #if KAPENGINE_THREAD_ACTIVE
                     #if KAPENGINE_BETA_ACTIVE
                         if (!logMutex.try_lock())
@@ -38,24 +40,32 @@ namespace KapEngine {
                 #else
                     std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << " log: " << colorNone() << _msg << colorNone() << std::endl;
                 #endif
+                PROFILER_FUNC_END();
             }
 
             static void log(char const* _msg, std::string prefix = "") {
+                PROFILER_FUNC_START();
                 log(std::string(_msg), prefix);
+                PROFILER_FUNC_END();
             }
 
             static void log(const char *_msg, const char *fileName, int const line) {
+                PROFILER_FUNC_START();
                 log(std::string(_msg), fileName, line);
+                PROFILER_FUNC_END();
             }
 
             static void log(std::string const& _msg, const char *fileName, int const line) {
+                PROFILER_FUNC_START();
                 log(std::string(_msg), "[" + colorGreen() + std::string(fileName) + colorNone() + " " + colorBlue() + "l. " + std::to_string(line) + colorNone() + "]");
+                PROFILER_FUNC_END();
             }
 
             /**
             * @brief display a warning message
             */
             static void warning(std::string _msg, std::string prefix = "") {
+                PROFILER_FUNC_START();
                 #if KAPENGINE_THREAD_ACTIVE
                     #if KAPENGINE_BETA_ACTIVE
                         logMutex.lock();
@@ -65,23 +75,31 @@ namespace KapEngine {
                 #else
                     std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << colorYellow() << " warning: " << colorNone() << _msg << colorNone() << std::endl;
                 #endif
+                PROFILER_FUNC_END();
             }
 
             static void warning(char const* _msg, std::string prefix = "") {
+                PROFILER_FUNC_START();
                 warning(std::string(_msg), prefix);
+                PROFILER_FUNC_END();
             }
 
             static void warning(const char *_msg, const char *fileName, int const line) {
+                PROFILER_FUNC_START();
                 warning(std::string(_msg), fileName, line);
+                PROFILER_FUNC_END();
             }
 
             static void warning(std::string const& _msg, const char *fileName, int const line) {
+                PROFILER_FUNC_START();
                 warning(std::string(_msg), "[" + colorYellow() + std::string(fileName) + colorNone() + " " + colorBlue() + "l. " + std::to_string(line) + colorNone() + "]");
+                PROFILER_FUNC_END();
             }
             /**
             * @brief display an error message
             */
             static void error(std::string _msg, std::string prefix = "") {
+                PROFILER_FUNC_START();
                 #if KAPENGINE_THREAD_ACTIVE
                     #if KAPENGINE_BETA_ACTIVE
                         logMutex.lock();
@@ -91,21 +109,30 @@ namespace KapEngine {
                 #else
                     std::cout << "[" << __getCDate() << "] " << prefix << colorRed() << " error: " << colorNone() << _msg << colorNone() << std::endl;
                 #endif
+                PROFILER_FUNC_END();
             }
 
             static void error(char const* _msg, std::string prefix = "") {
+                PROFILER_FUNC_START();
                 error(std::string(_msg), prefix);
+                PROFILER_FUNC_END();
             }
 
             static void error(const char *_msg, const char *fileName, int const line) {
+                PROFILER_FUNC_START();
                 error(std::string(_msg), fileName, line);
+                PROFILER_FUNC_END();
             }
 
             static void error(std::string const& _msg, const char *fileName, int const line) {
+                PROFILER_FUNC_START();
                 error(std::string(_msg), "[" + colorRed() + std::string(fileName) + colorNone() + " " + colorBlue() + "l. " + std::to_string(line) + colorNone() + "]");
+                PROFILER_FUNC_END();
             }
 
             static std::string colorNone() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -114,6 +141,8 @@ namespace KapEngine {
             }
 
             static std::string colorRed() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -122,6 +151,8 @@ namespace KapEngine {
             }
 
             static std::string colorYellow() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -130,6 +161,8 @@ namespace KapEngine {
             }
 
             static std::string colorWhite() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -138,6 +171,8 @@ namespace KapEngine {
             }
 
             static std::string colorBlue() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -146,6 +181,8 @@ namespace KapEngine {
             }
 
             static std::string colorBlack() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -154,6 +191,8 @@ namespace KapEngine {
             }
 
             static std::string colorGreen() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -162,6 +201,8 @@ namespace KapEngine {
             }
 
             static std::string colorMagenta() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -170,6 +211,8 @@ namespace KapEngine {
             }
 
             static std::string colorCyan() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -178,6 +221,8 @@ namespace KapEngine {
             }
         
             static std::string colorBackgroundDefault() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -186,6 +231,8 @@ namespace KapEngine {
             }
 
             static std::string colorBackgroundRed() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -194,6 +241,8 @@ namespace KapEngine {
             }
 
             static std::string colorBackgroundYellow() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -202,6 +251,8 @@ namespace KapEngine {
             }
 
             static std::string colorBackgroundWhite() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -210,6 +261,8 @@ namespace KapEngine {
             }
 
             static std::string colorBackgroundBlue() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -218,6 +271,8 @@ namespace KapEngine {
             }
 
             static std::string colorBackgroundBlack() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -226,6 +281,8 @@ namespace KapEngine {
             }
 
             static std::string colorBackgroundGreen() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -234,6 +291,8 @@ namespace KapEngine {
             }
 
             static std::string colorBackgroundMagenta() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -242,6 +301,8 @@ namespace KapEngine {
             }
 
             static std::string colorBackgroundCyan() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -250,6 +311,8 @@ namespace KapEngine {
             }
 
             static std::string boldStyle() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 #ifdef __WINDOWS__
                     return "";
                 #else
@@ -265,6 +328,7 @@ namespace KapEngine {
         protected:
         private:
             static std::string __getCDate() {
+                PROFILER_FUNC_START();
                 // current date/time based on current system
                 time_t now = std::time(0);
                 
@@ -272,6 +336,7 @@ namespace KapEngine {
                 char* dt = std::ctime(&now);
                 std::string _str(dt);
                 _str.pop_back();
+                PROFILER_FUNC_END();
                 return _str;
             }
     };
