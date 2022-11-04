@@ -8,6 +8,7 @@
 #ifndef VECTORS_HPP_
 #define VECTORS_HPP_
 
+#include "Profiler/KapProfiler.hpp"
 #include <string>
 
 namespace KapEngine {

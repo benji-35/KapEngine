@@ -72,7 +72,7 @@ namespace KapEngine {
                             size_t stackHash = _callCount.first;
                             std::string s = _hashMapping[stackHash];
                             StackElement elem(s);
-                            float callSec = _callCount.second / (std::max(now - _start, onel) / 1000000000);
+                            float callSec = (_callCount.second / (std::max(now - _start, onel))) / 1000000000;
                             long long totTime = (_callTime[stackHash] / 1000000);
                             float mean = (long) (totTime / std::max(_callCount.second, onel));
                             double timePercentage = ((double) totTime / (double) std::max(totTimeAllCalls, onel)) * 100.0;

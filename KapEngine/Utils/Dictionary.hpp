@@ -8,6 +8,7 @@
 #ifndef DICTIONARY_HPP_
 #define DICTIONARY_HPP_
 
+#include "Profiler/KapProfiler.hpp"
 #include <map>
 
 namespace KapEngine {

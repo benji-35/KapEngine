@@ -8,6 +8,7 @@
 #ifndef KEY_HPP_
 #define KEY_HPP_
 
+#include "Profiler/KapProfiler.hpp"
 #include <string>
 
 namespace KapEngine {
