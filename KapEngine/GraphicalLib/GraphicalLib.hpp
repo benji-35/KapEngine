@@ -59,25 +59,37 @@ namespace KapEngine {
 
                 //back system call
                 std::string getName() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _name;
                 }
 
                 //inputs
                 virtual float getJoystikValue(int gamepadId, int joystickId) {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return 0.0f;
                 }
 
                 std::vector<Events::Key> getNewKeys() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _newPressedInputs;
                 }
                 std::vector<Events::Key> getKeysPressed() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _pressedInputs;
                 }
                 std::vector<Events::Key> getKeysReleased() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _releasedInputs;
                 }
 
                 virtual Tools::Vector2 getMousePosition() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     Tools::Vector2 res;
 
                     return res;
@@ -100,7 +112,9 @@ namespace KapEngine {
 
                 virtual void playSound(std::string const& soundPath) {}
                 void setSoundVolume(float volume) {
+                    PROFILER_FUNC_START();
                     _soundVolume = volume;
+                    PROFILER_FUNC_END();
                 }
 
                 virtual void drawRectangle(Tools::Vector2 const& position, Tools::Vector2 const& size, Tools::Color const& color) {}
@@ -109,17 +123,25 @@ namespace KapEngine {
                 //graphical call
 
                 void setDrawText(std::function<void(UI::Text &)> f) {
+                    PROFILER_FUNC_START();
                     _drawText = f;
+                    PROFILER_FUNC_END();
                 }
                 void setDrawImage(std::function<void(UI::Image &)> f) {
+                    PROFILER_FUNC_START();
                     _drawImage = f;
+                    PROFILER_FUNC_END();
                 }
 
                 void drawText(UI::Text &txt) {
+                    PROFILER_FUNC_START();
                     _drawText(txt);
+                    PROFILER_FUNC_END();
                 }
                 void drawImage(UI::Image &img) {
+                    PROFILER_FUNC_START();
                     _drawImage(img);
+                    PROFILER_FUNC_END();
                 }
 
             protected:

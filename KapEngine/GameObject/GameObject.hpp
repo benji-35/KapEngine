@@ -78,6 +78,8 @@ namespace KapEngine {
              */
             template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
             T &getComponent(std::string const& componentName) {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return dynamic_cast<T &>(getComponent(componentName));
             }
             /**
@@ -90,17 +92,23 @@ namespace KapEngine {
              */
             template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
             T &getComponent() {
+                PROFILER_FUNC_START();
                 std::size_t hash = Type::getHashCode<T>();
                 for (std::size_t i = 0; i < _components.size(); i++) {
                     std::size_t componentHash = Type::getHashCode(*_components[i]);
-                    if (_components[i] && componentHash == hash)
+                    if (_components[i] && componentHash == hash) {
+                        PROFILER_FUNC_END();
                         return dynamic_cast<T &>(*_components[i]);
+                    }
                 }
                 for (std::size_t i = 0; i < _componentsRun.size(); i++) {
                     std::size_t componentHash = Type::getHashCode(*_componentsRun[i]);
-                    if (_componentsRun[i] && componentHash == hash)
+                    if (_componentsRun[i] && componentHash == hash) {
+                        PROFILER_FUNC_END();
                         return dynamic_cast<T &>(*_componentsRun[i]);
+                    }
                 }
+                PROFILER_FUNC_END();
                 throw Errors::GameObjectError("No component found");
             }
             /**
@@ -113,6 +121,7 @@ namespace KapEngine {
              */
             template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
             std::vector<std::shared_ptr<T>> getComponents() {
+                PROFILER_FUNC_START();
                 std::vector<std::shared_ptr<T>> components;
                 std::size_t hash = Type::getHashCode<T>();
                 for (std::size_t i = 0; i < _components.size(); i++) {
@@ -125,6 +134,7 @@ namespace KapEngine {
                     if (_componentsRun[i] && componentHash == hash)
                         components.push_back(std::dynamic_pointer_cast<T>(_componentsRun[i]));
                 }
+                PROFILER_FUNC_END();
                 return components;
             }
 
@@ -149,16 +159,21 @@ namespace KapEngine {
              */
             template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
             bool hasComponent() const {
+                PROFILER_FUNC_START();
                 std::size_t hash = Type::getHashCode<T>();
                 for (std::size_t i = 0; i < _components.size(); i++) {
                     std::size_t componentHash = Type::getHashCode(*_components[i]);
-                    if (_components[i] && componentHash == hash)
+                    if (_components[i] && componentHash == hash) {
+                        PROFILER_FUNC_END();
                         return true;
+                    }
                 }
                 for (std::size_t i = 0; i < _componentsRun.size(); i++) {
                     std::size_t componentHash = Type::getHashCode(*_componentsRun[i]);
-                    if (_componentsRun[i] && componentHash == hash)
+                    if (_componentsRun[i] && componentHash == hash) {
+                        PROFILER_FUNC_END();
                         return true;
+                    }
                 }
                 return false;
             }
@@ -192,6 +207,8 @@ namespace KapEngine {
              * @return false 
              */
             bool isActive() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _active;
             }
             /**
@@ -201,6 +218,8 @@ namespace KapEngine {
              * @return false 
              */
             bool isDestroyed() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _destroyed;
             }
 
@@ -210,6 +229,8 @@ namespace KapEngine {
              * @return SceneManagement::Scene &
              */
             SceneManagement::Scene &getScene() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _scene;
             }
 
@@ -219,6 +240,8 @@ namespace KapEngine {
              * @return SceneManagement::Scene & const
              */
             SceneManagement::Scene &getSceneConst() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _scene;
             }
 
@@ -240,6 +263,8 @@ namespace KapEngine {
              * @return std::string 
              */
             std::string getName() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _name;
             }
 
@@ -249,6 +274,8 @@ namespace KapEngine {
              * @return KapEngine::Entity& 
              */
             Entity &getEntity() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return (Entity &)*this;
             }
 
@@ -307,6 +334,8 @@ namespace KapEngine {
              * @return std::string 
              */
             std::string getPrefabName() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _prefabName;
             }
 
@@ -316,7 +345,9 @@ namespace KapEngine {
              * @param name 
              */
             void setName(std::string const& name) {
+                PROFILER_FUNC_START();
                 _name = name;
+                PROFILER_FUNC_END();
             }
 
             /**
@@ -325,7 +356,9 @@ namespace KapEngine {
              * @param tag 
              */
             void setTag(std::string const& tag) {
+                PROFILER_FUNC_START();
                 _tag = tag;
+                PROFILER_FUNC_END();
             }
 
             /**
@@ -334,6 +367,8 @@ namespace KapEngine {
              * @return std::string 
              */
             std::string getTag() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _tag;
             }
 

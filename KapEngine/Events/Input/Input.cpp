@@ -8,71 +8,111 @@
 #include "KapEngine.hpp"
 #include "KapEngineEvents.hpp"
 
-KapEngine::Events::Input::Input(EventManager &manager) : _manager(manager) {}
+KapEngine::Events::Input::Input(EventManager &manager) : _manager(manager) {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
+}
 
 void KapEngine::Events::Input::__update() {
-    if (!_manager.getEngine().isGraphicalLibExists(_manager.getEngine().getCurrentGraphicalLibIndex()))
+    PROFILER_FUNC_START();
+    if (!_manager.getEngine().isGraphicalLibExists(_manager.getEngine().getCurrentGraphicalLibIndex())) {
+        PROFILER_FUNC_END();
         return;
+    }
     _inputs = _manager.getEngine().getCurrentGraphicalLib()->getKeysPressed();
     _justInputs = _manager.getEngine().getCurrentGraphicalLib()->getNewKeys();
     _outInputs = _manager.getEngine().getCurrentGraphicalLib()->getKeysReleased();
+    PROFILER_FUNC_END();
 }
 
 bool KapEngine::Events::Input::getKey(Key::EKey key) {
-    if (key == Events::Key::UNKNOWN)
+    PROFILER_FUNC_START();
+    if (key == Events::Key::UNKNOWN) {
+        PROFILER_FUNC_END();
         return false;
+    }
     for (std::size_t i = 0; i < _inputs.size(); i++) {
-        if (_inputs.at(i) == key)
+        if (_inputs.at(i) == key) {
+            PROFILER_FUNC_END();
             return true;
+        }
     }
     for (std::size_t i = 0; i < _justInputs.size(); i++) {
-        if (_justInputs.at(i) == key)
+        if (_justInputs.at(i) == key) {
+            PROFILER_FUNC_END();
             return true;
+        }
     }
+    PROFILER_FUNC_END();
     return false;
 }
 
 bool KapEngine::Events::Input::getKeyDown(Key::EKey key) {
-    if (key == Events::Key::UNKNOWN)
+    PROFILER_FUNC_START();
+    if (key == Events::Key::UNKNOWN) {
+        PROFILER_FUNC_END();
         return false;
-    for (std::size_t i = 0; i < _justInputs.size(); i++) {
-        if (_justInputs.at(i) == key)
-            return true;
     }
+    for (std::size_t i = 0; i < _justInputs.size(); i++) {
+        if (_justInputs.at(i) == key) {
+            PROFILER_FUNC_END();
+            return true;
+        }
+    }
+    PROFILER_FUNC_END();
     return false;
 }
 
 bool KapEngine::Events::Input::getKeyUp(Key::EKey key) {
-    if (key == Events::Key::UNKNOWN)
+    PROFILER_FUNC_START();
+    if (key == Events::Key::UNKNOWN) {
+        PROFILER_FUNC_END();
         return false;
-    for (std::size_t i = 0; i < _outInputs.size(); i++) {
-        if (_outInputs.at(i) == key)
-            return true;
     }
+    for (std::size_t i = 0; i < _outInputs.size(); i++) {
+        if (_outInputs.at(i) == key) {
+            PROFILER_FUNC_END();
+            return true;
+        }
+    }
+    PROFILER_FUNC_END();
     return false;
 }
 
 bool KapEngine::Events::Input::getKey(Key key) {
-    if (key == Events::Key::UNKNOWN)
+    PROFILER_FUNC_START();
+    if (key == Events::Key::UNKNOWN) {
+        PROFILER_FUNC_END();
         return false;
-    if (getKeyDown(key))
-        return true;
-    for (std::size_t i = 0; i < _inputs.size(); i++) {
-        if (_inputs.at(i) == key)
-            return true;
     }
+    if (getKeyDown(key)) {
+        PROFILER_FUNC_END();
+        return true;
+    }
+    for (std::size_t i = 0; i < _inputs.size(); i++) {
+        if (_inputs.at(i) == key) {
+            PROFILER_FUNC_END();
+            return true;
+        }
+    }
+    PROFILER_FUNC_END();
     return false;
 }
 
 bool KapEngine::Events::Input::getKeyDown(Key key) {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
     return getKeyDown(key.get());
 }
 
 bool KapEngine::Events::Input::getKeyUp(Key key) {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
     return getKeyUp(key.get());
 }
 
 float KapEngine::Events::Input::getAxis(std::string name) {
+    PROFILER_FUNC_START();
     float res = 0.0f;
     for (std::size_t i = 0; i < _axises.size(); i++) {
         if (_axises.at(i).name == name) {
@@ -109,5 +149,6 @@ float KapEngine::Events::Input::getAxis(std::string name) {
             break;
         }
     }
+    PROFILER_FUNC_END();
     return res;
 }

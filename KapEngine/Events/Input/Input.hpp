@@ -77,6 +77,7 @@ namespace KapEngine {
                     bool invert;
 
                     Axis(std::string _name) {
+                        PROFILER_FUNC_START();
                         gamepadId = -1;
                         joystickId = -1;
                         positiveButton = Key::UNKNOWN;
@@ -86,11 +87,15 @@ namespace KapEngine {
                         invert = false;
                         name = _name;
                         detectMode = AxisDetectMode::GET;
+                        PROFILER_FUNC_END();
                     }
                 };
 
                 Input(EventManager &manager);
-                ~Input() {}
+                ~Input() {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
+                }
 
                 /**
                  * @fn void __update()
@@ -171,7 +176,9 @@ namespace KapEngine {
                  * @param name axis name
                  */
                 void addAxis(std::string name) {
+                    PROFILER_FUNC_START();
                     _axises.push_back(Axis(name));
+                    PROFILER_FUNC_END();
                 }
 
                 /**
@@ -181,7 +188,9 @@ namespace KapEngine {
                  * @param axis axis
                  */
                 void addAxis(Axis const& axis) {
+                    PROFILER_FUNC_START();
                     _axises.push_back(axis);
+                    PROFILER_FUNC_END();
                 }
 
                 /**
@@ -191,10 +200,14 @@ namespace KapEngine {
                  * @return KapEngine::Events::Input::Axis Axis& 
                  */
                 Axis &getAxisSettings(std::string const& name) {
+                    PROFILER_FUNC_START();
                     for (std::size_t i = 0; i < _axises.size(); i++) {
-                        if (_axises[i].name == name)
+                        if (_axises[i].name == name) {
+                            PROFILER_FUNC_END();
                             return _axises[i];
+                        }
                     }
+                    PROFILER_FUNC_END();
                     throw Errors::EngineError("Axis \"" + name + "\" not found");
                 }
 

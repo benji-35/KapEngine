@@ -13,27 +13,36 @@
 #include "KapEngine.hpp"
 
 KapEngine::GameObject::GameObject(SceneManagement::Scene &scene, std::string const& name) : _scene(scene) {
+    PROFILER_FUNC_START();
     _name = name;
     _prefabName = "";
+    PROFILER_FUNC_END();
 }
 
 KapEngine::GameObject::~GameObject() {
+    PROFILER_FUNC_START();
     for (std::size_t i = 0; i < _components.size(); i++) {
         _components[i].reset();
     }
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
         _componentsRun[i].reset();
     }
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::GameObject::__update(bool physics, bool runDisplay) {
-    if (!_active || _destroyed)
+    PROFILER_FUNC_START();
+    if (!_active || _destroyed) {
+        PROFILER_FUNC_END();
         return;
+    }
     std::vector<std::shared_ptr<GameObject>> _children;
     try {
         Transform &tr = (Transform &)getTransform();
-        if (!tr.allParentIsActive())
+        if (!tr.allParentIsActive()) {
+            PROFILER_FUNC_END();
             return;
+        }
         _children = tr.getChildren();
     } catch (...) {
         #if KAPENGINE_DEBUG_ACTIVE
@@ -44,8 +53,10 @@ void KapEngine::GameObject::__update(bool physics, bool runDisplay) {
         for (std::size_t i = 0; i < _components.size(); i++) {
             try {
                 Transform &tr = (Transform &)getTransform();
-                if (!tr.allParentIsActive())
+                if (!tr.allParentIsActive()) {
+                    PROFILER_FUNC_END();
                     return;
+                }
             } catch (...) {}
             if (physics && _components[i]->__isPhysics()) {
                 _components[i]->__update(runDisplay);
@@ -62,8 +73,10 @@ void KapEngine::GameObject::__update(bool physics, bool runDisplay) {
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
         try {
             Transform &tr = (Transform &)getTransform();
-            if (!tr.allParentIsActive())
+            if (!tr.allParentIsActive()) {
+                PROFILER_FUNC_END();
                 return;
+            }
         } catch (...) {}
         if (physics && _componentsRun[i]->__isPhysics()) {
             _componentsRun[i]->__update(runDisplay);
@@ -76,8 +89,10 @@ void KapEngine::GameObject::__update(bool physics, bool runDisplay) {
             DEBUG_ERROR("Failed to update components run for GameObject" + _name);
         #endif
     }
-    if (_active == false || _destroyed)
+    if (_active == false || _destroyed) {
+        PROFILER_FUNC_END();
         return;
+    }
     try {
         for (std::size_t i = 0; i < _children.size(); i++) {
             _children[i]->__update(physics, runDisplay);
@@ -87,24 +102,32 @@ void KapEngine::GameObject::__update(bool physics, bool runDisplay) {
             DEBUG_ERROR("Failed to update children for GameObject" + _name);
         #endif
     }
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::GameObject::__updateDisplay() {
-    if (!_active || _destroyed)
+    PROFILER_FUNC_START();
+    if (!_active || _destroyed) {
+        PROFILER_FUNC_END();
         return;
+    }
     std::vector<std::shared_ptr<GameObject>> _children;
     try {
         Transform &tr = (Transform &)getTransform();
-        if (!tr.allParentIsActive())
+        if (!tr.allParentIsActive()) {
+            PROFILER_FUNC_END();
             return;
+        }
         _children = tr.getChildren();
     } catch (...) {}
     try {
         for (std::size_t i = 0; i < _components.size(); i++) {
             try {
                 Transform &tr = (Transform &)getTransform();
-                if (!tr.allParentIsActive())
+                if (!tr.allParentIsActive()) {
+                    PROFILER_FUNC_END();
                     return;
+                }
             } catch (...) {}
             _components[i]->onDisplay();
         }
@@ -117,8 +140,10 @@ void KapEngine::GameObject::__updateDisplay() {
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
         try {
             Transform &tr = (Transform &)getTransform();
-            if (!tr.allParentIsActive())
+            if (!tr.allParentIsActive()) {
+                PROFILER_FUNC_END();
                 return;
+            }
         } catch (...) {}
         _componentsRun[i]->onDisplay();
     }
@@ -127,8 +152,10 @@ void KapEngine::GameObject::__updateDisplay() {
             DEBUG_ERROR("Failed to update display components run for GameObject" + _name);
         #endif
     }
-    if (_active == false || _destroyed)
+    if (_active == false || _destroyed) {
+        PROFILER_FUNC_END();
         return;
+    }
     try {
     for (std::size_t i = 0; i < _children.size(); i++) {
         _children[i]->__updateDisplay();
@@ -138,21 +165,30 @@ void KapEngine::GameObject::__updateDisplay() {
             DEBUG_ERROR("Failed to update display children for GameObject" + _name);
         #endif
     }
+    PROFILER_FUNC_END();
 }
 
 KapEngine::Component &KapEngine::GameObject::getComponent(std::string const& name) {
+    PROFILER_FUNC_START();
     for (std::size_t i = 0; i < _components.size(); i++) {
-        if (_components[i]->getName() == name)
+        if (_components[i]->getName() == name) {
+            PROFILER_FUNC_END();
             return *_components[i];
+        }
     }
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
-        if (_componentsRun[i]->getName() == name)
+        if (_componentsRun[i]->getName() == name) {
+            PROFILER_FUNC_END();
             return *_componentsRun[i];
+        }
     }
+    PROFILER_FUNC_END();
     throw Errors::GameObjectError("No component named \"" + name + "\" found");
 }
 
 KapEngine::Component &KapEngine::GameObject::getTransform() {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
     try {
         return getComponent<Transform>();
     } catch(...) {
@@ -161,10 +197,13 @@ KapEngine::Component &KapEngine::GameObject::getTransform() {
 }
 
 KapEngine::KEngine &KapEngine::GameObject::getEngine() {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
     return _scene.getEngine();
 }
 
 void KapEngine::GameObject::addComponent(std::shared_ptr<Component> comp) {
+    PROFILER_FUNC_START();
     _idComp++;
     comp->__setId(_idComp);
     if (getEngine().isRunning()) {
@@ -172,30 +211,40 @@ void KapEngine::GameObject::addComponent(std::shared_ptr<Component> comp) {
     } else {
         _components.push_back(comp);
     }
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::GameObject::__engineStop() {
+    PROFILER_FUNC_START();
     for (std::size_t i = 0; i < _components.size(); i++) {
         _components[i]->__engineStop();
     }
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
         _componentsRun[i]->__engineStop();
     }
+    PROFILER_FUNC_END();
 }
 
 bool KapEngine::GameObject::hasComponent(std::string const& componentName) const {
+    PROFILER_FUNC_START();
     for (std::size_t i = 0; i < _components.size(); i++) {
-        if (_components[i]->getName() == componentName)
+        if (_components[i]->getName() == componentName) {
+            PROFILER_FUNC_END();
             return true;
+        }
     }
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
-        if (_componentsRun[i]->getName() == componentName)
+        if (_componentsRun[i]->getName() == componentName) {
+            PROFILER_FUNC_END();
             return true;
+        }
     }
+    PROFILER_FUNC_END();
     return false;
 }
 
 void KapEngine::GameObject::__destroyIt() {
+    PROFILER_FUNC_START();
     _destroyed = true;
     for (std::size_t i = 0; i < _components.size(); i++) {
         _components[i]->onDestroy();
@@ -204,18 +253,22 @@ void KapEngine::GameObject::__destroyIt() {
         _componentsRun[i]->onDestroy();
     }
     _componentsRun.clear();
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::GameObject::__init() {
+    PROFILER_FUNC_START();
     _destroyed = false;
     _active = _startActive;
     _componentsRun.clear();
     for (std::size_t i = 0; i < _components.size(); i++) {
         _components[i]->__awake();
     }
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::GameObject::setActive(bool b) {
+    PROFILER_FUNC_START();
     if (getEngine().isRunning()) {
         if (!b && _active) {
             for (std::size_t i = 0; i < _components.size(); i++) {
@@ -236,19 +289,22 @@ void KapEngine::GameObject::setActive(bool b) {
     } else {
         _startActive = b;
     }
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::GameObject::__stoppingGame() {
+    PROFILER_FUNC_START();
     for (std::size_t i = 0; i < _components.size(); i++) {
         _components[i]->onGameQuit();
     }
     for (std::size_t i = 0; i < _componentsRun.size(); i++) {
         _componentsRun[i]->onGameQuit();
     }
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::GameObject::dump(bool displayComponent, std::string prefix) {
-
+    PROFILER_FUNC_START();
     std::string color = Debug::colorWhite();    
     if (!isActive() || !getComponent<Transform>().allParentsActive()) {
         color = Debug::colorCyan();
@@ -274,9 +330,11 @@ void KapEngine::GameObject::dump(bool displayComponent, std::string prefix) {
     for (std::size_t i = 0; i < children.size(); i++) {
         children[i]->dump(displayComponent, prefix);
     }
+    PROFILER_FUNC_END();
 }
 
 std::vector<std::shared_ptr<KapEngine::Component>> KapEngine::GameObject::getAllComponents() const {
+    PROFILER_FUNC_START();
     std::vector<std::shared_ptr<Component>> result;
 
     for (std::size_t i = 0; i < _components.size(); i++)
@@ -284,18 +342,24 @@ std::vector<std::shared_ptr<KapEngine::Component>> KapEngine::GameObject::getAll
     for (std::size_t i = 0; i < _componentsRun.size(); i++)
         result.push_back(_componentsRun[i]);
 
+    PROFILER_FUNC_END();
     return result;
 }
 
 void KapEngine::GameObject::destroy() {
+    PROFILER_FUNC_START();
     getScene().destroyGameObject(getId());
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::GameObject::__setPrefab(std::string const& name) {
+    PROFILER_FUNC_START();
     _prefabName = name;
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::GameObject::__onSceneUpdated() {
+    PROFILER_FUNC_START();
     for (std::size_t i = 0; i < _components.size(); i++) {
         _components[i]->onSceneUpdated();
     }
@@ -306,9 +370,11 @@ void KapEngine::GameObject::__onSceneUpdated() {
     for (std::size_t i = 0; i < children.size(); i++) {
         children[i]->__onSceneUpdated();
     }
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::GameObject::__onSceneGonnaUpdated() {
+    PROFILER_FUNC_START();
     for (std::size_t i = 0; i < _components.size(); i++) {
         _components[i]->onSceneGonnaUpdated();
     }
@@ -319,10 +385,13 @@ void KapEngine::GameObject::__onSceneGonnaUpdated() {
     for (std::size_t i = 0; i < children.size(); i++) {
         children[i]->__onSceneGonnaUpdated();
     }
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::GameObject::__onSceneChanged() {
+    PROFILER_FUNC_START();
     for (std::size_t i = 0; i < _components.size(); i++) {
         _components[i]->__sceneChanged();
     }
+    PROFILER_FUNC_END();
 }

@@ -48,12 +48,16 @@ namespace KapEngine {
                 void __update();
 
                 std::size_t getCurrLib() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return currLib;
                 }
 
                 std::shared_ptr<GraphicalLib> getCurrentLib() const;
 
                 KEngine &getEngine() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _engine;
                 }
 
