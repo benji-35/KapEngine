@@ -10,15 +10,20 @@
 
 KapEngine::UI::Text::Text(std::shared_ptr<GameObject> &go, std::string const& textContent) : Component(go, "Text")
 {
+    PROFILER_FUNC_START();
     setText(textContent);
+    PROFILER_FUNC_END();
 }
 
 KapEngine::UI::Text::~Text()
 {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::UI::Text::onAwake()
 {
+    PROFILER_FUNC_START();
     _lastScale = getTransform().getWorldScale();
     _lastPos = getTransform().getWorldPosition();
     _lastScaleWant = getTransform().getWorldScale();
@@ -29,9 +34,11 @@ void KapEngine::UI::Text::onAwake()
         auto &canvas = canvasObject->getComponent<Canvas>();
         _lastCompare = canvas.getScreenSizeCompare();
     } catch(...) {}
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::UI::Text::onDisplay() {
+    PROFILER_FUNC_START();
     try {
         getGameObject().getEngine().getCurrentGraphicalLib()->drawText(*this);
     } catch(...) {
@@ -39,9 +46,11 @@ void KapEngine::UI::Text::onDisplay() {
             DEBUG_ERROR("Failed to draw text");
         #endif
     }
+    PROFILER_FUNC_END();
 }
 
 bool KapEngine::UI::Text::checkComponentValidity() {
+    PROFILER_FUNC_START();
     try {
         Transform &tr = (Transform &)getGameObject().getTransform();
         auto val = tr.parentContainsComponent("Canvas", true);
@@ -49,13 +58,16 @@ bool KapEngine::UI::Text::checkComponentValidity() {
             if (getGameObject().hasComponent<Canvas>())
                 val = true;
         }
+        PROFILER_FUNC_END();
         return val;
     } catch(...) {
+        PROFILER_FUNC_END();
         return false;
     }
 }
 
 KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedScale() {
+    PROFILER_FUNC_START();
     auto &transform = getGameObjectConst().getComponent<Transform>();
 
     Tools::Vector3 currScale = transform.getWorldScale();
@@ -64,6 +76,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedScale() {
     Tools::Vector2 screenSize = getCompare;
 
     if (_lastCompare == getCompare && _lastScaleWant == Tools::Vector2(currScale.getX(), currScale.getY())) {
+        PROFILER_FUNC_START();
         return _lastScale;
     }
 
@@ -87,13 +100,16 @@ KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedScale() {
         nSize.setX(screenSize.getX() * currScale.getX() / getCompare.getX());
         nSize.setY(screenSize.getY() * currScale.getY() / getCompare.getY());
         _lastScale = nSize;
+        PROFILER_FUNC_END();
         return nSize;
     }
     _lastScale = currScale;
     return Tools::Vector2(currScale.getX(), currScale.getY());
+    PROFILER_FUNC_END();
 }
 
 KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedPos() {
+    PROFILER_FUNC_START();
     auto &transform = getGameObjectConst().getComponent<Transform>();
 
     Tools::Vector3 currPos = transform.getWorldPosition();
@@ -102,6 +118,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedPos() {
     Tools::Vector2 screenSize = getCompare;
 
     if (_lastCompare == getCompare && _lastPosWant == Tools::Vector2(currPos.getX(), currPos.getY())) {
+        PROFILER_FUNC_END();
         return _lastPos;
     }
 
@@ -124,8 +141,10 @@ KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedPos() {
         nPos.setX(screenSize.getX() * currPos.getX() / getCompare.getX());
         nPos.setY(screenSize.getY() * currPos.getY() / getCompare.getY());
         _lastPos = nPos;
+        PROFILER_FUNC_END();
         return nPos;
     }
     _lastPos = currPos;
+    PROFILER_FUNC_END();
     return Tools::Vector2(currPos.getX(), currPos.getY());
 }

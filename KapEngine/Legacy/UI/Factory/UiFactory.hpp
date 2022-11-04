@@ -40,16 +40,19 @@ namespace KapEngine {
 
             //create canvas
             static std::shared_ptr<GameObject> createCanvas(SceneManagement::Scene &scene, std::string const& name = "Canvas") {
+                PROFILER_FUNC_START();
                 auto result = Factory::createEmptyGameObject(scene, name);
             
                 auto canvasComp = std::make_shared<Canvas>(result);
                 result->addComponent(canvasComp);
 
+                PROFILER_FUNC_END();
                 return result;
             }
 
             //create image
             static std::shared_ptr<GameObject> createImage(SceneManagement::Scene &scene, std::string const& name = "Image", std::string const& pathImage = "", Tools::Rectangle const& rect = {0, 0, 0, 0}) {
+                PROFILER_FUNC_START();
                 auto result = Factory::createEmptyGameObject(scene, name);
                 std::shared_ptr<Image> imgComponent = std::make_shared<Image>(result);
                 result->addComponent(imgComponent);
@@ -57,15 +60,18 @@ namespace KapEngine {
                 imgComponent->setPathSprite(pathImage);
                 imgComponent->setRectangle(rect);
 
+                PROFILER_FUNC_END();
                 return result;
             }
 
             //create text
             static std::shared_ptr<GameObject> createText(SceneManagement::Scene &scene, std::string const& name = "Text") {
+                PROFILER_FUNC_START();
                 auto result = Factory::createEmptyGameObject(scene, name);
                 std::shared_ptr<Text> txtComponent = std::make_shared<Text>(result);
                 result->addComponent(txtComponent);
 
+                PROFILER_FUNC_END();
                 return result;
             }
 
