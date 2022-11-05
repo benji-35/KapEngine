@@ -112,12 +112,10 @@ namespace KapEngine {
                 }
 
                 Color &operator=(Color const& col) {
-                    PROFILER_FUNC_START();
                     _r = col.getR();
                     _g = col.getG();
                     _b = col.getB();
                     _a = col.getA();
-                    PROFILER_FUNC_END();
                     return *this;
                 }
 

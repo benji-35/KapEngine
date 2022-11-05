@@ -7,8 +7,12 @@
 #include <thread>
 #include <mutex>
 #include <condition_variable>
+#include <fstream>
+#include <iostream>
+
 #include "FixedQueue.hpp"
 #include "StackElement.hpp"
+#include "StackSummary.hpp"
 
 namespace KapEngine {
 
@@ -37,6 +41,87 @@ namespace KapEngine {
                 return std::chrono::high_resolution_clock::now().time_since_epoch().count();
             }
 
+            bool canProcess() {
+                return now() - _lastDebug > 1000000000;
+            }
+
+            long getTotalTimeAllCalls() {
+                long long totTimeAllCalls = 0;
+
+                for (auto &_callTime : _callTime) {
+                    totTimeAllCalls += _callTime.second / 1000000;
+                }
+                return totTimeAllCalls;
+            }
+
+            std::string getThreadAsString() {
+                std::ostringstream threadString;
+                threadString << std::this_thread::get_id();
+
+                return threadString.str();
+            }
+
+            std::string getKprofFileName() {
+                return getThreadAsString() + ".kprof";
+            }
+
+            std::vector<StackSummary> getStackSummaries() {
+                std::vector<StackSummary> stackSummaries;
+                long long totalAllTimeCalls = getTotalTimeAllCalls();
+                long long n = now();
+
+                for (auto &_callCount : _callCounts) {
+                    size_t stackHash = _callCount.first;
+                    std::string s = _hashMapping[stackHash];
+                    long long totTime = (_callTime[stackHash] / 1000000);
+                    StackSummary summary(s, _callCount.second, totTime, _start, n, totalAllTimeCalls);
+
+                    stackSummaries.push_back(summary);
+                }
+                return stackSummaries;
+            }
+
+            void saveKProf() {
+                std::ofstream file(getKprofFileName(), std::ios::trunc);
+                std::stringstream output;
+
+                std::vector<StackSummary> stackSummaries = getStackSummaries();
+                output << stackSummaries.size() << '\n';
+                for (auto &summary : stackSummaries) {
+                    summary.serialize(output);
+                    output << '\n';
+                }
+                output << '\\';
+                if (file.good() && file.is_open()) {
+                    file << output.str();
+                    file.close();
+                }
+            }
+
+            void process() {
+                saveKProf();
+                _lastDebug = now();
+            }
+
+            void checkProcess() {
+                if (canProcess()) {
+                    process();
+                }
+            }
+
+            void _run() {
+                while (_running) {
+                    _queueMutex.lock();
+                    while (!callersToInsert.empty()) {
+                        std::tuple<std::string, int, long long> tuple = callersToInsert.front();
+                        _insertCaller(std::get<0>(tuple), std::get<1>(tuple), std::get<2>(tuple));
+                        callersToInsert.pop();
+                    }
+                    _queueMutex.unlock();
+                    checkProcess();
+                }
+            }
+
         public:
             ThreadStack(std::thread::id &id) {
                 _running = true;
@@ -45,62 +130,20 @@ namespace KapEngine {
                 _monitorThread = std::thread([this]{ _run(); });
             }
 
-            void _run() {
-                while (_running) {
-                    std::lock_guard<std::mutex> lock(_queueMutex);
-                    while (!callersToInsert.empty()) {
-                        std::tuple<std::string, int, long long> tuple = callersToInsert.front();
-                        _insertCaller(std::get<0>(tuple), std::get<1>(tuple), std::get<2>(tuple));
-                        callersToInsert.pop();
-                    }
-                    //std::unique_lock<std::mutex> lock(mtx);
-                    //needCallerInsertion.wait(lock, [this]{ return !callersToInsert.empty(); });
-                    long long now = std::chrono::high_resolution_clock::now().time_since_epoch().count();
-                    if (now - _lastDebug > 1000000000) {
-                        //KapEngine::Debug::log("---------------------------------");
-                        std::ostringstream s2;
-                        s2 << std::this_thread::get_id();
-                        std::string idstr = s2.str();
-                        //KapEngine::Debug::log("Thread #" + s2.str());
-
-                        long long totTimeAllCalls = 0;
-                        for (auto &_callTime : _callTime) {
-                            totTimeAllCalls += _callTime.second / 1000000;
-                        }
-                        long long onel = 1;
-                        for (auto &_callCount : _callCounts) {
-                            size_t stackHash = _callCount.first;
-                            std::string s = _hashMapping[stackHash];
-                            StackElement elem(s);
-                            float callSec = (_callCount.second / (std::max(now - _start, onel))) / 1000000000;
-                            long long totTime = (_callTime[stackHash] / 1000000);
-                            float mean = (long) (totTime / std::max(_callCount.second, onel));
-                            double timePercentage = ((double) totTime / (double) std::max(totTimeAllCalls, onel)) * 100.0;
-
-                            /*KapEngine::Debug::log(elem.getClass() + " " + elem.getMethod() + " Count[" + std::to_string(_callCount.second)
-                                + "] Call/s[" + std::to_string(callSec) + "] "
-                                + "Mean[" + std::to_string(mean) + " ms] "
-                                + "Total[" + std::to_string(totTime) + " ms] "
-                                + std::to_string(timePercentage) + " % [" + std::to_string(totTimeAllCalls) + "]");*/
-                        }
-                        //KapEngine::Debug::log("---------------------------------");
-                        _lastDebug = now;
-                    }
-                }
-            }
 
             void enqueueCaller(std::string &_caller, int state, long long time) {
-                //_insertCaller(_caller, state, time);
-                std::lock_guard<std::mutex> lock(_queueMutex);
+                _queueMutex.lock();
                 // Limit in case of slow profiling
                 if (callersToInsert.size() >= 100) {
+                    _queueMutex.unlock();
                     return;
                 }
                 callersToInsert.push(std::make_tuple(_caller, state, time));
-                //needCallerInsertion.notify_all();
+                _queueMutex.unlock();
             }
 
             void _insertCaller(std::string &_caller, int state, long long time) {
+                //std::cout << _caller << std::endl;
                 StackElement element(_caller);
                 size_t longHash = element.hashCode();
 

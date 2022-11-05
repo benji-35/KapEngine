@@ -69,26 +69,20 @@ KapEngine::Component &KapEngine::SceneManagement::Scene::getActiveCamera() const
 }
 
 std::shared_ptr<KapEngine::GameObject> &KapEngine::SceneManagement::Scene::getGameObject(std::size_t id) {
-    PROFILER_FUNC_START();
     for (std::size_t i = 0; i < _gameObjects.size(); i++) {
         if (_gameObjects[i]->getId() == id) {
-            PROFILER_FUNC_END();
             return _gameObjects[i];
         }
     }
     for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
         if (_gameObjectsRun[i]->getId() == id) {
-            PROFILER_FUNC_END();
             return _gameObjectsRun[i];
         }
     }
-    PROFILER_FUNC_END();
     throw Errors::SceneError("No object has id: " + std::to_string(id));
 }
 
 KapEngine::KEngine &KapEngine::SceneManagement::Scene::getEngine() {
-    PROFILER_FUNC_START();
-    PROFILER_FUNC_END();
     return manager.getEngine();
 }
 
@@ -237,8 +231,6 @@ std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::
 }
 
 std::shared_ptr<KapEngine::GameObject> &KapEngine::SceneManagement::Scene::getGameObject(Entity const &en) {
-    PROFILER_FUNC_START();
-    PROFILER_FUNC_END();
     return getGameObject(en.getId());
 }
 

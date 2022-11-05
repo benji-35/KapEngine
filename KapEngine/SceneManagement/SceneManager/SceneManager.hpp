@@ -45,8 +45,6 @@ namespace KapEngine {
                 void __update();
 
                 KEngine &getEngine() {
-                    PROFILER_FUNC_START();
-                    PROFILER_FUNC_END();
                     return _engine;
                 }
 

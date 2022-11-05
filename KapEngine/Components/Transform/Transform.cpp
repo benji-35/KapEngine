@@ -83,10 +83,8 @@ KapEngine::Tools::Vector3 KapEngine::Transform::getLocalScale() const {
 }
 
 KapEngine::Tools::Vector3 KapEngine::Transform::getWorldPosition() const {
-    PROFILER_FUNC_START();
     Tools::Vector3 res(_pos);
     res += getParentPos();
-    PROFILER_FUNC_END();
     return res;
 }
 
@@ -99,10 +97,8 @@ KapEngine::Tools::Vector3 KapEngine::Transform::getWorldRotation() const {
 }
 
 KapEngine::Tools::Vector3 KapEngine::Transform::getWorldScale() const {
-    PROFILER_FUNC_START();
     Tools::Vector3 res(_scale);
     res *= getParentScale();
-    PROFILER_FUNC_END();
     return res;
 }
 
@@ -221,17 +217,13 @@ void KapEngine::Transform::setParent(std::any val) {
 }
 
 bool KapEngine::Transform::allParentIsActive() {
-    PROFILER_FUNC_START();
     if (_parentId == 0) {
-        PROFILER_FUNC_END();
         return getGameObject().isActive();
     }
     try {
         Transform &tr = (Transform &) getGameObject().getScene().getGameObject(_parentId)->getTransform();
-        PROFILER_FUNC_END();
         return tr.allParentIsActive();
     } catch(...) {
-        PROFILER_FUNC_END();
         return false;
     }
 }
@@ -253,20 +245,16 @@ std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::Transform::getChi
 }
 
 std::size_t KapEngine::Transform::getParentId() const {
-    PROFILER_FUNC_START();
-    PROFILER_FUNC_END();
     return _parentId;
 }
 
 std::shared_ptr<KapEngine::GameObject> KapEngine::Transform::getParent() const {
-    PROFILER_FUNC_START();
     std::shared_ptr<GameObject> result;
     if (_parentId != 0) {
         try {
             result = getGameObjectConst().getScene().getGameObject(_parentId);
         } catch(...) {}
     }
-    PROFILER_FUNC_END();
     return result;
 }
 
@@ -347,19 +335,15 @@ std::size_t KapEngine::Transform::getParentContainsComponent(std::string const& 
 }
 
 bool KapEngine::Transform::allParentsActive() const {
-    PROFILER_FUNC_START();
     if (_parentId == 0 || getGameObjectConst().isActive() == false) {
-        PROFILER_FUNC_END();
         return getGameObjectConst().isActive();
     }
     try {
         auto parent = getParent();
 
         auto &tr = parent->getComponent<Transform>();
-        PROFILER_FUNC_END();
         return tr.allParentsActive();
     } catch(...) {
-        PROFILER_FUNC_END();
         return false;
     }
 }

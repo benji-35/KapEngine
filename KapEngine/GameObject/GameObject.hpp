@@ -92,23 +92,19 @@ namespace KapEngine {
              */
             template<typename T, typename = std::enable_if<std::is_base_of<Component, T>::value>>
             T &getComponent() {
-                PROFILER_FUNC_START();
                 std::size_t hash = Type::getHashCode<T>();
                 for (std::size_t i = 0; i < _components.size(); i++) {
                     std::size_t componentHash = Type::getHashCode(*_components[i]);
                     if (_components[i] && componentHash == hash) {
-                        PROFILER_FUNC_END();
                         return dynamic_cast<T &>(*_components[i]);
                     }
                 }
                 for (std::size_t i = 0; i < _componentsRun.size(); i++) {
                     std::size_t componentHash = Type::getHashCode(*_componentsRun[i]);
                     if (_componentsRun[i] && componentHash == hash) {
-                        PROFILER_FUNC_END();
                         return dynamic_cast<T &>(*_componentsRun[i]);
                     }
                 }
-                PROFILER_FUNC_END();
                 throw Errors::GameObjectError("No component found");
             }
             /**
@@ -207,8 +203,6 @@ namespace KapEngine {
              * @return false 
              */
             bool isActive() const {
-                PROFILER_FUNC_START();
-                PROFILER_FUNC_END();
                 return _active;
             }
             /**
@@ -218,8 +212,6 @@ namespace KapEngine {
              * @return false 
              */
             bool isDestroyed() const {
-                PROFILER_FUNC_START();
-                PROFILER_FUNC_END();
                 return _destroyed;
             }
 
@@ -263,8 +255,6 @@ namespace KapEngine {
              * @return std::string 
              */
             std::string getName() const {
-                PROFILER_FUNC_START();
-                PROFILER_FUNC_END();
                 return _name;
             }
 

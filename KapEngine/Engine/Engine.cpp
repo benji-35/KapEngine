@@ -116,8 +116,6 @@ void KapEngine::KEngine::stop() {
 }
 
 std::shared_ptr<KapEngine::Graphical::GraphicalLib> KapEngine::KEngine::getCurrentGraphicalLib() {
-    PROFILER_FUNC_START();
-    PROFILER_FUNC_END();
     return _libManager->getLib(_libManager->getCurrLib());
 }
 
@@ -156,8 +154,6 @@ void KapEngine::KEngine::__init() {
 }
 
 KapEngine::Events::EventManager &KapEngine::KEngine::getEventManager() {
-    PROFILER_FUNC_START();
-    PROFILER_FUNC_END();
     return *_eventManager;
 }
 

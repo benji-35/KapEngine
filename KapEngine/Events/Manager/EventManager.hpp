@@ -44,8 +44,6 @@ namespace KapEngine {
                  * @return KapEngine::KEngine &
                  */
                 KEngine &getEngine() {
-                    PROFILER_FUNC_START();
-                    PROFILER_FUNC_END();
                     return _engine;
                 }
 

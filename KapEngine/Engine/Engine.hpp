@@ -251,8 +251,6 @@ namespace KapEngine {
              * @return std::shared_ptr<KapEngine::Graphical::GraphicalLibManager> 
              */
             std::shared_ptr<Graphical::GraphicalLibManager> getGraphicalLibManager() const {
-                PROFILER_FUNC_START();
-                PROFILER_FUNC_END();
                 return _libManager;
             }
 

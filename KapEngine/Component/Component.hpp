@@ -166,8 +166,6 @@ namespace KapEngine {
              * @return std::string
              */
             std::string getName() const {
-                PROFILER_FUNC_START();
-                PROFILER_FUNC_END();
                 return _name;
             }
 
@@ -261,8 +259,6 @@ namespace KapEngine {
              * @return false 
              */
             bool __isPhysics() const {
-                PROFILER_FUNC_START();
-                PROFILER_FUNC_END();
                 return _physics;
             }
 

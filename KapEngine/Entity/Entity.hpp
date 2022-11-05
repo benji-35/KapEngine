@@ -42,21 +42,15 @@ namespace KapEngine {
              * @return std::size_t 
              */
             std::size_t getId() const {
-                PROFILER_FUNC_START();
-                PROFILER_FUNC_END();
                 return _id;
             }
 
             virtual Entity &operator=(Entity const& en) {
-                PROFILER_FUNC_START();
                 _id = en._id;
-                PROFILER_FUNC_END();
                 return *this;
             }
 
             virtual bool operator==(Entity const& en) {
-                PROFILER_FUNC_START();
-                PROFILER_FUNC_END();
                 return en._id == _id;
             }
 

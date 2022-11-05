@@ -33,8 +33,6 @@ KapEngine::GameObject &KapEngine::Component::getGameObject() {
     try {
         if (_go.use_count() <= 1)
             throw Errors::SceneError("GameObject does not exist in scene");
-        PROFILER_FUNC_START();
-        PROFILER_FUNC_END();
         return *_go;
     } catch (Errors::SceneError e) {
         throw Errors::ComponentError(std::string(e.what()));
@@ -115,8 +113,6 @@ KapEngine::Events::Mouse KapEngine::Component::getMouse() {
 }
 
 KapEngine::GameObject &KapEngine::Component::getGameObjectConst() const {
-    PROFILER_FUNC_START();
-    PROFILER_FUNC_END();
     try {
         if (_go.use_count() <= 1)
             throw Errors::SceneError("GameObject does not exist in scene");
@@ -166,7 +162,5 @@ bool KapEngine::Component::__checkValidity() {
 }
 
 KapEngine::Transform &KapEngine::Component::getTransform() {
-    PROFILER_FUNC_START();
-    PROFILER_FUNC_END();
     return getGameObject().getComponent<Transform>();
 }

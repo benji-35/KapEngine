@@ -56,8 +56,6 @@ namespace KapEngine {
                 std::shared_ptr<GraphicalLib> getCurrentLib() const;
 
                 KEngine &getEngine() const {
-                    PROFILER_FUNC_START();
-                    PROFILER_FUNC_END();
                     return _engine;
                 }
 

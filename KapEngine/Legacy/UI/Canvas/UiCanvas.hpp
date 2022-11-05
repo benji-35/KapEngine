@@ -48,8 +48,6 @@ namespace KapEngine {
                 }
 
                 Tools::Vector2 getScreenSizeCompare() const {
-                    PROFILER_FUNC_START();
-                    PROFILER_FUNC_END();
                     return _screenSizeCompare;
                 }
 

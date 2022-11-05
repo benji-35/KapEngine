@@ -17,12 +17,8 @@ namespace KapEngine {
         class Key {
             public:
                 Key() {
-                    PROFILER_FUNC_START();
-                    PROFILER_FUNC_END();
                 }
                 ~Key() {
-                    PROFILER_FUNC_START();
-                    PROFILER_FUNC_END();
                 }
 
                 /**
@@ -241,15 +237,11 @@ namespace KapEngine {
                 }
 
                 Key &operator=(EKey const& _ek) {
-                    PROFILER_FUNC_START();
                     this->_last = _ek;
-                    PROFILER_FUNC_END();
                     return *this;
                 }
                 Key &operator=(Key const& _k) {
-                    PROFILER_FUNC_START();
                     this->_last = _k._last;
-                    PROFILER_FUNC_END();
                     return *this;
                 }
                 bool operator==(EKey const& _ek) const {
@@ -320,8 +312,6 @@ namespace KapEngine {
                  * @retval false if _last is not a keyboard key
                  */
                 bool isKeyboardKey() const {
-                    PROFILER_FUNC_START();
-                    PROFILER_FUNC_END();
                     if (_last >= 1 && _last <= EKey::VOLUME_DOWN)
                         return true;
                     if (_last >= EKey::TILDE && _last <= EKey::F15)
@@ -337,8 +327,6 @@ namespace KapEngine {
                  * @retval false si la touche n'est pas de la souris
                  */
                 bool isMouseKey() const {
-                    PROFILER_FUNC_START();
-                    PROFILER_FUNC_END();
                     if (_last >= EKey::MOUSE_LEFT && _last <= EKey::MOUSE_BACK)
                         return true;
                     return false;
@@ -352,16 +340,12 @@ namespace KapEngine {
                  * @retval false if _last is not a gamepad key
                  */
                 bool isGamepadKey() const {
-                    PROFILER_FUNC_START();
-                    PROFILER_FUNC_END();
                     if (!isKeyboardKey() && !isMouseKey())
                         return true;
                     return false;
                 }
                 
                 Key &operator=(int const& _k) {
-                    PROFILER_FUNC_START();
-                    PROFILER_FUNC_END();
                     if (_k > maxValue() || _k < minValue()) {
                         _last = UNKNOWN;
                     }else {
@@ -737,8 +721,6 @@ namespace KapEngine {
                  * @return KapEngine::Events::Key::EKey 
                  */
                 EKey get() const {
-                    PROFILER_FUNC_START();
-                    PROFILER_FUNC_END();
                     return _last;
                 }
 

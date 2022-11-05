@@ -187,8 +187,6 @@ KapEngine::Component &KapEngine::GameObject::getComponent(std::string const& nam
 }
 
 KapEngine::Component &KapEngine::GameObject::getTransform() {
-    PROFILER_FUNC_START();
-    PROFILER_FUNC_END();
     try {
         return getComponent<Transform>();
     } catch(...) {
@@ -197,8 +195,6 @@ KapEngine::Component &KapEngine::GameObject::getTransform() {
 }
 
 KapEngine::KEngine &KapEngine::GameObject::getEngine() {
-    PROFILER_FUNC_START();
-    PROFILER_FUNC_END();
     return _scene.getEngine();
 }
 

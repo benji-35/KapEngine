@@ -29,36 +29,26 @@ void KapEngine::Tools::Rectangle::setSize(float w, float h) {
 }
 
 void KapEngine::Tools::Rectangle::setSize(Vector2 const& size) {
-    PROFILER_FUNC_START();
     _size = size;
-    PROFILER_FUNC_END();
 }
 
 void KapEngine::Tools::Rectangle::setH(float h) {
-    PROFILER_FUNC_START();
     _size.setY(h);
-    PROFILER_FUNC_END();
 }
 
 
 void KapEngine::Tools::Rectangle::setW(float w) {
-    PROFILER_FUNC_START();
     _size.setX(w);
-    PROFILER_FUNC_END();
 }
 
 
 void KapEngine::Tools::Rectangle::setX(float x) {
-    PROFILER_FUNC_START();
     _pos.setX(x);
-    PROFILER_FUNC_END();
 }
 
 
 void KapEngine::Tools::Rectangle::setY(float y) {
-    PROFILER_FUNC_START();
     _pos.setY(y);
-    PROFILER_FUNC_END();
 }
 
 std::string KapEngine::Tools::Rectangle::to_string() const {

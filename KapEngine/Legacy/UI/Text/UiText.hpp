@@ -69,8 +69,6 @@ namespace KapEngine {
                 }
 
                 std::string getText() const {
-                    PROFILER_FUNC_START();
-                    PROFILER_FUNC_END();
                     return _content;
                 }
 
