@@ -4,7 +4,9 @@
 #include <chrono>
 #include <map>
 #include <thread>
+
 #include "ThreadStack.hpp"
+#include "Platform.hpp"
 
 namespace KapEngine::Profiler {
 

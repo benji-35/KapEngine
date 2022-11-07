@@ -16,6 +16,10 @@
     #endif
 #endif
 
+#ifdef __WINDOWS__
+#define __PRETTY_FUNCTION__ __FUNCSIG__
+#endif
+
 #ifndef byte
     typedef unsigned char byte;
 #endif
