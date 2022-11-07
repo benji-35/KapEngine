@@ -37,9 +37,9 @@ namespace KapEngine {
                 void addScene(std::string const& sceneName);
 
                 void removeScene(std::string const& sceneName);
-                void removeScene(std::size_t id);
+                void removeScene(std::size_t const& id);
 
-                void loadScene(std::size_t index);
+                void loadScene(std::size_t const& index);
                 void loadScene(std::string const& sceneName);
 
                 void __update();
@@ -48,7 +48,7 @@ namespace KapEngine {
                     return _engine;
                 }
 
-                bool sceneExists(std::size_t index);
+                bool sceneExists(std::size_t const& index);
                 bool sceneExists(std::string const& sceneName);
 
                 Scene &getScene(std::string const& name);

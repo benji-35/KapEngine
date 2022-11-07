@@ -74,7 +74,7 @@ void KapEngine::SceneManagement::SceneManager::__update() {
     PROFILER_FUNC_END();
 }
 
-void KapEngine::SceneManagement::SceneManager::removeScene(std::size_t index) {
+void KapEngine::SceneManagement::SceneManager::removeScene(std::size_t const& index) {
     PROFILER_FUNC_START();
     if (!sceneExists(index)) {
         #if KAPENGINE_DEBUG_ACTIVE
@@ -100,7 +100,7 @@ void KapEngine::SceneManagement::SceneManager::removeScene(std::string const& sc
     PROFILER_FUNC_END();
 }
 
-bool KapEngine::SceneManagement::SceneManager::sceneExists(std::size_t index) {
+bool KapEngine::SceneManagement::SceneManager::sceneExists(std::size_t const& index) {
     PROFILER_FUNC_START();
     for (std::size_t i = 0; i < _scenes.size(); i++) {
         if (_scenes[i]->getId() == index) {
@@ -173,7 +173,7 @@ void KapEngine::SceneManagement::SceneManager::loadScene(std::string const& scen
     PROFILER_FUNC_END();
 }
 
-void KapEngine::SceneManagement::SceneManager::loadScene(std::size_t index) {
+void KapEngine::SceneManagement::SceneManager::loadScene(std::size_t const& index) {
     PROFILER_FUNC_START();
     #if KAPENGINE_BETA_ACTIVE
         #if KAPENGINE_THREAD_ACTIVE
