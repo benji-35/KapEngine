@@ -12,6 +12,7 @@
 #pragma region Constructors
 
     KapEngine::SceneManagement::Scene::Scene(SceneManager &manager, std::string const& name) : manager(manager) {
+        PROFILER_FUNC_START();
         #if KAPENGINE_DEBUG_ACTIVE
             DEBUG_LOG("Start init scene");
         #endif
@@ -21,15 +22,18 @@
         #if KAPENGINE_DEBUG_ACTIVE
             DEBUG_LOG("Stop init scene");
         #endif
+        PROFILER_FUNC_END();
     }
 
     KapEngine::SceneManagement::Scene::~Scene() {
+        PROFILER_FUNC_START();
         for (std::size_t i = 0; i < _gameObjects.size(); i++) {
             _gameObjects[i].reset();
         }
         for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
             _gameObjectsRun[i].reset();
         }
+        PROFILER_FUNC_END();
     }
 
 #pragma endregion
@@ -37,11 +41,13 @@
 #pragma region getters
 
     KapEngine::Component &KapEngine::SceneManagement::Scene::getActiveCamera() const {
+        PROFILER_FUNC_START();
         for (std::size_t i = 0; i < _gameObjects.size(); i++) {
             if (_gameObjects[i]->isActive() && !_gameObjects[i]->isDestroyed()) {
                 try {
                     Component &comp = _gameObjects[i]->getComponent<Camera>();
                     if (comp.isEnable()) {
+                        PROFILER_FUNC_END();
                         return comp;
                     }
                 } catch(...) {}
@@ -52,11 +58,13 @@
                 try {
                     Component &comp = _gameObjectsRun[i]->getComponent<Camera>();
                     if (comp.isEnable()) {
+                        PROFILER_FUNC_END();
                         return comp;
                     }
                 } catch(...) {}
             }
         }
+        PROFILER_FUNC_END();
         throw Errors::SceneError("No active camera found in this scene");
     }
 
@@ -77,24 +85,32 @@
     }
 
     std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::getGameObjectConst(std::size_t id) const {
+        PROFILER_FUNC_START();
         for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-            if (_gameObjects[i]->getId() == id)
+            if (_gameObjects[i]->getId() == id) {
+                PROFILER_FUNC_END();
                 return _gameObjects[i];
+            }
         }
         for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
-            if (_gameObjectsRun[i]->getId() == id)
+            if (_gameObjectsRun[i]->getId() == id) {
+                PROFILER_FUNC_END();
                 return _gameObjectsRun[i];
+            }
         }
+        PROFILER_FUNC_END();
         throw Errors::SceneError("No object has id: " + std::to_string(id));
     }
 
     std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::Scene::getAllGameObjects() {
+        PROFILER_FUNC_START();
         std::vector<std::shared_ptr<GameObject>> result;
 
         result = _gameObjects;
         for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
             result.push_back(_gameObjectsRun[i]);
         }
+        PROFILER_FUNC_END();
         return result;
     }
 
@@ -119,15 +135,21 @@
     }
 
     std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::findFirstGameObject(std::string const& name) {
+        PROFILER_FUNC_START();
         for (std::size_t i = 0; i < _gameObjects.size(); i++) {
-            if (_gameObjects[i]->getName() == name)
+            if (_gameObjects[i]->getName() == name) {
+                PROFILER_FUNC_END();
                 return _gameObjects[i];
+            }
         }
 
         for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
-            if (_gameObjectsRun[i]->getName() == name)
+            if (_gameObjectsRun[i]->getName() == name) {
+                PROFILER_FUNC_END();
                 return _gameObjectsRun[i];
+            }
         }
+        PROFILER_FUNC_END();
         throw Errors::SceneError("No object has name: " + name);
     }
 
@@ -208,10 +230,12 @@
 #pragma region actions
 
     void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {
+        PROFILER_FUNC_START();
         if (go->getId() != 0) {
             #if KAPENGINE_DEBUG_ACTIVE
                 DEBUG_WARNING("Object " + go->getName() + " already added in scene: " + go->getScene().getName());
             #endif
+            PROFILER_FUNC_END();
             return;
         }
         _idObjectMax++;
@@ -224,18 +248,26 @@
         } else {
             _gameObjectsRun.push_back(go);
         }
+        PROFILER_FUNC_END();
     }
 
-
     void KapEngine::SceneManagement::Scene::destroyGameObject(std::shared_ptr<GameObject> const go) {
-        if (go.use_count() == 0 || go->getScene().getId() != getId())
+        PROFILER_FUNC_START();
+        if (go.use_count() == 0 || go->getScene().getId() != getId()) {
+            PROFILER_FUNC_END();
             return;
+        }
         destroyGameObject(go->getId());
+        PROFILER_FUNC_END();
     }
 
     void KapEngine::SceneManagement::Scene::destroyGameObject(GameObject const& go) {
-        if (go.getSceneConst().getId() != getId())
+        PROFILER_FUNC_START();
+        if (go.getSceneConst().getId() != getId()) {
+            PROFILER_FUNC_END();
             return;
+        }
+        PROFILER_FUNC_END();
         destroyGameObject(go.getId());
     }
 
@@ -244,6 +276,7 @@
     }
     
     void KapEngine::SceneManagement::Scene::dump(bool b) {
+        PROFILER_FUNC_START();
         #if KAPENGINE_DEBUG_ACTIVE
             DEBUG_LOG("Scene: " + getName());
         #endif
@@ -257,15 +290,18 @@
                 _gameObjectsRun[i]->dump(b, "");
             }
         }
+        PROFILER_FUNC_END();
     }
 
     std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::createGameObject(std::string const& name) {
+        PROFILER_FUNC_START();
         auto object = std::make_shared<GameObject>(*this, name);
 
         auto tr = std::make_shared<Transform>(object);
         object->addComponent(tr);
 
         addGameObject(object);
+        PROFILER_FUNC_END();
         return object;
     }
 
@@ -274,6 +310,7 @@
 #pragma region privateActions
 
     void KapEngine::SceneManagement::Scene::__changingScene() {
+        PROFILER_FUNC_START();
         _changingScene = true;
         for (std::size_t i = 0; i < _gameObjects.size(); i++) {
             _gameObjects[i]->__onSceneChanged();
@@ -282,9 +319,11 @@
             _gameObjectsRun[i].reset();
         }
         _gameObjectsRun.clear();
+        PROFILER_FUNC_END();
     }
 
     void KapEngine::SceneManagement::Scene::__checkDestroy() {
+        PROFILER_FUNC_START();
         #if KAPENGINE_BETA_ACTIVE
             #if KAPENGINE_THREAD_ACTIVE
 
@@ -317,9 +356,11 @@
 
             #endif
         #endif
+        PROFILER_FUNC_END();
     }
 
     void KapEngine::SceneManagement::Scene::__init() {
+        PROFILER_FUNC_START();
         _changingScene = false;
         _gameObjectsRun.clear();
         for (std::size_t i = 0; i < _gameObjects.size(); i++) {
@@ -328,23 +369,29 @@
         #if KAPENGINE_DEBUG_ACTIVE
             dump(true);
         #endif
+        PROFILER_FUNC_END();
     }
 
     void KapEngine::SceneManagement::Scene::__finit() {
+        PROFILER_FUNC_START();
         auto mainCamera = createGameObject("Main Camera");
         auto cam = std::make_shared<Camera>(mainCamera);
         mainCamera->addComponent(cam);
+        PROFILER_FUNC_END();
     }
 
     void KapEngine::SceneManagement::Scene::__updateGameObjects(std::vector<std::shared_ptr<GameObject>> objs) {
+        PROFILER_FUNC_START();
         //updating scene
         for (std::size_t i = 0; i < objs.size(); i++) {
             objs[i]->__update(false, false);
             objs[i]->__update(true, false);
         }
+        PROFILER_FUNC_END();
     }
 
     void KapEngine::SceneManagement::Scene::__engineStop(bool currentScene) {
+        PROFILER_FUNC_START();
         for (std::size_t i = 0; i < _gameObjects.size(); i++) {
             if (currentScene)
                 _gameObjects[i]->__stoppingGame();
@@ -355,6 +402,7 @@
                 _gameObjectsRun[i]->__stoppingGame();
             _gameObjectsRun[i]->__engineStop();
         }
+        PROFILER_FUNC_END();
     }
 
 #pragma endregion
@@ -442,6 +490,7 @@
     #if !KAPENGINE_BETA_ACTIVE
 
         void KapEngine::SceneManagement::Scene::__update() {
+            PROFILER_FUNC_START();
             __checkDestroy();
             try {
                 Component camera = getActiveCamera();
@@ -449,8 +498,10 @@
                 #if KAPENGINE_DEBUG_ACTIVE
                     DEBUG_ERROR("No camera found in scene");
                 #endif
+                PROFILER_FUNC_END();
                 return;
             }
+            PROFILER_FUNC_END();
             #if KAPENGINE_THREAD_ACTIVE
                 __checkThread();
             #else
@@ -499,20 +550,25 @@
                 }
                 _tmpActionsAfterUpdate.clear();
             #endif
+            PROFILER_FUNC_END();
         }
-
         #if KAPENGINE_THREAD_ACTIVE
 
             void KapEngine::SceneManagement::Scene::__threadSceneUpdate(std::vector<std::shared_ptr<GameObject>> gos, bool physics) {
+                PROFILER_FUNC_START();
                 for (std::size_t i = 0; i < gos.size(); i++) {
-                    if (gos[i]->getScene().__isChangingScene())
+                    if (gos[i]->getScene().__isChangingScene()) {        
+                        PROFILER_FUNC_END();
                         return;
+                    }
                     gos[i]->__update(physics);
                 }
+                PROFILER_FUNC_END();
             }
 
 
             void KapEngine::SceneManagement::Scene::__checkThread() {
+                PROFILER_FUNC_START();
                 auto objs = __getGameObjectsNoParent();
                 std::size_t indexFailed = 0;
 
@@ -563,6 +619,7 @@
                     #endif
                 }
                 _tmpActionsAfterUpdate.clear();
+                PROFILER_FUNC_END();
             }
 
         #endif
