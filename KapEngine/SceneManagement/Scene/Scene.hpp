@@ -189,10 +189,32 @@ namespace KapEngine {
                  */
                 bool isGameObjectExists(Entity const& en);
 
-                /**
-                 * @warning Do not call or modifie this function
-                 */
-                void __update();
+                #if !KAPENGINE_BETA_ACTIVE
+                    /**
+                     * @warning Do not call or modifie this function
+                     */
+                    void __update();
+
+                    #if KAPENGINE_THREAD_ACTIVE
+                        /**
+                         * @brief update scene by thread
+                         * 
+                         * @param scene 
+                         * @param go
+                         */
+                        static void __threadSceneUpdate(std::vector<std::shared_ptr<GameObject>> gos, bool physics);
+                    #endif
+                #else
+                    #if KAPENGINE_THREAD_ACTIVE
+                        void __update(int idThread);
+                        void __updateMain();
+                        void __updatePhysics();
+                        void __updateComponents();
+                        void __updateRender();
+                    #else
+                        void __update();
+                    #endif
+                #endif
                 /**
                  * @warning Do not call or modifie this function
                  */
@@ -227,15 +249,6 @@ namespace KapEngine {
                  */
                 std::shared_ptr<GameObject> findFirstGameObject(std::string const& name);
 
-                #if KAPENGINE_THREAD_ACTIVE
-                /**
-                 * @brief update scene by thread
-                 * 
-                 * @param scene 
-                 * @param go
-                 */
-                static void __threadSceneUpdate(std::vector<std::shared_ptr<GameObject>> gos, bool physics);
-                #endif
                 /**
                  * @brief add temporary action when scene updated
                  * 
@@ -264,7 +277,11 @@ namespace KapEngine {
 
                 void __checkDestroy();
                 #if KAPENGINE_THREAD_ACTIVE
-                void __checkThread();
+                    #if KAPENGINE_BETA_ACTIVE
+                        std::mutex _mutex;
+                    #else
+                        void __checkThread();
+                    #endif
                 #endif
                 std::size_t __nbGameObjectNoParent();
                 std::vector<std::shared_ptr<GameObject>> __getGameObjectsNoParent();
