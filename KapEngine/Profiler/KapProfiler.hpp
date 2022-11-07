@@ -4,7 +4,9 @@
 #include <chrono>
 #include <map>
 #include <thread>
+
 #include "ThreadStack.hpp"
+#include "Platform.hpp"
 
 namespace KapEngine::Profiler {
 
@@ -35,13 +37,15 @@ namespace KapEngine::Profiler {
 using namespace KapEngine::Profiler;
 
 static void profiler_func(const char *_caller, int state) {
-    std::string caller = std::string(_caller);
-    std::chrono::time_point time = std::chrono::high_resolution_clock::now();
+    #if KAPENGINE_PROFILER_ACTIVE
+        std::string caller = std::string(_caller);
+        std::chrono::time_point time = std::chrono::high_resolution_clock::now();
 
-    if (KapProfiler::getInstance() == nullptr) {
-        return;
-    }
-    KapProfiler::getInstance()->_insertCaller(_caller, state, time.time_since_epoch().count());
+        if (KapProfiler::getInstance() == nullptr) {
+            return;
+        }
+        KapProfiler::getInstance()->_insertCaller(_caller, state, time.time_since_epoch().count());
+    #endif
 }
 
 #define PROFILER_FUNC_START() profiler_func(__PRETTY_FUNCTION__, 0);

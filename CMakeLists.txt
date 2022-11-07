@@ -69,6 +69,8 @@ elseif(${KAPENGINE_DEBUG})
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -g -DKAPENGINE_DEBUG_ACTIVE=true")
 elseif(${KAPENGINE_EDITOR})
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -g -DKAPENGINE_EDITOR_ACTIVE=true")
+elseif(${KAPENGINE_PROFILER})
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -g -DKAPENGINE_PROFILER_ACTIVE=true")
 else()
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -g")
 endif()
@@ -83,6 +85,10 @@ endif()
 
 if (${KAPENGINE_EDITOR})
 add_compile_options(-DKAPENGINE_EDITOR_ACTIVE=true)
+endif()
+
+if (${KAPENGINE_PROFILER})
+add_compile_options(-DKAPENGINE_PROFILER_ACTIVE=true)
 endif()
 
 # Linker flags

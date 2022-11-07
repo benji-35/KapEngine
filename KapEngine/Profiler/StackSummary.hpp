@@ -66,11 +66,7 @@ namespace KapEngine {
             }
 
             void serialize(std::ostream& stream) {
-                stream << _raw << _callCount << _totalTime << _start << _time << _totTimeAllCalls;
-            }
-
-            void deserialize(std::istream& stream) {
-                stream >> _raw >> _callCount >> _totalTime >> _start >> _time >> _totTimeAllCalls;
+                stream << _raw << '|' << _callCount << '|' << _totalTime << '|' << _start << '|' << _time << '|' << _totTimeAllCalls;
             }
 
         };
