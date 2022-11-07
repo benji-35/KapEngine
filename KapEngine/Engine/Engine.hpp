@@ -390,7 +390,7 @@ namespace KapEngine {
                 bool _threaded = false;
             #else
                 #if KAPENGINE_THREAD_ACTIVE
-                    std::mutex engineMutex;
+                    std::mutex _mutex;
                 #endif
             #endif
             bool _runFixed = false;
