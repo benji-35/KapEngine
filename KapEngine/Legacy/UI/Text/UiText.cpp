@@ -104,8 +104,8 @@ KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedScale() {
         return nSize;
     }
     _lastScale = currScale;
-    return Tools::Vector2(currScale.getX(), currScale.getY());
     PROFILER_FUNC_END();
+    return Tools::Vector2(currScale.getX(), currScale.getY());
 }
 
 KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedPos() {
