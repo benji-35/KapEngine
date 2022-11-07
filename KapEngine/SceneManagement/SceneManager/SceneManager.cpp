@@ -207,14 +207,11 @@ std::string KapEngine::SceneManagement::SceneManager::getSceneName(std::size_t i
 }
 
 KapEngine::SceneManagement::Scene &KapEngine::SceneManagement::SceneManager::getScene(std::string const& sceneName) {
-    PROFILER_FUNC_START();
     if (!sceneExists(sceneName)) {
-        PROFILER_FUNC_END();
         throw Errors::SceneError("Scene " + sceneName + " does not exists");
     }
     for (std::size_t i = 0; i < _scenes.size(); i++) {
         if (_scenes[i]->getName() == sceneName) {
-            PROFILER_FUNC_END();
             return *_scenes[i];
         }
     }
@@ -222,8 +219,6 @@ KapEngine::SceneManagement::Scene &KapEngine::SceneManagement::SceneManager::get
 }
 
 KapEngine::SceneManagement::Scene &KapEngine::SceneManagement::SceneManager::getScene(std::size_t const& index) {
-    PROFILER_FUNC_START();
-    PROFILER_FUNC_END();
     return getScene(getSceneName(index));
 }
 

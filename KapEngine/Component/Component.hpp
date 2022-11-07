@@ -88,8 +88,6 @@ namespace KapEngine {
             virtual void onMouseExit() override {}
 
             virtual bool checkComponentValidity() override {
-                PROFILER_FUNC_START();
-                PROFILER_FUNC_END();
                 return true;
             }
 
