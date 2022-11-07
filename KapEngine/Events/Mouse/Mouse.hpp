@@ -45,6 +45,8 @@ namespace KapEngine {
                  * @return KapEngine::Tools::Vector2 
                  */
                 Tools::Vector2 getPosition() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _mousePos;
                 }
 
@@ -55,6 +57,8 @@ namespace KapEngine {
                  * @retval false if mouse does not move between now to last move
                  */
                 bool mouseMoved() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _mouseMoved;
                 }
 
@@ -62,7 +66,7 @@ namespace KapEngine {
             private:
                 EventManager &manager;
                 Tools::Vector2 _mousePos;
-                bool _mouseMoved = false;;
+                bool _mouseMoved = false;
         };
 
     }

@@ -24,6 +24,7 @@ namespace KapEngine {
             */
 
             static std::shared_ptr<GameObject> createEmptyGameObject(SceneManagement::Scene &scene, std::string const& name = "Empty", Tools::Vector3 pos = Tools::Vector3::zero(), Tools::Vector3 rot = Tools::Vector3::zero(), Tools::Vector3 scale = Tools::Vector3::one()) {
+                PROFILER_FUNC_START();
                 auto result = std::make_shared<GameObject>(scene, name);
                 scene.addGameObject(result);
 
@@ -34,10 +35,13 @@ namespace KapEngine {
                 transform->setPosition(pos);
                 transform->setScale(scale);
 
+                PROFILER_FUNC_END();
                 return result;
             }
 
             static std::shared_ptr<GameObject> createEmptyGameObject(std::shared_ptr<SceneManagement::Scene>scene, std::string const& name = "Empty", Tools::Vector3 pos = Tools::Vector3::zero(), Tools::Vector3 rot = Tools::Vector3::zero()) {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return createEmptyGameObject(*scene, name, pos, rot);
             }
 
@@ -46,6 +50,7 @@ namespace KapEngine {
             */
 
             static std::shared_ptr<GameObject> createCamera(SceneManagement::Scene &scene, std::string const& name = "Camera", Tools::Vector3 pos = {0, 0, 0}, Tools::Vector3 rot = {0, 0, 0}, Tools::Color bgColor = Tools::Color::blue()) {
+                PROFILER_FUNC_START();
                 std::shared_ptr<GameObject> camera = createEmptyGameObject(scene, name);
 
                 try {
@@ -58,10 +63,13 @@ namespace KapEngine {
                 camComp->setBackgroundColor(bgColor);
                 camera->addComponent(camComp);
 
+                PROFILER_FUNC_END();
                 return camera;
             }
 
             static std::shared_ptr<GameObject> createCamera(std::shared_ptr<SceneManagement::Scene> scene, std::string const& name, Tools::Vector3 pos = {0, 0, 0}, Tools::Vector3 rot = {0, 0, 0}, Tools::Color bgColor = Tools::Color::blue()) {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return createCamera(*scene, name, pos, rot, bgColor);
             }
 
@@ -70,17 +78,23 @@ namespace KapEngine {
             */
 
             static std::shared_ptr<SceneManagement::Scene> createScene(KEngine &engine, std::string const& name) {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return createScene(engine.getSceneManager(), name);
             }
 
             static std::shared_ptr<SceneManagement::Scene> createScene(std::shared_ptr<SceneManagement::SceneManager> manager, std::string const& name) {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return createScene(*manager, name);
             }
 
             static std::shared_ptr<SceneManagement::Scene> createScene(SceneManagement::SceneManager &manager, std::string const& name) {
+                PROFILER_FUNC_START();
                 auto nScene = std::make_shared<SceneManagement::Scene>(manager, name);
                 manager.addScene(nScene);
 
+                PROFILER_FUNC_END();
                 return nScene;
             }
 

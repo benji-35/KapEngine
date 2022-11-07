@@ -17,8 +17,14 @@ namespace KapEngine {
 
         class EventAction {
             public:
-                EventAction() {}
-                ~EventAction() {}
+                EventAction() {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
+                }
+                ~EventAction() {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
+                }
 
                 /**
                  * @brief register an action to do (lambda)
@@ -26,7 +32,9 @@ namespace KapEngine {
                  * @param func 
                  */
                 void registerAction(std::function<void()> func) {
+                    PROFILER_FUNC_START();
                     _funcs.push_back(func);
+                    PROFILER_FUNC_END();
                 }
 
                 /**
@@ -34,9 +42,11 @@ namespace KapEngine {
                  * 
                  */
                 void invoke() {
+                    PROFILER_FUNC_START();
                     for (std::size_t i = 0; i < _funcs.size(); i++) {
                         _funcs[i]();
                     }
+                    PROFILER_FUNC_END();
                 }
 
                 /**
@@ -44,7 +54,9 @@ namespace KapEngine {
                  * 
                  */
                 void clear() {
+                    PROFILER_FUNC_START();
                     _funcs.clear();
+                    PROFILER_FUNC_END();
                 }
 
             protected:

@@ -64,6 +64,7 @@
                 } catch(...) {}
             }
         }
+
         PROFILER_FUNC_END();
         throw Errors::SceneError("No active camera found in this scene");
     }
@@ -101,7 +102,6 @@
         PROFILER_FUNC_END();
         throw Errors::SceneError("No object has id: " + std::to_string(id));
     }
-
     std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::Scene::getAllGameObjects() {
         PROFILER_FUNC_START();
         std::vector<std::shared_ptr<GameObject>> result;
@@ -125,7 +125,6 @@
             if (_gameObjects[i]->getName() == name)
                 result.push_back(_gameObjects[i]);
         }
-
         for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
             if (_gameObjectsRun[i]->getName() == name)
                 result.push_back(_gameObjectsRun[i]);
@@ -167,9 +166,7 @@
     }
 
     std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::SceneManagement::Scene::getGameObjectByTag(std::string const& tag) {
-
         std::vector<std::shared_ptr<GameObject>> result;
-
         for (std::size_t i = 0; i < _gameObjects.size(); i++) {
             if (_gameObjects[i]->getTag() == tag)
                 result.push_back(_gameObjects[i]);
@@ -183,7 +180,6 @@
         return result;
 
     }
-
     std::size_t KapEngine::SceneManagement::Scene::__nbGameObjectNoParent() {
         std::size_t result = 0;
         for (std::size_t i = 0; i < _gameObjects.size(); i++) {
@@ -228,7 +224,6 @@
 #pragma endregion
 
 #pragma region actions
-
     void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {
         PROFILER_FUNC_START();
         if (go->getId() != 0) {
@@ -488,7 +483,6 @@
 
 #pragma region noBetaRegion
     #if !KAPENGINE_BETA_ACTIVE
-
         void KapEngine::SceneManagement::Scene::__update() {
             PROFILER_FUNC_START();
             __checkDestroy();
@@ -565,7 +559,6 @@
                 }
                 PROFILER_FUNC_END();
             }
-
 
             void KapEngine::SceneManagement::Scene::__checkThread() {
                 PROFILER_FUNC_START();

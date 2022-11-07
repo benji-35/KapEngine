@@ -33,26 +33,38 @@ namespace KapEngine {
                 ~Text();
 
                 void setFont(std::string const& fontPath) {
+                    PROFILER_FUNC_START();
                     _pathFont = fontPath;
+                    PROFILER_FUNC_END();
                 }
 
                 void setText(std::string const& text) {
+                    PROFILER_FUNC_START();
                     _content = text;
+                    PROFILER_FUNC_END();
                 }
 
                 void setTextColor(Tools::Color const& color) {
+                    PROFILER_FUNC_START();
                     _color = color;
+                    PROFILER_FUNC_END();
                 }
 
                 void setSpace(float space) {
+                    PROFILER_FUNC_START();
                     _space = space;
+                    PROFILER_FUNC_END();
                 }
 
                 void setPoliceSize(float police) {
+                    PROFILER_FUNC_START();
                     _police = police;
+                    PROFILER_FUNC_END();
                 }
 
                 std::string getFontPath() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _pathFont;
                 }
 
@@ -61,14 +73,20 @@ namespace KapEngine {
                 }
 
                 Tools::Color getColor() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _color;
                 }
 
                 float getSpace() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _space;
                 }
 
                 float getPoliceSize() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _police;
                 }
 

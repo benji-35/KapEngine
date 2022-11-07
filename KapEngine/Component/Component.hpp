@@ -12,6 +12,7 @@
 #include "IComponent.hpp"
 #include "Input.hpp"
 #include "Mouse.hpp"
+#include "Profiler/KapProfiler.hpp"
 
 namespace KapEngine {
     class GameObject;
@@ -45,9 +46,13 @@ namespace KapEngine {
              * @brief function call by KapEngine to init your component
              */
             bool __setId(std::size_t i) {
-                if (_id != 0)
+                PROFILER_FUNC_START();
+                if (_id != 0) {
+                    PROFILER_FUNC_END();
                     return false;
+                }
                 _id = i;
+                PROFILER_FUNC_END();
                 return true;
             }
 
@@ -82,7 +87,11 @@ namespace KapEngine {
             virtual void onMouseStay() override {}
             virtual void onMouseExit() override {}
 
-            virtual bool checkComponentValidity() override { return true; }
+            virtual bool checkComponentValidity() override {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
+                return true;
+            }
 
             virtual void onGameQuit() override {}
             virtual void onDestroy() override {}
@@ -100,6 +109,8 @@ namespace KapEngine {
              * @return std::size_t
              */
             std::size_t getLevel() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _level;
             }
             /**
@@ -110,7 +121,9 @@ namespace KapEngine {
              * @param lvl
              */
             void setLevel(std::size_t lvl) {
+                PROFILER_FUNC_START();
                 _level = lvl;
+                PROFILER_FUNC_END();
             }
 
             /**
@@ -120,6 +133,8 @@ namespace KapEngine {
              * @return false
              */
             bool isEnable() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _enable;
             }
 
@@ -130,6 +145,8 @@ namespace KapEngine {
              * @return false
              */
             bool isDisable() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return !_enable;
             }
 
@@ -139,6 +156,8 @@ namespace KapEngine {
              * @param b
              */
             void setActive(bool b) {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 _enable = b;
             }
 
@@ -154,7 +173,9 @@ namespace KapEngine {
              * @warning Do not call this fucntion. Engine will do
              */
             void __engineStop() {
+                PROFILER_FUNC_START();
                 _go.reset();
+                PROFILER_FUNC_END();
             }
 
             /**
@@ -163,6 +184,8 @@ namespace KapEngine {
              * @return int
              */
             int getThreadRunning() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return threadRunning;
             }
 
@@ -183,7 +206,9 @@ namespace KapEngine {
              * @param componentName
              */
             void addRequireComponent(std::string const& componentName) {
+                PROFILER_FUNC_START();
                 _componentsNeeded.push_back(componentName);
+                PROFILER_FUNC_END();
             }
 
             /**
@@ -210,6 +235,8 @@ namespace KapEngine {
              * @return std::size_t 
              */
             std::size_t getId() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _id;
             }
 
@@ -220,7 +247,9 @@ namespace KapEngine {
              * @param b 
              */
             void __setPhysics(bool b) {
+                PROFILER_FUNC_START();
                 _physics = b;
+                PROFILER_FUNC_END();
             }
 
             /**
@@ -234,8 +263,10 @@ namespace KapEngine {
             }
 
             void __sceneChanged() {
+                PROFILER_FUNC_START();
                 _awakeDone = false;
                 _startDone = false;
+                PROFILER_FUNC_END();
             }
 
         protected:

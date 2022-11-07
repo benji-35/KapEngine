@@ -37,6 +37,8 @@ namespace KapEngine {
              * @retval false if animation not ended
              */
             bool isEnded() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _end;
             }
 
@@ -47,7 +49,9 @@ namespace KapEngine {
              * @param b
              */
             void loop(bool b) {
+                PROFILER_FUNC_START();
                 _loop = b;
+                PROFILER_FUNC_END();
             }
 
             /**
@@ -57,12 +61,14 @@ namespace KapEngine {
              * @param b
              */
             void play(bool b) {
+                PROFILER_FUNC_START();
                 _startAnim = b;
                 if (b) {
                     _end = false;
                     _currTime = 0;
                     onPlay();
                 }
+                PROFILER_FUNC_END();
             }
 
             /**
@@ -71,7 +77,9 @@ namespace KapEngine {
              * @param time (micro seconds)
              */
             void setTiming(int64_t const& time) {
+                PROFILER_FUNC_START();
                 _timing = time;
+                PROFILER_FUNC_END();
             }
 
             /**
@@ -80,7 +88,9 @@ namespace KapEngine {
              * @param time (KapEngine::Time::ETime)
              */
             void setTiming(Time::ETime const& time) {
+                PROFILER_FUNC_START();
                 _timing = time;
+                PROFILER_FUNC_END();
             }
 
             virtual void onPlay() {}
@@ -88,23 +98,32 @@ namespace KapEngine {
             virtual void onResetAnim();
 
             virtual Animation &operator=(Animation const& anim) {
-
+                PROFILER_FUNC_START();
                 _startAnim = anim._startAnim;
                 _loop = anim._loop;
                 _end = anim._end;
                 _timing = anim._timing;
                 _currTime = anim._currTime;
+                PROFILER_FUNC_END();
 
                 return *this;
             }
 
             Events::EventAction &getOnEnd() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _onEnd;
             }
+
             Events::EventAction &getOnStart() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _onStart;
             }
+
             Events::EventAction &getOnRestart() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _onRestart;
             }
 

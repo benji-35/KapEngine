@@ -10,13 +10,18 @@
 #include "KapEngineUi.hpp"
 
 KapEngine::MouseDetector::MouseDetector(std::shared_ptr<GameObject> go) : Component(go, "Mouse Detector", 1) {
+    PROFILER_FUNC_START();
     __setPhysics(true);
+    PROFILER_FUNC_END();
 }
 
-KapEngine::MouseDetector::~MouseDetector() {}
+KapEngine::MouseDetector::~MouseDetector() {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
+}
 
 void KapEngine::MouseDetector::onUpdate() {
-    
+    PROFILER_FUNC_START();
     if (!_setted) {
 
         try {
@@ -65,9 +70,11 @@ void KapEngine::MouseDetector::onUpdate() {
         _inSquare = false;
     }
     __callMouses(type);
+    PROFILER_FUNC_END();
 }
 
 void KapEngine::MouseDetector::__callMouses(HoverType const& _type) {
+    PROFILER_FUNC_START();
     auto _components = getGameObject().getAllComponents();
 
     for (std::size_t i = 0; i < _components.size(); i++) {
@@ -87,9 +94,11 @@ void KapEngine::MouseDetector::__callMouses(HoverType const& _type) {
             }
         }
     }
+    PROFILER_FUNC_END();
 }
 
 bool KapEngine::MouseDetector::__checkNoCanvas(Tools::Vector2 const& posMouse) {
+    PROFILER_FUNC_START();
     float pX = _square.getX();
     float pMaxX = _square.getX() + _square.getWidth();
 
@@ -98,28 +107,35 @@ bool KapEngine::MouseDetector::__checkNoCanvas(Tools::Vector2 const& posMouse) {
 
     if (posMouse.getX() >= pX && posMouse.getX() <= pMaxX) {
         if (posMouse.getY() >= pY && posMouse.getY() <= pMaxY) {
+            PROFILER_FUNC_END();
             return true;
         }
     }
+    PROFILER_FUNC_END();
     return false;
 }
 
 bool KapEngine::MouseDetector::__checkCanvas(Tools::Vector2 const& posMouse) {
+    PROFILER_FUNC_START();
     bool _resized = false;
 
     try {
         auto canvasId = getTransform().getParentContainsComponent("Canvas");
 
-        if (canvasId == 0)
+        if (canvasId == 0) {
+            PROFILER_FUNC_END();
             return __checkNoCanvas(posMouse);
+        }
 
         auto &canvas = getGameObject().getScene().getGameObject(canvasId)->getComponent<UI::Canvas>();
         if (canvas.getResizeType() == UI::Canvas::RESIZE_WITH_SCREEN)
             _resized = true;
     } catch(...) {}
 
-    if (!_resized)
+    if (!_resized) {
+        PROFILER_FUNC_END();
         return __checkNoCanvas(posMouse);
+    }
     
     Tools::Vector2 pos = _square.getPos();
     Tools::Vector2 posMax = pos + _square.getSize();
@@ -128,18 +144,23 @@ bool KapEngine::MouseDetector::__checkCanvas(Tools::Vector2 const& posMouse) {
     posMax = crossProductScreen(posMax);
     if (posMouse.getX() >= pos.getX() && posMouse.getX() <= posMax.getX()) {
         if (posMouse.getY() >= pos.getY() && posMouse.getY() <= posMax.getY()) {
+            PROFILER_FUNC_END();
             return true;
         }
     }
+    PROFILER_FUNC_END();
     return false;
 }
 
 KapEngine::Tools::Vector2 KapEngine::MouseDetector::crossProductScreen(Tools::Vector2 value) {
+    PROFILER_FUNC_START();
     Tools::Vector2 baseScreenSize = getGameObject().getScene().getEngine().getScreenSize();
     try {
         auto canvasId = getTransform().getParentContainsComponent("Canvas");
-        if (canvasId == 0)
+        if (canvasId == 0) {
+            PROFILER_FUNC_END();
             return value;
+        }
 
         auto &canvas = getGameObject().getScene().getGameObject(canvasId)->getComponent<UI::Canvas>();
         baseScreenSize = canvas.getScreenSizeCompare();
@@ -155,5 +176,6 @@ KapEngine::Tools::Vector2 KapEngine::MouseDetector::crossProductScreen(Tools::Ve
     result.setX((currentScreenSize.getX() * result.getX()) / baseScreenSize.getX());
     result.setY((currentScreenSize.getY() * result.getY()) / baseScreenSize.getY());
 
+    PROFILER_FUNC_END();
     return result;
 }

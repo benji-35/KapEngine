@@ -30,10 +30,12 @@ namespace KapEngine {
                     Tools::Rectangle rect;
 
                     SplashScreenNode(std::string path, int dur = 2) {
+                        PROFILER_FUNC_START();
                         timing = dur;
                         size.setX(1.f);
                         size.setX(1.f);
                         pathImage = path;
+                        PROFILER_FUNC_END();
                     }
                 };
             public:
@@ -41,11 +43,15 @@ namespace KapEngine {
                 ~SplashScreen();
 
                 void addSplashScreen(std::shared_ptr<SplashScreenNode> splash) {
+                    PROFILER_FUNC_START();
                     _splahes.push_back(splash);
+                    PROFILER_FUNC_END();
                 }
 
                 void setDisplayKapEngineLogo(bool b) {
+                    PROFILER_FUNC_START();
                     _displayKapEngineLogo = b;
+                    PROFILER_FUNC_END();
                 }
 
                 void __init();

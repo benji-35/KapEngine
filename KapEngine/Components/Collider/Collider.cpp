@@ -13,14 +13,22 @@ using namespace KapEngine;
 
 Collider::Collider(std::shared_ptr<GameObject> go, bool isTrigger) : Component(go, "Collider"),
     _isTrigger(isTrigger) {
+    PROFILER_FUNC_START();
     __setPhysics(true);
+    PROFILER_FUNC_END();
 }
 
-Collider::~Collider() {}
+Collider::~Collider() {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
+}
 
 void Collider::onUpdate() {
-    if (!_isTrigger)
+    PROFILER_FUNC_START();
+    if (!_isTrigger) {
+        PROFILER_FUNC_END();
         return;
+    }
     
     auto gameObjects = getGameObject().getScene().getGameObjectByTag("Collider");
 
@@ -29,11 +37,15 @@ void Collider::onUpdate() {
             __checkCollision(gameObjects[i]);
         }
     }
+    PROFILER_FUNC_END();
 }
 
 void Collider::onSceneUpdated() {
-    if (!_isTrigger)
+    PROFILER_FUNC_START();
+    if (!_isTrigger) {
+        PROFILER_FUNC_END();
         return;
+    }
     __checkCollidersExists();
     //check all collided
     for (std::size_t i = 0; i < _justCollidedObjects.size(); i++) {
@@ -64,22 +76,27 @@ void Collider::onSceneUpdated() {
     }
     _justCollidedObjects.clear();
     _notCollidedObjects.clear();
+    PROFILER_FUNC_END();
 }
 
 bool Collider::__checkCollision(Tools::Rectangle const& rect) {
+    PROFILER_FUNC_START();
     auto ownRect = getCalculatedRectangle();
 
     if (ownRect.getX() < rect.getX() + rect.getWidth() &&
         ownRect.getX() + ownRect.getWidth() > rect.getX() &&
         ownRect.getY() < rect.getY() + rect.getHeigth() &&
         ownRect.getY() + ownRect.getHeigth() > rect.getY()) {
+        PROFILER_FUNC_END();
         return true;
     }
 
+    PROFILER_FUNC_END();
     return false;
 }
 
 void Collider::__checkCollision(std::shared_ptr<GameObject> &go) {
+    PROFILER_FUNC_START();
     auto collider = go->getComponents<Collider>();
 
     for (std::size_t i = 0; i < collider.size(); i++) {
@@ -92,51 +109,65 @@ void Collider::__checkCollision(std::shared_ptr<GameObject> &go) {
             }
         }
     }
+    PROFILER_FUNC_END();
 }
 
 bool Collider::__colliderAlreadyCollide(std::shared_ptr<Collider> &collider) {
+    PROFILER_FUNC_START();
     for (std::size_t i = 0; i < _collidedObjects.size(); i++) {
         if (_collidedObjects[i]->getId() == collider->getGameObject().getId() && collider->getGameObject().getId() != _collidedObjects[i]->getGameObject().getId()) {
+            PROFILER_FUNC_END();
             return true;
         }
     }
+    PROFILER_FUNC_END();
     return false;
 }
 
 void Collider::__callEnter(GameObject &go) {
+    PROFILER_FUNC_START();
     auto components = getGameObject().getAllComponents();
 
     for (std::size_t i = 0; i < components.size(); i++) {
         components[i]->onTriggerEnter(go.getScene().getGameObject(go.getId()));
     }
+    PROFILER_FUNC_END();
 }
 
 void Collider::__callStay(GameObject &go) {
+    PROFILER_FUNC_START();
     auto components = getGameObject().getAllComponents();
 
     for (std::size_t i = 0; i < components.size(); i++) {
         components[i]->onTriggerStay(go.getScene().getGameObject(go.getId()));
     }
+    PROFILER_FUNC_END();
 }
 
 void Collider::__callExit(GameObject &go) {
+    PROFILER_FUNC_START();
     auto components = getGameObject().getAllComponents();
 
     for (std::size_t i = 0; i < components.size(); i++) {
         components[i]->onTriggerExit(go.getScene().getGameObject(go.getId()));
     }
+    PROFILER_FUNC_END();
 }
 
 bool Collider::__currentlyCollided(std::shared_ptr<Collider> &collider) {
+    PROFILER_FUNC_START();
     for (std::size_t i = 0; i < _justCollidedObjects.size(); i++) {
         if (_justCollidedObjects[i]->getId() == collider->getId() && collider->getGameObject().getId() == _collidedObjects[i]->getGameObject().getId()) {
+            PROFILER_FUNC_END();
             return true;
         }
     }
+    PROFILER_FUNC_END();
     return false;
 }
 
 Tools::Rectangle Collider::getCalculatedRectangle() const {
+    PROFILER_FUNC_START();
     Tools::Rectangle rect = _boxCollider;
     if (rect.getSize().getX() == 0 || rect.getSize().getY() == 0) {
         Tools::Vector2 pos;
@@ -147,21 +178,26 @@ Tools::Rectangle Collider::getCalculatedRectangle() const {
         rect.setPos(pos);
         rect.setSize(size);
     }
+    PROFILER_FUNC_END();
     return rect;
 }
 
 bool Collider::__alreayCalculated(std::shared_ptr<Collider> &collider) {
+    PROFILER_FUNC_START();
     auto colliders = collider->getCollidedObjects();
 
     for (std::size_t i = 0; i < colliders.size(); i++) {
         if (colliders[i]->getId() == getId() && colliders[i]->getGameObject().getId() == getGameObject().getId()) {
+            PROFILER_FUNC_END();
             return true;
         }
     }
+    PROFILER_FUNC_END();
     return false;
 }
 
 void Collider::__checkCollidersExists() {
+    PROFILER_FUNC_START();
     auto &scene = getGameObject().getScene();
     for (std::size_t i = 0; i < _collidedObjects.size(); i++) {
         if (!scene.isGameObjectExists(_collidedObjects[i]->getGameObject().getId())) {
@@ -175,4 +211,5 @@ void Collider::__checkCollidersExists() {
             i--;
         }
     }
+    PROFILER_FUNC_END();
 }

@@ -30,14 +30,20 @@ namespace KapEngine {
                 ~Canvas();
 
                 void setResizeType(ResizyngType r) {
+                    PROFILER_FUNC_START();
                     _resize = r;
+                    PROFILER_FUNC_END();
                 }
 
                 void setScreenCompare(Tools::Vector2 screenSizeCompare) {
+                    PROFILER_FUNC_START();
                     _screenSizeCompare = screenSizeCompare;
+                    PROFILER_FUNC_END();
                 }
 
                 ResizyngType getResizeType() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _resize;
                 }
 
