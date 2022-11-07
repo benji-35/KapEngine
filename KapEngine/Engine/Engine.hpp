@@ -437,7 +437,9 @@ namespace KapEngine {
                 bool _debug = false;
                 bool _threaded = false;
             #else
-                std::mutex engineMutex;
+                #if KAPENGINE_THREAD_ACTIVE
+                    std::mutex engineMutex;
+                #endif
             #endif
             bool _runFixed = false;
             bool _displayFps = false;

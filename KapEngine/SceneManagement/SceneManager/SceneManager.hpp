@@ -82,6 +82,12 @@ namespace KapEngine {
 
                 std::string getSceneName(std::size_t index);
 
+                #if KAPENGINE_BETA_ACTIVE
+                    #if KAPENGINE_THREAD_ACTIVE
+                        std::mutex _mutex;
+                    #endif
+                #endif
+
         };
 
     }
