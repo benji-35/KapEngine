@@ -323,6 +323,7 @@
             #if KAPENGINE_THREAD_ACTIVE
 
                 _mutex.lock();
+                _destroying = true;
 
             #endif
         #endif
@@ -348,6 +349,7 @@
             #if KAPENGINE_THREAD_ACTIVE
 
                 _mutex.unlock();
+                _destroying = false;
 
             #endif
         #endif
@@ -419,6 +421,36 @@
                 } else if (idThread == 3) {
                     __updateRender();
                 }
+            }
+        
+            void KapEngine::SceneManagement::Scene::__updateMain() {
+                PROFILER_FUNC_START();
+                __checkDestroy();
+                PROFILER_FUNC_END();
+            }
+
+            void KapEngine::SceneManagement::Scene::__updatePhysics() {
+                PROFILER_FUNC_START();
+                while (_destroying) {
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+                }
+                __updateGameObjects(_gameObjectsRun);
+                PROFILER_FUNC_END();
+            }
+
+            void KapEngine::SceneManagement::Scene::__updateComponents() {
+                PROFILER_FUNC_START();
+                while (_destroying) {
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+                }
+                __updateGameObjects(_gameObjectsRun);
+                PROFILER_FUNC_END();
+            }
+
+            void KapEngine::SceneManagement::Scene::__updateRender() {
+                PROFILER_FUNC_START();
+                __updateGameObjects(_gameObjectsRun);
+                PROFILER_FUNC_END();
             }
         #else
             void KapEngine::SceneManagement::Scene::__update() {

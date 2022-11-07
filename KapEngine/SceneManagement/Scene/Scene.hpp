@@ -281,6 +281,7 @@ namespace KapEngine {
                 #if KAPENGINE_THREAD_ACTIVE
                     #if KAPENGINE_BETA_ACTIVE
                         std::mutex _mutex;
+                        bool _destroying = false;
                     #else
                         void __checkThread();
                     #endif
