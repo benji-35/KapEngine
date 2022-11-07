@@ -232,8 +232,6 @@ KapEngine::SceneManagement::Scene &KapEngine::SceneManagement::SceneManager::get
 }
 
 KapEngine::SceneManagement::Scene &KapEngine::SceneManagement::SceneManager::getScene(std::size_t const& index) {
-    PROFILER_FUNC_START();
-    PROFILER_FUNC_END();
     return getScene(getSceneName(index));
 }
 
