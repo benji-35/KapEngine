@@ -325,8 +325,10 @@ namespace KapEngine {
                     static std::mutex logMutex;
                 #endif
             #endif
+
         protected:
         private:
+
             static std::string __getCDate() {
                 PROFILER_FUNC_START();
                 // current date/time based on current system

@@ -11,6 +11,7 @@
 #include <vector>
 #include <memory>
 #include "Scene.hpp"
+#include "KapEngineSettings.hpp"
 
 namespace KapEngine {
     class KEngine;
@@ -42,7 +43,11 @@ namespace KapEngine {
                 void loadScene(std::size_t const& index);
                 void loadScene(std::string const& sceneName);
 
-                void __update();
+                #if KAPENGINE_BETA_ACTIVE && KAPENGINE_THREAD_ACTIVE
+                    void __update(std::size_t const& indexThread);
+                #else
+                    void __update();
+                #endif
 
                 KEngine &getEngine() {
                     return _engine;

@@ -60,19 +60,39 @@ void KapEngine::SceneManagement::SceneManager::addScene(std::string const& name)
     PROFILER_FUNC_END();
 }
 
-void KapEngine::SceneManagement::SceneManager::__update() {
-    PROFILER_FUNC_START();
-    try {
-        if (_indexScene == 0)
-            loadScene(1);
-        getCurrentScene().__update();
-    } catch(...) {
-        #if KAPENGINE_DEBUG_ACTIVE
-            DEBUG_ERROR("Cannot update scene " + getCurrentScene().getName());
-        #endif
+#if !KAPENGINE_BETA_ACTIVE || !KAPENGINE_THREAD_ACTIVE
+
+    void KapEngine::SceneManagement::SceneManager::__update() {
+        PROFILER_FUNC_START();
+        try {
+            if (_indexScene == 0)
+                loadScene(1);
+            getCurrentScene().__update();
+        } catch(...) {
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_ERROR("Cannot update scene " + getCurrentScene().getName());
+            #endif
+        }
+        PROFILER_FUNC_END();
     }
-    PROFILER_FUNC_END();
-}
+
+#else
+
+    void KapEngine::SceneManagement::SceneManager::__update(std::size_t const& indexThread) {
+        PROFILER_FUNC_START();
+        try {
+            if (_indexScene == 0)
+                loadScene(1);
+            getCurrentScene().__update(indexThread);
+        } catch(...) {
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_ERROR("Cannot update scene " + getCurrentScene().getName());
+            #endif
+        }
+        PROFILER_FUNC_END();
+    }
+
+#endif
 
 void KapEngine::SceneManagement::SceneManager::removeScene(std::size_t const& index) {
     PROFILER_FUNC_START();

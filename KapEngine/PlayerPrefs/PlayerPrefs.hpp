@@ -29,7 +29,6 @@ namespace KapEngine {
                 std::string key;
                 std::string content;
             };
-            
 
             /**
              * @fn static void setBool(std::string name, bool val)

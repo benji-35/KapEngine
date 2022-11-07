@@ -46,7 +46,7 @@ namespace KapEngine {
 
             bool instantiatePrefab(std::string const& name, SceneManagement::Scene& scene, std::shared_ptr<GameObject>& gameObject);
 
-            bool instantiatePrefab(std::string const& name, std::size_t sceneId, std::shared_ptr<GameObject>& gameObject);
+            bool instantiatePrefab(std::string const& name, std::size_t const& sceneId, std::shared_ptr<GameObject>& gameObject);
 
             void removePrefab(std::string const& name);
         };

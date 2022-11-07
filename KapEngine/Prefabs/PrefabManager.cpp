@@ -26,15 +26,17 @@ bool PrefabManager::instantiatePrefab(std::string const& name, SceneManagement::
     return false;
 }
 
-bool PrefabManager::instantiatePrefab(std::string const& name, std::size_t sceneId, std::shared_ptr<GameObject>& gameObject) {
+bool PrefabManager::instantiatePrefab(std::string const& name, std::size_t const& sceneId, std::shared_ptr<GameObject>& gameObject) {
+    std::size_t idToCheck = sceneId;
     PROFILER_FUNC_START();
-    auto scene = _engine.getSceneManager()->getScene(sceneId);
-    if (scene == nullptr) {
+    try {
+        auto &scene = _engine.getSceneManager()->getScene(idToCheck);
+        PROFILER_FUNC_END();
+        return instantiatePrefab(name, scene, gameObject);
+    } catch(...) {
         PROFILER_FUNC_END();
         return false;
     }
-    PROFILER_FUNC_END();
-    return instantiatePrefab(name, scene, gameObject);
 }
 
 void PrefabManager::removePrefab(std::string const& name) {
