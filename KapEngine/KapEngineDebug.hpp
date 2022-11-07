@@ -14,10 +14,6 @@
 
 #include "Platform.hpp"
 
-#ifdef __WINDOWS__
-    #define __PRETTY_FUNCTION__ __FUNCSIG__
-#endif
-
 #ifndef KAPENGINE_DEBUGS_MACROS
 #define KAPENGINE_DEBUGS_MACROS
     #ifndef KAP_DEBUG_LOG
