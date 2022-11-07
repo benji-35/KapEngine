@@ -5,12 +5,7 @@
 ** Scene
 */
 
-#include "Scene.hpp"
-#include "Errors.hpp"
-#include "KapEngineDebug.hpp"
-#include "Factory.hpp"
-
-#include "ThreadScene.hpp"
+#include "KapEngine.hpp"
 
 #include <thread>
 
@@ -75,6 +70,85 @@ KapEngine::KEngine &KapEngine::SceneManagement::Scene::getEngine() {
     return manager.getEngine();
 }
 
+#if KAPENGINE_BETA_ACTIVE
+    #if KAPENGINE_THREAD_ACTIVE
+
+        // id 0 = main thread
+        // id 1 = physics update thread
+        // id 2 = components thread
+        // id 3 = render thread
+        void KapEngine::SceneManagement::Scene::__update(int idThread) {
+            if (idThread == 0) {
+                __updateMain();
+            } else if (idThread == 1) {
+                __updatePhysics();
+            } else if (idThread == 2) {
+                __updateComponents();
+            } else if (idThread == 3) {
+                __updateRender();
+            }
+        }
+    
+    #else
+        void KapEngine::SceneManagement::Scene::__update() {
+            __checkDestroy();
+            try {
+                Component camera = getActiveCamera();
+            } catch(...) {
+                #if KAPENGINE_DEBUG_ACTIVE
+                    DEBUG_ERROR("No camera found in scene");
+                #endif
+                return;
+            }
+
+            auto objs = __getGameObjectsNoParent();
+            std::size_t indexFailed = 0;
+
+            for (std::size_t i = 0; i < objs.size(); i++) {
+                indexFailed = i;
+                try {
+                    objs[i]->__onSceneGonnaUpdated();
+                } catch(...) {
+                    indexFailed = i;
+                    break;
+                }
+            }
+
+            __updateGameObjects(objs);
+
+            for (std::size_t i = 0; i < objs.size(); i++) {
+                indexFailed = i;
+                try {
+                    objs[i]->__updateDisplay();
+                } catch(std::exception &e) {
+                    #if KAPENGINE_DEBUG_ACTIVE
+                        DEBUG_ERROR("Error in __updateDisplay for object " + objs[indexFailed]->getName() + " [" + std::to_string(objs[indexFailed]->getId()) + "]: " + e.what());
+                    #endif
+                }
+                try {
+                    objs[i]->__onSceneUpdated();
+                } catch(std::exception& e) {
+                    
+                    #if KAPENGINE_DEBUG_ACTIVE
+                        DEBUG_ERROR("Error in __onSceneUpdated for object " + objs[indexFailed]->getName() + " [" + std::to_string(objs[indexFailed]->getId()) + "]: " + e.what());
+                    #endif
+                }
+            }
+            try {
+                for (std::size_t i = 0; i < _tmpActionsAfterUpdate.size(); i++) {
+                    indexFailed = i;
+                    _tmpActionsAfterUpdate[i](*this);
+                }
+            } catch(...) {
+                #if KAPENGINE_DEBUG_ACTIVE
+                    DEBUG_ERROR("Error in scene update action " + std::to_string(indexFailed));
+                #endif
+            }
+            _tmpActionsAfterUpdate.clear();
+        }
+    #endif
+#else
+
 void KapEngine::SceneManagement::Scene::__update() {
     __checkDestroy();
     try {
@@ -134,6 +208,8 @@ void KapEngine::SceneManagement::Scene::__update() {
         _tmpActionsAfterUpdate.clear();
     #endif
 }
+
+#endif
 
 void KapEngine::SceneManagement::Scene::addGameObject(std::shared_ptr<GameObject> go) {
     if (go->getId() != 0) {
@@ -221,6 +297,13 @@ void KapEngine::SceneManagement::Scene::destroyGameObject(std::size_t index) {
 }
 
 void KapEngine::SceneManagement::Scene::__checkDestroy() {
+    #if KAPENGINE_BETA_ACTIVE
+        #if KAPENGINE_THREAD_ACTIVE
+
+            _mutex.lock();
+
+        #endif
+    #endif
     for (std::size_t x = 0; x < _gameObjectsToDestroy.size(); x++) {
         for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
             if (_gameObjectsRun[i].use_count() != 0 && _gameObjectsRun[i]->getId() == _gameObjectsToDestroy[x]) {
@@ -239,6 +322,13 @@ void KapEngine::SceneManagement::Scene::__checkDestroy() {
         }
     }
     _gameObjectsToDestroy.clear();
+    #if KAPENGINE_BETA_ACTIVE
+        #if KAPENGINE_THREAD_ACTIVE
+
+            _mutex.unlock();
+
+        #endif
+    #endif
 }
 
 void KapEngine::SceneManagement::Scene::__init() {
@@ -313,7 +403,7 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::findFi
     throw Errors::SceneError("No object has name: " + name);
 }
 
-#if KAPENGINE_THREAD_ACTIVE
+#if KAPENGINE_THREAD_ACTIVE && !KAPENGINE_BETA_ACTIVE
 
 void KapEngine::SceneManagement::Scene::__threadSceneUpdate(std::vector<std::shared_ptr<GameObject>> gos, bool physics) {
     for (std::size_t i = 0; i < gos.size(); i++) {

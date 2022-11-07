@@ -136,6 +136,11 @@ void KapEngine::SceneManagement::SceneManager::loadScene(std::string const& scen
 }
 
 void KapEngine::SceneManagement::SceneManager::loadScene(std::size_t index) {
+    #if KAPENGINE_BETA_ACTIVE
+        #if KAPENGINE_THREAD_ACTIVE
+            _mutex.lock();
+        #endif
+    #endif
     if (!sceneExists(index)) {
         #if KAPENGINE_DEBUG_ACTIVE
             DEBUG_ERROR("Cannot load scene id: " + std::to_string(index) + " because it does not exists");
@@ -147,6 +152,11 @@ void KapEngine::SceneManagement::SceneManager::loadScene(std::size_t index) {
     } catch(...) {}
     _indexScene = index;
     getCurrentScene().__init();
+    #if KAPENGINE_BETA_ACTIVE
+        #if KAPENGINE_THREAD_ACTIVE
+            _mutex.unlock();
+        #endif
+    #endif
     #if KAPENGINE_DEBUG_ACTIVE
         getCurrentScene().dump(true);
         DEBUG_WARNING("Changing scene to scene " + getSceneName(index));
