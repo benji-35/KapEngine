@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** gameEngine2
+** KapEngine
 ** File description:
 ** Debug
 */
@@ -28,20 +28,7 @@ namespace KapEngine {
             /**
             * @brief display a simple message
             */
-            static void log(std::string _msg, std::string prefix = "") {
-                PROFILER_FUNC_START();
-                #if KAPENGINE_THREAD_ACTIVE
-                    #if KAPENGINE_BETA_ACTIVE
-                        if (!logMutex.try_lock())
-                            return;
-                        std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << " log: " << colorNone() << _msg << colorNone() << std::endl;
-                        logMutex.unlock();
-                    #endif
-                #else
-                    std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << " log: " << colorNone() << _msg << colorNone() << std::endl;
-                #endif
-                PROFILER_FUNC_END();
-            }
+            static void log(std::string _msg, std::string prefix = "");
 
             static void log(char const* _msg, std::string prefix = "") {
                 PROFILER_FUNC_START();
@@ -64,19 +51,7 @@ namespace KapEngine {
             /**
             * @brief display a warning message
             */
-            static void warning(std::string _msg, std::string prefix = "") {
-                PROFILER_FUNC_START();
-                #if KAPENGINE_THREAD_ACTIVE
-                    #if KAPENGINE_BETA_ACTIVE
-                        logMutex.lock();
-                        std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << colorYellow() << " warning: " << colorNone() << _msg << colorNone() << std::endl;
-                        logMutex.unlock();
-                    #endif
-                #else
-                    std::cout << "[" << __getCDate() << "] " << prefix << boldStyle() << colorYellow() << " warning: " << colorNone() << _msg << colorNone() << std::endl;
-                #endif
-                PROFILER_FUNC_END();
-            }
+            static void warning(std::string _msg, std::string prefix = "");
 
             static void warning(char const* _msg, std::string prefix = "") {
                 PROFILER_FUNC_START();
@@ -98,19 +73,7 @@ namespace KapEngine {
             /**
             * @brief display an error message
             */
-            static void error(std::string _msg, std::string prefix = "") {
-                PROFILER_FUNC_START();
-                #if KAPENGINE_THREAD_ACTIVE
-                    #if KAPENGINE_BETA_ACTIVE
-                        logMutex.lock();
-                        std::cout << "[" << __getCDate() << "] " << prefix << colorRed() << " error: " << colorNone() << _msg << colorNone() << std::endl;
-                        logMutex.unlock();
-                    #endif
-                #else
-                    std::cout << "[" << __getCDate() << "] " << prefix << colorRed() << " error: " << colorNone() << _msg << colorNone() << std::endl;
-                #endif
-                PROFILER_FUNC_END();
-            }
+            static void error(std::string _msg, std::string prefix = "");
 
             static void error(char const* _msg, std::string prefix = "") {
                 PROFILER_FUNC_START();
