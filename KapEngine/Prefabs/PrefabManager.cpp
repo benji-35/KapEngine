@@ -7,7 +7,7 @@ PrefabManager::PrefabManager(KEngine &engine) : _engine(engine) {
     PROFILER_FUNC_END();
 };
 
-void PrefabManager::createPrefab(std::string const& name, Prefab hander) {
+void PrefabManager::createPrefab(std::string const& name, const Prefab& hander) {
     PROFILER_FUNC_START();
     _prefabs[name] = std::make_shared<Prefab>(hander);
     PROFILER_FUNC_END();
@@ -17,7 +17,7 @@ bool PrefabManager::instantiatePrefab(std::string const& name, SceneManagement::
     PROFILER_FUNC_START();
     std::shared_ptr<Prefab> handler;
     if (_prefabs.tryGetValue(name, handler)) {
-        gameObject = (*handler)(scene);
+        gameObject = (*handler)(scene, name);
         gameObject->__setPrefab(name);
         PROFILER_FUNC_END();
         return true;
