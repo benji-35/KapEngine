@@ -123,41 +123,33 @@ KapEngine::GameObject &KapEngine::Component::getGameObjectConst() const {
 }
 
 bool KapEngine::Component::__checkValidity() {
-    PROFILER_FUNC_START();
     if (!_enable) {
-        PROFILER_FUNC_END();
         return false;
     }
     if (!getGameObject().isActive() || getGameObject().isDestroyed()) {
         #if KAPENGINE_DEBUG_ACTIVE
             DEBUG_WARNING("Component " + getName() + " is disable or destroy");
         #endif
-        PROFILER_FUNC_END();
         return false;
     }
     if (getGameObject().getScene().__isChangingScene()) {
-        PROFILER_FUNC_END();
         return false;
     }
     if (!getTransform().allParentsActive()) {
-        PROFILER_FUNC_END();
         return false;
     }
     if (!checkComponentValidity()) {
         #if KAPENGINE_DEBUG_ACTIVE
             DEBUG_WARNING("Component " + getName() + " is disable by the creator");
         #endif
-        PROFILER_FUNC_END();
         return false;
     }
     for (std::size_t i = 0; i < _componentsNeeded.size(); i++) {
         if (!getGameObject().hasComponent(_componentsNeeded[i])) {
-            PROFILER_FUNC_END();
             return false;
         }
     }
 
-    PROFILER_FUNC_END();
     return true;
 }
 

@@ -20,6 +20,10 @@
     #define KAPENGINE_BETA_ACTIVE false
 #endif
 
+#ifndef KAPENGINE_PROFILER_ACTIVE
+    #define KAPENGINE_PROFILER_ACTIVE false
+#endif
+
 #ifndef KAPENGINE_THREAD_ACTIVE
     #define KAPENGINE_THREAD_ACTIVE false
 #endif

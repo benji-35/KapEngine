@@ -261,8 +261,6 @@ namespace KapEngine {
                 }
 
                 bool __isChangingScene() const {
-                    PROFILER_FUNC_START();
-                    PROFILER_FUNC_END();
                     return _changingScene;
                 }
 
