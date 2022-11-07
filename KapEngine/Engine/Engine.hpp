@@ -84,7 +84,9 @@ namespace KapEngine {
              * @param fps fps amount
              */
             void setMaxFps(int fps) {
+                PROFILER_FUNC_START();
                 _fpsLock = fps;
+                PROFILER_FUNC_END();
             }
 
             /**
@@ -101,6 +103,8 @@ namespace KapEngine {
              * @retval false if game is not running
              */
             bool isRunning() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _run;
             }
             #if !KAPENGINE_BETA_ACTIVE
@@ -111,6 +115,8 @@ namespace KapEngine {
                  * @retval false if debug mode is disable
                  */
                 bool debugMode() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _debug;
                 }
                 /**
@@ -118,7 +124,9 @@ namespace KapEngine {
                  * @param b
                  */
                 void setDebugMod(bool b) {
+                    PROFILER_FUNC_START();
                     _debug = b;
+                    PROFILER_FUNC_END();
                 }
             #endif
 
@@ -159,6 +167,8 @@ namespace KapEngine {
              * @return std::string
              */
             std::string getGameName() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _gameName;
             }
 
@@ -167,6 +177,8 @@ namespace KapEngine {
              * @return std::string
              */
             std::string getGameVersion() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _gameVersion;
             }
 
@@ -175,6 +187,8 @@ namespace KapEngine {
              * @return std::string
              */
             std::string getGameCompany() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _gameCompany;
             }
 
@@ -184,6 +198,8 @@ namespace KapEngine {
              * @return std::shared_ptr<KapEngine::SceneManagement::SceneManager>
              */
             std::shared_ptr<SceneManagement::SceneManager> getSceneManager() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _sceneManager;
             }
 
@@ -193,6 +209,8 @@ namespace KapEngine {
              * @return std::shared_ptr<KapEngine::Prefabs::PrefabManager>
              */
             std::shared_ptr<Prefabs::PrefabManager> getPrefabManager() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _prefabManager;
             }
 
@@ -201,10 +219,12 @@ namespace KapEngine {
              * @return KapEngine::Time::ETime
              */
             Time::ETime getElapsedTime() {
+                PROFILER_FUNC_START();
                 float f = _elapsed.asMilliSecond() * deltaTime;
                 Time::ETime res;
 
                 res.setMilliseconds(f);
+                PROFILER_FUNC_END();
                 return res;
             }
 
@@ -220,7 +240,9 @@ namespace KapEngine {
              * @param dTime
              */
             void setDeltaTime(float dTime) {
+                PROFILER_FUNC_START();
                 deltaTime = dTime;
+                PROFILER_FUNC_END();
             }
 
             /**
@@ -253,6 +275,8 @@ namespace KapEngine {
              * @return Tools::Vector2 
              */
             Tools::Vector2 getScreenSize() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return screenSize;
             }
 
@@ -262,6 +286,8 @@ namespace KapEngine {
              * @return float 
              */
             float getMaxFps() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _fpsLock;
             }
 
@@ -272,6 +298,8 @@ namespace KapEngine {
              * @return false 
              */
             bool __canRunFixed() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _runFixed;
             }
 
@@ -281,6 +309,8 @@ namespace KapEngine {
              * @return std::shared_ptr<KapEngine::SceneManagement::SplashScreen> 
              */
             std::shared_ptr<SceneManagement::SplashScreen> getSplashScreen() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _splashsScreen;
             }
 
@@ -291,10 +321,14 @@ namespace KapEngine {
              * @param time 
              */
             void setFixedTime(Time::ETime time) {
+                PROFILER_FUNC_START();
                 _fixedTime = time;
+                PROFILER_FUNC_END();
             }
 
             Time::ETime getFixedTime() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _fixedTime;
             }
 
@@ -303,8 +337,10 @@ namespace KapEngine {
              * 
              * @param iconPath 
              */
-            void setIconGame(std::string const& iconPath) {
+            void setIconGame(std::string const &iconPath) {
+                PROFILER_FUNC_START();
                 _icon = iconPath;
+                PROFILER_FUNC_END();
             }
 
             /**
@@ -313,6 +349,8 @@ namespace KapEngine {
              * @return std::string 
              */
             std::string getIconPath() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _icon;
             }
 
@@ -324,7 +362,9 @@ namespace KapEngine {
                  * @param b 
                  */
                 void setEngineThread(bool b) {
+                    PROFILER_FUNC_START();
                     _threaded = b;
+                    PROFILER_FUNC_END();
                 }
 
                 /**
@@ -334,6 +374,8 @@ namespace KapEngine {
                  * @return false 
                  */
                 bool isEngineThreaded() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return _threaded;
                 }
 
@@ -351,6 +393,7 @@ namespace KapEngine {
              * @param title 
              */
             void setTitle(std::string const& title) {
+                PROFILER_FUNC_START();
                 #if KAPENGINE_BETA_ACTIVE
                     #if KAPENGINE_THREAD_ACTIVE
                         _mutex.lock();
@@ -362,9 +405,11 @@ namespace KapEngine {
                         _mutex.unlock();
                     #endif
                 #endif
+                PROFILER_FUNC_END();
             }
 
             void displayFPS(bool b) {
+                PROFILER_FUNC_START();
                 #if KAPENGINE_BETA_ACTIVE
                     #if KAPENGINE_THREAD_ACTIVE
                         _mutex.lock();
@@ -376,9 +421,12 @@ namespace KapEngine {
                         _mutex.unlock();
                     #endif
                 #endif
+                PROFILER_FUNC_END();
             }
 
             bool isDisplayFPS() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _displayFps;
             }
 

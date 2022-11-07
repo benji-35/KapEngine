@@ -36,7 +36,9 @@ namespace KapEngine {
                 void display() override;
 
                 void startDisplay() override {
+                    PROFILER_FUNC_START();
                     DEBUG_LOG("Use " + getName());
+                    PROFILER_FUNC_END();
                 }
 
             private:

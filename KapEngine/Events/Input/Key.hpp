@@ -8,6 +8,7 @@
 #ifndef KEY_HPP_
 #define KEY_HPP_
 
+#include "Profiler/KapProfiler.hpp"
 #include <string>
 
 namespace KapEngine {
@@ -15,8 +16,10 @@ namespace KapEngine {
 
         class Key {
             public:
-                Key() {}
-                ~Key() {}
+                Key() {
+                }
+                ~Key() {
+                }
 
                 /**
                  * @enum EKey
@@ -216,6 +219,8 @@ namespace KapEngine {
                  * @return KapEngine::Events::Key::EKey 
                  */
                 static EKey maxValue() {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return F15;
                 }
 
@@ -226,6 +231,8 @@ namespace KapEngine {
                  * @return KapEngine::Events::Key::EKey 
                  */
                 static EKey minValue() {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return UNKNOWN;
                 }
 
@@ -238,15 +245,23 @@ namespace KapEngine {
                     return *this;
                 }
                 bool operator==(EKey const& _ek) const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return (this->_last == _ek);
                 }
                 bool operator==(Key const& _k) const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return (this->_last == _k._last);
                 }
                 bool operator!=(EKey const& _ek) const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return !(*this == _ek);
                 }
                 bool operator!=(Key const& _ek) const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return !(*this == _ek);
                 }
 
@@ -259,6 +274,8 @@ namespace KapEngine {
                  * @retval false if index is not in the KapEngine::Events::Key::EKey enum
                  */
                 static bool intInEnum(int const& id) {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     if (id == -1)
                         return true;
                     if (id == 32)
@@ -344,6 +361,8 @@ namespace KapEngine {
                  * @return std::string
                  */
                 std::string toString() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     switch (_last) {
                         case A:
                             return "A";
@@ -566,6 +585,8 @@ namespace KapEngine {
                  * @return std::string 
                  */
                 std::string getTextValue() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     switch (_last) {
                         case A:
                             return "A";

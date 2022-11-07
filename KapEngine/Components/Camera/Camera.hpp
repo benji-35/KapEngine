@@ -37,7 +37,9 @@ namespace KapEngine {
              * @param bgColor 
              */
             void setBackgroundColor(Tools::Color const& bgColor) {
+                PROFILER_FUNC_START();
                 _bgColor = bgColor;
+                PROFILER_FUNC_END();
             }
 
             /**
@@ -46,6 +48,8 @@ namespace KapEngine {
              * @return KapEngine::Tools::Color 
              */
             Tools::Color getBackgroundColor() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _bgColor;
             }
 

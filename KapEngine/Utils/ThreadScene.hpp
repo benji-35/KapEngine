@@ -21,7 +21,10 @@ namespace KapEngine {
 namespace KapEngine {
     class ThreadScene {
         public:
-            ThreadScene() {}
+            ThreadScene() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
+            }
             ~ThreadScene() {}
 
             void join();
@@ -32,6 +35,8 @@ namespace KapEngine {
             static void __threadRunning(ThreadScene *scene);
 
             std::vector<std::shared_ptr<GameObject>> getGameObjects() {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
                 return _gos;
             }
 

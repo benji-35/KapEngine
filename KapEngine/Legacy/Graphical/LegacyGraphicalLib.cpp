@@ -10,6 +10,7 @@
 #include <iostream>
 
 KapEngine::Graphical::LegacyGraphicalLib::LegacyGraphicalLib(GraphicalLibManager &manager) : GraphicalLib("Legacy", manager) {
+    PROFILER_FUNC_START();
     registerCommand("exit", [this](){
         this->manager.getEngine().stop();
     });
@@ -31,11 +32,16 @@ KapEngine::Graphical::LegacyGraphicalLib::LegacyGraphicalLib(GraphicalLibManager
     registerCommand("help", [this](){
         DEBUG_LOG("Helper");
     });
+    PROFILER_FUNC_END();
 }
 
-KapEngine::Graphical::LegacyGraphicalLib::~LegacyGraphicalLib() {}
+KapEngine::Graphical::LegacyGraphicalLib::~LegacyGraphicalLib() {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
+}
 
 void KapEngine::Graphical::LegacyGraphicalLib::display() {
+    PROFILER_FUNC_START();
     std::cout << "> ";
     std::string _cmd;
     try {
@@ -44,39 +50,53 @@ void KapEngine::Graphical::LegacyGraphicalLib::display() {
         } else {
             exit(0);
         }
+        PROFILER_FUNC_END();
     } catch (Errors::EngineError e) {
         DEBUG_WARNING(e.what());
+        PROFILER_FUNC_END();
     }
 }
 
 void KapEngine::Graphical::LegacyGraphicalLib::executeCommand(std::string const& cmd) {
-    if (cmd == "")
-        return;
-    if (commandExists(cmd)) {
-        _commands.at(cmd)();
+    PROFILER_FUNC_START();
+    if (cmd == "") {
+        PROFILER_FUNC_END();
         return;
     }
+    if (commandExists(cmd)) {
+        _commands.at(cmd)();
+        PROFILER_FUNC_END();
+        return;
+    }
+    PROFILER_FUNC_END();
     throw Errors::EngineError("Command \"" + cmd + "\" not found");
 }
 
 bool KapEngine::Graphical::LegacyGraphicalLib::commandExists(std::string const& cmd) {
+    PROFILER_FUNC_START();
     try {
         std::map<std::string, std::function<void()>>::iterator it;
         it = this->_commands.find(cmd);
         if (it != this->_commands.end()) {
+            PROFILER_FUNC_END();
             return true;
         } else {
+            PROFILER_FUNC_END();
             return false;
         }
     } catch (...) {
+        PROFILER_FUNC_END();
         return false;
     }
 }
 
 void KapEngine::Graphical::LegacyGraphicalLib::registerCommand(std::string const& cmd, std::function<void()> func) {
+    PROFILER_FUNC_START();
     if (commandExists(cmd)) {
+        PROFILER_FUNC_END();
         throw Errors::EngineError("Already registered command");
         return;
     }
     _commands.insert( std::pair<std::string, std::function<void()>>(cmd, func));
+    PROFILER_FUNC_END();
 }

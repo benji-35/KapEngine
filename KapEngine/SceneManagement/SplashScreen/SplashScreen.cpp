@@ -10,11 +10,18 @@
 
 #include "AnimationSplashScreen.hpp"
 
-KapEngine::SceneManagement::SplashScreen::SplashScreen(KEngine &engine) : _engine(engine) {}
+KapEngine::SceneManagement::SplashScreen::SplashScreen(KEngine &engine) : _engine(engine) {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
+}
 
-KapEngine::SceneManagement::SplashScreen::~SplashScreen() {}
+KapEngine::SceneManagement::SplashScreen::~SplashScreen() {
+    PROFILER_FUNC_START();
+    PROFILER_FUNC_END();
+}
 
 void KapEngine::SceneManagement::SplashScreen::__init() {
+    PROFILER_FUNC_START();
     _sceneId = _engine.getSceneManager()->getCurrentSceneId();
     if (_sceneId == 0)
         _sceneId = 1;
@@ -42,8 +49,10 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
         _splahes = nNodes;
     }
     //check if there is splashes to display
-    if (_splahes.size() == 0)
+    if (_splahes.size() == 0) {
+        PROFILER_FUNC_END();
         return;
+    }
 
     //create splash screen scene
     auto sceneSplash = Factory::createScene(_engine, "SplashScreen");
@@ -137,4 +146,5 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
     }
     //set splash screen scene as first scene
     _engine.getSceneManager()->loadScene(sceneSplash->getId());
+    PROFILER_FUNC_END();
 }

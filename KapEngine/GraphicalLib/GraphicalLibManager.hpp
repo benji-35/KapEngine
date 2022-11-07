@@ -48,6 +48,8 @@ namespace KapEngine {
                 void __update();
 
                 std::size_t getCurrLib() const {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return currLib;
                 }
 

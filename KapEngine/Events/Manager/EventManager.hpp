@@ -53,6 +53,8 @@ namespace KapEngine {
                  * @return KapEngine::Events::Input &
                  */
                 Input &getInput() {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return *_input;
                 }
 
@@ -62,6 +64,8 @@ namespace KapEngine {
                  * @return KapEngine::Events::Mouse &
                  */
                 Mouse &getMouse() {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
                     return *_mouse;
                 }
 
