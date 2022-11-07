@@ -381,8 +381,18 @@
         PROFILER_FUNC_START();
         //updating scene
         for (std::size_t i = 0; i < objs.size(); i++) {
-            objs[i]->__update(false, false);
-            objs[i]->__update(true, false);
+            #if KAPENGINE_BETA_ACTIVE
+                #if KAPENGINE_THREAD_ACTIVE
+                    objs[i]->__updateComponents();
+                    objs[i]->__updatePhysics();
+                    objs[i]->__updateDisplay();
+                #else
+                    objs[i]->__update();
+                #endif
+            #else
+                objs[i]->__update(false, false);
+                objs[i]->__update(true, false);
+            #endif
         }
         PROFILER_FUNC_END();
     }

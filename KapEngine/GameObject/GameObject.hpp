@@ -13,6 +13,12 @@
 #include "Entity.hpp"
 #include "Type.hpp"
 
+#if KAPENGINE_BETA_ACTIVE
+    #if KAPENGINE_THREAD_ACTIVE
+        #include <mutex>
+    #endif
+#endif
+
 namespace KapEngine {
 
     class Component;
@@ -181,14 +187,28 @@ namespace KapEngine {
              */
             KEngine &getEngine();
 
-            /**
-             * @warning do not call this function
-             */
-            void __update(bool physics = false, bool runDisplay = true);
-            /**
-             * @warning do not call this function
-             */
-            void __updateDisplay();
+            #if KAPENGINE_BETA_ACTIVE
+                #if KAPENGINE_THREAD_ACTIVE
+                    void __updatePhysics();
+                    void __updateComponents();
+                    void __updateDisplay();
+                #else
+                    void __update();
+                    /**
+                     * @warning do not call this function
+                     */
+                    void __updateDisplay();
+                #endif
+            #else
+                /**
+                 * @warning do not call this function
+                 */
+                void __update(bool physics = false, bool runDisplay = true);
+                /**
+                 * @warning do not call this function
+                 */
+                void __updateDisplay();
+            #endif
 
             /**
              * @brief Set the Active status of GameObject
@@ -336,7 +356,17 @@ namespace KapEngine {
              */
             void setName(std::string const& name) {
                 PROFILER_FUNC_START();
+                #if KAPENGINE_BETA_ACTIVE
+                    #if KAPENGINE_THREAD_ACTIVE
+                        _mutex.lock();
+                    #endif
+                #endif
                 _name = name;
+                #if KAPENGINE_BETA_ACTIVE
+                    #if KAPENGINE_THREAD_ACTIVE
+                        _mutex.unlock();
+                    #endif
+                #endif
                 PROFILER_FUNC_END();
             }
 
@@ -347,7 +377,17 @@ namespace KapEngine {
              */
             void setTag(std::string const& tag) {
                 PROFILER_FUNC_START();
+                #if KAPENGINE_BETA_ACTIVE
+                    #if KAPENGINE_THREAD_ACTIVE
+                        _mutex.lock();
+                    #endif
+                #endif
                 _tag = tag;
+                #if KAPENGINE_BETA_ACTIVE
+                    #if KAPENGINE_THREAD_ACTIVE
+                        _mutex.unlock();
+                    #endif
+                #endif
                 PROFILER_FUNC_END();
             }
 
@@ -381,6 +421,11 @@ namespace KapEngine {
             std::size_t _idComp = 0;
             std::string _prefabName;
             std::string _tag;
+            #if KAPENGINE_BETA_ACTIVE
+                #if KAPENGINE_THREAD_ACTIVE
+                    std::mutex _mutex;
+                #endif
+            #endif
     };
 
 }

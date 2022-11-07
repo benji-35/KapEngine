@@ -30,98 +30,302 @@ KapEngine::GameObject::~GameObject() {
     PROFILER_FUNC_END();
 }
 
-void KapEngine::GameObject::__update(bool physics, bool runDisplay) {
-    PROFILER_FUNC_START();
-    if (!_active || _destroyed) {
-        PROFILER_FUNC_END();
-        return;
-    }
-    std::vector<std::shared_ptr<GameObject>> _children;
-    try {
-        Transform &tr = (Transform &)getTransform();
-        if (!tr.allParentIsActive()) {
-            PROFILER_FUNC_END();
-            return;
-        }
-        _children = tr.getChildren();
-    } catch (...) {
-        #if KAPENGINE_DEBUG_ACTIVE
-            DEBUG_ERROR("GameObject has no Transform component for GameObject" + _name);
-        #endif
-    }
-    try {
-        for (std::size_t i = 0; i < _components.size(); i++) {
-            try {
-                Transform &tr = (Transform &)getTransform();
-                if (!tr.allParentIsActive()) {
-                    PROFILER_FUNC_END();
-                    return;
-                }
-            } catch (...) {}
-            if (physics && _components[i]->__isPhysics()) {
-                _components[i]->__update(runDisplay);
-            } else if (!physics && !_components[i]->__isPhysics()) {
-                _components[i]->__update(runDisplay);
-            }
-        }
-    } catch (...) {
-        #if KAPENGINE_DEBUG_ACTIVE
-            DEBUG_ERROR("Failed to update components for GameObject" + _name);
-        #endif
-    }
-    try {
-    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
-        try {
-            Transform &tr = (Transform &)getTransform();
-            if (!tr.allParentIsActive()) {
-                PROFILER_FUNC_END();
-                return;
-            }
-        } catch (...) {}
-        if (physics && _componentsRun[i]->__isPhysics()) {
-            _componentsRun[i]->__update(runDisplay);
-        } else if (!physics && !_componentsRun[i]->__isPhysics()) {
-            _componentsRun[i]->__update(runDisplay);
-        }
-    }
-    } catch(...) {
-        #if KAPENGINE_DEBUG_ACTIVE
-            DEBUG_ERROR("Failed to update components run for GameObject" + _name);
-        #endif
-    }
-    if (_active == false || _destroyed) {
-        PROFILER_FUNC_END();
-        return;
-    }
-    try {
-        for (std::size_t i = 0; i < _children.size(); i++) {
-            _children[i]->__update(physics, runDisplay);
-        }
-    } catch(...) {
-        #if KAPENGINE_DEBUG_ACTIVE
-            DEBUG_ERROR("Failed to update children for GameObject" + _name);
-        #endif
-    }
-    PROFILER_FUNC_END();
-}
 
-void KapEngine::GameObject::__updateDisplay() {
-    PROFILER_FUNC_START();
-    if (!_active || _destroyed) {
-        PROFILER_FUNC_END();
-        return;
-    }
-    std::vector<std::shared_ptr<GameObject>> _children;
-    try {
-        Transform &tr = (Transform &)getTransform();
-        if (!tr.allParentIsActive()) {
+#if KAPENGINE_BETA_ACTIVE
+    #if KAPENGINE_THREAD_ACTIVE
+
+        void KapEngine::GameObject::__updatePhysics() {
+            PROFILER_FUNC_START();
+            //check if gameObject is destroy or disable
+            if (!_active || _destroyed) {
+                PROFILER_FUNC_END();
+                return;
+            }
+
+            //set all children
+            std::vector<std::shared_ptr<GameObject>> _children;
+            try {
+                Transform &tr = (Transform &)getTransform();
+                if (!tr.allParentIsActive()) {
+                    PROFILER_FUNC_END();
+                    return;
+                }
+                _children = tr.getChildren();
+            } catch (...) {
+                DEBUG_ERROR("Failed to get children of gameObject " + _name);
+            }
+
+            //update components
+            for (std::size_t i = 0; i < _components.size(); i++) {
+                if (_components[i]->isEnable() && _components[i]->__isPhysics()) {
+                    _components[i]->__update();
+                }
+            }
+            for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                if (_componentsRun[i]->isEnable() && _componentsRun[i]->__isPhysics()) {
+                    _componentsRun[i]->__update();
+                }
+            }
+
+            //call children updates
+            for (std::size_t i = 0; i < _children.size(); i++) {
+                _children[i]->__updatePhysics();
+            }
+            PROFILER_FUNC_END();
+        }
+
+        void KapEngine::GameObject::__updateComponents() {
+            PROFILER_FUNC_START();
+            //check if gameObject is destroy or disable
+            if (!_active || _destroyed) {
+                PROFILER_FUNC_END();
+                return;
+            }
+
+            //set all children
+            std::vector<std::shared_ptr<GameObject>> _children;
+            try {
+                Transform &tr = (Transform &)getTransform();
+                if (!tr.allParentIsActive()) {
+                    PROFILER_FUNC_END();
+                    return;
+                }
+                _children = tr.getChildren();
+            } catch (...) {
+                DEBUG_ERROR("Failed to get children of gameObject " + _name);
+            }
+
+            //update components
+            for (std::size_t i = 0; i < _components.size(); i++) {
+                if (_components[i]->isEnable() && !_components[i]->__isPhysics()) {
+                    _components[i]->__update();
+                }
+            }
+            for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                if (_componentsRun[i]->isEnable() && !_componentsRun[i]->__isPhysics()) {
+                    _componentsRun[i]->__update();
+                }
+            }
+
+            //call children updates
+            for (std::size_t i = 0; i < _children.size(); i++) {
+                _children[i]->__updateComponents();
+            }
+            PROFILER_FUNC_END();
+        }
+
+        void KapEngine::GameObject::__updateDisplay() {
+            PROFILER_FUNC_START();
+            //check if gameObject is destroy or disable
+            if (!_active || _destroyed) {
+                PROFILER_FUNC_END();
+                return;
+            }
+
+            //set all children
+            std::vector<std::shared_ptr<GameObject>> _children;
+            try {
+                Transform &tr = (Transform &)getTransform();
+                if (!tr.allParentIsActive()) {
+                    PROFILER_FUNC_END();
+                    return;
+                }
+                _children = tr.getChildren();
+            } catch (...) {
+                DEBUG_ERROR("Failed to get children of gameObject " + _name);
+            }
+
+            //update components
+            for (std::size_t i = 0; i < _components.size(); i++) {
+                if (_components[i]->isEnable() && !_components[i]->__isPhysics()) {
+                    _components[i]->onDisplay();
+                }
+            }
+            for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                _componentsRun[i]->onDisplay();
+            }
+
+            //call children updates
+            for (std::size_t i = 0; i < _children.size(); i++) {
+                _children[i]->__updateDisplay();
+            }
+            PROFILER_FUNC_END();
+        }
+
+    #else
+        void KapEngine::GameObject::__update() {
+            PROFILER_FUNC_START();
+            if (!_active || _destroyed) {
+                PROFILER_FUNC_END();
+                return;
+            }
+            std::vector<std::shared_ptr<GameObject>> _children;
+            try {
+                Transform &tr = (Transform &)getTransform();
+                if (!tr.allParentIsActive()) {
+                    PROFILER_FUNC_END();
+                    return;
+                }
+                _children = tr.getChildren();
+            } catch (...) {
+                #if KAPENGINE_DEBUG_ACTIVE
+                    DEBUG_ERROR("GameObject has no Transform component for GameObject" + _name);
+                #endif
+            }
+            try {
+                for (std::size_t i = 0; i < _components.size(); i++) {
+                    try {
+                        Transform &tr = (Transform &)getTransform();
+                        if (!tr.allParentIsActive()) {
+                            PROFILER_FUNC_END();
+                            return;
+                        }
+                    } catch (...) {}
+                    _components[i]->__update();
+                }
+            } catch (...) {
+                #if KAPENGINE_DEBUG_ACTIVE
+                    DEBUG_ERROR("Failed to update components for GameObject" + _name);
+                #endif
+            }
+            try {
+            for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                try {
+                    Transform &tr = (Transform &)getTransform();
+                    if (!tr.allParentIsActive()) {
+                        PROFILER_FUNC_END();
+                        return;
+                    }
+                } catch (...) {}
+                _componentsRun[i]->__update();
+            }
+            } catch(...) {
+                #if KAPENGINE_DEBUG_ACTIVE
+                    DEBUG_ERROR("Failed to update components run for GameObject" + _name);
+                #endif
+            }
+            if (_active == false || _destroyed) {
+                PROFILER_FUNC_END();
+                return;
+            }
+            try {
+                for (std::size_t i = 0; i < _children.size(); i++) {
+                    _children[i]->__update();
+                }
+            } catch(...) {
+                #if KAPENGINE_DEBUG_ACTIVE
+                    DEBUG_ERROR("Failed to update children for GameObject" + _name);
+                #endif
+            }
+            PROFILER_FUNC_END();
+        }
+
+        void KapEngine::GameObject::__updateDisplay() {
+            PROFILER_FUNC_START();
+            if (!_active || _destroyed) {
+                PROFILER_FUNC_END();
+                return;
+            }
+            std::vector<std::shared_ptr<GameObject>> _children;
+            try {
+                Transform &tr = (Transform &)getTransform();
+                if (!tr.allParentIsActive()) {
+                    PROFILER_FUNC_END();
+                    return;
+                }
+                _children = tr.getChildren();
+            } catch (...) {}
+            try {
+                for (std::size_t i = 0; i < _components.size(); i++) {
+                    try {
+                        Transform &tr = (Transform &)getTransform();
+                        if (!tr.allParentIsActive()) {
+                            PROFILER_FUNC_END();
+                            return;
+                        }
+                    } catch (...) {}
+                    _components[i]->onDisplay();
+                }
+            } catch(...) {
+                #if KAPENGINE_DEBUG_ACTIVE
+                    DEBUG_ERROR("Failed to update display components for GameObject" + _name);
+                #endif
+            }
+            try {
+            for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                try {
+                    Transform &tr = (Transform &)getTransform();
+                    if (!tr.allParentIsActive()) {
+                        PROFILER_FUNC_END();
+                        return;
+                    }
+                } catch (...) {}
+                _componentsRun[i]->onDisplay();
+            }
+            } catch(...) {
+                #if KAPENGINE_DEBUG_ACTIVE
+                    DEBUG_ERROR("Failed to update display components run for GameObject" + _name);
+                #endif
+            }
+            if (_active == false || _destroyed) {
+                PROFILER_FUNC_END();
+                return;
+            }
+            try {
+            for (std::size_t i = 0; i < _children.size(); i++) {
+                _children[i]->__updateDisplay();
+            }
+            } catch(...) {
+                #if KAPENGINE_DEBUG_ACTIVE
+                    DEBUG_ERROR("Failed to update display children for GameObject" + _name);
+                #endif
+            }
+            PROFILER_FUNC_END();
+        }
+    #endif
+#else
+
+    void KapEngine::GameObject::__update(bool physics, bool runDisplay) {
+        PROFILER_FUNC_START();
+        if (!_active || _destroyed) {
             PROFILER_FUNC_END();
             return;
         }
-        _children = tr.getChildren();
-    } catch (...) {}
-    try {
-        for (std::size_t i = 0; i < _components.size(); i++) {
+        std::vector<std::shared_ptr<GameObject>> _children;
+        try {
+            Transform &tr = (Transform &)getTransform();
+            if (!tr.allParentIsActive()) {
+                PROFILER_FUNC_END();
+                return;
+            }
+            _children = tr.getChildren();
+        } catch (...) {
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_ERROR("GameObject has no Transform component for GameObject" + _name);
+            #endif
+        }
+        try {
+            for (std::size_t i = 0; i < _components.size(); i++) {
+                try {
+                    Transform &tr = (Transform &)getTransform();
+                    if (!tr.allParentIsActive()) {
+                        PROFILER_FUNC_END();
+                        return;
+                    }
+                } catch (...) {}
+                if (physics && _components[i]->__isPhysics()) {
+                    _components[i]->__update(runDisplay);
+                } else if (!physics && !_components[i]->__isPhysics()) {
+                    _components[i]->__update(runDisplay);
+                }
+            }
+        } catch (...) {
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_ERROR("Failed to update components for GameObject" + _name);
+            #endif
+        }
+        try {
+        for (std::size_t i = 0; i < _componentsRun.size(); i++) {
             try {
                 Transform &tr = (Transform &)getTransform();
                 if (!tr.allParentIsActive()) {
@@ -129,44 +333,97 @@ void KapEngine::GameObject::__updateDisplay() {
                     return;
                 }
             } catch (...) {}
-            _components[i]->onDisplay();
+            if (physics && _componentsRun[i]->__isPhysics()) {
+                _componentsRun[i]->__update(runDisplay);
+            } else if (!physics && !_componentsRun[i]->__isPhysics()) {
+                _componentsRun[i]->__update(runDisplay);
+            }
         }
-    } catch(...) {
-        #if KAPENGINE_DEBUG_ACTIVE
-            DEBUG_ERROR("Failed to update display components for GameObject" + _name);
-        #endif
+        } catch(...) {
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_ERROR("Failed to update components run for GameObject" + _name);
+            #endif
+        }
+        if (_active == false || _destroyed) {
+            PROFILER_FUNC_END();
+            return;
+        }
+        try {
+            for (std::size_t i = 0; i < _children.size(); i++) {
+                _children[i]->__update(physics, runDisplay);
+            }
+        } catch(...) {
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_ERROR("Failed to update children for GameObject" + _name);
+            #endif
+        }
+        PROFILER_FUNC_END();
     }
-    try {
-    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+
+    void KapEngine::GameObject::__updateDisplay() {
+        PROFILER_FUNC_START();
+        if (!_active || _destroyed) {
+            PROFILER_FUNC_END();
+            return;
+        }
+        std::vector<std::shared_ptr<GameObject>> _children;
         try {
             Transform &tr = (Transform &)getTransform();
             if (!tr.allParentIsActive()) {
                 PROFILER_FUNC_END();
                 return;
             }
+            _children = tr.getChildren();
         } catch (...) {}
-        _componentsRun[i]->onDisplay();
-    }
-    } catch(...) {
-        #if KAPENGINE_DEBUG_ACTIVE
-            DEBUG_ERROR("Failed to update display components run for GameObject" + _name);
-        #endif
-    }
-    if (_active == false || _destroyed) {
+        try {
+            for (std::size_t i = 0; i < _components.size(); i++) {
+                try {
+                    Transform &tr = (Transform &)getTransform();
+                    if (!tr.allParentIsActive()) {
+                        PROFILER_FUNC_END();
+                        return;
+                    }
+                } catch (...) {}
+                _components[i]->onDisplay();
+            }
+        } catch(...) {
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_ERROR("Failed to update display components for GameObject" + _name);
+            #endif
+        }
+        try {
+        for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+            try {
+                Transform &tr = (Transform &)getTransform();
+                if (!tr.allParentIsActive()) {
+                    PROFILER_FUNC_END();
+                    return;
+                }
+            } catch (...) {}
+            _componentsRun[i]->onDisplay();
+        }
+        } catch(...) {
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_ERROR("Failed to update display components run for GameObject" + _name);
+            #endif
+        }
+        if (_active == false || _destroyed) {
+            PROFILER_FUNC_END();
+            return;
+        }
+        try {
+        for (std::size_t i = 0; i < _children.size(); i++) {
+            _children[i]->__updateDisplay();
+        }
+        } catch(...) {
+            #if KAPENGINE_DEBUG_ACTIVE
+                DEBUG_ERROR("Failed to update display children for GameObject" + _name);
+            #endif
+        }
         PROFILER_FUNC_END();
-        return;
     }
-    try {
-    for (std::size_t i = 0; i < _children.size(); i++) {
-        _children[i]->__updateDisplay();
-    }
-    } catch(...) {
-        #if KAPENGINE_DEBUG_ACTIVE
-            DEBUG_ERROR("Failed to update display children for GameObject" + _name);
-        #endif
-    }
-    PROFILER_FUNC_END();
-}
+
+#endif
 
 KapEngine::Component &KapEngine::GameObject::getComponent(std::string const& name) {
     PROFILER_FUNC_START();
