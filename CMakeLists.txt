@@ -29,6 +29,7 @@ option(KAPENGINE_THREAD "Build the engine with thread" OFF)
 option(KAPENGINE_BETA "Build the engine with beta additionals" OFF)
 option(KAPENGINE_DEBUG "Build the engine in debug mode" OFF)
 option(KAPENGINE_EDITOR "Build the engine in editor mode (only editor should use this option)" OFF)
+option(KAPENGINE_PROFILER "Build the engine with profiler" OFF)
 
 set(CMAKE_CXX_STANDARD 17)
 
