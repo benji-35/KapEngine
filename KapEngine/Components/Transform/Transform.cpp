@@ -67,18 +67,24 @@ void KapEngine::Transform::setScale(Tools::Vector3 scale) {
 KapEngine::Tools::Vector3 KapEngine::Transform::getLocalPosition() const {
     PROFILER_FUNC_START();
     PROFILER_FUNC_END();
+    if (!_awkaeTr)
+        return _startPos;
     return _pos;
 }
 
 KapEngine::Tools::Vector3 KapEngine::Transform::getLocalRotation() const {
     PROFILER_FUNC_START();
     PROFILER_FUNC_END();
+    if (!_awkaeTr)
+        return _startRot;
     return _rot;
 }
 
 KapEngine::Tools::Vector3 KapEngine::Transform::getLocalScale() const {
     PROFILER_FUNC_START();
     PROFILER_FUNC_END();
+    if (!_awkaeTr)
+        return _startScale;
     return _scale;
 }
 
