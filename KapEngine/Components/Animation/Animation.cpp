@@ -7,7 +7,7 @@
 
 #include "Animation.hpp"
 
-KapEngine::Animation::Animation(std::shared_ptr<GameObject> go) : Component(go, "Animation", 1) {}
+KapEngine::Animation::Animation(std::shared_ptr<GameObject> go) : Component(go, "Animation") {}
 
 KapEngine::Animation::~Animation() {}
 

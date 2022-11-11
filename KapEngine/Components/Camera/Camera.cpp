@@ -7,7 +7,7 @@
 
 #include "Camera.hpp"
 
-KapEngine::Camera::Camera(std::shared_ptr<GameObject> go) : Component(go, "Camera", 1) {
+KapEngine::Camera::Camera(std::shared_ptr<GameObject> go) : Component(go, "Camera") {
     PROFILER_FUNC_START();
     PROFILER_FUNC_END();
 }

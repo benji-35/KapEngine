@@ -9,7 +9,7 @@
 
 #include "KapEngineUi.hpp"
 
-KapEngine::MouseDetector::MouseDetector(std::shared_ptr<GameObject> go) : Component(go, "Mouse Detector", 1) {
+KapEngine::MouseDetector::MouseDetector(std::shared_ptr<GameObject> go) : Component(go, "Mouse Detector") {
     PROFILER_FUNC_START();
     __setPhysics(true);
     PROFILER_FUNC_END();

@@ -171,9 +171,9 @@ Tools::Rectangle Collider::getCalculatedRectangle() const {
     Tools::Rectangle rect = _boxCollider;
     if (rect.getSize().getX() == 0 || rect.getSize().getY() == 0) {
         Tools::Vector2 pos;
-        pos = getGameObjectConst().getComponent<Transform>().getWorldPosition();
+        pos = getGameObject().getComponent<Transform>().getWorldPosition();
         Tools::Vector2 size;
-        size = getGameObjectConst().getComponent<Transform>().getWorldScale();
+        size = getGameObject().getComponent<Transform>().getWorldScale();
 
         rect.setPos(pos);
         rect.setSize(size);
