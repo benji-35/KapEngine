@@ -291,11 +291,11 @@
     std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::createGameObject(std::string const& name) {
         PROFILER_FUNC_START();
         auto object = std::make_shared<GameObject>(*this, name);
+        addGameObject(object);
 
         auto tr = std::make_shared<Transform>(object);
         object->addComponent(tr);
 
-        addGameObject(object);
         PROFILER_FUNC_END();
         return object;
     }
