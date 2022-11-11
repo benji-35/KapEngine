@@ -165,9 +165,9 @@ void KapEngine::Transform::setParent(std::size_t id) {
     PROFILER_FUNC_START();
     _parentId = id;
     if (_parentId == 0) {
-        getGameObject().getScene().getGameObject(id)->getComponent<Transform>().__removeChild(getGameObject().getId());
+        getScene().getGameObject(id)->getComponent<Transform>().__removeChild(getGameObjectId());
     } else {
-        getGameObject().getScene().getGameObject(id)->getComponent<Transform>().__addChild(getGameObject().getId());
+        getScene().getGameObject(id)->getComponent<Transform>().__addChild(getGameObjectId());
     }
     PROFILER_FUNC_END();
 }
@@ -227,7 +227,7 @@ bool KapEngine::Transform::allParentIsActive() {
         return getGameObject().isActive();
     }
     try {
-        Transform &tr = (Transform &) getGameObject().getScene().getGameObject(_parentId)->getTransform();
+        Transform &tr = (Transform &) getScene().getGameObject(_parentId)->getTransform();
         return tr.allParentIsActive();
     } catch(...) {
         return false;
@@ -236,7 +236,7 @@ bool KapEngine::Transform::allParentIsActive() {
 
 std::vector<std::shared_ptr<KapEngine::GameObject>> KapEngine::Transform::getChildren() {
     PROFILER_FUNC_START();
-    std::vector<std::shared_ptr<GameObject>> gos = getGameObject().getScene().getAllGameObjects();
+    std::vector<std::shared_ptr<GameObject>> gos = getScene().getAllGameObjects();
     std::vector<std::shared_ptr<GameObject>> result;
 
     for (std::size_t i = 0; i < gos.size(); i++) {
@@ -306,7 +306,7 @@ std::size_t KapEngine::Transform::getParentContainsComponent(std::string const& 
     if (_parentId == 0) {
         if (getGameObject().hasComponent(componentName)) {
             PROFILER_FUNC_END();
-            return getGameObject().getId();
+            return getGameObjectId();
         }
         PROFILER_FUNC_END();
         return 0;
@@ -325,7 +325,7 @@ std::size_t KapEngine::Transform::getParentContainsComponent(std::string const& 
         auto val = tr.getParentContainsComponent(componentName);
         if (val == 0) {
             if (getGameObject().hasComponent(componentName)) {
-                val = getGameObject().getId();
+                val = getGameObjectId();
             }
         }
         PROFILER_FUNC_END();

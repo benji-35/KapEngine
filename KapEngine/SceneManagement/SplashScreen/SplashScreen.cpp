@@ -137,7 +137,7 @@ void KapEngine::SceneManagement::SplashScreen::__init() {
         Camera &cam = (Camera&)sceneSplash->getActiveCamera();
         cam.setBackgroundColor(Tools::Color::black());
         #if KAPENGINE_DEBUG_ACTIVE
-            DEBUG_LOG("[Splash Screen]Active camera on object " + std::to_string(cam.getGameObject().getId()));
+            DEBUG_LOG("[Splash Screen]Active camera on object " + std::to_string(cam.getGameObjectId()));
         #endif
     } catch(...) {
         #if KAPENGINE_DEBUG_ACTIVE

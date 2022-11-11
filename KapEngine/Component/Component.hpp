@@ -62,13 +62,8 @@ namespace KapEngine {
              * @throw KapEngine::Errors::ComponentError if the object does not exist in scene
              * @return KapEngine::GameObject &
              */
-            GameObject &getGameObject();
-
-            /**
-             * @brief Get GameObject in const result
-             * @return KapEngine::GameObject &const
-             */
-            GameObject &getGameObjectConst() const;
+            GameObject &getGameObject() const;
+            std::size_t getGameObjectId() const { return _idGameObject; }
 
             //updates functions
             virtual void onInit() override {}
@@ -173,7 +168,7 @@ namespace KapEngine {
              */
             void __engineStop() {
                 PROFILER_FUNC_START();
-                _go.reset();
+                _idGameObject = 0;
                 PROFILER_FUNC_END();
             }
 
@@ -269,6 +264,18 @@ namespace KapEngine {
                 PROFILER_FUNC_END();
             }
 
+            SceneManagement::Scene &getScene() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
+                return _scene;
+            }
+
+            KEngine &getEngine() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
+                return _engine;
+            }
+
         protected:
             /**
              * @brief Component name
@@ -279,12 +286,14 @@ namespace KapEngine {
             int threadRunning = 2;
             std::size_t _id = 0;
             std::size_t _level = 0;
-            std::shared_ptr<GameObject> _go;
+            std::size_t _idGameObject = 0;
             bool _enable = true;
             bool _awakeDone = false;
             bool _startDone = false;
             void __start();
             std::vector<std::string> _componentsNeeded;
+            SceneManagement::Scene &_scene;
+            KEngine &_engine;
 
             bool __checkValidity();
     };

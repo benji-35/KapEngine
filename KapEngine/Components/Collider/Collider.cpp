@@ -30,10 +30,10 @@ void Collider::onUpdate() {
         return;
     }
     
-    auto gameObjects = getGameObject().getScene().getGameObjectByTag("Collider");
+    auto gameObjects = getScene().getGameObjectByTag("Collider");
 
     for (std::size_t i = 0; i < gameObjects.size(); i++) {
-        if (gameObjects[i]->getId() != getGameObject().getId()) {
+        if (gameObjects[i]->getId() != getGameObjectId()) {
             __checkCollision(gameObjects[i]);
         }
     }
@@ -115,7 +115,7 @@ void Collider::__checkCollision(std::shared_ptr<GameObject> &go) {
 bool Collider::__colliderAlreadyCollide(std::shared_ptr<Collider> &collider) {
     PROFILER_FUNC_START();
     for (std::size_t i = 0; i < _collidedObjects.size(); i++) {
-        if (_collidedObjects[i]->getId() == collider->getGameObject().getId() && collider->getGameObject().getId() != _collidedObjects[i]->getGameObject().getId()) {
+        if (_collidedObjects[i]->getId() == collider->getGameObjectId() && collider->getGameObjectId() != _collidedObjects[i]->getGameObjectId()) {
             PROFILER_FUNC_END();
             return true;
         }
@@ -157,7 +157,7 @@ void Collider::__callExit(GameObject &go) {
 bool Collider::__currentlyCollided(std::shared_ptr<Collider> &collider) {
     PROFILER_FUNC_START();
     for (std::size_t i = 0; i < _justCollidedObjects.size(); i++) {
-        if (_justCollidedObjects[i]->getId() == collider->getId() && collider->getGameObject().getId() == _collidedObjects[i]->getGameObject().getId()) {
+        if (_justCollidedObjects[i]->getId() == collider->getId() && collider->getGameObjectId() == _collidedObjects[i]->getGameObjectId()) {
             PROFILER_FUNC_END();
             return true;
         }
@@ -187,7 +187,7 @@ bool Collider::__alreayCalculated(std::shared_ptr<Collider> &collider) {
     auto colliders = collider->getCollidedObjects();
 
     for (std::size_t i = 0; i < colliders.size(); i++) {
-        if (colliders[i]->getId() == getId() && colliders[i]->getGameObject().getId() == getGameObject().getId()) {
+        if (colliders[i]->getId() == getId() && colliders[i]->getGameObjectId() == getGameObjectId()) {
             PROFILER_FUNC_END();
             return true;
         }
@@ -198,15 +198,15 @@ bool Collider::__alreayCalculated(std::shared_ptr<Collider> &collider) {
 
 void Collider::__checkCollidersExists() {
     PROFILER_FUNC_START();
-    auto &scene = getGameObject().getScene();
+    auto &scene = getScene();
     for (std::size_t i = 0; i < _collidedObjects.size(); i++) {
-        if (!scene.isGameObjectExists(_collidedObjects[i]->getGameObject().getId())) {
+        if (!scene.isGameObjectExists(_collidedObjects[i]->getGameObjectId())) {
             _collidedObjects.erase(_collidedObjects.begin() + i);
             i--;
         }
     }
     for (std::size_t i = 0; i < _justCollidedObjects.size(); i++) {
-        if (!scene.isGameObjectExists(_justCollidedObjects[i]->getGameObject().getId())) {
+        if (!scene.isGameObjectExists(_justCollidedObjects[i]->getGameObjectId())) {
             _justCollidedObjects.erase(_justCollidedObjects.begin() + i);
             i--;
         }

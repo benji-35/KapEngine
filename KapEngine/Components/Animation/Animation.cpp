@@ -25,7 +25,7 @@ void KapEngine::Animation::onFixedUpdate() {
         return;
     }
     _reseted = false;
-    _currTime += getGameObject().getEngine().getElapsedTime().asMicroSecond();
+    _currTime += getEngine().getElapsedTime().asMicroSecond();
     onUpdateAnim();
     if (_currTime >= _timing.asMicroSecond() && !_end && !_loop) {
         _end = true;

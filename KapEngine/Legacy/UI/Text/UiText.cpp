@@ -40,7 +40,7 @@ void KapEngine::UI::Text::onAwake()
 void KapEngine::UI::Text::onDisplay() {
     PROFILER_FUNC_START();
     try {
-        getGameObject().getEngine().getCurrentGraphicalLib()->drawText(*this);
+        getEngine().getCurrentGraphicalLib()->drawText(*this);
     } catch(...) {
         #if KAPENGINE_DEBUG_ACTIVE
             DEBUG_ERROR("Failed to draw text");
@@ -72,7 +72,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedScale() {
 
     Tools::Vector3 currScale = transform.getWorldScale();
     Canvas::ResizyngType resizeType = Canvas::ResizyngType::RESIZE_WITH_SCREEN;
-    Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
+    Tools::Vector2 getCompare = getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
 
     if (_lastCompare == getCompare && _lastScaleWant == Tools::Vector2(currScale.getX(), currScale.getY())) {
@@ -114,7 +114,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Text::getCalculatedPos() {
 
     Tools::Vector3 currPos = transform.getWorldPosition();
     Canvas::ResizyngType resizeType = Canvas::ResizyngType::RESIZE_WITH_SCREEN;
-    Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
+    Tools::Vector2 getCompare = getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
 
     if (_lastCompare == getCompare && _lastPosWant == Tools::Vector2(currPos.getX(), currPos.getY())) {

@@ -15,9 +15,9 @@
 #include "Profiler/KapProfiler.hpp"
 #include "KapEngine.hpp"
 
-KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string const& name, int threadId) {
+KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string const& name, int threadId): _scene(go->getScene()), _engine(go->getEngine()) {
     PROFILER_FUNC_START();
-    _go = go;
+    _idGameObject = go->getId();
     _name = name;
     threadRunning = threadId;
     PROFILER_FUNC_END();
@@ -25,15 +25,13 @@ KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string con
 
 KapEngine::Component::~Component() {
     PROFILER_FUNC_START();
-    _go.reset();
+    _idGameObject = 0;
     PROFILER_FUNC_END();
 }
 
-KapEngine::GameObject &KapEngine::Component::getGameObject() {
+KapEngine::GameObject &KapEngine::Component::getGameObject() const {
     try {
-        if (_go.use_count() <= 1)
-            throw Errors::SceneError("GameObject does not exist in scene");
-        return *_go;
+        return *_scene.getGameObject(_idGameObject);
     } catch (Errors::SceneError e) {
         throw Errors::ComponentError(std::string(e.what()));
     }
@@ -95,7 +93,7 @@ void KapEngine::Component::__start() {
 
 void KapEngine::Component::__fixedUpdate() {
     PROFILER_FUNC_START();
-    if (getGameObjectConst().getEngine().__canRunFixed())
+    if (getEngine().__canRunFixed())
         onFixedUpdate();
     PROFILER_FUNC_END();
 }
@@ -103,23 +101,13 @@ void KapEngine::Component::__fixedUpdate() {
 KapEngine::Events::Input KapEngine::Component::getInput() {
     PROFILER_FUNC_START();
     PROFILER_FUNC_END();
-    return getGameObject().getEngine().getEventManager().getInput();
+    return getEngine().getEventManager().getInput();
 }
 
 KapEngine::Events::Mouse KapEngine::Component::getMouse() {
     PROFILER_FUNC_START();
     PROFILER_FUNC_END();
-    return getGameObject().getEngine().getEventManager().getMouse();
-}
-
-KapEngine::GameObject &KapEngine::Component::getGameObjectConst() const {
-    try {
-        if (_go.use_count() <= 1)
-            throw Errors::SceneError("GameObject does not exist in scene");
-        return *_go;
-    } catch (Errors::SceneError e) {
-        throw Errors::ComponentError(std::string(e.what()));
-    }
+    return getEngine().getEventManager().getMouse();
 }
 
 bool KapEngine::Component::__checkValidity() {
@@ -132,7 +120,7 @@ bool KapEngine::Component::__checkValidity() {
         #endif
         return false;
     }
-    if (getGameObject().getScene().__isChangingScene()) {
+    if (getScene().__isChangingScene()) {
         return false;
     }
     if (!getTransform().allParentsActive()) {

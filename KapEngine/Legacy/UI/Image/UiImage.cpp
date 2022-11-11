@@ -35,7 +35,7 @@ void KapEngine::UI::Image::onAwake() {
 void KapEngine::UI::Image::onDisplay() {
     PROFILER_FUNC_START();
     try {
-        getGameObject().getEngine().getCurrentGraphicalLib()->drawImage(*this);
+        getEngine().getCurrentGraphicalLib()->drawImage(*this);
     } catch(...) {
         #if KAPENGINE_DEBUG_ACTIVE
             DEBUG_ERROR("Failed to draw image");
@@ -50,7 +50,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
 
     Tools::Vector3 currPos = transform.getWorldPosition();
     Canvas::ResizyngType resizeType = Canvas::ResizyngType::RESIZE_WITH_SCREEN;
-    Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
+    Tools::Vector2 getCompare = getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
 
     if (_lastCompare == getCompare && _lastPosWant == Tools::Vector2(currPos.getX(), currPos.getY())) {
@@ -91,7 +91,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
 
     Tools::Vector3 currSize = transform.getWorldScale();
     Canvas::ResizyngType resizeType = Canvas::ResizyngType::RESIZE_WITH_SCREEN;
-    Tools::Vector2 getCompare = getGameObject().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
+    Tools::Vector2 getCompare = getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
     Tools::Vector2 screenSize = getCompare;
 
     if (_lastCompare == getCompare && _lastScaleWant == Tools::Vector2(currSize.getX(), currSize.getY())) {
