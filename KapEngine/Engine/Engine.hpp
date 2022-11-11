@@ -8,6 +8,7 @@
 #ifndef KENGINE_HPP_
 #define KENGINE_HPP_
 
+#include "Profiler/KapProfiler.hpp"
 #include "Errors.hpp"
 #include "SceneManager.hpp"
 #include "PrefabManager.hpp"
