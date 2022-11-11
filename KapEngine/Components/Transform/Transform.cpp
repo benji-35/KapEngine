@@ -258,7 +258,7 @@ std::shared_ptr<KapEngine::GameObject> KapEngine::Transform::getParent() const {
     std::shared_ptr<GameObject> result;
     if (_parentId != 0) {
         try {
-            result = getGameObjectConst().getScene().getGameObject(_parentId);
+            result = getGameObject().getScene().getGameObject(_parentId);
         } catch(...) {}
     }
     return result;
@@ -341,8 +341,8 @@ std::size_t KapEngine::Transform::getParentContainsComponent(std::string const& 
 }
 
 bool KapEngine::Transform::allParentsActive() const {
-    if (_parentId == 0 || getGameObjectConst().isActive() == false) {
-        return getGameObjectConst().isActive();
+    if (_parentId == 0 || getGameObject().isActive() == false) {
+        return getGameObject().isActive();
     }
     try {
         auto parent = getParent();

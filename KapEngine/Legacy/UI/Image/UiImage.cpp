@@ -24,7 +24,7 @@ void KapEngine::UI::Image::onAwake() {
     _lastScale = getTransform().getWorldScale();
     _lastPos = getTransform().getWorldPosition();
     try {
-        std::shared_ptr<GameObject> canvasObject = getGameObjectConst().getScene().getGameObject(getTransform().getParentContainsComponent("Canvas"));
+        std::shared_ptr<GameObject> canvasObject = getGameObject().getScene().getGameObject(getTransform().getParentContainsComponent("Canvas"));
 
         auto &canvas = canvasObject->getComponent<Canvas>();
         _lastCompare = canvas.getScreenSizeCompare();
@@ -46,7 +46,7 @@ void KapEngine::UI::Image::onDisplay() {
 
 KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
     PROFILER_FUNC_START();
-    auto &transform = getGameObjectConst().getComponent<Transform>();
+    auto &transform = getGameObject().getComponent<Transform>();
 
     Tools::Vector3 currPos = transform.getWorldPosition();
     Canvas::ResizyngType resizeType = Canvas::ResizyngType::RESIZE_WITH_SCREEN;
@@ -61,7 +61,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
     _lastPosWant = Tools::Vector2(currPos.getX(), currPos.getY());
 
     try {
-        std::shared_ptr<GameObject> canvasObject = getGameObjectConst().getScene().getGameObject(transform.getParentContainsComponent("Canvas"));
+        std::shared_ptr<GameObject> canvasObject = getGameObject().getScene().getGameObject(transform.getParentContainsComponent("Canvas"));
 
         auto &canvas = canvasObject->getComponent<Canvas>();
         resizeType = canvas.getResizeType();
@@ -87,7 +87,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
 
 KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
     PROFILER_FUNC_START();
-    auto &transform = getGameObjectConst().getComponent<Transform>();
+    auto &transform = getGameObject().getComponent<Transform>();
 
     Tools::Vector3 currSize = transform.getWorldScale();
     Canvas::ResizyngType resizeType = Canvas::ResizyngType::RESIZE_WITH_SCREEN;
@@ -103,7 +103,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
 
     try {
 
-        std::shared_ptr<GameObject> canvasObject = getGameObjectConst().getScene().getGameObject(transform.getParentContainsComponent("Canvas"));
+        std::shared_ptr<GameObject> canvasObject = getGameObject().getScene().getGameObject(transform.getParentContainsComponent("Canvas"));
 
         auto &canvas = canvasObject->getComponent<Canvas>();
         resizeType = canvas.getResizeType();
