@@ -69,7 +69,7 @@ namespace KapEngine {
              * @return KapEngine::GameObject &
              */
             GameObject &getGameObject() const;
-            std::size_t getGameObjectId() const { return _idGameObject; }
+            std::size_t getGameObjectId() const;
 
             //updates functions
             virtual void onInit() override {}
@@ -174,7 +174,6 @@ namespace KapEngine {
              */
             void __engineStop() {
                 PROFILER_FUNC_START();
-                _idGameObject = 0;
                 PROFILER_FUNC_END();
             }
 
@@ -292,7 +291,6 @@ namespace KapEngine {
             int threadRunning = 2;
             std::size_t _id = 0;
             std::size_t _level = 0;
-            std::size_t _idGameObject = 0;
             bool _enable = true;
             bool _awakeDone = false;
             bool _startDone = false;
@@ -300,6 +298,7 @@ namespace KapEngine {
             std::vector<std::string> _componentsNeeded;
             SceneManagement::Scene &_scene;
             KEngine &_engine;
+            GameObject &obj;
 
             bool __checkValidity();
     };

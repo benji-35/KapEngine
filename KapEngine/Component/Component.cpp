@@ -15,29 +15,26 @@
 #include "Profiler/KapProfiler.hpp"
 #include "KapEngine.hpp"
 
-KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string const& name): _scene(go->getScene()), _engine(go->getEngine()) {
+KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string const& name): _scene(go->getScene()), _engine(go->getEngine()), obj(*go) {
     PROFILER_FUNC_START();
-    _idGameObject = go->getId();
     _name = name;
     PROFILER_FUNC_END();
 }
 
-KapEngine::Component::Component(GameObject &go, std::string const& name): _scene(go.getScene()), _engine(go.getEngine()) {
+KapEngine::Component::Component(GameObject &go, std::string const& name): _scene(go.getScene()), _engine(go.getEngine()), obj(go) {
     PROFILER_FUNC_START();
-    _idGameObject = go.getId();
     _name = name;
     PROFILER_FUNC_END();
 }
 
 KapEngine::Component::~Component() {
     PROFILER_FUNC_START();
-    _idGameObject = 0;
     PROFILER_FUNC_END();
 }
 
 KapEngine::GameObject &KapEngine::Component::getGameObject() const {
     try {
-        return *_scene.getGameObject(_idGameObject);
+        return obj;
     } catch (Errors::SceneError e) {
         throw Errors::ComponentError(std::string(e.what()));
     }
@@ -77,7 +74,7 @@ void KapEngine::Component::__update(bool runDisplay) {
 
 void KapEngine::Component::__awake() {
     PROFILER_FUNC_START();
-    if (_idGameObject == 0) {
+    if (obj.getId() == 0) {
         DEBUG_ERROR("Component " + _name + " is not attached to a GameObject or GameObject do not have a valid id");
         PROFILER_FUNC_END();
         return;
@@ -122,7 +119,7 @@ KapEngine::Events::Mouse KapEngine::Component::getMouse() {
 }
 
 bool KapEngine::Component::__checkValidity() {
-    if (_idGameObject == 0) {
+    if (obj.getId() == 0) {
         DEBUG_ERROR("Component " + _name + " is not attached to a GameObject or GameObject do not have a valid id");
         return false;
     }
@@ -158,4 +155,8 @@ bool KapEngine::Component::__checkValidity() {
 
 KapEngine::Transform &KapEngine::Component::getTransform() {
     return getGameObject().getComponent<Transform>();
+}
+
+std::size_t KapEngine::Component::getGameObjectId() const {
+    return obj.getId();
 }
