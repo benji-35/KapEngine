@@ -98,6 +98,7 @@ namespace KapEngine {
 
             virtual void onSceneUpdated() override {}
             virtual void onSceneGonnaUpdated() override {}
+            virtual void onSceneChanged() override {}
 
             /**
              * @fn std::size_t getLevel() const

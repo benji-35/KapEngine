@@ -140,6 +140,12 @@ namespace KapEngine {
              */
             virtual void onSceneGonnaUpdated() = 0;
 
+            /**
+             * @brief call when scene is changed
+             * 
+             */
+            virtual void onSceneChanged() = 0;
+
         protected:
         private:
     };
