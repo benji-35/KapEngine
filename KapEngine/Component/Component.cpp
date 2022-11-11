@@ -117,6 +117,8 @@ KapEngine::Events::Mouse KapEngine::Component::getMouse() {
 }
 
 bool KapEngine::Component::__checkValidity() {
+    if (_idGameObject == 0)
+        return false;
     if (!_enable) {
         return false;
     }
