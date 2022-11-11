@@ -77,6 +77,11 @@ void KapEngine::Component::__update(bool runDisplay) {
 
 void KapEngine::Component::__awake() {
     PROFILER_FUNC_START();
+    if (_idGameObject == 0) {
+        DEBUG_ERROR("Component " + _name + " is not attached to a GameObject or GameObject do not have a valid id");
+        PROFILER_FUNC_END();
+        return;
+    }
     if (_awakeDone || getGameObject().isDestroyed()) {
         PROFILER_FUNC_END();
         return;
@@ -117,8 +122,10 @@ KapEngine::Events::Mouse KapEngine::Component::getMouse() {
 }
 
 bool KapEngine::Component::__checkValidity() {
-    if (_idGameObject == 0)
+    if (_idGameObject == 0) {
+        DEBUG_ERROR("Component " + _name + " is not attached to a GameObject or GameObject do not have a valid id");
         return false;
+    }
     if (!_enable) {
         return false;
     }
