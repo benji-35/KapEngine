@@ -45,14 +45,14 @@ namespace KapEngine {
                 }
 
                 /**
-                 * @fn virtual float asSecond() const
+                 * @fn virtual double asSecond() const
                  * @brief avoir le temps en secondes
-                 * @return float 
+                 * @return double 
                  */
-                virtual float asSecond() const {
+                virtual double asSecond() const {
                     PROFILER_FUNC_START();
                     PROFILER_FUNC_END();
-                    return (asMilliSecond() / 1000);
+                    return ((double)asMilliSecond() / 1000.0);
                 }
                 /**
                  * @fn virtual int32_t asMilliSecond() const
