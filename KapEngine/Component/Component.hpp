@@ -17,10 +17,15 @@
 namespace KapEngine {
     class GameObject;
     class Transform;
+    class KEngine;
 
     namespace Events {
         class Input;
         class Mouse;
+    }
+
+    namespace SceneManagement {
+        class Scene;
     }
 }
 
