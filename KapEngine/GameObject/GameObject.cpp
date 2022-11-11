@@ -646,5 +646,8 @@ void KapEngine::GameObject::__onSceneChanged() {
     for (std::size_t i = 0; i < _components.size(); i++) {
         _components[i]->__sceneChanged();
     }
+    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+        _componentsRun[i]->__sceneChanged();
+    }
     PROFILER_FUNC_END();
 }

@@ -263,6 +263,7 @@ namespace KapEngine {
 
             void __sceneChanged() {
                 PROFILER_FUNC_START();
+                onSceneChanged();
                 _awakeDone = false;
                 _startDone = false;
                 PROFILER_FUNC_END();
