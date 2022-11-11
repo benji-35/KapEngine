@@ -15,11 +15,17 @@
 #include "Profiler/KapProfiler.hpp"
 #include "KapEngine.hpp"
 
-KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string const& name, int threadId): _scene(go->getScene()), _engine(go->getEngine()) {
+KapEngine::Component::Component(std::shared_ptr<GameObject> &go, std::string const& name): _scene(go->getScene()), _engine(go->getEngine()) {
     PROFILER_FUNC_START();
     _idGameObject = go->getId();
     _name = name;
-    threadRunning = threadId;
+    PROFILER_FUNC_END();
+}
+
+KapEngine::Component::Component(GameObject &go, std::string const& name): _scene(go.getScene()), _engine(go.getEngine()) {
+    PROFILER_FUNC_START();
+    _idGameObject = go.getId();
+    _name = name;
     PROFILER_FUNC_END();
 }
 
