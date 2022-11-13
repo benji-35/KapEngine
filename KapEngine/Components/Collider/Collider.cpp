@@ -156,7 +156,16 @@ void Collider::__callExit(GameObject &go) {
 
 bool Collider::__currentlyCollided(std::shared_ptr<Collider> &collider) {
     PROFILER_FUNC_START();
+    if (collider == nullptr) {
+        return false;
+    }
     for (std::size_t i = 0; i < _justCollidedObjects.size(); i++) {
+        if (i > _collidedObjects.size() - 1 || _collidedObjects[i] == nullptr) {
+            continue;
+        }
+        if (_justCollidedObjects[i] == nullptr) {
+            continue;
+        }
         if (_justCollidedObjects[i]->getId() == collider->getId() && collider->getGameObjectId() == _collidedObjects[i]->getGameObjectId()) {
             PROFILER_FUNC_END();
             return true;
