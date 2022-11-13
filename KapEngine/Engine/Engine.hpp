@@ -16,6 +16,7 @@
 #include "EClock.hpp"
 
 #include "KapEngineSettings.hpp"
+#include "KapEngineDebug.hpp"
 
 #if KAPENGINE_THREAD_ACTIVE
     #include <thread>
@@ -384,6 +385,22 @@ namespace KapEngine {
                     std::mutex &getMutex() {
                         return _mutex;
                     }
+
+                    static void threadPhysics(KEngine *engine);
+                    static void threadDisplay(KEngine *engine);
+                    static void threadComponents(KEngine *engine);
+                    static bool threadCanUpdate(Time::ETime const& elapsed, KEngine *engine, Time::EClock &clock);
+                    static bool threadCanFixedUpdate(Time::ETime const& elapsed, KEngine *engine, Time::EClock &clock);
+
+                    void __setUpdatedComps(bool b) {
+                        _mutex.lock();
+                        _updatedComps = b;
+                        _mutex.unlock();
+                    }
+
+                    bool getUpdatedComps() const {
+                        return _updatedComps;
+                    }
                 #endif
             #endif
 
@@ -430,6 +447,14 @@ namespace KapEngine {
                 return _displayFps;
             }
 
+            bool __canRunUpdate();
+
+            float getDeltaTime() const {
+                PROFILER_FUNC_START();
+                PROFILER_FUNC_END();
+                return deltaTime;
+            }
+
         protected:
         private:
             bool _run = false;
@@ -439,6 +464,7 @@ namespace KapEngine {
             #else
                 #if KAPENGINE_THREAD_ACTIVE
                     std::mutex _mutex;
+                    bool _updatedComps = false;
                 #endif
             #endif
             bool _runFixed = false;
@@ -477,8 +503,6 @@ namespace KapEngine {
 
             //functions
             void __init();
-
-            bool __canRunUpdate();
     };
 
 }

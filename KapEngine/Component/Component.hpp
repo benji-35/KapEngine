@@ -12,12 +12,13 @@
 #include "IComponent.hpp"
 #include "Input.hpp"
 #include "Mouse.hpp"
+#include "KapEngineSettings.hpp"
 #include "Profiler/KapProfiler.hpp"
+#include "ETime.hpp"
 
 namespace KapEngine {
     class GameObject;
     class Transform;
-    class KEngine;
 
     namespace Events {
         class Input;
@@ -39,6 +40,7 @@ namespace KapEngine {
         public:
             Component(std::shared_ptr<GameObject> &go, std::string const& name);
             Component(GameObject &go, std::string const& name);
+
             ~Component();
 
             /**
@@ -210,10 +212,18 @@ namespace KapEngine {
                 PROFILER_FUNC_END();
             }
 
+            #if KAPENGINE_BETA_ACTIVE && KAPENGINE_THREAD_ACTIVE
+
+            void __fixedUpdate(Time::ETime fixed);
+
+            #else
+
             /**
              * @warning Do not touch or call this function. Your game can be destruct by modifications
              */
             void __fixedUpdate();
+
+            #endif
 
             /**
              * @brief check awake validity
@@ -281,6 +291,10 @@ namespace KapEngine {
                 return _engine;
             }
 
+            #if KAPENGINE_BETA_ACTIVE
+                Time::ETime getElapsedTime() const;
+            #endif
+
         protected:
             /**
              * @brief Component name
@@ -301,6 +315,10 @@ namespace KapEngine {
             GameObject &obj;
 
             bool __checkValidity();
+
+            #if KAPENGINE_BETA_ACTIVE && KAPENGINE_THREAD_ACTIVE
+                    Time::ETime _elapsedTime;
+            #endif
     };
 
 }

@@ -6,7 +6,6 @@
 */
 
 #include "KapEngine.hpp"
-
 #include <thread>
 
 #pragma region Constructors
@@ -291,11 +290,11 @@
     std::shared_ptr<KapEngine::GameObject> KapEngine::SceneManagement::Scene::createGameObject(std::string const& name) {
         PROFILER_FUNC_START();
         auto object = std::make_shared<GameObject>(*this, name);
-        addGameObject(object);
 
         auto tr = std::make_shared<Transform>(object);
         object->addComponent(tr);
 
+        addGameObject(object);
         PROFILER_FUNC_END();
         return object;
     }
@@ -441,25 +440,45 @@
 
             void KapEngine::SceneManagement::Scene::__updatePhysics() {
                 PROFILER_FUNC_START();
-                while (_destroying) {
-                    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+                for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+                    _gameObjects[i]->__updatePhysics();
                 }
-                __updateGameObjects(_gameObjectsRun);
+                for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+                    _gameObjectsRun[i]->__updatePhysics();
+                }
+                PROFILER_FUNC_END();
+            }
+
+            void KapEngine::SceneManagement::Scene::__updateFixed(Time::ETime fixed) {
+                PROFILER_FUNC_START();
+                for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+                    _gameObjects[i]->__updateFixed(fixed);
+                }
+                for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+                    _gameObjectsRun[i]->__updateFixed(fixed);
+                }
                 PROFILER_FUNC_END();
             }
 
             void KapEngine::SceneManagement::Scene::__updateComponents() {
                 PROFILER_FUNC_START();
-                while (_destroying) {
-                    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+                for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+                    _gameObjects[i]->__updateComponents();
                 }
-                __updateGameObjects(_gameObjectsRun);
+                for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+                    _gameObjectsRun[i]->__updateComponents();
+                }
                 PROFILER_FUNC_END();
             }
 
             void KapEngine::SceneManagement::Scene::__updateRender() {
                 PROFILER_FUNC_START();
-                __updateGameObjects(_gameObjectsRun);
+                for (std::size_t i = 0; i < _gameObjects.size(); i++) {
+                    _gameObjects[i]->__updateDisplay();
+                }
+                for (std::size_t i = 0; i < _gameObjectsRun.size(); i++) {
+                    _gameObjectsRun[i]->__updateDisplay();
+                }
                 PROFILER_FUNC_END();
             }
         #else

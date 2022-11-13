@@ -192,6 +192,7 @@ namespace KapEngine {
                     void __updatePhysics();
                     void __updateComponents();
                     void __updateDisplay();
+                    void __updateFixed(Time::ETime fixed);
                 #else
                     void __update();
                     /**
