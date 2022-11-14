@@ -10,6 +10,7 @@
 
 #include "Engine.hpp"
 #include "GameObject.hpp"
+#include "ETime.hpp"
 
 #include "KapEngineSettings.hpp"
 
@@ -23,6 +24,10 @@ namespace KapEngine {
 
     namespace SceneManagement {
         class SceneManager;
+    }
+
+    namespace Time {
+        class ETime;
     }
 }
 
@@ -211,6 +216,7 @@ namespace KapEngine {
                         void __updatePhysics();
                         void __updateComponents();
                         void __updateRender();
+                        void __updateFixed(Time::ETime fixed);
                     #else
                         void __update();
                     #endif

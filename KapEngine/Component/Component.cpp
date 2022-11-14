@@ -41,35 +41,56 @@ KapEngine::GameObject &KapEngine::Component::getGameObject() const {
 }
 
 void KapEngine::Component::__update(bool runDisplay) {
-    PROFILER_FUNC_START();
-    try {
-        __awake();
-        if (!__checkValidity()) {
+    #if KAPENGINE_BETA_ACTIVE && KAPENGINE_THREAD_ACTIVE
+        PROFILER_FUNC_START();
+        try {
+            __awake();
+            if (!__checkValidity()) {
+                PROFILER_FUNC_END();
+                return;
+            }
+            __start();
+            if (!__checkValidity()) {
+                PROFILER_FUNC_END();
+                return;
+            }
+            onUpdate();
+        } catch(...) {
             PROFILER_FUNC_END();
             return;
         }
-        __start();
-        if (!__checkValidity()) {
-            PROFILER_FUNC_END();
-            return;
-        }
-        onUpdate();
-        if (!__checkValidity()) {
-            PROFILER_FUNC_END();
-            return;
-        }
-        __fixedUpdate();
-        if (!__checkValidity()) {
-            PROFILER_FUNC_END();
-            return;
-        }
-        if (runDisplay)
-            onDisplay();
-    } catch(...) {
         PROFILER_FUNC_END();
-        return;
-    }
-    PROFILER_FUNC_END();
+    #else
+        PROFILER_FUNC_START();
+        try {
+            __awake();
+            if (!__checkValidity()) {
+                PROFILER_FUNC_END();
+                return;
+            }
+            __start();
+            if (!__checkValidity()) {
+                PROFILER_FUNC_END();
+                return;
+            }
+            onUpdate();
+            if (!__checkValidity()) {
+                PROFILER_FUNC_END();
+                return;
+            }
+            __fixedUpdate();
+            if (!__checkValidity()) {
+                PROFILER_FUNC_END();
+                return;
+            }
+            if (runDisplay)
+                onDisplay();
+        } catch(...) {
+            PROFILER_FUNC_END();
+            return;
+        }
+        PROFILER_FUNC_END();
+    #endif
 }
 
 void KapEngine::Component::__awake() {
@@ -99,12 +120,28 @@ void KapEngine::Component::__start() {
     PROFILER_FUNC_END();
 }
 
-void KapEngine::Component::__fixedUpdate() {
-    PROFILER_FUNC_START();
-    if (getEngine().__canRunFixed())
+#if KAPENGINE_BETA_ACTIVE && KAPENGINE_THREAD_ACTIVE
+
+    void KapEngine::Component::__fixedUpdate(Time::ETime fixed) {
+        PROFILER_FUNC_START();
+        _elapsedTime = fixed;
+        if (threadRunning == 1) {
+            PROFILER_FUNC_END();
+            return;
+        }
         onFixedUpdate();
-    PROFILER_FUNC_END();
-}
+        PROFILER_FUNC_END();
+    }
+
+#else
+
+    void KapEngine::Component::__fixedUpdate() {
+        PROFILER_FUNC_START();
+        if (getEngine().__canRunFixed())
+            onFixedUpdate();
+        PROFILER_FUNC_END();
+    }
+#endif
 
 KapEngine::Events::Input KapEngine::Component::getInput() {
     PROFILER_FUNC_START();
@@ -160,3 +197,15 @@ KapEngine::Transform &KapEngine::Component::getTransform() {
 std::size_t KapEngine::Component::getGameObjectId() const {
     return obj.getId();
 }
+
+#if KAPENGINE_BETA_ACTIVE
+
+    KapEngine::Time::ETime KapEngine::Component::getElapsedTime() const {
+        #if KAPENGINE_THREAD_ACTIVE
+            return _elapsedTime;
+        #else
+            return getGameObject().getEngine().getElapsedTime();
+        #endif
+    }
+
+#endif

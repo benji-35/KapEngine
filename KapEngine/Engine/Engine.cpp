@@ -34,6 +34,90 @@
         setFixedTime(_baseTime);
         PROFILER_FUNC_END();
     }
+
+    #if KAPENGINE_THREAD_ACTIVE
+
+        void KapEngine::KEngine::threadPhysics(KEngine *engine) {
+            Time::EClock clock;
+
+            clock.restart();
+            while (engine->isRunning()) {
+                if (threadCanUpdate(clock.getElapseTime(), engine, clock)) {
+                    clock.restart();
+                    engine->getSceneManager()->getCurrentScene().__updatePhysics();
+                }
+                std::this_thread::sleep_for(std::chrono::milliseconds(1));
+            }
+        }
+
+        void KapEngine::KEngine::threadDisplay(KEngine *engine) {
+            Time::EClock clock;
+
+            clock.restart();
+            while (engine->isRunning()) {
+                if (threadCanUpdate(clock.getElapseTime(), engine, clock)) {
+                    engine->getCurrentGraphicalLib()->getEvents();
+                    engine->getEventManager().__update();
+                    if (engine->getUpdatedComps()) {
+                        engine->getCurrentGraphicalLib()->clear();
+                        engine->getSceneManager()->getCurrentScene().__updateRender();
+                        engine->getCurrentGraphicalLib()->display();
+                        engine->__setUpdatedComps(false);
+                    }
+                }
+            }
+        }
+
+        void KapEngine::KEngine::threadComponents(KEngine *engine) {
+            Time::EClock clock;
+            Time::EClock clockFixed;
+
+            clock.restart();
+            clockFixed.restart();
+
+            while (engine->isRunning()) {
+                bool _updated = false;
+                Time::ETime _elapse = clock.getElapseTime();
+                Time::ETime _elapseFixed = clockFixed.getElapseTime();
+                if (threadCanUpdate(_elapse, engine, clock)) {
+                    engine->getSceneManager()->getCurrentScene().__updateComponents();
+                    _updated = true;
+                }
+                if (threadCanFixedUpdate(_elapseFixed, engine, clockFixed)) {
+                    engine->getSceneManager()->getCurrentScene().__updateFixed(_elapseFixed);
+                    _updated = true;
+                }
+                if (_updated && engine->getUpdatedComps() == false)
+                    engine->__setUpdatedComps(true);
+            }
+        }
+
+        bool KapEngine::KEngine::threadCanUpdate(KapEngine::Time::ETime const& elapsed, KEngine *engine, Time::EClock &clock) {
+            engine->getMutex().lock();
+            int32_t fpsTime =  (1.0 / (double)engine->getMaxFps()) * 1000.0;
+            if (elapsed.asMilliSecond() >= fpsTime) {
+                clock.restart();
+                engine->getMutex().unlock();
+                return true;
+            }
+            engine->getMutex().unlock();
+            return false;
+        }
+
+        bool KapEngine::KEngine::threadCanFixedUpdate(Time::ETime const& elapsed, KEngine *engine, Time::EClock &clock) {
+            engine->getMutex().lock();
+            int32_t fixedTime = engine->getFixedTime().asMilliSecond() * engine->getDeltaTime();
+            if (elapsed.asMilliSecond() >= fixedTime) {
+                clock.restart();
+                engine->getMutex().unlock();
+                return true;
+            }
+            engine->getMutex().unlock();
+            return false;
+        }
+
+    #endif
+
 #endif
 
 KapEngine::KEngine::~KEngine() {
@@ -52,10 +136,23 @@ void KapEngine::KEngine::run() {
     #if KAPENGINE_BETA_ACTIVE
         DEBUG_WARNING("[ RUNNING ] running game beta version");
         #if KAPENGINE_THREAD_ACTIVE
-            DEBUG_ERROR("[ RUNNING ] running game beta version with thread -> this version is not available");
-            //start update for physics
-            //start update for components
-            //start update for graphics
+            _splashsScreen->__init();
+            _run = true;
+            _internalClock.restart();
+            if (getSceneManager()->getCurrentSceneId() == 0)
+                getSceneManager()->loadScene(1);
+            DEBUG_ERROR("[ RUNNING ] running game beta version with thread -> this version is unstable");            
+            std::thread threadPhysics(&KEngine::threadPhysics, this);
+            DEBUG_LOG("Thread physics started");
+            std::thread threadComponents(&KEngine::threadComponents, this);
+            DEBUG_LOG("Thread components started");
+            std::thread threadDisplay(&KEngine::threadDisplay, this);
+            DEBUG_LOG("Thread display started");
+            DEBUG_LOG("Wainting for threads");
+            threadPhysics.join();
+            threadComponents.join();
+            threadDisplay.join();
+            DEBUG_LOG("All threads are stopped");
         #else
             _splashsScreen->__init();
             _run = true;
@@ -102,10 +199,7 @@ void KapEngine::KEngine::stop() {
             _mutex.lock();
         #endif
     #endif
-    if (!_run) {
-        PROFILER_FUNC_END();
-        return;
-    }
+    DEBUG_WARNING("[ STOP ] stopping game");
     _run = false;
     #if KAPENGINE_BETA_ACTIVE
         #if KAPENGINE_THREAD_ACTIVE
@@ -172,6 +266,14 @@ void KapEngine::KEngine::setScreenSize(Tools::Vector2 size) {
 
 bool KapEngine::KEngine::__canRunUpdate() {
     PROFILER_FUNC_START();
+    #if KAPENGINE_BETA_ACTIVE
+        #if KAPENGINE_THREAD_ACTIVE
+        if (!_mutex.try_lock()) {
+            PROFILER_FUNC_END();
+            return false;
+        }
+        #endif
+    #endif
     _runFixed = false;
     bool runUpdate = false;
 
@@ -191,6 +293,11 @@ bool KapEngine::KEngine::__canRunUpdate() {
         PROFILER_FUNC_END();
         return true;
     }
+    #if KAPENGINE_BETA_ACTIVE
+        #if KAPENGINE_THREAD_ACTIVE
+            _mutex.unlock();
+        #endif
+    #endif
     PROFILER_FUNC_END();
     return runUpdate;
 }

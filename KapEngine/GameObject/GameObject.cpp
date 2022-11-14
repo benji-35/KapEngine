@@ -152,6 +152,46 @@ KapEngine::GameObject::~GameObject() {
             PROFILER_FUNC_END();
         }
 
+        void KapEngine::GameObject::__updateFixed(Time::ETime fixed) {
+            PROFILER_FUNC_START();
+            //check if gameObject is destroy or disable
+            if (!_active || _destroyed) {
+                PROFILER_FUNC_END();
+                return;
+            }
+
+            //set all children
+            std::vector<std::shared_ptr<GameObject>> _children;
+            try {
+                Transform &tr = (Transform &)getTransform();
+                if (!tr.allParentIsActive()) {
+                    PROFILER_FUNC_END();
+                    return;
+                }
+                _children = tr.getChildren();
+            } catch (...) {
+                DEBUG_ERROR("Failed to get children of gameObject " + _name);
+            }
+
+            //update components
+            for (std::size_t i = 0; i < _components.size(); i++) {
+                if (_components[i]->isEnable() && _components[i]->__isPhysics()) {
+                    _components[i]->__fixedUpdate(fixed);
+                }
+            }
+            for (std::size_t i = 0; i < _componentsRun.size(); i++) {
+                if (_componentsRun[i]->isEnable() && _componentsRun[i]->__isPhysics()) {
+                    _componentsRun[i]->__fixedUpdate(fixed);
+                }
+            }
+
+            //call children updates
+            for (std::size_t i = 0; i < _children.size(); i++) {
+                _children[i]->__updateFixed(fixed);
+            }
+            PROFILER_FUNC_END();
+        }
+
     #else
         void KapEngine::GameObject::__update() {
             PROFILER_FUNC_START();
@@ -645,9 +685,6 @@ void KapEngine::GameObject::__onSceneChanged() {
     PROFILER_FUNC_START();
     for (std::size_t i = 0; i < _components.size(); i++) {
         _components[i]->__sceneChanged();
-    }
-    for (std::size_t i = 0; i < _componentsRun.size(); i++) {
-        _componentsRun[i]->__sceneChanged();
     }
     PROFILER_FUNC_END();
 }

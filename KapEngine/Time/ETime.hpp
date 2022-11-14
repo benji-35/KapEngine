@@ -45,14 +45,14 @@ namespace KapEngine {
                 }
 
                 /**
-                 * @fn virtual double asSecond() const
+                 * @fn virtual float asSecond() const
                  * @brief avoir le temps en secondes
-                 * @return double 
+                 * @return float 
                  */
                 virtual double asSecond() const {
                     PROFILER_FUNC_START();
                     PROFILER_FUNC_END();
-                    return ((double)asMilliSecond() / 1000.0);
+                    return (asMilliSecond() / 1000);
                 }
                 /**
                  * @fn virtual int32_t asMilliSecond() const
@@ -62,7 +62,7 @@ namespace KapEngine {
                 virtual int32_t asMilliSecond() const {
                     PROFILER_FUNC_START();
                     PROFILER_FUNC_END();
-                    return (_micro_s / 100);
+                    return (_micro_s / 1000);
                 }
                 /**
                  * @fn virtual int64_t asMicroSecond() const
@@ -145,13 +145,37 @@ namespace KapEngine {
                     return *this;
                 }
 
+                bool operator==(ETime const& _time) {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
+                    return (this->_micro_s == _time._micro_s);
+                }
+
+                bool operator==(int64_t const& _time) {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
+                    return (this->_micro_s == _time);
+                }
+
+                bool operator!=(ETime const& _time) {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
+                    return (this->_micro_s != _time._micro_s);
+                }
+
+                bool operator!=(int64_t const& _time) {
+                    PROFILER_FUNC_START();
+                    PROFILER_FUNC_END();
+                    return (this->_micro_s != _time);
+                }
+
                 /**
                  * @brief Set the Seconds of time
                  * @param s seconds
                  */
-                void setSeconds(float s) {
+                void setSeconds(double s) {
                     PROFILER_FUNC_START();
-                    _micro_s = (int64_t)(s * 1000000.0f);
+                    setMilliseconds(s * 1000);
                     PROFILER_FUNC_END();
                 }
 
@@ -161,7 +185,7 @@ namespace KapEngine {
                  */
                 void setMilliseconds(int64_t ms) {
                     PROFILER_FUNC_START();
-                    _micro_s = ms * 100;
+                    setMicroseconds(ms * 1000);
                     PROFILER_FUNC_END();
                 }
 
