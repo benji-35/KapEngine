@@ -24,7 +24,7 @@ void KapEngine::UI::Image::onAwake() {
     _lastScale = getTransform().getWorldScale();
     _lastPos = getTransform().getWorldPosition();
     try {
-        std::shared_ptr<GameObject> canvasObject = getGameObject().getScene().getGameObject(getTransform().getParentContainsComponent("Canvas"));
+        std::shared_ptr<GameObject> canvasObject = getScene().getGameObject(getTransform().getParentContainsComponent("Canvas"));
 
         auto &canvas = canvasObject->getComponent<Canvas>();
         _lastCompare = canvas.getScreenSizeCompare();
@@ -61,7 +61,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedPosition() {
     _lastPosWant = Tools::Vector2(currPos.getX(), currPos.getY());
 
     try {
-        std::shared_ptr<GameObject> canvasObject = getGameObject().getScene().getGameObject(transform.getParentContainsComponent("Canvas"));
+        std::shared_ptr<GameObject> canvasObject = getScene().getGameObject(transform.getParentContainsComponent("Canvas"));
 
         auto &canvas = canvasObject->getComponent<Canvas>();
         resizeType = canvas.getResizeType();
@@ -103,7 +103,7 @@ KapEngine::Tools::Vector2 KapEngine::UI::Image::getCalculatedScale() {
 
     try {
 
-        std::shared_ptr<GameObject> canvasObject = getGameObject().getScene().getGameObject(transform.getParentContainsComponent("Canvas"));
+        std::shared_ptr<GameObject> canvasObject = getScene().getGameObject(transform.getParentContainsComponent("Canvas"));
 
         auto &canvas = canvasObject->getComponent<Canvas>();
         resizeType = canvas.getResizeType();

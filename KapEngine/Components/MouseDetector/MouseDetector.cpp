@@ -154,7 +154,7 @@ bool KapEngine::MouseDetector::__checkCanvas(Tools::Vector2 const& posMouse) {
 
 KapEngine::Tools::Vector2 KapEngine::MouseDetector::crossProductScreen(Tools::Vector2 value) {
     PROFILER_FUNC_START();
-    Tools::Vector2 baseScreenSize = getScene().getEngine().getScreenSize();
+    Tools::Vector2 baseScreenSize = getEngine().getScreenSize();
     try {
         auto canvasId = getTransform().getParentContainsComponent("Canvas");
         if (canvasId == 0) {
@@ -169,7 +169,7 @@ KapEngine::Tools::Vector2 KapEngine::MouseDetector::crossProductScreen(Tools::Ve
             DEBUG_ERROR("Failed to get canvas parent");
         #endif
     }
-    Tools::Vector2 currentScreenSize = getScene().getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
+    Tools::Vector2 currentScreenSize = getEngine().getGraphicalLibManager()->getCurrentLib()->getScreenSize();
 
     Tools::Vector2 result = value;
 
